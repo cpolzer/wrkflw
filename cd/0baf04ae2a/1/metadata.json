@@ -1,0 +1,152 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "cd0baf04ae2a",
+  "session_id": "ses_151d2b065ffehKdJFLZLT1zys3",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T22:00:06.371359554Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 5,
+  "files_touched": [
+    "specs/001-document-approval-engine/tasks.md"
+  ],
+  "agent": "OpenCode",
+  "model": "qwen3.6-plus",
+  "turn_id": "ba06dedc5b97",
+  "token_usage": {
+    "input_tokens": 1074,
+    "cache_creation_tokens": 913217,
+    "cache_read_tokens": 32360771,
+    "output_tokens": 59787,
+    "api_call_count": 182
+  },
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T22:00:06.337691986Z",
+    "agent_lines": 21,
+    "agent_removed": 21,
+    "human_added": 656,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 677,
+    "total_lines_changed": 698,
+    "agent_percentage": 6.017191977077363,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 2730,
+      "user_lines_removed": 2371,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/agents/entire-search.md": 25,
+        ".claude/settings.json": 84,
+        ".claude/settings.local.json": 26,
+        ".opencode/command/speckit.analyze.md": 249,
+        ".opencode/command/speckit.checklist.md": 361,
+        ".opencode/command/speckit.clarify.md": 247,
+        ".opencode/command/speckit.constitution.md": 150,
+        ".opencode/command/speckit.git.commit.md": 51,
+        ".opencode/command/speckit.git.feature.md": 70,
+        ".opencode/command/speckit.git.initialize.md": 52,
+        ".opencode/command/speckit.git.remote.md": 48,
+        ".opencode/command/speckit.git.validate.md": 52,
+        ".opencode/command/speckit.implement.md": 199,
+        ".opencode/command/speckit.plan.md": 149,
+        ".opencode/command/speckit.specify.md": 327,
+        ".opencode/command/speckit.tasks.md": 200,
+        ".opencode/command/speckit.taskstoissues.md": 96,
+        ".opencode/plugins/entire.ts": 216,
+        ".specify/extensions/.registry": 1,
+        ".specify/init-options.json": 3,
+        ".specify/integration.json": 5,
+        ".specify/integrations/opencode.manifest.json": 16,
+        ".specify/integrations/speckit.manifest.json": 3,
+        ".specify/templates/checklist-template.md": 2,
+        ".specify/templates/plan-template.md": 7,
+        ".specify/templates/tasks-template.md": 1,
+        "AGENTS.md": 90
+      },
+      "user_removed_per_file": {
+        ".claude/skills/speckit-analyze/SKILL.md": 260,
+        ".claude/skills/speckit-checklist/SKILL.md": 372,
+        ".claude/skills/speckit-clarify/SKILL.md": 254,
+        ".claude/skills/speckit-constitution/SKILL.md": 157,
+        ".claude/skills/speckit-git-commit/SKILL.md": 53,
+        ".claude/skills/speckit-git-feature/SKILL.md": 72,
+        ".claude/skills/speckit-git-initialize/SKILL.md": 54,
+        ".claude/skills/speckit-git-remote/SKILL.md": 50,
+        ".claude/skills/speckit-git-validate/SKILL.md": 54,
+        ".claude/skills/speckit-implement/SKILL.md": 210,
+        ".claude/skills/speckit-plan/SKILL.md": 152,
+        ".claude/skills/speckit-specify/SKILL.md": 330,
+        ".claude/skills/speckit-tasks/SKILL.md": 202,
+        ".claude/skills/speckit-taskstoissues/SKILL.md": 106,
+        ".specify/extensions/.registry": 1,
+        ".specify/init-options.json": 4,
+        ".specify/integration.json": 5,
+        ".specify/integrations/claude.manifest.json": 16,
+        ".specify/integrations/speckit.manifest.json": 3,
+        ".specify/templates/checklist-template.md": 2,
+        ".specify/templates/plan-template.md": 7,
+        ".specify/templates/tasks-template.md": 1,
+        "CLAUDE.md": 6
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 26,
+      "user_lines_removed": 0,
+      "agent_lines_added": 4159,
+      "agent_lines_removed": 2392,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 26
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 26,
+      "user_lines_removed": 0,
+      "agent_lines_added": 4159,
+      "agent_lines_removed": 2392,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 26
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 26,
+      "user_lines_removed": 0,
+      "agent_lines_added": 4159,
+      "agent_lines_removed": 2392,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 26
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 29,
+      "user_lines_removed": 0,
+      "agent_lines_added": 4159,
+      "agent_lines_removed": 2392,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 26,
+        ".gitignore": 3
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 29,
+      "user_lines_removed": 0,
+      "agent_lines_added": 4132,
+      "agent_lines_removed": 2392,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 26,
+        ".gitignore": 3
+      }
+    }
+  ]
+}
