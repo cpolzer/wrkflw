@@ -1,0 +1,57 @@
+site_name: wrkflw Developer Docs
+site_description: Developer documentation for the wrkflw workflow engine
+docs_dir: docs
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Tutorials:
+      - Run the document-approval flow locally: tutorials/run-locally.md
+  - How-to guides:
+      - Add a new flow definition: how-to/add-flow-definition.md
+      - Add a REST endpoint: how-to/add-rest-endpoint.md
+      - Write an integration test: how-to/integration-tests.md
+  - Reference:
+      - REST API: reference/rest-api.md
+      - Integration events: reference/events.md
+      - Database schema: reference/database.md
+      - Kotlin API (KDoc): reference/api.md
+  - Explanation:
+      - Architecture overview: explanation/architecture.md
+      - Hexagonal layering: explanation/hexagonal.md
+      - Temporal integration (Approach A): explanation/temporal-integration.md
+  - Decisions (ADR): adr/index.md
