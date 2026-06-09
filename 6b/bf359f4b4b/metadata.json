@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "6bbf359f4b4b",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "application/build.gradle.kts",
+    "application/src/main/kotlin/dev/wrkflw/application/package.kt",
+    "application/src/test/kotlin/dev/wrkflw/application/ApplicationTest.kt",
+    "domain/build.gradle.kts",
+    "domain/src/main/kotlin/dev/wrkflw/domain/audit/AuditEntry.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/event/DomainEvent.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/flow/FlowDefinition.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/flow/FlowInstance.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/flow/FlowInterpreter.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/identity/Ids.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/ActorContext.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/AuditLog.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/Clock.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/DomainEventPublisher.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/FlowDefinitionRepository.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/FlowInstanceRepository.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/TaskRepository.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/WorkflowEngine.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/task/Task.kt",
+    "domain/src/test/kotlin/dev/wrkflw/domain/DomainTest.kt"
+  ],
+  "sessions": [
+    {
+      "metadata": "/6b/bf359f4b4b/0/metadata.json",
+      "transcript": "/6b/bf359f4b4b/0/full.jsonl",
+      "content_hash": "/6b/bf359f4b4b/0/content_hash.txt",
+      "prompt": "/6b/bf359f4b4b/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15008,
+    "cache_creation_tokens": 750771,
+    "cache_read_tokens": 19303124,
+    "output_tokens": 175073,
+    "api_call_count": 144
+  }
+}

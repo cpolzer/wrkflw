@@ -1,0 +1,214 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "6bbf359f4b4b",
+  "session_id": "e569b3e9-0002-48fb-a39a-526da5af7327",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T22:14:21.588391341Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "application/build.gradle.kts",
+    "application/src/main/kotlin/dev/wrkflw/application/package.kt",
+    "application/src/test/kotlin/dev/wrkflw/application/ApplicationTest.kt",
+    "domain/build.gradle.kts",
+    "domain/src/main/kotlin/dev/wrkflw/domain/audit/AuditEntry.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/event/DomainEvent.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/flow/FlowDefinition.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/flow/FlowInstance.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/flow/FlowInterpreter.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/identity/Ids.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/ActorContext.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/AuditLog.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/Clock.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/DomainEventPublisher.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/FlowDefinitionRepository.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/FlowInstanceRepository.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/TaskRepository.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/WorkflowEngine.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/task/Task.kt",
+    "domain/src/test/kotlin/dev/wrkflw/domain/DomainTest.kt"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "ab74a18207f1",
+  "token_usage": {
+    "input_tokens": 15008,
+    "cache_creation_tokens": 750771,
+    "cache_read_tokens": 19303124,
+    "output_tokens": 175073,
+    "api_call_count": 144
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_0122Gnzy7QHe9JHvP4bR5k7r",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-specify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 140,
+        "end": 141,
+        "entry_ids": [
+          "3f07ebfd-2cd2-4a6c-af55-dafc59e3bb38"
+        ],
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-specify",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015tNWy9BAipB4evTKhyVcpM",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-feature"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 154,
+        "end": 155,
+        "entry_ids": [
+          "b6bfe0b9-3f60-4dab-8286-535389688556"
+        ],
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-feature",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015V1Sk324dhPuWuPZyrAoDC",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-initialize"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 231,
+        "end": 232,
+        "entry_ids": [
+          "9135856e-f497-46f9-9020-861c78a51033"
+        ],
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-initialize",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01AYkUJkvXMqWtCxnKzB9mbZ",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 268,
+        "end": 269,
+        "entry_ids": [
+          "c6ba2694-43f0-4721-a03f-59d6346b62b5"
+        ],
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-commit",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01FGTd8W1oC5fHCtQmJzr4P3",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-plan"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 506,
+        "end": 507,
+        "entry_ids": [
+          "0c76d138-1d14-4315-834a-ee507af74008"
+        ],
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-plan",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 8
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T22:14:21.554240096Z",
+    "agent_lines": 496,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 496,
+    "total_lines_changed": 496,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
