@@ -18,4 +18,14 @@ dependencies {
     implementation(libs.koin.ktor)
     implementation(libs.postgresql)
     implementation(libs.jooq)
+
+    testImplementation(libs.ktor.server.test.host)
+    testImplementation(libs.ktor.client.content.negotiation)
+    testImplementation(libs.ktor.serialization.kotlinx.json)
+    testImplementation(libs.testcontainers)
+    testImplementation(libs.testcontainers.junit5)
+    testImplementation(libs.testcontainers.postgresql)
+    testImplementation(libs.temporal.testing)
+    testImplementation(libs.flyway.core)
+    testImplementation(libs.flyway.database.postgresql)
 }

@@ -1,5 +1,8 @@
 package dev.wrkflw
 
+import dev.wrkflw.application.command.SubmitDocumentUseCase
+import dev.wrkflw.domain.port.TaskRepository
+import dev.wrkflw.rest.flowRoutes
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -9,7 +12,9 @@ import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import kotlinx.serialization.json.Json
+import org.koin.ktor.ext.inject
 import org.koin.ktor.plugin.Koin
 import org.postgresql.ds.PGSimpleDataSource
 
@@ -58,5 +63,12 @@ fun Application.module() {
         }
     }
 
-    // Routes wired during US1-US5 implementation
+    val submitDocument: SubmitDocumentUseCase by inject()
+    val taskRepository: TaskRepository by inject()
+
+    routing {
+        route("/api/v1") {
+            flowRoutes(submitDocument, taskRepository)
+        }
+    }
 }

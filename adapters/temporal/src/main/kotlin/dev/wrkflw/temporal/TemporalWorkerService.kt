@@ -1,16 +1,16 @@
 package dev.wrkflw.temporal
 
+import dev.wrkflw.temporal.activity.CreateHumanTaskActivity
 import io.temporal.client.WorkflowClient
-import io.temporal.client.WorkflowClientOptions
-import io.temporal.client.WorkflowOptions
+import io.temporal.serviceclient.WorkflowServiceStubs
+import io.temporal.serviceclient.WorkflowServiceStubsOptions
 import io.temporal.worker.Worker
 import io.temporal.worker.WorkerFactory
-import io.temporal.worker.WorkerOptions
-import java.time.Duration
 
 class TemporalWorkerService(
     private val client: WorkflowClient,
-    private val taskQueue: String = "wrkflw-task-queue"
+    private val taskQueue: String = "wrkflw-task-queue",
+    private val createHumanTaskActivity: CreateHumanTaskActivity,
 ) {
     fun start(): WorkerFactory {
         val factory = WorkerFactory.newInstance(client)
@@ -26,18 +26,17 @@ class TemporalWorkerService(
     }
 
     private fun registerActivities(worker: Worker) {
-        // Activities registered during US1 implementation
+        worker.registerActivitiesImplementations(createHumanTaskActivity)
     }
 
     companion object {
-        fun createClient(host: String = "localhost", port: Int = 7233): WorkflowClient {
-            return WorkflowClient.newInstance(
-                io.temporal.serviceclient.WorkflowServiceStubs.newInstance(
-                    io.temporal.serviceclient.WorkflowServiceStubsOptions.newBuilder()
+        fun createClient(host: String = "localhost", port: Int = 7233): WorkflowClient =
+            WorkflowClient.newInstance(
+                WorkflowServiceStubs.newInstance(
+                    WorkflowServiceStubsOptions.newBuilder()
                         .setTarget("$host:$port")
                         .build()
                 )
             )
-        }
     }
 }

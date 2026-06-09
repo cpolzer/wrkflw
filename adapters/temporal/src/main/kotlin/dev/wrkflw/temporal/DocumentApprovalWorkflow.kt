@@ -1,8 +1,11 @@
 package dev.wrkflw.temporal
 
+import dev.wrkflw.temporal.activity.CreateHumanTaskActivity
+import io.temporal.activity.ActivityOptions
+import io.temporal.workflow.SignalMethod
 import io.temporal.workflow.Workflow
 import io.temporal.workflow.WorkflowMethod
-import io.temporal.workflow.SignalMethod
+import java.time.Duration
 
 interface DocumentApprovalWorkflow {
 
@@ -15,13 +18,21 @@ interface DocumentApprovalWorkflow {
 
 class DocumentApprovalWorkflowImpl : DocumentApprovalWorkflow {
 
+    private val activity = Workflow.newActivityStub(
+        CreateHumanTaskActivity::class.java,
+        ActivityOptions.newBuilder()
+            .setStartToCloseTimeout(Duration.ofSeconds(30))
+            .build()
+    )
+
+    private var decisionReceived = false
+
     override fun execute(flowInstanceId: String, definitionKey: String) {
-        Workflow.getLogger(DocumentApprovalWorkflowImpl::class.java)
-            .info("Workflow started for flow=$flowInstanceId definition=$definitionKey")
+        activity.createForCurrentState(flowInstanceId)
+        Workflow.await { decisionReceived }
     }
 
     override fun onDecisionSignal(outcome: String, taskId: String, actorId: String) {
-        Workflow.getLogger(DocumentApprovalWorkflowImpl::class.java)
-            .info("Decision signal received: outcome=$outcome taskId=$taskId actorId=$actorId")
+        decisionReceived = true
     }
 }

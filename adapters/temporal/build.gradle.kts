@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":application"))
     implementation(libs.temporal.sdk)
+    implementation(libs.kotlinx.coroutines.core)
 
     testImplementation(libs.temporal.testing)
     testImplementation(libs.testcontainers)

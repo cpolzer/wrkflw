@@ -1,7 +1,9 @@
 package dev.wrkflw.worker
 
+import dev.wrkflw.temporal.TemporalWorkerService
 import org.koin.core.context.startKoin
 import org.postgresql.ds.PGSimpleDataSource
+import java.util.concurrent.TimeUnit
 
 fun main() {
     val dataSource = PGSimpleDataSource().apply {
@@ -27,5 +29,5 @@ fun main() {
     Runtime.getRuntime().addShutdownHook(Thread {
         factory.shutdown()
     })
-    factory.awaitTermination()
+    factory.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS)
 }

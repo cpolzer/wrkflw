@@ -80,18 +80,18 @@ implementation (red→green→refactor).
 
 ### Tests for User Story 1 (write first, must fail) ⚠️
 
-- [ ] T025 [P] [US1] Contract test for `POST /flows` (per contracts/openapi.yaml) in `adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/SubmitFlowContractTest.kt`
-- [ ] T026 [P] [US1] Integration test (Testcontainers Postgres + Temporal test env): submit → flow created, first task PENDING for candidate group, audit entries written, in `apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt`
-- [ ] T027 [P] [US1] Unit test for `SubmitDocument` use case: initiator-group authorization + unknown/invalid definition refusal, in `application/src/test/kotlin/dev/wrkflw/application/SubmitDocumentTest.kt`
+- [x] T025 [P] [US1] Contract test for `POST /flows` (per contracts/openapi.yaml) in `adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/SubmitFlowContractTest.kt`
+- [x] T026 [P] [US1] Integration test (Testcontainers Postgres + Temporal test env): submit → flow created, first task PENDING for candidate group, audit entries written, in `apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt`
+- [x] T027 [P] [US1] Unit test for `SubmitDocument` use case: initiator-group authorization + unknown/invalid definition refusal, in `application/src/test/kotlin/dev/wrkflw/application/SubmitDocumentTest.kt`
 
 ### Implementation for User Story 1
 
-- [ ] T028 [US1] `SubmitDocument` command + application service (validate initiator-group membership via ActorContext, create FlowInstance, start workflow via WorkflowEngine, write FLOW_STARTED audit) in `application/src/main/kotlin/dev/wrkflw/application/command/SubmitDocument.kt`
-- [ ] T029 [US1] `FlowDefinitionRepository` + `FlowInstanceRepository` jOOQ impls in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/` (depends on T018)
-- [ ] T030 [US1] `TaskRepository` jOOQ impl (create + read) in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt`
-- [ ] T031 [US1] Temporal activity `CreateHumanTask` (writes Task row + TASK_CREATED audit) invoked by the workflow on entering a HUMAN_TASK state, in `adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/`
-- [ ] T032 [US1] `POST /flows` route + request/response DTOs + mapper in `adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt`
-- [ ] T033 [US1] Wire start-flow → workflow → CreateHumanTask end to end; make T025–T027 pass
+- [x] T028 [US1] `SubmitDocument` command + application service (validate initiator-group membership via ActorContext, create FlowInstance, start workflow via WorkflowEngine, write FLOW_STARTED audit) in `application/src/main/kotlin/dev/wrkflw/application/command/SubmitDocument.kt`
+- [x] T029 [US1] `FlowDefinitionRepository` + `FlowInstanceRepository` jOOQ impls in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/` (depends on T018)
+- [x] T030 [US1] `TaskRepository` jOOQ impl (create + read) in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt`
+- [x] T031 [US1] Temporal activity `CreateHumanTask` (writes Task row + TASK_CREATED audit) invoked by the workflow on entering a HUMAN_TASK state, in `adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/`
+- [x] T032 [US1] `POST /flows` route + request/response DTOs + mapper in `adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt`
+- [x] T033 [US1] Wire start-flow → workflow → CreateHumanTask end to end; make T025–T027 pass
 
 **Checkpoint**: US1 fully functional and independently testable (MVP).
 
