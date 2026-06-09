@@ -1,0 +1,179 @@
+openapi: 3.1.0
+info:
+  title: wrkflw Document Approval API
+  version: 0.1.0
+  description: >
+    REST contract for the document-approval workflow engine (first deliverable).
+    The acting person and their group memberships are supplied by the ActorContext
+    (first deliverable: a trusted authenticated header/token; full OIDC/SSO later).
+    All command responses reflect the authoritative DB state committed before the
+    corresponding Temporal signal is sent.
+servers:
+  - url: /api/v1
+paths:
+  /flows:
+    post:
+      summary: Submit a document for approval (start a flow)
+      description: >
+        Starts a flow instance from a flow definition. Only members of the
+        definition's designated initiator group may start it (FR-002).
+      operationId: submitDocument
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitDocumentRequest'
+      responses:
+        '201':
+          description: Flow started
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FlowStatus' }
+        '403': { description: Caller is not a member of the initiator group }
+        '404': { description: Flow definition not found }
+        '422': { description: Invalid request (e.g. missing documentRef) }
+  /flows/{flowId}:
+    get:
+      summary: Get flow status, pending tasks, responsible groups, and history
+      operationId: getFlowStatus
+      parameters:
+        - { name: flowId, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: Flow status
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FlowStatusWithHistory' }
+        '404': { description: Flow not found }
+  /worklists/group:
+    get:
+      summary: Unclaimed tasks actionable by the caller's group(s) (FR-016)
+      operationId: getGroupWorkList
+      responses:
+        '200':
+          description: Pending tasks for the caller's groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/TaskSummary' }
+  /worklists/mine:
+    get:
+      summary: Tasks the caller personally owns (FR-017)
+      operationId: getMyTasks
+      responses:
+        '200':
+          description: Tasks owned by the caller
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/TaskSummary' }
+  /tasks/{taskId}/claim:
+    post:
+      summary: Claim a pending task (FR-008)
+      description: Requires the caller to be a member of the task's candidate group and the task to be PENDING.
+      operationId: claimTask
+      parameters:
+        - { name: taskId, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: Task claimed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/TaskSummary' }
+        '403': { description: Caller not in the task's candidate group }
+        '409': { description: Task is not claimable (already claimed/completed) }
+        '404': { description: Task not found }
+  /tasks/{taskId}/release:
+    post:
+      summary: Release a claimed task back to the group (FR-009)
+      operationId: releaseTask
+      parameters:
+        - { name: taskId, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: Task released
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/TaskSummary' }
+        '403': { description: Caller is not the current owner }
+        '409': { description: Task is not in a releasable state }
+        '404': { description: Task not found }
+  /tasks/{taskId}/decision:
+    post:
+      summary: Record an approve/reject decision on an owned task (FR-011, FR-012)
+      description: >
+        Only the current owner may decide. On success the decision is recorded,
+        the flow advances per the definition (approve → next stage / terminal;
+        reject → return to submitter for rework in the document-approval definition),
+        audit and outbox rows are written in the same transaction, and the Temporal
+        workflow is signaled.
+      operationId: submitDecision
+      parameters:
+        - { name: taskId, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DecisionRequest' }
+      responses:
+        '200':
+          description: Decision recorded; returns the resulting flow status
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FlowStatus' }
+        '403': { description: Caller is not the current owner }
+        '409': { description: Task is not in a decidable state }
+        '404': { description: Task not found }
+        '422': { description: Invalid outcome }
+components:
+  schemas:
+    SubmitDocumentRequest:
+      type: object
+      required: [definitionKey, documentRef]
+      properties:
+        definitionKey: { type: string, example: document-approval }
+        documentRef: { type: string, description: Reference/identifier of the document }
+    DecisionRequest:
+      type: object
+      required: [outcome]
+      properties:
+        outcome: { type: string, enum: [APPROVE, REJECT] }
+        comment: { type: string }
+    FlowStatus:
+      type: object
+      properties:
+        flowId: { type: string, format: uuid }
+        definitionKey: { type: string }
+        currentState: { type: string }
+        status: { type: string, enum: [RUNNING, COMPLETED] }
+        terminalOutcome: { type: string, nullable: true }
+        pendingTasks:
+          type: array
+          items: { $ref: '#/components/schemas/TaskSummary' }
+    FlowStatusWithHistory:
+      allOf:
+        - $ref: '#/components/schemas/FlowStatus'
+        - type: object
+          properties:
+            history:
+              type: array
+              items: { $ref: '#/components/schemas/AuditEntry' }
+    TaskSummary:
+      type: object
+      properties:
+        taskId: { type: string, format: uuid }
+        flowId: { type: string, format: uuid }
+        stateName: { type: string }
+        candidateGroupId: { type: string }
+        status: { type: string, enum: [PENDING, CLAIMED, COMPLETED] }
+        ownerId: { type: string, nullable: true }
+    AuditEntry:
+      type: object
+      properties:
+        type: { type: string }
+        actorId: { type: string, nullable: true }
+        occurredAt: { type: string, format: date-time }
+        detail: { type: object, additionalProperties: true }
