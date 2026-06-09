@@ -1,0 +1,13 @@
+[project]
+name = "wrkflw-docs"
+version = "0.1.0"
+description = "Developer documentation for the wrkflw workflow engine"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs-material",
+    "pymdown-extensions",
+]
+
+[tool.uv]
+# uv manages the .venv; run `uv sync` (or `mise run docs:deps`) to install.
+# Run mkdocs via `uv run mkdocs …` (or the mise docs:* tasks).

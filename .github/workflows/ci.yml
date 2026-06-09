@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install tools (JDK 21 + Python 3.12)
+      - name: Install tools (JDK 21 + uv)
         uses: jdx/mise-action@v2
-        # Reads mise.toml; installs & caches temurin-21 + python 3.12; trusts config.
+        # Reads mise.toml; installs & caches temurin-21 + uv; trusts config.
 
       - name: Cache Gradle packages
         uses: actions/cache@v4
@@ -26,10 +26,17 @@ jobs:
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle.kts', 'gradle/libs.versions.toml') }}
           restore-keys: gradle-${{ runner.os }}-
 
+      - name: Cache uv packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/uv
+          key: uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
+          restore-keys: uv-${{ runner.os }}-
+
       - name: Run CI (lint + build + docs)
         run: mise run ci
         # Equivalent to: ./gradlew ktlintCheck detekt && ./gradlew build &&
-        #   ./gradlew dokkaHtmlMultiModule + mkdocs build --strict
+        #   ./gradlew dokkaHtmlMultiModule + uv run mkdocs build --strict
 
   docs-deploy:
     name: Publish docs to GitHub Pages
@@ -53,8 +60,15 @@ jobs:
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle.kts', 'gradle/libs.versions.toml') }}
           restore-keys: gradle-${{ runner.os }}-
 
+      - name: Cache uv packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/uv
+          key: uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
+          restore-keys: uv-${{ runner.os }}-
+
       - name: Build docs
         run: mise run docs:build
 
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force --clean
+        run: uv run mkdocs gh-deploy --force --clean
