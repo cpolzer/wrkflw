@@ -1,0 +1,47 @@
+# Gradle
+.gradle/
+build/
+out/
+*.class
+*.jar
+*.log
+*.iml
+.idea/
+*.swp
+*.swo
+*~
+
+# Kotlin
+*.kotlin_module
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.project
+.classpath
+.settings/
+
+# Docker
+docker-compose.override.yml
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Test
+coverage/
+*.exec
+*.hprof
+
+# jOOQ generated code (keep tracked but ignore build artifacts)
+**/generated/
+
+# Temporal
+.temporal/
+
+#gradle
+*/build/

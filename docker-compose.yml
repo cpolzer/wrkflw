@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: wrkflw
+      POSTGRES_USER: wrkflw
+      POSTGRES_PASSWORD: wrkflw
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wrkflw"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  temporal:
+    image: temporalio/auto-setup:1.26.3.0
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_SEEDS=postgres
+      - POSTGRES_USER=wrkflw
+      - POSTGRES_PWD=wrkflw
+      - POSTGRES_DB=temporal
+      - DYNAMIC_CONFIG_FILE_PATH=/etc/temporal/dynamicconfig.yaml
+    ports:
+      - "7233:7233"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./temporal-dynamicconfig:/etc/temporal/dynamicconfig.yaml
+
+  temporal-ui:
+    image: temporalio/ui:2.32.0
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    ports:
+      - "8233:8080"
+    depends_on:
+      - temporal
+
+volumes:
+  postgres-data:
