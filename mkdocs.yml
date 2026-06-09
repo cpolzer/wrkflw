@@ -2,6 +2,10 @@ site_name: wrkflw Developer Docs
 site_description: Developer documentation for the wrkflw workflow engine
 docs_dir: docs
 
+# requirements.txt lives under docs/ for convenience but is not site content.
+exclude_docs: |
+  requirements.txt
+
 theme:
   name: material
   features:

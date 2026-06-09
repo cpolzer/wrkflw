@@ -15,7 +15,11 @@ require touching the engine.
    `HUMAN_TASK` state has a candidate group, all states reachable, terminal states have an outcome
    and no outgoing transitions.
 4. **Test** — add an integration test that starts the new definition and runs it end to end
-   *without engine code changes* (this is the SC-007 guarantee).
+   *without engine code changes* (this is the SC-007 guarantee). Run it with:
+
+   ```bash
+   mise run test
+   ```
 
 !!! warning "Do not add a Temporal workflow per flow type"
     A single generic workflow interprets the active definition. Per-flow workflow code would break

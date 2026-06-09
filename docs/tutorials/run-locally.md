@@ -9,36 +9,50 @@ This tutorial gets you from a clean checkout to a running flow you can drive by 
 
 ## 1. Prerequisites
 
-- JDK 21
+- [mise](https://mise.jdx.dev/) — installs and pins all other tools
 - Docker
 
-## 2. Start backing services
+## 2. Install pinned tools
 
 ```bash
-docker compose up -d postgres temporal
+mise install         # installs temurin-21 + python 3.12, creates .venv
+```
+
+This reads `mise.toml` and installs exactly the JDK and Python versions the project requires.
+No manual `JAVA_HOME` wrangling needed.
+
+## 3. Start backing services
+
+```bash
+mise run services:up
 ```
 
 - PostgreSQL → `localhost:5432` (db `wrkflw`)
 - Temporal → `localhost:7233`, UI on `localhost:8233`
 
-## 3. Build and migrate
+## 4. Build and migrate
 
 ```bash
-./gradlew build
-./gradlew :adapters:persistence-postgres:flywayMigrate   # applies schema + seeds document-approval
+mise run build       # compile + test all modules (includes the boundary-test gate)
+mise run migrate     # apply schema migrations + seed document-approval definition
 ```
 
-The build runs the architecture boundary test — if `domain`/`application` ever import a framework
-type, it fails here by design.
+The build runs the architecture boundary test — if `domain`/`application` ever import a
+framework type, it fails here by design.
 
-## 4. Run the two services
+## 5. Run the two services
+
+Open two terminals:
 
 ```bash
-./gradlew :apps:worker-service:run    # Temporal workflows + activities
-./gradlew :apps:api-service:run       # REST on :8080 + outbox publisher
+# terminal 1
+mise run run:worker  # Temporal workflows + activities
+
+# terminal 2
+mise run run:api     # REST on :8080 + outbox publisher
 ```
 
-## 5. Drive a flow
+## 6. Drive a flow
 
 Identity is supplied via headers in the first deliverable (`X-Actor-Id` / `X-Actor-Groups`).
 

@@ -1,7 +1,6 @@
-# Tooling for building the developer docs site.
-#   python -m venv .venv && source .venv/bin/activate
-#   pip install -r docs/requirements.txt
-#   mkdocs serve     # live preview on http://127.0.0.1:8000
-#   mkdocs build     # static site into ./site
+# MkDocs dependencies — managed via mise.
+#   mise run docs:deps   # install into the managed .venv
+#   mise run docs:serve  # live preview on http://127.0.0.1:8000
+#   mise run docs:build  # static site into ./site (also runs Dokka)
 mkdocs-material
 pymdown-extensions

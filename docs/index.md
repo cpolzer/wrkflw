@@ -18,6 +18,19 @@ the [constitution](../.specify/memory/constitution.md).
 | **Understand the why** (architecture, hexagonal, Temporal) | [Explanation](explanation/architecture.md) |
 | **See decisions and their rationale** | [ADRs](adr/index.md) |
 
+## Quick start
+
+```bash
+mise install           # pin tools (temurin-21, python 3.12)
+mise run services:up   # start Postgres + Temporal
+mise run build         # compile + test all modules
+mise run migrate       # apply schema + seed document-approval
+mise run run:worker &  # Temporal worker
+mise run run:api       # REST API on :8080
+```
+
+CI runs: `mise run ci` (lint + build + docs).  Local docs preview: `mise run docs:serve`.
+
 ## The five non-negotiables (constitution)
 
 1. **Hexagonal architecture** — `domain`/`application` are framework-free; all I/O via ports.

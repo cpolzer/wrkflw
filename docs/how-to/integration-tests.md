@@ -19,6 +19,16 @@ tests against **real backing services** (not mocks of those services).
 - **Outbox/events** → assert one outbox row per committed change, a matching CloudEvent published,
   and no event on rollback (SC-006).
 
+## Running tests
+
+```bash
+mise run test          # all tests
+mise run build         # compile + test + boundary check (what CI runs)
+```
+
+Testcontainers manages its own Docker images — just ensure Docker is running (`mise run services:up`
+starts the named services, but Testcontainers spins its own ephemeral containers independently).
+
 ## Rules
 
 - **Tests first, must fail** before implementation (red→green→refactor).

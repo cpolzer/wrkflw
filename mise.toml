@@ -1,0 +1,83 @@
+# mise governs tool versions and tasks for wrkflw.
+# Devs and CI run the SAME tasks → local/CI parity.
+#   mise install        # install pinned tools
+#   mise tasks          # list tasks
+#   mise run ci         # what CI runs
+
+[tools]
+java = "temurin-21"   # satisfies Gradle's jvmToolchain(21); sets JAVA_HOME
+python = "3.12"       # for the MkDocs docs site
+# Gradle itself stays on the project wrapper (./gradlew, 8.11.1) — canonical for JVM.
+# Optional later: temporal = "latest"  # Temporal CLI dev server
+
+[env]
+# Auto-create & activate a project venv so pip/mkdocs are isolated and reproducible.
+_.python.venv = { path = ".venv", create = true }
+
+# ---- Build / quality (JVM via the Gradle wrapper) -------------------------------
+
+[tasks.build]
+description = "Compile + test all modules"
+run = "./gradlew build"
+
+[tasks.test]
+description = "Run all tests"
+run = "./gradlew test"
+
+[tasks.lint]
+description = "Static analysis / formatting checks"
+run = "./gradlew ktlintCheck detekt"
+
+[tasks.migrate]
+description = "Apply DB migrations (+ seed document-approval)"
+run = "./gradlew :adapters:persistence-postgres:flywayMigrate"
+
+# ---- Local services -------------------------------------------------------------
+
+[tasks."services:up"]
+description = "Start Postgres + Temporal locally"
+run = "docker compose up -d postgres temporal"
+
+[tasks."services:down"]
+description = "Stop local services"
+run = "docker compose down"
+
+# ---- Run the apps ---------------------------------------------------------------
+
+[tasks."run:api"]
+description = "Run the api-service (REST + outbox)"
+run = "./gradlew :apps:api-service:run"
+
+[tasks."run:worker"]
+description = "Run the worker-service (Temporal workflows + activities)"
+run = "./gradlew :apps:worker-service:run"
+
+# ---- Docs (the bridge between the JVM and Python worlds) ------------------------
+
+[tasks."docs:deps"]
+description = "Install MkDocs deps into the managed venv"
+run = "pip install -r docs/requirements.txt"
+
+[tasks."docs:api"]
+description = "Generate Kotlin API docs (Dokka) into the site tree"
+run = """
+./gradlew dokkaHtmlMultiModule
+rm -rf docs/reference/api
+cp -r build/dokka/htmlMultiModule docs/reference/api
+"""
+
+[tasks."docs:build"]
+description = "Build the static docs site (includes Dokka output)"
+depends = ["docs:deps", "docs:api"]
+run = "mkdocs build --strict"
+
+[tasks."docs:serve"]
+description = "Live-preview the docs site"
+depends = ["docs:deps"]
+run = "mkdocs serve"
+
+# ---- CI entry point -------------------------------------------------------------
+
+[tasks.ci]
+description = "Everything CI runs"
+depends = ["lint", "build", "docs:build"]

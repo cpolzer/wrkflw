@@ -17,6 +17,13 @@ logic.
 6. **Map errors** — domain refusals → appropriate HTTP (403 unauthorized, 409 conflict/illegal
    state, 404 not found, 422 invalid input). Never swallow errors silently.
 
+At any point, verify the build stays green:
+
+```bash
+mise run build    # compile + test + boundary check
+mise run lint     # ktlint + detekt
+```
+
 !!! note "Keep the framework out of the core"
     Ktor types live only in `rest-api`/`apps`. The use case knows nothing about HTTP. The boundary
     test enforces this.
