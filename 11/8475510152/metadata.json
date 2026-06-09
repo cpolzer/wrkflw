@@ -3,7 +3,7 @@
   "checkpoint_id": "118475510152",
   "strategy": "manual-commit",
   "branch": "001-document-approval-engine",
-  "checkpoints_count": 4,
+  "checkpoints_count": 5,
   "files_touched": [
     "mise.toml",
     "mkdocs.yml"
@@ -14,13 +14,19 @@
       "transcript": "/11/8475510152/0/full.jsonl",
       "content_hash": "/11/8475510152/0/content_hash.txt",
       "prompt": "/11/8475510152/0/prompt.txt"
+    },
+    {
+      "metadata": "/11/8475510152/1/metadata.json",
+      "transcript": "/11/8475510152/1/full.jsonl",
+      "content_hash": "/11/8475510152/1/content_hash.txt",
+      "prompt": "/11/8475510152/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 14978,
-    "cache_creation_tokens": 688285,
-    "cache_read_tokens": 17200945,
-    "output_tokens": 167317,
-    "api_call_count": 124
+    "input_tokens": 16064,
+    "cache_creation_tokens": 1930211,
+    "cache_read_tokens": 49882941,
+    "output_tokens": 228082,
+    "api_call_count": 308
   }
 }
