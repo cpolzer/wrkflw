@@ -1,8 +1,12 @@
 <!--
 Sync Impact Report
 ==================
-Version change: (template / unversioned) → 1.0.0
-Ratification: initial adoption of the wrkflw constitution.
+Version change: 1.0.0 → 1.0.1
+Amendment: clarified and strengthened the REST/HTTP constraint — Ktor is the standard for
+any HTTP/REST API built in Kotlin; Spring Boot is prohibited for the API layer. No new or
+removed principle (PATCH: wording clarification of an existing constraint).
+
+Prior change: (template / unversioned) → 1.0.0 — initial adoption of the wrkflw constitution.
 
 Principles defined:
   I.   Hexagonal Architecture (NON-NEGOTIABLE)
@@ -121,8 +125,8 @@ remain free of all of them per Principle I.
 
 - **Language & build**: Kotlin on the JVM, organized as a Gradle multi-module monorepo. Module
   boundaries enforce the inward-only dependency rule of Principle I.
-- **REST / HTTP**: Ktor is the HTTP framework for REST APIs. Spring Boot MUST NOT be used for
-  the REST layer.
+- **REST / HTTP**: Ktor is the standard framework for any HTTP/REST API built in Kotlin.
+  Spring Boot MUST NOT be used for the API layer.
 - **Orchestration**: Temporal is the orchestration engine, accessed only via the port defined
   in Principle IV.
 - **Persistence**: PostgreSQL for current state plus the append-only audit log, accessed with
@@ -164,4 +168,4 @@ technology is justified, provided the Core Principles continue to hold.
 - **Compliance review**: Plans and pull requests are checked against the Core Principles.
   Deviations require explicit, recorded justification; unjustified deviations block merge.
 
-**Version**: 1.0.0 | **Ratified**: 2026-06-09 | **Last Amended**: 2026-06-09
+**Version**: 1.0.1 | **Ratified**: 2026-06-09 | **Last Amended**: 2026-06-09
