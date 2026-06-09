@@ -85,3 +85,7 @@ EOF
 
 step 2 fails: + /home/chris/bin/dockerd-rootless-setuptool.sh install
 [ERROR] dockerd-rootless.sh conflicts with containerd-rootless.sh. Stop containerd-rootless.sh if it's running, and remove /run/user/1000/containerd-rootless if it still exists.
+
+---
+
+can we commit and push? will we be able to continue here after reboot?
