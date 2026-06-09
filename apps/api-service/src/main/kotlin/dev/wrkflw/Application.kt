@@ -1,13 +1,5 @@
 package dev.wrkflw
 
-import dev.wrkflw.domain.port.AuditLog
-import dev.wrkflw.domain.port.Clock
-import dev.wrkflw.domain.port.SystemClock
-import dev.wrkflw.domain.port.WorkflowEngine
-import dev.wrkflw.persistence.AuditLogPostgres
-import dev.wrkflw.persistence.JooqDslContextProvider
-import dev.wrkflw.temporal.TemporalWorkerService
-import dev.wrkflw.temporal.TemporalWorkflowEngine
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -18,8 +10,6 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
 import kotlinx.serialization.json.Json
-import org.jooq.DSLContext
-import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 import org.postgresql.ds.PGSimpleDataSource
 
@@ -41,16 +31,7 @@ fun Application.module() {
     val taskQueue = "wrkflw-task-queue"
 
     install(Koin) {
-        modules(
-            module {
-                single<Clock> { SystemClock }
-                single { dataSource }
-                single<DSLContext> { JooqDslContextProvider(dataSource).create() }
-                single<AuditLog> { AuditLogPostgres(get()) }
-                single { TemporalWorkerService.createClient(temporalHost, temporalPort) }
-                single<WorkflowEngine> { TemporalWorkflowEngine(get(), taskQueue) }
-            }
-        )
+        modules(infraModule(dataSource, temporalHost, temporalPort, taskQueue))
     }
 
     install(CallLogging)

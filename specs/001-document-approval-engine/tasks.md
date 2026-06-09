@@ -34,7 +34,7 @@ implementation (red→green→refactor).
 
 - [x] T001 Initialize Gradle multi-module monorepo: `settings.gradle.kts` (include `domain`, `application`, `adapters:persistence-postgres`, `adapters:temporal`, `adapters:rest-api`, `adapters:eventing-cloudevents`, `apps:api-service`, `apps:worker-service`), root `build.gradle.kts`, and `gradle/libs.versions.toml` (Kotlin 2.0+, JDK 21, Ktor, Temporal Java SDK, jOOQ, Flyway, CloudEvents, Koin, JUnit 5, Testcontainers)
 - [x] T002 [P] Create Gradle convention plugins in `build-logic/` (`kotlin-jvm`, `testing`, `ktor-app`)
-- [ ] T003 [P] Configure ktlint + detekt and formatting via `build-logic/`
+- [x] T003 [P] Configure ktlint + detekt and formatting via `build-logic/`
 - [x] T004 [P] Add `docker-compose.yml` at repo root (PostgreSQL, Temporal dev server, Temporal UI)
 - [x] T005 Create all module skeletons with correct inter-module dependencies (`domain`→none; `application`→`domain`; adapters→`application`+`domain`+infra libs; apps→adapters) so an empty `./gradlew build` is green
 
@@ -56,7 +56,7 @@ implementation (red→green→refactor).
 - [x] T011 [P] Domain `AuditEntry` + `AuditEventType` in `domain/src/main/kotlin/dev/wrkflw/domain/audit/`
 - [x] T012 [P] Domain `DomainEvent` hierarchy (FlowStarted, TaskCreated, TaskClaimed, TaskReleased, DecisionRecorded, FlowCompleted) in `domain/src/main/kotlin/dev/wrkflw/domain/event/`
 - [x] T013 Domain ports in `domain/src/main/kotlin/dev/wrkflw/domain/port/` (`FlowDefinitionRepository`, `FlowInstanceRepository`, `TaskRepository`, `AuditLog`, `WorkflowEngine`, `DomainEventPublisher`, `Clock`, `ActorContext`) (depends on T006–T012)
-- [ ] T014 Architecture boundary test (Konsist or ArchUnit) asserting `domain` & `application` have **no** dependency on Ktor/Temporal/jOOQ/JDBC/Koin, in `application/src/test/kotlin/dev/wrkflw/arch/BoundaryTest.kt`
+- [x] T014 Architecture boundary test (Konsist or ArchUnit) asserting `domain` & `application` have **no** dependency on Ktor/Temporal/jOOQ/JDBC/Koin, in `application/src/test/kotlin/dev/wrkflw/arch/BoundaryTest.kt`
 - [x] T015 [P] Flyway baseline migration (all tables: flow_definition, flow_instance, task, decision, person, group, group_membership, audit_entry, outbox_event) in `adapters/persistence-postgres/src/main/resources/db/migration/V1__baseline.sql`
 - [x] T016 Wire jOOQ code generation to the Flyway-migrated schema (Testcontainers-backed) in `build-logic/` + `adapters:persistence-postgres/build.gradle.kts` (depends on T015)
 - [x] T017 [P] Seed migration for the `document-approval` `FlowDefinition` (Submitted→FinalReview→Approved; REJECT→ReworkRequested→resubmit; abandon→Rejected) in `adapters/persistence-postgres/src/main/resources/db/migration/V2__seed_document_approval.sql`
@@ -66,7 +66,7 @@ implementation (red→green→refactor).
 - [x] T021 `WorkflowEngine` port impl (start workflow, send signal) via Temporal client in `adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkflowEngine.kt` (depends on T013, T020)
 - [x] T022 Ktor base: api-service bootstrap (server, routing skeleton, content negotiation, error→HTTP mapping) in `apps/api-service/` + `adapters/rest-api/`
 - [x] T023 `ActorContext` adapter from `X-Actor-Id`/`X-Actor-Groups` headers in `adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/HeaderActorContext.kt`
-- [ ] T024 Koin wiring modules for both apps in `apps/api-service/` and `apps/worker-service/` (composition roots only)
+- [x] T024 Koin wiring modules for both apps in `apps/api-service/` and `apps/worker-service/` (composition roots only)
 
 **Checkpoint**: Foundation ready — user stories can begin.
 

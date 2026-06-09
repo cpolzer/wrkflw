@@ -1,16 +1,6 @@
 package dev.wrkflw.worker
 
-import dev.wrkflw.domain.port.AuditLog
-import dev.wrkflw.domain.port.Clock
-import dev.wrkflw.domain.port.SystemClock
-import dev.wrkflw.domain.port.WorkflowEngine
-import dev.wrkflw.persistence.AuditLogPostgres
-import dev.wrkflw.persistence.JooqDslContextProvider
-import dev.wrkflw.temporal.TemporalWorkerService
-import dev.wrkflw.temporal.TemporalWorkflowEngine
-import org.jooq.DSLContext
 import org.koin.core.context.startKoin
-import org.koin.dsl.module
 import org.postgresql.ds.PGSimpleDataSource
 
 fun main() {
@@ -27,17 +17,7 @@ fun main() {
     val taskQueue = "wrkflw-task-queue"
 
     val koin = startKoin {
-        modules(
-            module {
-                single<Clock> { SystemClock }
-                single { dataSource }
-                single<DSLContext> { JooqDslContextProvider(dataSource).create() }
-                single<AuditLog> { AuditLogPostgres(get()) }
-                single { TemporalWorkerService.createClient(temporalHost, temporalPort) }
-                single<WorkflowEngine> { TemporalWorkflowEngine(get(), taskQueue) }
-                single { TemporalWorkerService(get(), taskQueue) }
-            }
-        )
+        modules(workerModule(dataSource, temporalHost, temporalPort, taskQueue))
     }.koin
 
     val workerService = koin.get<TemporalWorkerService>()

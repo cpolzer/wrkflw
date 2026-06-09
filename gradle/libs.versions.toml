@@ -16,6 +16,7 @@ slf4j = "2.0.16"
 logback = "1.5.12"
 ktlint-gradle = "12.1.2"
 detekt = "1.23.7"
+archunit = "1.3.0"
 
 [libraries]
 # Kotlin
@@ -78,6 +79,9 @@ testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.
 # Kotest
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+
+# ArchUnit
+archunit-junit5 = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit" }
 
 # Logging
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
