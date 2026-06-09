@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "36f0e3f35c88",
+  "session_id": "ses_151d2b065ffehKdJFLZLT1zys3",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T22:14:09.988884591Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".dockerignore",
+    ".editorconfig",
+    ".gitignore",
+    "build-logic/build.gradle.kts",
+    "build-logic/settings.gradle.kts",
+    "build-logic/src/main/kotlin/kotlin-jvm.gradle.kts",
+    "build-logic/src/main/kotlin/ktor-app.gradle.kts",
+    "build-logic/src/main/kotlin/testing.gradle.kts",
+    "build.gradle.kts",
+    "docker-compose.yml",
+    "gradle/libs.versions.toml",
+    "gradle/wrapper/gradle-wrapper.properties",
+    "gradlew",
+    "gradlew.bat",
+    "settings.gradle.kts",
+    "temporal-dynamicconfig"
+  ],
+  "agent": "OpenCode",
+  "model": "qwen3.6-plus",
+  "turn_id": "ba06dedc5b97",
+  "checkpoint_transcript_start": 191,
+  "transcript_lines_at_start": 191,
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 0,
+    "api_call_count": 0
+  },
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T22:14:09.953223783Z",
+    "agent_lines": 380,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 380,
+    "total_lines_changed": 380,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
