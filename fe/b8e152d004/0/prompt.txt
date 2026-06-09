@@ -1,0 +1,37 @@
+yes
+
+---
+
+Two small follow-ups worth noting  - numhber 2 is interesting. how is mkdocs glued in?
+
+---
+
+can we put mise on top? to govern it all? later only run mise tasks in ci?
+
+---
+
+do all follow ups please.
+
+---
+
+for the mk docs dpendency management, we now have mise - can we sw3itzch to using UV and a pyptroject.toml?
+
+---
+
+continue
+
+---
+
+what do the entire cli docs say? https://github.com/entireio/cli
+
+---
+
+yes
+
+---
+
+can we check if we have open specify task from phase 2?
+
+---
+
+yes
