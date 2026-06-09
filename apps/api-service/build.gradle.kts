@@ -1,0 +1,21 @@
+plugins {
+    id("ktor-app")
+    id("testing")
+}
+
+group = "dev.wrkflw"
+version = "0.1.0-SNAPSHOT"
+
+dependencies {
+    implementation(project(":domain"))
+    implementation(project(":application"))
+    implementation(project(":adapters:persistence-postgres"))
+    implementation(project(":adapters:rest-api"))
+    implementation(project(":adapters:eventing-cloudevents"))
+    implementation(project(":adapters:temporal"))
+    implementation(libs.temporal.sdk)
+    implementation(libs.koin.core)
+    implementation(libs.koin.ktor)
+    implementation(libs.postgresql)
+    implementation(libs.jooq)
+}
