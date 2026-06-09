@@ -7,3 +7,7 @@ Two small follow-ups worth noting  - numhber 2 is interesting. how is mkdocs glu
 ---
 
 can we put mise on top? to govern it all? later only run mise tasks in ci?
+
+---
+
+do all follow ups please.
