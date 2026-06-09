@@ -23,3 +23,7 @@ continue
 ---
 
 what do the entire cli docs say? https://github.com/entireio/cli
+
+---
+
+yes
