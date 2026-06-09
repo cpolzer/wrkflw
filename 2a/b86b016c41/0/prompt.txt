@@ -1,0 +1,87 @@
+yes
+
+---
+
+Two small follow-ups worth noting  - numhber 2 is interesting. how is mkdocs glued in?
+
+---
+
+can we put mise on top? to govern it all? later only run mise tasks in ci?
+
+---
+
+do all follow ups please.
+
+---
+
+for the mk docs dpendency management, we now have mise - can we sw3itzch to using UV and a pyptroject.toml?
+
+---
+
+continue
+
+---
+
+what do the entire cli docs say? https://github.com/entireio/cli
+
+---
+
+yes
+
+---
+
+can we check if we have open specify task from phase 2?
+
+---
+
+yes
+
+---
+
+commit first?
+
+---
+
+then continue
+
+---
+
+continue
+
+---
+
+continue
+
+---
+
+we are using nerdctl
+
+---
+
+/run-skill-generator can we researtch how nerdtl is used and creater a skill or commands for it in this repo?
+
+---
+
+what problem are we tring to solve?
+
+---
+
+how to i enable option 2?
+
+---
+
+step ¹ fails: # Installing stable version 29.5.3
+# Executing docker rootless install script, commit: 2687d91ddeb3bd6aeae37a90947761efdee87030
+# Missing system requirements. Please run following commands to
+# install the requirements and run this installer again.
+# Alternatively iptables checks can be disabled with SKIP_IPTABLES=1
+
+cat <<EOF | sudo sh -x
+
+modprobe ip_tables
+EOF
+
+---
+
+step 2 fails: + /home/chris/bin/dockerd-rootless-setuptool.sh install
+[ERROR] dockerd-rootless.sh conflicts with containerd-rootless.sh. Stop containerd-rootless.sh if it's running, and remove /run/user/1000/containerd-rootless if it still exists.

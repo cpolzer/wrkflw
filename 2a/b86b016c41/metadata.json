@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "2ab86b016c41",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 5,
+  "files_touched": [
+    "adapters/rest-api/build.gradle.kts",
+    "adapters/temporal/build.gradle.kts",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt",
+    "apps/api-service/build.gradle.kts",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/AppModule.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/Application.kt",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt"
+  ],
+  "sessions": [
+    {
+      "metadata": "/2a/b86b016c41/0/metadata.json",
+      "transcript": "/2a/b86b016c41/0/full.jsonl",
+      "content_hash": "/2a/b86b016c41/0/content_hash.txt",
+      "prompt": "/2a/b86b016c41/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15222,
+    "cache_creation_tokens": 992793,
+    "cache_read_tokens": 36281116,
+    "output_tokens": 265523,
+    "api_call_count": 334
+  }
+}

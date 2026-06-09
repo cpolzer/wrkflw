@@ -1,0 +1,353 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "2ab86b016c41",
+  "session_id": "e569b3e9-0002-48fb-a39a-526da5af7327",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T22:59:58.487467148Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 5,
+  "files_touched": [
+    "adapters/rest-api/build.gradle.kts",
+    "adapters/temporal/build.gradle.kts",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt",
+    "apps/api-service/build.gradle.kts",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/AppModule.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/Application.kt",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "c6fdd0befa39",
+  "token_usage": {
+    "input_tokens": 15222,
+    "cache_creation_tokens": 992793,
+    "cache_read_tokens": 36281116,
+    "output_tokens": 265523,
+    "api_call_count": 334
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-run-skill-generator-2026-06-09T22:48:05.196343416Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "run-skill-generator"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "13fdb90f34d5",
+      "timestamp": "2026-06-09T22:48:05.196343416Z",
+      "native": {
+        "command": "/run-skill-generator"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/run-skill-generator",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_0122Gnzy7QHe9JHvP4bR5k7r",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-specify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "c6fdd0befa39",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 140,
+        "end": 141,
+        "entry_ids": [
+          "3f07ebfd-2cd2-4a6c-af55-dafc59e3bb38"
+        ],
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-specify",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015tNWy9BAipB4evTKhyVcpM",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-feature"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "c6fdd0befa39",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 154,
+        "end": 155,
+        "entry_ids": [
+          "b6bfe0b9-3f60-4dab-8286-535389688556"
+        ],
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-feature",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015V1Sk324dhPuWuPZyrAoDC",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-initialize"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "c6fdd0befa39",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 231,
+        "end": 232,
+        "entry_ids": [
+          "9135856e-f497-46f9-9020-861c78a51033"
+        ],
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-initialize",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01AYkUJkvXMqWtCxnKzB9mbZ",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "c6fdd0befa39",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 268,
+        "end": 269,
+        "entry_ids": [
+          "c6ba2694-43f0-4721-a03f-59d6346b62b5"
+        ],
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-commit",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01FGTd8W1oC5fHCtQmJzr4P3",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-plan"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "c6fdd0befa39",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 506,
+        "end": 507,
+        "entry_ids": [
+          "0c76d138-1d14-4315-834a-ee507af74008"
+        ],
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-plan",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 16
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T22:59:58.420567508Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 4926,
+    "human_modified": 19,
+    "human_removed": 0,
+    "total_committed": 4926,
+    "total_lines_changed": 4954,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 1130,
+      "user_lines_removed": 19,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 77,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/AuditLogPostgres.kt": 49,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowDefinitionRepositoryPostgres.kt": 82,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowInstanceRepositoryPostgres.kt": 75,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/JooqDslContextProvider.kt": 10,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt": 107,
+        "adapters/rest-api/build.gradle.kts": 2,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt": 52,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt": 42,
+        "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/SubmitFlowContractTest.kt": 149,
+        "adapters/temporal/build.gradle.kts": 1,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt": 16,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt": 10,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/CreateHumanTaskActivity.kt": 64,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDocument.kt": 73,
+        "application/src/test/kotlin/dev/wrkflw/application/SubmitDocumentTest.kt": 126,
+        "apps/api-service/build.gradle.kts": 10,
+        "apps/api-service/src/main/kotlin/dev/wrkflw/AppModule.kt": 12,
+        "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt": 13,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 144,
+        "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/Application.kt": 3,
+        "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt": 13
+      },
+      "user_removed_per_file": {
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt": 5,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt": 11,
+        "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt": 1,
+        "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/Application.kt": 1,
+        "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt": 1
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 1050,
+      "user_lines_removed": 0,
+      "agent_lines_added": 80,
+      "agent_lines_removed": 19,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 77,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/AuditLogPostgres.kt": 49,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowDefinitionRepositoryPostgres.kt": 82,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowInstanceRepositoryPostgres.kt": 75,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/JooqDslContextProvider.kt": 10,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt": 107,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt": 52,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt": 42,
+        "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/SubmitFlowContractTest.kt": 149,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/CreateHumanTaskActivity.kt": 64,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDocument.kt": 73,
+        "application/src/test/kotlin/dev/wrkflw/application/SubmitDocumentTest.kt": 126,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 144
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 1053,
+      "user_lines_removed": 0,
+      "agent_lines_added": 80,
+      "agent_lines_removed": 19,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 80,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/AuditLogPostgres.kt": 49,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowDefinitionRepositoryPostgres.kt": 82,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowInstanceRepositoryPostgres.kt": 75,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/JooqDslContextProvider.kt": 10,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt": 107,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt": 52,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt": 42,
+        "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/SubmitFlowContractTest.kt": 149,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/CreateHumanTaskActivity.kt": 64,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDocument.kt": 73,
+        "application/src/test/kotlin/dev/wrkflw/application/SubmitDocumentTest.kt": 126,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 144
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 1055,
+      "user_lines_removed": 0,
+      "agent_lines_added": 80,
+      "agent_lines_removed": 19,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 82,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/AuditLogPostgres.kt": 49,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowDefinitionRepositoryPostgres.kt": 82,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowInstanceRepositoryPostgres.kt": 75,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/JooqDslContextProvider.kt": 10,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt": 107,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt": 52,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt": 42,
+        "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/SubmitFlowContractTest.kt": 149,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/CreateHumanTaskActivity.kt": 64,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDocument.kt": 73,
+        "application/src/test/kotlin/dev/wrkflw/application/SubmitDocumentTest.kt": 126,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 144
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 1055,
+      "user_lines_removed": 0,
+      "agent_lines_added": 80,
+      "agent_lines_removed": 19,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 82,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/AuditLogPostgres.kt": 49,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowDefinitionRepositoryPostgres.kt": 82,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowInstanceRepositoryPostgres.kt": 75,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/JooqDslContextProvider.kt": 10,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt": 107,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt": 52,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt": 42,
+        "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/SubmitFlowContractTest.kt": 149,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/CreateHumanTaskActivity.kt": 64,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDocument.kt": 73,
+        "application/src/test/kotlin/dev/wrkflw/application/SubmitDocumentTest.kt": 126,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 144
+      }
+    }
+  ]
+}
