@@ -1,0 +1,9 @@
+yes
+
+---
+
+Two small follow-ups worth noting  - numhber 2 is interesting. how is mkdocs glued in?
+
+---
+
+can we put mise on top? to govern it all? later only run mise tasks in ci?
