@@ -1,0 +1,217 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "e0835439bb5f",
+  "session_id": "e569b3e9-0002-48fb-a39a-526da5af7327",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T22:14:35.859191152Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "adapters/eventing-cloudevents/build.gradle.kts",
+    "adapters/eventing-cloudevents/src/main/kotlin/dev/wrkflw/eventing/package.kt",
+    "adapters/eventing-cloudevents/src/test/kotlin/dev/wrkflw/eventing/EventingTest.kt",
+    "adapters/persistence-postgres/build.gradle.kts",
+    "adapters/persistence-postgres/src/main/resources/db/migration/V1__baseline.sql",
+    "adapters/persistence-postgres/src/main/resources/db/migration/V2__seed_document_approval.sql",
+    "adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/PersistenceTest.kt",
+    "adapters/rest-api/build.gradle.kts",
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/HeaderActorContext.kt",
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/package.kt",
+    "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/RestApiTest.kt",
+    "adapters/temporal/build.gradle.kts",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkflowEngine.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/package.kt",
+    "adapters/temporal/src/test/kotlin/dev/wrkflw/temporal/TemporalTest.kt",
+    "apps/api-service/build.gradle.kts",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/ApiServiceTest.kt",
+    "apps/worker-service/build.gradle.kts",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/Application.kt",
+    "apps/worker-service/src/test/kotlin/dev/wrkflw/worker/WorkerServiceTest.kt"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "ab74a18207f1",
+  "token_usage": {
+    "input_tokens": 15010,
+    "cache_creation_tokens": 752376,
+    "cache_read_tokens": 19450375,
+    "output_tokens": 175436,
+    "api_call_count": 146
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_0122Gnzy7QHe9JHvP4bR5k7r",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-specify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 140,
+        "end": 141,
+        "entry_ids": [
+          "3f07ebfd-2cd2-4a6c-af55-dafc59e3bb38"
+        ],
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-specify",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015tNWy9BAipB4evTKhyVcpM",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-feature"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 154,
+        "end": 155,
+        "entry_ids": [
+          "b6bfe0b9-3f60-4dab-8286-535389688556"
+        ],
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-feature",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015V1Sk324dhPuWuPZyrAoDC",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-initialize"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 231,
+        "end": 232,
+        "entry_ids": [
+          "9135856e-f497-46f9-9020-861c78a51033"
+        ],
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-initialize",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01AYkUJkvXMqWtCxnKzB9mbZ",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 268,
+        "end": 269,
+        "entry_ids": [
+          "c6ba2694-43f0-4721-a03f-59d6346b62b5"
+        ],
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-commit",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01FGTd8W1oC5fHCtQmJzr4P3",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-plan"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "ab74a18207f1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 506,
+        "end": 507,
+        "entry_ids": [
+          "0c76d138-1d14-4315-834a-ee507af74008"
+        ],
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-plan",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 8
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T22:14:35.825423727Z",
+    "agent_lines": 627,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 627,
+    "total_lines_changed": 627,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}

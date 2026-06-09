@@ -1,0 +1,47 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "e0835439bb5f",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "adapters/eventing-cloudevents/build.gradle.kts",
+    "adapters/eventing-cloudevents/src/main/kotlin/dev/wrkflw/eventing/package.kt",
+    "adapters/eventing-cloudevents/src/test/kotlin/dev/wrkflw/eventing/EventingTest.kt",
+    "adapters/persistence-postgres/build.gradle.kts",
+    "adapters/persistence-postgres/src/main/resources/db/migration/V1__baseline.sql",
+    "adapters/persistence-postgres/src/main/resources/db/migration/V2__seed_document_approval.sql",
+    "adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/PersistenceTest.kt",
+    "adapters/rest-api/build.gradle.kts",
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/HeaderActorContext.kt",
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/package.kt",
+    "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/RestApiTest.kt",
+    "adapters/temporal/build.gradle.kts",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkflowEngine.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/package.kt",
+    "adapters/temporal/src/test/kotlin/dev/wrkflw/temporal/TemporalTest.kt",
+    "apps/api-service/build.gradle.kts",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/ApiServiceTest.kt",
+    "apps/worker-service/build.gradle.kts",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/Application.kt",
+    "apps/worker-service/src/test/kotlin/dev/wrkflw/worker/WorkerServiceTest.kt"
+  ],
+  "sessions": [
+    {
+      "metadata": "/e0/835439bb5f/0/metadata.json",
+      "transcript": "/e0/835439bb5f/0/full.jsonl",
+      "content_hash": "/e0/835439bb5f/0/content_hash.txt",
+      "prompt": "/e0/835439bb5f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15010,
+    "cache_creation_tokens": 752376,
+    "cache_read_tokens": 19450375,
+    "output_tokens": 175436,
+    "api_call_count": 146
+  }
+}
