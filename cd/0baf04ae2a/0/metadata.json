@@ -1,0 +1,233 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "cd0baf04ae2a",
+  "session_id": "e569b3e9-0002-48fb-a39a-526da5af7327",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T22:00:04.529822213Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/adr/0001-record-architecture-decisions.md",
+    "docs/adr/0002-temporal-behind-a-port.md",
+    "docs/adr/0003-ktor-not-spring-for-rest.md",
+    "docs/adr/index.md",
+    "docs/adr/template.md",
+    "docs/explanation/architecture.md",
+    "docs/explanation/hexagonal.md",
+    "docs/explanation/temporal-integration.md",
+    "docs/how-to/add-flow-definition.md",
+    "docs/how-to/add-rest-endpoint.md",
+    "docs/how-to/integration-tests.md",
+    "docs/index.md",
+    "docs/reference/api.md",
+    "docs/reference/database.md",
+    "docs/reference/events.md",
+    "docs/reference/rest-api.md",
+    "docs/requirements.txt",
+    "docs/tutorials/run-locally.md",
+    "mkdocs.yml",
+    "specs/001-document-approval-engine/tasks.md"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "d7b2bc8586f5",
+  "token_usage": {
+    "input_tokens": 14780,
+    "cache_creation_tokens": 503037,
+    "cache_read_tokens": 14042224,
+    "output_tokens": 149164,
+    "api_call_count": 109
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_0122Gnzy7QHe9JHvP4bR5k7r",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-specify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d7b2bc8586f5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 140,
+        "end": 141,
+        "entry_ids": [
+          "3f07ebfd-2cd2-4a6c-af55-dafc59e3bb38"
+        ],
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_0122Gnzy7QHe9JHvP4bR5k7r"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-specify",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015tNWy9BAipB4evTKhyVcpM",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-feature"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d7b2bc8586f5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 154,
+        "end": 155,
+        "entry_ids": [
+          "b6bfe0b9-3f60-4dab-8286-535389688556"
+        ],
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015tNWy9BAipB4evTKhyVcpM"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-feature",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_015V1Sk324dhPuWuPZyrAoDC",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-initialize"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d7b2bc8586f5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 231,
+        "end": 232,
+        "entry_ids": [
+          "9135856e-f497-46f9-9020-861c78a51033"
+        ],
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_015V1Sk324dhPuWuPZyrAoDC"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-initialize",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01AYkUJkvXMqWtCxnKzB9mbZ",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d7b2bc8586f5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 268,
+        "end": 269,
+        "entry_ids": [
+          "c6ba2694-43f0-4721-a03f-59d6346b62b5"
+        ],
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01AYkUJkvXMqWtCxnKzB9mbZ"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-commit",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01FGTd8W1oC5fHCtQmJzr4P3",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-plan"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d7b2bc8586f5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 506,
+        "end": 507,
+        "entry_ids": [
+          "0c76d138-1d14-4315-834a-ee507af74008"
+        ],
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01FGTd8W1oC5fHCtQmJzr4P3"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-plan",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T22:00:04.503486046Z",
+    "agent_lines": 706,
+    "agent_removed": 21,
+    "human_added": 2,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 708,
+    "total_lines_changed": 729,
+    "agent_percentage": 99.72565157750343,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 27,
+      "user_lines_removed": 0,
+      "agent_lines_added": 4907,
+      "agent_lines_removed": 2392,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 27
+      }
+    }
+  ]
+}

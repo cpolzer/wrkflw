@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "cd0baf04ae2a",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/adr/0001-record-architecture-decisions.md",
+    "docs/adr/0002-temporal-behind-a-port.md",
+    "docs/adr/0003-ktor-not-spring-for-rest.md",
+    "docs/adr/index.md",
+    "docs/adr/template.md",
+    "docs/explanation/architecture.md",
+    "docs/explanation/hexagonal.md",
+    "docs/explanation/temporal-integration.md",
+    "docs/how-to/add-flow-definition.md",
+    "docs/how-to/add-rest-endpoint.md",
+    "docs/how-to/integration-tests.md",
+    "docs/index.md",
+    "docs/reference/api.md",
+    "docs/reference/database.md",
+    "docs/reference/events.md",
+    "docs/reference/rest-api.md",
+    "docs/requirements.txt",
+    "docs/tutorials/run-locally.md",
+    "mkdocs.yml",
+    "specs/001-document-approval-engine/tasks.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/cd/0baf04ae2a/0/metadata.json",
+      "transcript": "/cd/0baf04ae2a/0/full.jsonl",
+      "content_hash": "/cd/0baf04ae2a/0/content_hash.txt",
+      "prompt": "/cd/0baf04ae2a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 14780,
+    "cache_creation_tokens": 503037,
+    "cache_read_tokens": 14042224,
+    "output_tokens": 149164,
+    "api_call_count": 109
+  }
+}
