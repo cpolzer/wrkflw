@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "5fd65dd6f296",
+  "session_id": "ses_151d2b065ffehKdJFLZLT1zys3",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T22:09:24.729982144Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 0,
+  "files_touched": [],
+  "agent": "OpenCode",
+  "model": "qwen3.6-plus",
+  "turn_id": "ba06dedc5b97",
+  "checkpoint_transcript_start": 191,
+  "transcript_lines_at_start": 191,
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 0,
+    "api_call_count": 0
+  },
+  "session_metrics": {
+    "turn_count": 5
+  }
+}
