@@ -2,11 +2,14 @@ package dev.wrkflw.temporal.activity
 
 import dev.wrkflw.domain.audit.AuditEntry
 import dev.wrkflw.domain.audit.AuditEventType
+import dev.wrkflw.domain.event.TaskCreated
+import dev.wrkflw.domain.event.toOutboxEvent
 import dev.wrkflw.domain.identity.FlowInstanceId
 import dev.wrkflw.domain.port.AuditLog
 import dev.wrkflw.domain.port.Clock
 import dev.wrkflw.domain.port.FlowDefinitionRepository
 import dev.wrkflw.domain.port.FlowInstanceRepository
+import dev.wrkflw.domain.port.OutboxEventRepository
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.domain.task.Task
 import io.temporal.activity.ActivityInterface
@@ -26,6 +29,7 @@ class CreateHumanTaskActivityImpl(
     private val tasks: TaskRepository,
     private val auditLog: AuditLog,
     private val clock: Clock,
+    private val outbox: OutboxEventRepository? = null,
 ) : CreateHumanTaskActivity {
     override fun createForCurrentState(flowInstanceId: String): String =
         runBlocking {
@@ -61,6 +65,16 @@ class CreateHumanTaskActivityImpl(
                     type = AuditEventType.TASK_CREATED,
                     occurredAt = now,
                 ),
+            )
+
+            outbox?.save(
+                TaskCreated(
+                    flowInstanceId = id,
+                    taskId = task.id,
+                    stateName = instance.currentState,
+                    candidateGroupId = candidateGroup.value,
+                    occurredAt = now,
+                ).toOutboxEvent(),
             )
 
             task.id.value.toString()

@@ -2,10 +2,13 @@ package dev.wrkflw.application.command
 
 import dev.wrkflw.domain.audit.AuditEntry
 import dev.wrkflw.domain.audit.AuditEventType
+import dev.wrkflw.domain.event.TaskClaimed
+import dev.wrkflw.domain.event.toOutboxEvent
 import dev.wrkflw.domain.identity.TaskId
 import dev.wrkflw.domain.port.ActorContext
 import dev.wrkflw.domain.port.AuditLog
 import dev.wrkflw.domain.port.Clock
+import dev.wrkflw.domain.port.OutboxEventRepository
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.domain.task.Task
 import dev.wrkflw.domain.task.TaskStatus
@@ -35,6 +38,7 @@ class ClaimTaskService(
     private val tasks: TaskRepository,
     private val auditLog: AuditLog,
     private val clock: Clock,
+    private val outbox: OutboxEventRepository? = null,
 ) : ClaimTaskUseCase {
     override suspend fun execute(command: ClaimTaskCommand): ClaimTaskResult {
         val task = tasks.findById(command.taskId) ?: return ClaimTaskResult.NotFound
@@ -58,6 +62,15 @@ class ClaimTaskService(
                 actorId = command.actor.actorId,
                 occurredAt = now,
             ),
+        )
+
+        outbox?.save(
+            TaskClaimed(
+                flowInstanceId = task.flowInstanceId,
+                taskId = task.id,
+                ownerId = command.actor.actorId,
+                occurredAt = now,
+            ).toOutboxEvent(),
         )
 
         return ClaimTaskResult.Success(claimedTask)

@@ -19,14 +19,18 @@ import dev.wrkflw.domain.port.Clock
 import dev.wrkflw.domain.port.DecisionRepository
 import dev.wrkflw.domain.port.FlowDefinitionRepository
 import dev.wrkflw.domain.port.FlowInstanceRepository
+import dev.wrkflw.domain.port.OutboxEventRepository
+import dev.wrkflw.domain.port.OutboxPublisher
 import dev.wrkflw.domain.port.SystemClock
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.domain.port.WorkflowEngine
+import dev.wrkflw.eventing.CloudEventsOutboxPublisher
 import dev.wrkflw.persistence.AuditLogPostgres
 import dev.wrkflw.persistence.DecisionRepositoryPostgres
 import dev.wrkflw.persistence.FlowDefinitionRepositoryPostgres
 import dev.wrkflw.persistence.FlowInstanceRepositoryPostgres
 import dev.wrkflw.persistence.JooqDslContextProvider
+import dev.wrkflw.persistence.OutboxEventRepositoryPostgres
 import dev.wrkflw.persistence.TaskRepositoryPostgres
 import dev.wrkflw.temporal.TemporalWorkerService
 import dev.wrkflw.temporal.TemporalWorkflowEngine
@@ -51,10 +55,12 @@ fun infraModule(
     single<DecisionRepository> { DecisionRepositoryPostgres(get()) }
     single<WorkflowClient> { TemporalWorkerService.createClient(temporalHost, temporalPort) }
     single<WorkflowEngine> { TemporalWorkflowEngine(get(), taskQueue) }
-    single<SubmitDocumentUseCase> { SubmitDocumentService(get(), get(), get(), get(), get()) }
-    single<ClaimTaskUseCase> { ClaimTaskService(get(), get(), get()) }
-    single<ReleaseTaskUseCase> { ReleaseTaskService(get(), get(), get()) }
-    single<SubmitDecisionUseCase> { SubmitDecisionService(get(), get(), get(), get(), get(), get(), get()) }
+    single<OutboxEventRepository> { OutboxEventRepositoryPostgres(get()) }
+    single<OutboxPublisher> { CloudEventsOutboxPublisher { } }
+    single<SubmitDocumentUseCase> { SubmitDocumentService(get(), get(), get(), get(), get(), get()) }
+    single<ClaimTaskUseCase> { ClaimTaskService(get(), get(), get(), get()) }
+    single<ReleaseTaskUseCase> { ReleaseTaskService(get(), get(), get(), get()) }
+    single<SubmitDecisionUseCase> { SubmitDecisionService(get(), get(), get(), get(), get(), get(), get(), get()) }
     single<GroupWorkListUseCase> { GroupWorkListService(get()) }
     single<MyTasksUseCase> { MyTasksService(get()) }
     single<FlowStatusUseCase> { FlowStatusService(get(), get(), get()) }

@@ -2,6 +2,9 @@ package dev.wrkflw.application.command
 
 import dev.wrkflw.domain.audit.AuditEntry
 import dev.wrkflw.domain.audit.AuditEventType
+import dev.wrkflw.domain.event.DecisionRecorded
+import dev.wrkflw.domain.event.FlowCompleted
+import dev.wrkflw.domain.event.toOutboxEvent
 import dev.wrkflw.domain.flow.FlowInstance
 import dev.wrkflw.domain.flow.FlowInterpreterResult
 import dev.wrkflw.domain.flow.Trigger
@@ -12,6 +15,7 @@ import dev.wrkflw.domain.port.Clock
 import dev.wrkflw.domain.port.DecisionRepository
 import dev.wrkflw.domain.port.FlowDefinitionRepository
 import dev.wrkflw.domain.port.FlowInstanceRepository
+import dev.wrkflw.domain.port.OutboxEventRepository
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.domain.port.WorkflowEngine
 import dev.wrkflw.domain.task.DecisionOutcome
@@ -40,6 +44,7 @@ fun interface SubmitDecisionUseCase {
     suspend fun execute(command: SubmitDecisionCommand): SubmitDecisionResult
 }
 
+@Suppress("LongParameterList")
 class SubmitDecisionService(
     private val tasks: TaskRepository,
     private val decisions: DecisionRepository,
@@ -48,6 +53,7 @@ class SubmitDecisionService(
     private val auditLog: AuditLog,
     private val engine: WorkflowEngine,
     private val clock: Clock,
+    private val outbox: OutboxEventRepository? = null,
 ) : SubmitDecisionUseCase {
     override suspend fun execute(command: SubmitDecisionCommand): SubmitDecisionResult {
         val task = tasks.findById(command.taskId) ?: return SubmitDecisionResult.NotFound
@@ -95,6 +101,7 @@ class SubmitDecisionService(
         instances.update(updatedInstance)
 
         appendDecisionAudit(instance, task, command, now, interpreterResult.isTerminal)
+        publishOutboxEvents(instance, task, command, now, interpreterResult)
 
         engine.signalWorkflow(
             instance.id,
@@ -107,6 +114,34 @@ class SubmitDecisionService(
         )
 
         return SubmitDecisionResult.Success(updatedInstance)
+    }
+
+    private suspend fun publishOutboxEvents(
+        instance: FlowInstance,
+        task: dev.wrkflw.domain.task.Task,
+        command: SubmitDecisionCommand,
+        now: java.time.Instant,
+        result: FlowInterpreterResult,
+    ) {
+        outbox?.save(
+            DecisionRecorded(
+                flowInstanceId = instance.id,
+                taskId = task.id,
+                outcome = command.outcome,
+                actorId = command.actor.actorId,
+                comment = command.comment,
+                occurredAt = now,
+            ).toOutboxEvent(),
+        )
+        if (result.isTerminal) {
+            outbox?.save(
+                FlowCompleted(
+                    flowInstanceId = instance.id,
+                    terminalOutcome = result.terminalOutcome!!,
+                    occurredAt = now,
+                ).toOutboxEvent(),
+            )
+        }
     }
 
     private suspend fun appendDecisionAudit(

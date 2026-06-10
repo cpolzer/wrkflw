@@ -177,15 +177,15 @@ implementation (red→green→refactor).
 
 ### Tests for User Story 5 (write first, must fail) ⚠️
 
-- [ ] T058 [P] [US5] Integration test: state change writes one outbox row in same tx; publisher emits matching CloudEvent; rollback → no event (SC-006), in `adapters/eventing-cloudevents/src/test/kotlin/dev/wrkflw/eventing/OutboxConsistencyTest.kt`
-- [ ] T059 [P] [US5] Unit test: DomainEvent → CloudEvents envelope mapping (per contracts/events.md) in `adapters/eventing-cloudevents/src/test/kotlin/dev/wrkflw/eventing/CloudEventMappingTest.kt`
+- [X] T058 [P] [US5] Integration test: state change writes one outbox row in same tx; publisher emits matching CloudEvent; rollback → no event (SC-006), in `adapters/eventing-cloudevents/src/test/kotlin/dev/wrkflw/eventing/OutboxConsistencyTest.kt`
+- [X] T059 [P] [US5] Unit test: DomainEvent → CloudEvents envelope mapping (per contracts/events.md) in `adapters/eventing-cloudevents/src/test/kotlin/dev/wrkflw/eventing/CloudEventMappingTest.kt`
 
 ### Implementation for User Story 5
 
-- [ ] T060 [US5] Write `OutboxEvent` row in the same transaction as each state change in SubmitDocument/ClaimTask/ReleaseTask/SubmitDecision (`application/src/main/kotlin/dev/wrkflw/application/command/`)
-- [ ] T061 [US5] `DomainEventPublisher` impl → CloudEvents mapping in `adapters/eventing-cloudevents/src/main/kotlin/dev/wrkflw/eventing/CloudEventsPublisher.kt`
-- [ ] T062 [US5] Outbox poller in api-service (publish PENDING → mark DISPATCHED, at-least-once) in `apps/api-service/src/main/kotlin/dev/wrkflw/OutboxPublisherRunner.kt`
-- [ ] T063 [US5] Wire all six event types (flow.started, task.created, task.claimed, task.released, decision.recorded, flow.completed) into the commands; make T058–T059 pass
+- [X] T060 [US5] Write `OutboxEvent` row in the same transaction as each state change in SubmitDocument/ClaimTask/ReleaseTask/SubmitDecision (`application/src/main/kotlin/dev/wrkflw/application/command/`)
+- [X] T061 [US5] `DomainEventPublisher` impl → CloudEvents mapping in `adapters/eventing-cloudevents/src/main/kotlin/dev/wrkflw/eventing/CloudEventsPublisher.kt`
+- [X] T062 [US5] Outbox poller in api-service (publish PENDING → mark DISPATCHED, at-least-once) in `apps/api-service/src/main/kotlin/dev/wrkflw/OutboxPublisherRunner.kt`
+- [X] T063 [US5] Wire all six event types (flow.started, task.created, task.claimed, task.released, decision.recorded, flow.completed) into the commands; make T058–T059 pass
 
 **Checkpoint**: External integration events flowing reliably.
 

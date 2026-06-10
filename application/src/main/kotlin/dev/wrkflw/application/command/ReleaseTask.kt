@@ -2,10 +2,13 @@ package dev.wrkflw.application.command
 
 import dev.wrkflw.domain.audit.AuditEntry
 import dev.wrkflw.domain.audit.AuditEventType
+import dev.wrkflw.domain.event.TaskReleased
+import dev.wrkflw.domain.event.toOutboxEvent
 import dev.wrkflw.domain.identity.TaskId
 import dev.wrkflw.domain.port.ActorContext
 import dev.wrkflw.domain.port.AuditLog
 import dev.wrkflw.domain.port.Clock
+import dev.wrkflw.domain.port.OutboxEventRepository
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.domain.task.Task
 import dev.wrkflw.domain.task.TaskStatus
@@ -35,6 +38,7 @@ class ReleaseTaskService(
     private val tasks: TaskRepository,
     private val auditLog: AuditLog,
     private val clock: Clock,
+    private val outbox: OutboxEventRepository? = null,
 ) : ReleaseTaskUseCase {
     override suspend fun execute(command: ReleaseTaskCommand): ReleaseTaskResult {
         val task = tasks.findById(command.taskId) ?: return ReleaseTaskResult.NotFound
@@ -58,6 +62,14 @@ class ReleaseTaskService(
                 actorId = command.actor.actorId,
                 occurredAt = now,
             ),
+        )
+
+        outbox?.save(
+            TaskReleased(
+                flowInstanceId = task.flowInstanceId,
+                taskId = task.id,
+                occurredAt = now,
+            ).toOutboxEvent(),
         )
 
         return ReleaseTaskResult.Success(releasedTask)
