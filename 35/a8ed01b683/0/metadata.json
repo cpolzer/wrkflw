@@ -1,0 +1,304 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "35a8ed01b683",
+  "session_id": "2d48ad9b-b4da-4de7-acdc-efdd179faf47",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-10T11:39:51.254500258Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "hooks/pre-commit",
+    "hooks/commit-msg",
+    "mise.toml",
+    "specs/002-pre-commit-hooks/tasks.md",
+    "scripts/install-hooks.sh"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "e81241afeeb5",
+  "token_usage": {
+    "input_tokens": 462,
+    "cache_creation_tokens": 1130450,
+    "cache_read_tokens": 42328663,
+    "output_tokens": 169345,
+    "api_call_count": 412
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-speckit-constitution-2026-06-10T06:24:34.642235582Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-constitution"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "8a71d235db92",
+      "timestamp": "2026-06-10T06:24:34.642235582Z",
+      "native": {
+        "command": "/speckit-constitution"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-constitution",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-constitution-2026-06-10T06:26:10.755600074Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-constitution"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "0397726a3b9e",
+      "timestamp": "2026-06-10T06:26:10.755600074Z",
+      "native": {
+        "command": "/speckit-constitution"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-constitution",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-git-commit-2026-06-10T06:30:20.194493473Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "a14e0b6a4d84",
+      "timestamp": "2026-06-10T06:30:20.194493473Z",
+      "native": {
+        "command": "/speckit-git-commit"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-git-commit",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-implement-2026-06-10T06:37:37.13107479Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-implement"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "61a4e6cddac0",
+      "timestamp": "2026-06-10T06:37:37.13107479Z",
+      "native": {
+        "command": "/speckit-implement"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-implement",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-specify-2026-06-10T06:40:29.821983944Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-specify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "b6c48f79b017",
+      "timestamp": "2026-06-10T06:40:29.821983944Z",
+      "native": {
+        "command": "/speckit-specify"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-specify",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-implement-2026-06-10T07:03:10.00736129Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-implement"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "daaa04b96a49",
+      "timestamp": "2026-06-10T07:03:10.00736129Z",
+      "native": {
+        "command": "/speckit-implement"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-implement",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-plan-2026-06-10T07:03:31.100147288Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-plan"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "545d3e4bb32c",
+      "timestamp": "2026-06-10T07:03:31.100147288Z",
+      "native": {
+        "command": "/speckit-plan"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-plan",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-tasks-2026-06-10T11:22:13.608431554Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-tasks"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "414ecad9ed1a",
+      "timestamp": "2026-06-10T11:22:13.608431554Z",
+      "native": {
+        "command": "/speckit-tasks"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-tasks",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-implement-2026-06-10T11:31:47.87347685Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-implement"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "e81241afeeb5",
+      "timestamp": "2026-06-10T11:31:47.87347685Z",
+      "native": {
+        "command": "/speckit-implement"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-implement",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_011jUe3yahqmGPrw2CWa3k5y",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-implement"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "e81241afeeb5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 43,
+        "end": 44,
+        "entry_ids": [
+          "12408901-5a1d-4827-8171-2d0a17c872d6"
+        ],
+        "tool_use_id": "toolu_011jUe3yahqmGPrw2CWa3k5y"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_011jUe3yahqmGPrw2CWa3k5y"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-implement",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_012cdH7ToupjW84yU2X92awF",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "e81241afeeb5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 1286,
+        "end": 1287,
+        "entry_ids": [
+          "a46d17d5-677a-4d8e-8588-6953b570b5b8"
+        ],
+        "tool_use_id": "toolu_012cdH7ToupjW84yU2X92awF"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_012cdH7ToupjW84yU2X92awF"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-commit",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 19
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-10T11:39:51.20195078Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 5,
+    "human_removed": 90,
+    "total_committed": 5,
+    "total_lines_changed": 95,
+    "agent_percentage": 0,
+    "metric_version": 2
+  }
+}
