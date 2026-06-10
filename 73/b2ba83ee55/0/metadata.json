@@ -1,0 +1,75 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "73b2ba83ee55",
+  "session_id": "2d48ad9b-b4da-4de7-acdc-efdd179faf47",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-10T06:21:19.428851176Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "mise.toml",
+    "build-logic/src/main/kotlin/testing.gradle.kts",
+    ".github/workflows/ci.yml"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "266cf3adcae0",
+  "checkpoint_transcript_start": 1092,
+  "transcript_lines_at_start": 1092,
+  "token_usage": {
+    "input_tokens": 14,
+    "cache_creation_tokens": 7818,
+    "cache_read_tokens": 1878425,
+    "output_tokens": 4875,
+    "api_call_count": 14
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_011jUe3yahqmGPrw2CWa3k5y",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-implement"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "266cf3adcae0",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 43,
+        "end": 44,
+        "entry_ids": [
+          "12408901-5a1d-4827-8171-2d0a17c872d6"
+        ],
+        "tool_use_id": "toolu_011jUe3yahqmGPrw2CWa3k5y"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_011jUe3yahqmGPrw2CWa3k5y"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-implement",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-10T06:21:19.3991035Z",
+    "agent_lines": 23,
+    "agent_removed": 6,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 23,
+    "total_lines_changed": 29,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
