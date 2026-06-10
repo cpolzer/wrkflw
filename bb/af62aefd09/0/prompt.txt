@@ -1,0 +1,1 @@
+lets work on our  documentation: extend architecture to also explain how our gradle submodules are setup for/with clean architecture, explain the Koin wiring

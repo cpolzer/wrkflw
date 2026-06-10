@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "bbaf62aefd09",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "docs/explanation/architecture.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/bb/af62aefd09/0/metadata.json",
+      "transcript": "/bb/af62aefd09/0/full.jsonl",
+      "content_hash": "/bb/af62aefd09/0/content_hash.txt",
+      "prompt": "/bb/af62aefd09/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 12,
+    "cache_creation_tokens": 14219,
+    "cache_read_tokens": 647575,
+    "output_tokens": 4323,
+    "api_call_count": 10
+  }
+}
