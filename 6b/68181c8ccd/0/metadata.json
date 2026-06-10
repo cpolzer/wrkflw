@@ -1,0 +1,218 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "6b68181c8ccd",
+  "session_id": "1c7f8ab0-34c1-4c29-8f43-7b77c504b62b",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-10T18:53:53.624689851Z",
+  "branch": "003-vue-onyx-frontend",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "specs/003-vue-onyx-frontend/plan.md",
+    "specs/003-vue-onyx-frontend/research.md",
+    "specs/003-vue-onyx-frontend/data-model.md",
+    "specs/003-vue-onyx-frontend/contracts/api-consumption.md",
+    "specs/003-vue-onyx-frontend/quickstart.md",
+    "CLAUDE.md"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "d8e55816c2e8",
+  "checkpoint_transcript_start": 272,
+  "transcript_lines_at_start": 272,
+  "token_usage": {
+    "input_tokens": 18,
+    "cache_creation_tokens": 24059,
+    "cache_read_tokens": 1245188,
+    "output_tokens": 10269,
+    "api_call_count": 15
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-speckit-specify-2026-06-10T18:22:31.2082545Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-specify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "64d128f6c5c7",
+      "timestamp": "2026-06-10T18:22:31.2082545Z",
+      "native": {
+        "command": "/speckit-specify"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-specify",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-clarify-2026-06-10T18:30:51.98306854Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-clarify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "1feaa14fe181",
+      "timestamp": "2026-06-10T18:30:51.98306854Z",
+      "native": {
+        "command": "/speckit-clarify"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-clarify",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-speckit-plan-2026-06-10T18:50:13.767446455Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit-plan"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "d8e55816c2e8",
+      "timestamp": "2026-06-10T18:50:13.767446455Z",
+      "native": {
+        "command": "/speckit-plan"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit-plan",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01UJVG2aj8GApRVLnANFSMwu",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-feature"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d8e55816c2e8",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 31,
+        "end": 32,
+        "entry_ids": [
+          "6f33fae8-ee46-42e3-848d-93e8eb7316b0"
+        ],
+        "tool_use_id": "toolu_01UJVG2aj8GApRVLnANFSMwu"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01UJVG2aj8GApRVLnANFSMwu"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-feature",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_019GyMLNgwD1KeBfEZRwF8MA",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d8e55816c2e8",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 251,
+        "end": 252,
+        "entry_ids": [
+          "6d37be0a-15a7-4915-81db-e8d2dce4c8f1"
+        ],
+        "tool_use_id": "toolu_019GyMLNgwD1KeBfEZRwF8MA"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_019GyMLNgwD1KeBfEZRwF8MA"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-commit",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_013f1Jh9ChjMCv53XNGW9j4V",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-git-commit"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "d8e55816c2e8",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 339,
+        "end": 340,
+        "entry_ids": [
+          "89902414-8041-4bed-a9b3-01923fb4b447"
+        ],
+        "tool_use_id": "toolu_013f1Jh9ChjMCv53XNGW9j4V"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_013f1Jh9ChjMCv53XNGW9j4V"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-git-commit",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 11
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-10T18:53:53.6132414Z",
+    "agent_lines": 537,
+    "agent_removed": 1,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 537,
+    "total_lines_changed": 538,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 215,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 215
+      }
+    }
+  ]
+}
