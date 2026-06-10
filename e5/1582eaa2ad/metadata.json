@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "e51582eaa2ad",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "hooks/commit-msg",
+    "hooks/pre-commit",
+    "mise.toml",
+    "scripts/install-hooks.sh",
+    "specs/002-pre-commit-hooks/tasks.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/e5/1582eaa2ad/0/metadata.json",
+      "transcript": "/e5/1582eaa2ad/0/full.jsonl",
+      "content_hash": "/e5/1582eaa2ad/0/content_hash.txt",
+      "prompt": "/e5/1582eaa2ad/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 462,
+    "cache_creation_tokens": 1130450,
+    "cache_read_tokens": 42328663,
+    "output_tokens": 169345,
+    "api_call_count": 412
+  }
+}
