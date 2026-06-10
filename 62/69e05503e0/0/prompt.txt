@@ -1,0 +1,5 @@
+/speckit-constitution always locally run tests before commiting pushiong problems in ci
+
+---
+
+/speckit-constitution always locally run tests before commiting pushiong problems in ci

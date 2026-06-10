@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "6269e05503e0",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".specify/memory/constitution.md",
+    "build-logic/src/main/kotlin/testing.gradle.kts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/62/69e05503e0/0/metadata.json",
+      "transcript": "/62/69e05503e0/0/full.jsonl",
+      "content_hash": "/62/69e05503e0/0/content_hash.txt",
+      "prompt": "/62/69e05503e0/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 13,
+    "cache_creation_tokens": 38855,
+    "cache_read_tokens": 960652,
+    "output_tokens": 6368,
+    "api_call_count": 11
+  }
+}
