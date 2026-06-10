@@ -1,5 +1,6 @@
 package dev.wrkflw.rest
 
+import dev.wrkflw.domain.audit.AuditEntry
 import dev.wrkflw.domain.flow.FlowInstance
 import dev.wrkflw.domain.task.Task
 import kotlinx.serialization.Serializable
@@ -21,6 +22,13 @@ data class TaskSummaryDto(
 )
 
 @Serializable
+data class AuditEntryDto(
+    val type: String,
+    val actorId: String?,
+    val occurredAt: String,
+)
+
+@Serializable
 data class FlowStatusResponseDto(
     val flowId: String,
     val definitionKey: String,
@@ -28,6 +36,7 @@ data class FlowStatusResponseDto(
     val status: String,
     val terminalOutcome: String?,
     val pendingTasks: List<TaskSummaryDto>,
+    val history: List<AuditEntryDto> = emptyList(),
 )
 
 @Serializable
@@ -41,15 +50,18 @@ data class ErrorDto(
     val error: String,
 )
 
-fun FlowInstance.toStatusDto(tasks: List<Task> = emptyList()) =
-    FlowStatusResponseDto(
-        flowId = id.value.toString(),
-        definitionKey = definitionKey.value,
-        currentState = currentState,
-        status = status.name,
-        terminalOutcome = terminalOutcome,
-        pendingTasks = tasks.map { it.toSummaryDto() },
-    )
+fun FlowInstance.toStatusDto(
+    tasks: List<Task> = emptyList(),
+    history: List<dev.wrkflw.domain.audit.AuditEntry> = emptyList(),
+) = FlowStatusResponseDto(
+    flowId = id.value.toString(),
+    definitionKey = definitionKey.value,
+    currentState = currentState,
+    status = status.name,
+    terminalOutcome = terminalOutcome,
+    pendingTasks = tasks.map { it.toSummaryDto() },
+    history = history.map { it.toDto() },
+)
 
 fun Task.toSummaryDto() =
     TaskSummaryDto(
@@ -59,4 +71,11 @@ fun Task.toSummaryDto() =
         candidateGroupId = candidateGroupId.value,
         status = status.name,
         ownerId = ownerId?.value,
+    )
+
+fun AuditEntry.toDto() =
+    AuditEntryDto(
+        type = type.name,
+        actorId = actorId?.value,
+        occurredAt = occurredAt.toString(),
     )

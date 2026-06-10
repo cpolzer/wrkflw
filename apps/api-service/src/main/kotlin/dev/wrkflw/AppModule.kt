@@ -8,6 +8,12 @@ import dev.wrkflw.application.command.SubmitDecisionService
 import dev.wrkflw.application.command.SubmitDecisionUseCase
 import dev.wrkflw.application.command.SubmitDocumentService
 import dev.wrkflw.application.command.SubmitDocumentUseCase
+import dev.wrkflw.application.query.FlowStatusService
+import dev.wrkflw.application.query.FlowStatusUseCase
+import dev.wrkflw.application.query.GroupWorkListService
+import dev.wrkflw.application.query.GroupWorkListUseCase
+import dev.wrkflw.application.query.MyTasksService
+import dev.wrkflw.application.query.MyTasksUseCase
 import dev.wrkflw.domain.port.AuditLog
 import dev.wrkflw.domain.port.Clock
 import dev.wrkflw.domain.port.DecisionRepository
@@ -49,4 +55,7 @@ fun infraModule(
     single<ClaimTaskUseCase> { ClaimTaskService(get(), get(), get()) }
     single<ReleaseTaskUseCase> { ReleaseTaskService(get(), get(), get()) }
     single<SubmitDecisionUseCase> { SubmitDecisionService(get(), get(), get(), get(), get(), get(), get()) }
+    single<GroupWorkListUseCase> { GroupWorkListService(get()) }
+    single<MyTasksUseCase> { MyTasksService(get()) }
+    single<FlowStatusUseCase> { FlowStatusService(get(), get(), get()) }
 }

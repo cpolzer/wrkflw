@@ -154,16 +154,16 @@ implementation (red→green→refactor).
 
 ### Tests for User Story 4 (write first, must fail) ⚠️
 
-- [ ] T051 [P] [US4] Contract tests for `GET /worklists/group`, `/worklists/mine`, `/flows/{id}` in `adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/QueryContractTest.kt`
-- [ ] T052 [P] [US4] Integration test: group/mine filtering + flow status with history accuracy in `apps/api-service/src/test/kotlin/dev/wrkflw/WorkListAndStatusE2ETest.kt`
-- [ ] T053 [P] [US4] Unit tests for query services in `application/src/test/kotlin/dev/wrkflw/application/QueriesTest.kt`
+- [X] T051 [P] [US4] Contract tests for `GET /worklists/group`, `/worklists/mine`, `/flows/{id}` in `adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/QueryContractTest.kt`
+- [X] T052 [P] [US4] Integration test: group/mine filtering + flow status with history accuracy in `apps/api-service/src/test/kotlin/dev/wrkflw/WorkListAndStatusE2ETest.kt`
+- [X] T053 [P] [US4] Unit tests for query services in `application/src/test/kotlin/dev/wrkflw/application/QueriesTest.kt`
 
 ### Implementation for User Story 4
 
-- [ ] T054 [US4] Query services `GroupWorkList`, `MyTasks`, `FlowStatus` (with history) in `application/src/main/kotlin/dev/wrkflw/application/query/`
-- [ ] T055 [US4] jOOQ query impls (worklist by group membership, my tasks by owner, flow status + audit history) in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/QueriesPostgres.kt`
-- [ ] T056 [US4] `GET` routes + DTOs (`worklists/group`, `worklists/mine`, `flows/{id}`) in `adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/QueryRoutes.kt`
-- [ ] T057 [US4] Make T051–T053 pass
+- [X] T054 [US4] Query services `GroupWorkList`, `MyTasks`, `FlowStatus` (with history) in `application/src/main/kotlin/dev/wrkflw/application/query/`
+- [X] T055 [US4] jOOQ query impls (worklist by group membership, my tasks by owner, flow status + audit history) in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/QueriesPostgres.kt`
+- [X] T056 [US4] `GET` routes + DTOs (`worklists/group`, `worklists/mine`, `flows/{id}`) in `adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/QueryRoutes.kt`
+- [X] T057 [US4] Make T051–T053 pass
 
 **Checkpoint**: Humans can find their work and stakeholders can track flows.
 
