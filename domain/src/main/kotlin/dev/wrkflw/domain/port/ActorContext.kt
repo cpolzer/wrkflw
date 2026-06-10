@@ -5,7 +5,7 @@ import dev.wrkflw.domain.identity.GroupId
 
 data class ActorContext(
     val actorId: ActorId,
-    val groupIds: Set<GroupId>
+    val groupIds: Set<GroupId>,
 ) {
     fun isInGroup(groupId: GroupId): Boolean = groupIds.contains(groupId)
 }

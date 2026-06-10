@@ -13,7 +13,7 @@ enum class AuditEventType {
     TASK_RELEASED,
     DECISION_RECORDED,
     STATE_TRANSITIONED,
-    FLOW_COMPLETED
+    FLOW_COMPLETED,
 }
 
 data class AuditEntry(
@@ -23,5 +23,5 @@ data class AuditEntry(
     val type: AuditEventType,
     val actorId: ActorId? = null,
     val payload: JsonObject = JsonObject(emptyMap()),
-    val occurredAt: Instant
+    val occurredAt: Instant,
 )

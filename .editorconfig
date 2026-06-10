@@ -9,7 +9,10 @@ indent_size = 4
 
 [*.kt]
 indent_size = 4
+max_line_length = 120
 ktlint_standard_indent = 4
+# Ktor DSL relies on wildcard imports for extension functions; allow them for io.ktor packages.
+ij_kotlin_packages_to_use_import_on_demand = io.ktor.http,io.ktor.client,io.ktor.client.call,io.ktor.client.request,io.ktor.serialization.kotlinx.json,io.ktor.server.application,io.ktor.server.engine,io.ktor.server.netty,io.ktor.server.plugins.calllogging,io.ktor.server.plugins.contentnegotiation,io.ktor.server.plugins.statuspages,io.ktor.server.request,io.ktor.server.response,io.ktor.server.routing,io.ktor.server.testing
 
 [*.kts]
 indent_size = 4

@@ -15,10 +15,12 @@ import org.jooq.JSONB
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
-class AuditLogPostgres(private val dsl: DSLContext) : AuditLog {
-
+class AuditLogPostgres(
+    private val dsl: DSLContext,
+) : AuditLog {
     override suspend fun append(entry: AuditEntry) {
-        dsl.insertInto(AUDIT_ENTRY)
+        dsl
+            .insertInto(AUDIT_ENTRY)
             .set(AUDIT_ENTRY.FLOW_INSTANCE_ID, entry.flowInstanceId.value)
             .set(AUDIT_ENTRY.TASK_ID, entry.taskId?.value)
             .set(AUDIT_ENTRY.TYPE, entry.type.name)
@@ -29,7 +31,8 @@ class AuditLogPostgres(private val dsl: DSLContext) : AuditLog {
     }
 
     override suspend fun findByFlowInstanceId(flowInstanceId: FlowInstanceId): List<AuditEntry> =
-        dsl.selectFrom(AUDIT_ENTRY)
+        dsl
+            .selectFrom(AUDIT_ENTRY)
             .where(AUDIT_ENTRY.FLOW_INSTANCE_ID.eq(flowInstanceId.value))
             .orderBy(AUDIT_ENTRY.ID.asc())
             .fetch()

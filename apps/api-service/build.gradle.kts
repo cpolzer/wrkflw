@@ -6,7 +6,7 @@ plugins {
 tasks.withType<Test> {
     systemProperty(
         "wrkflw.migrations.dir",
-        rootProject.file("adapters/persistence-postgres/src/main/resources/db/migration").absolutePath
+        rootProject.file("adapters/persistence-postgres/src/main/resources/db/migration").absolutePath,
     )
 }
 

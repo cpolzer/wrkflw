@@ -16,9 +16,14 @@ data class ClaimTaskCommand(
 )
 
 sealed class ClaimTaskResult {
-    data class Success(val task: Task) : ClaimTaskResult()
+    data class Success(
+        val task: Task,
+    ) : ClaimTaskResult()
+
     data object NotFound : ClaimTaskResult()
+
     data object Forbidden : ClaimTaskResult()
+
     data object Conflict : ClaimTaskResult()
 }
 
@@ -31,7 +36,6 @@ class ClaimTaskService(
     private val auditLog: AuditLog,
     private val clock: Clock,
 ) : ClaimTaskUseCase {
-
     override suspend fun execute(command: ClaimTaskCommand): ClaimTaskResult {
         val task = tasks.findById(command.taskId) ?: return ClaimTaskResult.NotFound
 
@@ -42,8 +46,9 @@ class ClaimTaskService(
         val now = clock.now()
         val claimedTask = task.claim(command.actor.actorId, now)
 
-        if (tasks.updateConditional(claimedTask, TaskStatus.PENDING, task.version) == 0)
+        if (tasks.updateConditional(claimedTask, TaskStatus.PENDING, task.version) == 0) {
             return ClaimTaskResult.Conflict
+        }
 
         auditLog.append(
             AuditEntry(
@@ -52,7 +57,7 @@ class ClaimTaskService(
                 type = AuditEventType.TASK_CLAIMED,
                 actorId = command.actor.actorId,
                 occurredAt = now,
-            )
+            ),
         )
 
         return ClaimTaskResult.Success(claimedTask)

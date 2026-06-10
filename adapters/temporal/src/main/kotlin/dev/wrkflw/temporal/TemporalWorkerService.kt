@@ -32,13 +32,17 @@ class TemporalWorkerService(
     }
 
     companion object {
-        fun createClient(host: String = "localhost", port: Int = 7233): WorkflowClient =
+        fun createClient(
+            host: String = "localhost",
+            port: Int = 7233,
+        ): WorkflowClient =
             WorkflowClient.newInstance(
                 WorkflowServiceStubs.newInstance(
-                    WorkflowServiceStubsOptions.newBuilder()
+                    WorkflowServiceStubsOptions
+                        .newBuilder()
                         .setTarget("$host:$port")
-                        .build()
-                )
+                        .build(),
+                ),
             )
     }
 }

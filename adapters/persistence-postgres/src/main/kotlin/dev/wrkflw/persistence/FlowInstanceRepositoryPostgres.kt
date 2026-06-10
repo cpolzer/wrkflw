@@ -13,11 +13,13 @@ import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
 import java.time.ZoneOffset
 
-class FlowInstanceRepositoryPostgres(private val dsl: DSLContext) : FlowInstanceRepository {
-
+class FlowInstanceRepositoryPostgres(
+    private val dsl: DSLContext,
+) : FlowInstanceRepository {
     override suspend fun findById(id: FlowInstanceId): FlowInstance? =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(FLOW_INSTANCE)
+            dsl
+                .selectFrom(FLOW_INSTANCE)
                 .where(FLOW_INSTANCE.ID.eq(id.value))
                 .fetchOne()
                 ?.let { r ->
@@ -38,14 +40,17 @@ class FlowInstanceRepositoryPostgres(private val dsl: DSLContext) : FlowInstance
 
     override suspend fun save(instance: FlowInstance) {
         withContext(Dispatchers.IO) {
-            val definitionId = dsl.select(FLOW_DEFINITION.ID)
-                .from(FLOW_DEFINITION)
-                .where(FLOW_DEFINITION.KEY.eq(instance.definitionKey.value))
-                .and(FLOW_DEFINITION.VERSION.eq(instance.definitionVersion))
-                .fetchOneInto(java.util.UUID::class.java)
-                ?: error("FlowDefinition not found: ${instance.definitionKey.value} v${instance.definitionVersion}")
+            val definitionId =
+                dsl
+                    .select(FLOW_DEFINITION.ID)
+                    .from(FLOW_DEFINITION)
+                    .where(FLOW_DEFINITION.KEY.eq(instance.definitionKey.value))
+                    .and(FLOW_DEFINITION.VERSION.eq(instance.definitionVersion))
+                    .fetchOneInto(java.util.UUID::class.java)
+                    ?: error("FlowDefinition not found: ${instance.definitionKey.value} v${instance.definitionVersion}")
 
-            dsl.insertInto(FLOW_INSTANCE)
+            dsl
+                .insertInto(FLOW_INSTANCE)
                 .set(FLOW_INSTANCE.ID, instance.id.value)
                 .set(FLOW_INSTANCE.DEFINITION_ID, definitionId)
                 .set(FLOW_INSTANCE.DEFINITION_KEY, instance.definitionKey.value)
@@ -63,7 +68,8 @@ class FlowInstanceRepositoryPostgres(private val dsl: DSLContext) : FlowInstance
 
     override suspend fun update(instance: FlowInstance) {
         withContext(Dispatchers.IO) {
-            dsl.update(FLOW_INSTANCE)
+            dsl
+                .update(FLOW_INSTANCE)
                 .set(FLOW_INSTANCE.CURRENT_STATE, instance.currentState)
                 .set(FLOW_INSTANCE.STATUS, instance.status.name)
                 .set(FLOW_INSTANCE.TERMINAL_OUTCOME, instance.terminalOutcome)

@@ -25,9 +25,14 @@ data class SubmitDecisionCommand(
 )
 
 sealed class SubmitDecisionResult {
-    data class Success(val flowInstance: FlowInstance) : SubmitDecisionResult()
+    data class Success(
+        val flowInstance: FlowInstance,
+    ) : SubmitDecisionResult()
+
     data object NotFound : SubmitDecisionResult()
+
     data object Forbidden : SubmitDecisionResult()
+
     data object Conflict : SubmitDecisionResult()
 }
 
@@ -44,7 +49,6 @@ class SubmitDecisionService(
     private val engine: WorkflowEngine,
     private val clock: Clock,
 ) : SubmitDecisionUseCase {
-
     override suspend fun execute(command: SubmitDecisionCommand): SubmitDecisionResult {
         val task = tasks.findById(command.taskId) ?: return SubmitDecisionResult.NotFound
 
@@ -52,49 +56,44 @@ class SubmitDecisionService(
 
         if (task.ownerId != command.actor.actorId) return SubmitDecisionResult.Forbidden
 
-        val instance = instances.findById(task.flowInstanceId)
-            ?: error("FlowInstance not found for task ${command.taskId.value}")
-        val definition = definitions.findByKeyAndVersion(instance.definitionKey, instance.definitionVersion)
-            ?: error("FlowDefinition not found: ${instance.definitionKey.value} v${instance.definitionVersion}")
+        val instance =
+            instances.findById(task.flowInstanceId)
+                ?: error("FlowInstance not found for task ${command.taskId.value}")
+        val definition =
+            definitions.findByKeyAndVersion(instance.definitionKey, instance.definitionVersion)
+                ?: error("FlowDefinition not found: ${instance.definitionKey.value} v${instance.definitionVersion}")
 
-        val trigger = when (command.outcome) {
-            DecisionOutcome.APPROVE -> Trigger.APPROVE
-            DecisionOutcome.REJECT -> Trigger.REJECT
-        }
+        val trigger =
+            when (command.outcome) {
+                DecisionOutcome.APPROVE -> Trigger.APPROVE
+                DecisionOutcome.REJECT -> Trigger.REJECT
+            }
         val interpreterResult = FlowInterpreterResult.advance(instance.currentState, trigger, definition)
 
         val now = clock.now()
-        val (completedTask, decision) = task.completeDecision(command.outcome, command.actor.actorId, command.comment, now)
+        val (completedTask, decision) =
+            task.completeDecision(
+                command.outcome,
+                command.actor.actorId,
+                command.comment,
+                now,
+            )
 
-        if (tasks.updateConditional(completedTask, TaskStatus.CLAIMED, task.version) == 0)
+        if (tasks.updateConditional(completedTask, TaskStatus.CLAIMED, task.version) == 0) {
             return SubmitDecisionResult.Conflict
+        }
 
         decisions.save(decision)
 
-        val updatedInstance = if (interpreterResult.isTerminal) {
-            instance.complete(interpreterResult.terminalOutcome!!, now)
-        } else {
-            instance.advance(interpreterResult.nextState!!, now)
-        }
+        val updatedInstance =
+            if (interpreterResult.isTerminal) {
+                instance.complete(interpreterResult.terminalOutcome!!, now)
+            } else {
+                instance.advance(interpreterResult.nextState!!, now)
+            }
         instances.update(updatedInstance)
 
-        auditLog.append(
-            AuditEntry(
-                flowInstanceId = instance.id,
-                taskId = task.id,
-                type = AuditEventType.DECISION_RECORDED,
-                actorId = command.actor.actorId,
-                occurredAt = now,
-            )
-        )
-        auditLog.append(
-            AuditEntry(
-                flowInstanceId = instance.id,
-                type = AuditEventType.STATE_TRANSITIONED,
-                actorId = command.actor.actorId,
-                occurredAt = now,
-            )
-        )
+        appendDecisionAudit(instance, task, command, now)
 
         engine.signalWorkflow(
             instance.id,
@@ -103,9 +102,34 @@ class SubmitDecisionService(
                 "outcome" to command.outcome.name,
                 "taskId" to task.id.value.toString(),
                 "actorId" to command.actor.actorId.value,
-            )
+            ),
         )
 
         return SubmitDecisionResult.Success(updatedInstance)
+    }
+
+    private suspend fun appendDecisionAudit(
+        instance: FlowInstance,
+        task: dev.wrkflw.domain.task.Task,
+        command: SubmitDecisionCommand,
+        now: java.time.Instant,
+    ) {
+        auditLog.append(
+            AuditEntry(
+                flowInstanceId = instance.id,
+                taskId = task.id,
+                type = AuditEventType.DECISION_RECORDED,
+                actorId = command.actor.actorId,
+                occurredAt = now,
+            ),
+        )
+        auditLog.append(
+            AuditEntry(
+                flowInstanceId = instance.id,
+                type = AuditEventType.STATE_TRANSITIONED,
+                actorId = command.actor.actorId,
+                occurredAt = now,
+            ),
+        )
     }
 }

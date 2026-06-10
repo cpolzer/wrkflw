@@ -12,6 +12,9 @@ kotlin {
 
 ktlint {
     version.set("1.4.1")
+    filter {
+        exclude { element -> element.file.path.contains("/build/") }
+    }
 }
 
 detekt {

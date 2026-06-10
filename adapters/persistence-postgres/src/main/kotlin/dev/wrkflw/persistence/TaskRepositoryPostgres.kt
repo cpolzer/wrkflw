@@ -13,11 +13,13 @@ import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
 import java.time.ZoneOffset
 
-class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
-
+class TaskRepositoryPostgres(
+    private val dsl: DSLContext,
+) : TaskRepository {
     override suspend fun findById(id: TaskId): Task? =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(TASK)
+            dsl
+                .selectFrom(TASK)
                 .where(TASK.ID.eq(id.value))
                 .fetchOne()
                 ?.toDomain()
@@ -25,7 +27,8 @@ class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
 
     override suspend fun findByFlowInstanceId(flowInstanceId: FlowInstanceId): List<Task> =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(TASK)
+            dsl
+                .selectFrom(TASK)
                 .where(TASK.FLOW_INSTANCE_ID.eq(flowInstanceId.value))
                 .fetch()
                 .map { it.toDomain() }
@@ -33,7 +36,8 @@ class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
 
     override suspend fun findPendingByCandidateGroup(groupId: String): List<Task> =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(TASK)
+            dsl
+                .selectFrom(TASK)
                 .where(TASK.CANDIDATE_GROUP_ID.eq(groupId))
                 .and(TASK.STATUS.eq(TaskStatus.PENDING.name))
                 .fetch()
@@ -42,7 +46,8 @@ class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
 
     override suspend fun findClaimedByOwner(ownerId: String): List<Task> =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(TASK)
+            dsl
+                .selectFrom(TASK)
                 .where(TASK.OWNER_ID.eq(ownerId))
                 .and(TASK.STATUS.eq(TaskStatus.CLAIMED.name))
                 .fetch()
@@ -51,7 +56,8 @@ class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
 
     override suspend fun save(task: Task) {
         withContext(Dispatchers.IO) {
-            dsl.insertInto(TASK)
+            dsl
+                .insertInto(TASK)
                 .set(TASK.ID, task.id.value)
                 .set(TASK.FLOW_INSTANCE_ID, task.flowInstanceId.value)
                 .set(TASK.STATE_NAME, task.stateName)
@@ -68,7 +74,8 @@ class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
 
     override suspend fun update(task: Task): Int =
         withContext(Dispatchers.IO) {
-            dsl.update(TASK)
+            dsl
+                .update(TASK)
                 .set(TASK.STATUS, task.status.name)
                 .set(TASK.OWNER_ID, task.ownerId?.value)
                 .set(TASK.VERSION, task.version)
@@ -78,9 +85,14 @@ class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
                 .execute()
         }
 
-    override suspend fun updateConditional(task: Task, expectedStatus: TaskStatus, expectedVersion: Int): Int =
+    override suspend fun updateConditional(
+        task: Task,
+        expectedStatus: TaskStatus,
+        expectedVersion: Int,
+    ): Int =
         withContext(Dispatchers.IO) {
-            dsl.update(TASK)
+            dsl
+                .update(TASK)
                 .set(TASK.STATUS, task.status.name)
                 .set(TASK.OWNER_ID, task.ownerId?.value)
                 .set(TASK.VERSION, task.version)
@@ -92,16 +104,17 @@ class TaskRepositoryPostgres(private val dsl: DSLContext) : TaskRepository {
                 .execute()
         }
 
-    private fun dev.wrkflw.persistence.generated.tables.records.TaskRecord.toDomain() = Task(
-        id = TaskId(id!!),
-        flowInstanceId = FlowInstanceId(flowInstanceId!!),
-        stateName = stateName!!,
-        candidateGroupId = GroupId(candidateGroupId!!),
-        status = TaskStatus.valueOf(status!!),
-        ownerId = ownerId?.let { ActorId(it) },
-        version = version!!,
-        createdAt = createdAt!!.toInstant(),
-        claimedAt = claimedAt?.toInstant(),
-        completedAt = completedAt?.toInstant(),
-    )
+    private fun dev.wrkflw.persistence.generated.tables.records.TaskRecord.toDomain() =
+        Task(
+            id = TaskId(id!!),
+            flowInstanceId = FlowInstanceId(flowInstanceId!!),
+            stateName = stateName!!,
+            candidateGroupId = GroupId(candidateGroupId!!),
+            status = TaskStatus.valueOf(status!!),
+            ownerId = ownerId?.let { ActorId(it) },
+            version = version!!,
+            createdAt = createdAt!!.toInstant(),
+            claimedAt = claimedAt?.toInstant(),
+            completedAt = completedAt?.toInstant(),
+        )
 }

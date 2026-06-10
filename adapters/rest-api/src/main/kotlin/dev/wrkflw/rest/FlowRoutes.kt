@@ -10,14 +10,18 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
-fun Route.flowRoutes(submitDocument: SubmitDocumentUseCase, tasks: TaskRepository) {
+fun Route.flowRoutes(
+    submitDocument: SubmitDocumentUseCase,
+    tasks: TaskRepository,
+) {
     post("/flows") {
-        val actor = try {
-            HeaderActorContext.fromCall(call)
-        } catch (e: MissingActorHeaderException) {
-            call.respond(HttpStatusCode.BadRequest, ErrorDto(e.message ?: "Missing actor headers"))
-            return@post
-        }
+        val actor =
+            try {
+                HeaderActorContext.fromCall(call)
+            } catch (e: MissingActorHeaderException) {
+                call.respond(HttpStatusCode.BadRequest, ErrorDto(e.message ?: "Missing actor headers"))
+                return@post
+            }
 
         val body = call.receive<SubmitDocumentRequestDto>()
 

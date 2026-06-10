@@ -14,6 +14,10 @@ complexity:
     thresholdInObjects: 15
     thresholdInEnums: 15
 
+empty-blocks:
+  EmptyFunctionBlock:
+    ignoreOverridden: true
+
 style:
   MagicNumber:
     active: false
@@ -21,9 +25,11 @@ style:
     maxLineLength: 120
     excludeImportStatements: true
   ReturnCount:
-    max: 4
+    max: 6
   WildcardImport:
     active: true
+    excludeImports:
+      - 'io.ktor.*'
 
 naming:
   FunctionNaming:

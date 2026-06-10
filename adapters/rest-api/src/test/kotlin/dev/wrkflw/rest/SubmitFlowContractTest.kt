@@ -1,6 +1,5 @@
 package dev.wrkflw.rest
 
-import dev.wrkflw.application.command.SubmitDocumentCommand
 import dev.wrkflw.application.command.SubmitDocumentResult
 import dev.wrkflw.application.command.SubmitDocumentUseCase
 import dev.wrkflw.domain.flow.FlowInstance
@@ -24,28 +23,28 @@ import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.testing.*
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation as ClientContentNegotiation
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 import java.time.Instant
 import java.util.UUID
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation as ClientContentNegotiation
 
 class SubmitFlowContractTest {
-
     private val fixedNow = Instant.parse("2026-01-01T00:00:00Z")
 
-    private val sampleInstance = FlowInstance(
-        id = FlowInstanceId(UUID.fromString("00000000-0000-0000-0000-000000000001")),
-        definitionKey = FlowDefinitionKey("document-approval"),
-        definitionVersion = 1,
-        documentRef = "doc-ref-001",
-        submitterId = ActorId("author1"),
-        currentState = "Submitted",
-        status = FlowStatus.RUNNING,
-        terminalOutcome = null,
-        createdAt = fixedNow,
-        updatedAt = fixedNow,
-    )
+    private val sampleInstance =
+        FlowInstance(
+            id = FlowInstanceId(UUID.fromString("00000000-0000-0000-0000-000000000001")),
+            definitionKey = FlowDefinitionKey("document-approval"),
+            definitionVersion = 1,
+            documentRef = "doc-ref-001",
+            submitterId = ActorId("author1"),
+            currentState = "Submitted",
+            status = FlowStatus.RUNNING,
+            terminalOutcome = null,
+            createdAt = fixedNow,
+            updatedAt = fixedNow,
+        )
 
     private fun withApp(
         useCase: SubmitDocumentUseCase,
@@ -63,87 +62,109 @@ class SubmitFlowContractTest {
                 route("/api/v1") { flowRoutes(useCase, taskRepo) }
             }
         }
-        val client = createClient {
-            install(ClientContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
-        }
+        val client =
+            createClient {
+                install(ClientContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
+            }
         block(client)
     }
 
     @Test
-    fun `POST flows returns 201 with flow status on success`() = withApp(
-        useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.Success(sampleInstance) },
-    ) { client ->
-        val response = client.post("/api/v1/flows") {
-            header("X-Actor-Id", "author1")
-            header("X-Actor-Groups", "authors")
-            contentType(ContentType.Application.Json)
-            setBody("""{"definitionKey":"document-approval","documentRef":"doc-ref-001"}""")
+    fun `POST flows returns 201 with flow status on success`() =
+        withApp(
+            useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.Success(sampleInstance) },
+        ) { client ->
+            val response =
+                client.post("/api/v1/flows") {
+                    header("X-Actor-Id", "author1")
+                    header("X-Actor-Groups", "authors")
+                    contentType(ContentType.Application.Json)
+                    setBody("""{"definitionKey":"document-approval","documentRef":"doc-ref-001"}""")
+                }
+            response.status shouldBe HttpStatusCode.Created
+            val body = response.body<FlowStatusResponseDto>()
+            body.flowId shouldBe "00000000-0000-0000-0000-000000000001"
+            body.status shouldBe "RUNNING"
+            body.currentState shouldBe "Submitted"
+            body.pendingTasks shouldBe emptyList()
         }
-        response.status shouldBe HttpStatusCode.Created
-        val body = response.body<FlowStatusResponseDto>()
-        body.flowId shouldBe "00000000-0000-0000-0000-000000000001"
-        body.status shouldBe "RUNNING"
-        body.currentState shouldBe "Submitted"
-        body.pendingTasks shouldBe emptyList()
-    }
 
     @Test
-    fun `POST flows returns 403 when actor is not in initiator group`() = withApp(
-        useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.Unauthorized },
-    ) { client ->
-        val response = client.post("/api/v1/flows") {
-            header("X-Actor-Id", "reviewer1")
-            header("X-Actor-Groups", "reviewers")
-            contentType(ContentType.Application.Json)
-            setBody("""{"definitionKey":"document-approval","documentRef":"doc-ref-002"}""")
+    fun `POST flows returns 403 when actor is not in initiator group`() =
+        withApp(
+            useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.Unauthorized },
+        ) { client ->
+            val response =
+                client.post("/api/v1/flows") {
+                    header("X-Actor-Id", "reviewer1")
+                    header("X-Actor-Groups", "reviewers")
+                    contentType(ContentType.Application.Json)
+                    setBody("""{"definitionKey":"document-approval","documentRef":"doc-ref-002"}""")
+                }
+            response.status shouldBe HttpStatusCode.Forbidden
         }
-        response.status shouldBe HttpStatusCode.Forbidden
-    }
 
     @Test
-    fun `POST flows returns 404 when definition not found`() = withApp(
-        useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.DefinitionNotFound },
-    ) { client ->
-        val response = client.post("/api/v1/flows") {
-            header("X-Actor-Id", "author1")
-            header("X-Actor-Groups", "authors")
-            contentType(ContentType.Application.Json)
-            setBody("""{"definitionKey":"unknown-flow","documentRef":"doc-ref-003"}""")
+    fun `POST flows returns 404 when definition not found`() =
+        withApp(
+            useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.DefinitionNotFound },
+        ) { client ->
+            val response =
+                client.post("/api/v1/flows") {
+                    header("X-Actor-Id", "author1")
+                    header("X-Actor-Groups", "authors")
+                    contentType(ContentType.Application.Json)
+                    setBody("""{"definitionKey":"unknown-flow","documentRef":"doc-ref-003"}""")
+                }
+            response.status shouldBe HttpStatusCode.NotFound
         }
-        response.status shouldBe HttpStatusCode.NotFound
-    }
 
     @Test
-    fun `POST flows returns 422 when documentRef is blank`() = withApp(
-        useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.DefinitionNotFound },
-    ) { client ->
-        val response = client.post("/api/v1/flows") {
-            header("X-Actor-Id", "author1")
-            header("X-Actor-Groups", "authors")
-            contentType(ContentType.Application.Json)
-            setBody("""{"definitionKey":"document-approval","documentRef":""}""")
+    fun `POST flows returns 422 when documentRef is blank`() =
+        withApp(
+            useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.DefinitionNotFound },
+        ) { client ->
+            val response =
+                client.post("/api/v1/flows") {
+                    header("X-Actor-Id", "author1")
+                    header("X-Actor-Groups", "authors")
+                    contentType(ContentType.Application.Json)
+                    setBody("""{"definitionKey":"document-approval","documentRef":""}""")
+                }
+            response.status shouldBe HttpStatusCode.UnprocessableEntity
         }
-        response.status shouldBe HttpStatusCode.UnprocessableEntity
-    }
 
     @Test
-    fun `POST flows returns 400 when X-Actor-Id header is missing`() = withApp(
-        useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.DefinitionNotFound },
-    ) { client ->
-        val response = client.post("/api/v1/flows") {
-            contentType(ContentType.Application.Json)
-            setBody("""{"definitionKey":"document-approval","documentRef":"doc-ref-004"}""")
+    fun `POST flows returns 400 when X-Actor-Id header is missing`() =
+        withApp(
+            useCase = SubmitDocumentUseCase { _ -> SubmitDocumentResult.DefinitionNotFound },
+        ) { client ->
+            val response =
+                client.post("/api/v1/flows") {
+                    contentType(ContentType.Application.Json)
+                    setBody("""{"definitionKey":"document-approval","documentRef":"doc-ref-004"}""")
+                }
+            response.status shouldBe HttpStatusCode.BadRequest
         }
-        response.status shouldBe HttpStatusCode.BadRequest
-    }
 
-    private fun noOpTaskRepo(): TaskRepository = object : TaskRepository {
-        override suspend fun findById(id: TaskId): Task? = null
-        override suspend fun findByFlowInstanceId(flowInstanceId: FlowInstanceId) = emptyList<Task>()
-        override suspend fun findPendingByCandidateGroup(groupId: String) = emptyList<Task>()
-        override suspend fun findClaimedByOwner(ownerId: String) = emptyList<Task>()
-        override suspend fun save(task: Task) {}
-        override suspend fun update(task: Task) = 0
-        override suspend fun updateConditional(task: Task, expectedStatus: TaskStatus, expectedVersion: Int) = 0
-    }
+    private fun noOpTaskRepo(): TaskRepository =
+        object : TaskRepository {
+            override suspend fun findById(id: TaskId): Task? = null
+
+            override suspend fun findByFlowInstanceId(flowInstanceId: FlowInstanceId) = emptyList<Task>()
+
+            override suspend fun findPendingByCandidateGroup(groupId: String) = emptyList<Task>()
+
+            override suspend fun findClaimedByOwner(ownerId: String) = emptyList<Task>()
+
+            override suspend fun save(task: Task) {}
+
+            override suspend fun update(task: Task) = 0
+
+            override suspend fun updateConditional(
+                task: Task,
+                expectedStatus: TaskStatus,
+                expectedVersion: Int,
+            ) = 0
+        }
 }

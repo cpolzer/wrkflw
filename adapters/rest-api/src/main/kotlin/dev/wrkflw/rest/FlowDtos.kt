@@ -37,22 +37,26 @@ data class DecisionRequestDto(
 )
 
 @Serializable
-data class ErrorDto(val error: String)
-
-fun FlowInstance.toStatusDto(tasks: List<Task> = emptyList()) = FlowStatusResponseDto(
-    flowId = id.value.toString(),
-    definitionKey = definitionKey.value,
-    currentState = currentState,
-    status = status.name,
-    terminalOutcome = terminalOutcome,
-    pendingTasks = tasks.map { it.toSummaryDto() },
+data class ErrorDto(
+    val error: String,
 )
 
-fun Task.toSummaryDto() = TaskSummaryDto(
-    taskId = id.value.toString(),
-    flowId = flowInstanceId.value.toString(),
-    stateName = stateName,
-    candidateGroupId = candidateGroupId.value,
-    status = status.name,
-    ownerId = ownerId?.value,
-)
+fun FlowInstance.toStatusDto(tasks: List<Task> = emptyList()) =
+    FlowStatusResponseDto(
+        flowId = id.value.toString(),
+        definitionKey = definitionKey.value,
+        currentState = currentState,
+        status = status.name,
+        terminalOutcome = terminalOutcome,
+        pendingTasks = tasks.map { it.toSummaryDto() },
+    )
+
+fun Task.toSummaryDto() =
+    TaskSummaryDto(
+        taskId = id.value.toString(),
+        flowId = flowInstanceId.value.toString(),
+        stateName = stateName,
+        candidateGroupId = candidateGroupId.value,
+        status = status.name,
+        ownerId = ownerId?.value,
+    )

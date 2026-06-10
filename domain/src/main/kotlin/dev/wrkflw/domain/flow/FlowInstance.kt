@@ -7,7 +7,7 @@ import java.time.Instant
 
 enum class FlowStatus {
     RUNNING,
-    COMPLETED
+    COMPLETED,
 }
 
 data class FlowInstance(
@@ -20,7 +20,7 @@ data class FlowInstance(
     val status: FlowStatus,
     val terminalOutcome: String? = null,
     val createdAt: Instant,
-    val updatedAt: Instant
+    val updatedAt: Instant,
 ) {
     companion object {
         fun start(
@@ -30,24 +30,29 @@ data class FlowInstance(
             documentRef: String,
             submitterId: ActorId,
             initialState: String,
-            now: Instant
-        ): FlowInstance = FlowInstance(
-            id = id,
-            definitionKey = definitionKey,
-            definitionVersion = definitionVersion,
-            documentRef = documentRef,
-            submitterId = submitterId,
-            currentState = initialState,
-            status = FlowStatus.RUNNING,
-            terminalOutcome = null,
-            createdAt = now,
-            updatedAt = now
-        )
+            now: Instant,
+        ): FlowInstance =
+            FlowInstance(
+                id = id,
+                definitionKey = definitionKey,
+                definitionVersion = definitionVersion,
+                documentRef = documentRef,
+                submitterId = submitterId,
+                currentState = initialState,
+                status = FlowStatus.RUNNING,
+                terminalOutcome = null,
+                createdAt = now,
+                updatedAt = now,
+            )
     }
 
-    fun advance(newState: String, now: Instant): FlowInstance =
-        copy(currentState = newState, updatedAt = now)
+    fun advance(
+        newState: String,
+        now: Instant,
+    ): FlowInstance = copy(currentState = newState, updatedAt = now)
 
-    fun complete(outcome: String, now: Instant): FlowInstance =
-        copy(status = FlowStatus.COMPLETED, terminalOutcome = outcome, updatedAt = now)
+    fun complete(
+        outcome: String,
+        now: Instant,
+    ): FlowInstance = copy(status = FlowStatus.COMPLETED, terminalOutcome = outcome, updatedAt = now)
 }

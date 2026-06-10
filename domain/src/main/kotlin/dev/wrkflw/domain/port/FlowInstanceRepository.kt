@@ -5,6 +5,8 @@ import dev.wrkflw.domain.identity.FlowInstanceId
 
 interface FlowInstanceRepository {
     suspend fun findById(id: FlowInstanceId): FlowInstance?
+
     suspend fun save(instance: FlowInstance)
+
     suspend fun update(instance: FlowInstance)
 }

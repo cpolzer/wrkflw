@@ -19,8 +19,12 @@ data class SubmitDocumentCommand(
 )
 
 sealed class SubmitDocumentResult {
-    data class Success(val instance: FlowInstance) : SubmitDocumentResult()
+    data class Success(
+        val instance: FlowInstance,
+    ) : SubmitDocumentResult()
+
     data object DefinitionNotFound : SubmitDocumentResult()
+
     data object Unauthorized : SubmitDocumentResult()
 }
 
@@ -35,25 +39,26 @@ class SubmitDocumentService(
     private val auditLog: AuditLog,
     private val clock: Clock,
 ) : SubmitDocumentUseCase {
-
     override suspend fun execute(command: SubmitDocumentCommand): SubmitDocumentResult {
-        val definition = definitions.findByKey(FlowDefinitionKey(command.definitionKey))
-            ?: return SubmitDocumentResult.DefinitionNotFound
+        val definition =
+            definitions.findByKey(FlowDefinitionKey(command.definitionKey))
+                ?: return SubmitDocumentResult.DefinitionNotFound
 
         if (!command.actor.isInGroup(definition.initiatorGroupId)) {
             return SubmitDocumentResult.Unauthorized
         }
 
         val now = clock.now()
-        val instance = FlowInstance.start(
-            id = FlowInstanceId.generate(),
-            definitionKey = definition.key,
-            definitionVersion = definition.version,
-            documentRef = command.documentRef,
-            submitterId = command.actor.actorId,
-            initialState = definition.initialState,
-            now = now,
-        )
+        val instance =
+            FlowInstance.start(
+                id = FlowInstanceId.generate(),
+                definitionKey = definition.key,
+                definitionVersion = definition.version,
+                documentRef = command.documentRef,
+                submitterId = command.actor.actorId,
+                initialState = definition.initialState,
+                now = now,
+            )
 
         instances.save(instance)
 
@@ -63,7 +68,7 @@ class SubmitDocumentService(
                 type = AuditEventType.FLOW_STARTED,
                 actorId = command.actor.actorId,
                 occurredAt = now,
-            )
+            ),
         )
 
         engine.startWorkflow(instance.id, definition.key.value)

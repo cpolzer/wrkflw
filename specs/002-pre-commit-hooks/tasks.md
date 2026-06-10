@@ -20,8 +20,8 @@
 
 **Purpose**: Create the versioned hook script files and wire the installer task into the dev workflow.
 
-- [ ] T001 Create `hooks/pre-commit` and `hooks/commit-msg` as POSIX sh stubs (`#!/bin/sh` + `set -e` + `exit 0`) in `hooks/`
-- [ ] T002 Add `[tasks."hooks:install"]` entry to `mise.toml` with `run = "sh scripts/install-hooks.sh"`
+- [X] T001 Create `hooks/pre-commit` and `hooks/commit-msg` as POSIX sh stubs (`#!/bin/sh` + `set -e` + `exit 0`) in `hooks/`
+- [X] T002 Add `[tasks."hooks:install"]` entry to `mise.toml` with `run = "sh scripts/install-hooks.sh"`
 
 **Checkpoint**: `hooks/` directory exists with two executable stubs; `mise run hooks:install` is a recognised task (even if installer script doesn't exist yet).
 
@@ -31,7 +31,7 @@
 
 **Purpose**: Create the idempotent installer script that all three user stories depend on to be testable.
 
-- [ ] T003 Implement `scripts/install-hooks.sh` — copies `hooks/pre-commit` and `hooks/commit-msg` to `.git/hooks/`, `chmod +x`, wraps existing Entire-CLI `commit-msg` hook via `## wrkflw-managed` marker check (see plan.md design)
+- [X] T003 Implement `scripts/install-hooks.sh` — copies `hooks/pre-commit` and `hooks/commit-msg` to `.git/hooks/`, `chmod +x`, wraps existing Entire-CLI `commit-msg` hook via `## wrkflw-managed` marker check (see plan.md design)
 
 **Checkpoint**: `mise run hooks:install` succeeds; `.git/hooks/pre-commit` and `.git/hooks/commit-msg` are installed and executable.
 
@@ -45,8 +45,8 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Implement full `hooks/pre-commit`: detect staged `.kt` files via `git diff --cached --name-only --diff-filter=ACMR | grep '\.kt$'`; skip silently if none; otherwise run `./gradlew ktlintCheck detekt --daemon --quiet` and exit with Gradle's exit code
-- [ ] T005 [US1] Smoke test US1: install hooks (`mise run hooks:install`), stage a `.kt` file with a known ktlint violation, run `git commit`, confirm exit code non-zero and violation reported; then fix the file and confirm commit succeeds
+- [X] T004 [US1] Implement full `hooks/pre-commit`: detect staged `.kt` files via `git diff --cached --name-only --diff-filter=ACMR | grep '\.kt$'`; skip silently if none; otherwise run `./gradlew ktlintCheck detekt --daemon --quiet` and exit with Gradle's exit code
+- [X] T005 [US1] Smoke test US1: install hooks (`mise run hooks:install`), stage a `.kt` file with a known ktlint violation, run `git commit`, confirm exit code non-zero and violation reported; then fix the file and confirm commit succeeds
 
 **Checkpoint**: US1 fully functional — lint-violating commits are blocked; clean commits proceed.
 
@@ -60,8 +60,8 @@
 
 ### Implementation for User Story 2
 
-- [ ] T006 [P] [US2] Implement full `hooks/commit-msg` in `hooks/commit-msg`: read message from `$1`; exempt `Merge*`, `Revert*`, `WIP*` via `case`; validate against POSIX ERE `^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9/_-]+\))?(!)?: .{1,100}` using `grep -Eq`; on failure print allowed types + two examples and exit 1
-- [ ] T007 [US2] Smoke test US2: run `git commit --allow-empty -m "fixed stuff"` → rejected with example output; run `git commit --allow-empty -m "feat(hooks): add conventional commit enforcement"` → accepted; run `git commit --allow-empty -m "Merge branch foo"` → accepted (exemption)
+- [X] T006 [P] [US2] Implement full `hooks/commit-msg` in `hooks/commit-msg`: read message from `$1`; exempt `Merge*`, `Revert*`, `WIP*` via `case`; validate against POSIX ERE `^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9/_-]+\))?(!)?: .{1,100}` using `grep -Eq`; on failure print allowed types + two examples and exit 1
+- [X] T007 [US2] Smoke test US2: run `git commit --allow-empty -m "fixed stuff"` → rejected with example output; run `git commit --allow-empty -m "feat(hooks): add conventional commit enforcement"` → accepted; run `git commit --allow-empty -m "Merge branch foo"` → accepted (exemption)
 
 **Checkpoint**: US2 fully functional — bad messages blocked, good messages and exemptions pass.
 
@@ -75,9 +75,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T008 [US3] Verify `scripts/install-hooks.sh` idempotency: run `mise run hooks:install` twice in succession; confirm no duplicate wrapper nesting and hooks remain correct on the second run
-- [ ] T009 [US3] Verify Entire-CLI co-existence: confirm `.git/hooks/commit-msg` after install contains both the `## wrkflw-managed` marker and the original Entire-CLI delegation; run a bad commit message and confirm it is rejected (our check runs first); run a valid commit and confirm Entire-CLI hook also runs
-- [ ] T010 [US3] Validate quickstart.md against actual installed behaviour: follow every step in `specs/002-pre-commit-hooks/quickstart.md` and confirm each command/outcome matches; update quickstart if any discrepancy found
+- [X] T008 [US3] Verify `scripts/install-hooks.sh` idempotency: run `mise run hooks:install` twice in succession; confirm no duplicate wrapper nesting and hooks remain correct on the second run
+- [X] T009 [US3] Verify Entire-CLI co-existence: confirm `.git/hooks/commit-msg` after install contains both the `## wrkflw-managed` marker and the original Entire-CLI delegation; run a bad commit message and confirm it is rejected (our check runs first); run a valid commit and confirm Entire-CLI hook also runs
+- [X] T010 [US3] Validate quickstart.md against actual installed behaviour: follow every step in `specs/002-pre-commit-hooks/quickstart.md` and confirm each command/outcome matches; update quickstart if any discrepancy found
 
 **Checkpoint**: US3 fully functional — one command installs hooks; idempotent; Entire CLI preserved.
 
@@ -85,8 +85,8 @@
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T011 [P] Verify `--no-verify` bypass: run `git commit --no-verify --allow-empty -m "bad msg"` and confirm commit succeeds (bypass works); confirm quickstart documents this behaviour accurately
-- [ ] T012 Run `mise run ci` from repo root and confirm all modules still build, lint, and test cleanly (no regressions from the new `hooks/` directory or `mise.toml` change)
+- [X] T011 [P] Verify `--no-verify` bypass: run `git commit --no-verify --allow-empty -m "bad msg"` and confirm commit succeeds (bypass works); confirm quickstart documents this behaviour accurately
+- [X] T012 Run `mise run ci` from repo root and confirm all modules still build, lint, and test cleanly (no regressions from the new `hooks/` directory or `mise.toml` change)
 
 ---
 

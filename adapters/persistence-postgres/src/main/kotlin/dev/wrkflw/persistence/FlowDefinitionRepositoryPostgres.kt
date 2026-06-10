@@ -16,11 +16,13 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.jooq.DSLContext
 
-class FlowDefinitionRepositoryPostgres(private val dsl: DSLContext) : FlowDefinitionRepository {
-
+class FlowDefinitionRepositoryPostgres(
+    private val dsl: DSLContext,
+) : FlowDefinitionRepository {
     override suspend fun findByKey(key: FlowDefinitionKey): FlowDefinition? =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(FLOW_DEFINITION)
+            dsl
+                .selectFrom(FLOW_DEFINITION)
                 .where(FLOW_DEFINITION.KEY.eq(key.value))
                 .orderBy(FLOW_DEFINITION.VERSION.desc())
                 .limit(1)
@@ -28,9 +30,13 @@ class FlowDefinitionRepositoryPostgres(private val dsl: DSLContext) : FlowDefini
                 ?.toDomain()
         }
 
-    override suspend fun findByKeyAndVersion(key: FlowDefinitionKey, version: Int): FlowDefinition? =
+    override suspend fun findByKeyAndVersion(
+        key: FlowDefinitionKey,
+        version: Int,
+    ): FlowDefinition? =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(FLOW_DEFINITION)
+            dsl
+                .selectFrom(FLOW_DEFINITION)
                 .where(FLOW_DEFINITION.KEY.eq(key.value))
                 .and(FLOW_DEFINITION.VERSION.eq(version))
                 .fetchOne()
@@ -38,22 +44,24 @@ class FlowDefinitionRepositoryPostgres(private val dsl: DSLContext) : FlowDefini
         }
 
     private fun FlowDefinitionRecord.toDomain(): FlowDefinition {
-        val states = Json.decodeFromString<List<StateJson>>(states!!.data()).map { s ->
-            StateDefinition(
-                name = s.name,
-                type = StateType.valueOf(s.type),
-                candidateGroupId = s.candidateGroupId?.let { GroupId(it) },
-                terminalOutcome = s.terminalOutcome,
-            )
-        }
-        val transitions = Json.decodeFromString<List<TransitionJson>>(transitions!!.data()).map { t ->
-            TransitionDefinition(
-                from = t.from,
-                trigger = Trigger.valueOf(t.trigger),
-                to = t.to,
-                guard = t.guard,
-            )
-        }
+        val states =
+            Json.decodeFromString<List<StateJson>>(states!!.data()).map { s ->
+                StateDefinition(
+                    name = s.name,
+                    type = StateType.valueOf(s.type),
+                    candidateGroupId = s.candidateGroupId?.let { GroupId(it) },
+                    terminalOutcome = s.terminalOutcome,
+                )
+            }
+        val transitions =
+            Json.decodeFromString<List<TransitionJson>>(transitions!!.data()).map { t ->
+                TransitionDefinition(
+                    from = t.from,
+                    trigger = Trigger.valueOf(t.trigger),
+                    to = t.to,
+                    guard = t.guard,
+                )
+            }
         return FlowDefinition(
             key = FlowDefinitionKey(key!!),
             version = version!!,

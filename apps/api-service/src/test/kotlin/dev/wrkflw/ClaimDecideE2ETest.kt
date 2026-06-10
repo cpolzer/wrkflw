@@ -46,14 +46,14 @@ import org.testcontainers.junit.jupiter.Testcontainers
 
 @Testcontainers
 class ClaimDecideE2ETest {
-
     companion object {
         @Container
         @JvmStatic
-        val postgres = PostgreSQLContainer("postgres:16-alpine")
-            .withDatabaseName("wrkflw_test")
-            .withUsername("wrkflw")
-            .withPassword("wrkflw")
+        val postgres =
+            PostgreSQLContainer("postgres:16-alpine")
+                .withDatabaseName("wrkflw_test")
+                .withUsername("wrkflw")
+                .withPassword("wrkflw")
     }
 
     private lateinit var testEnv: TestWorkflowEnvironment
@@ -72,7 +72,8 @@ class ClaimDecideE2ETest {
 
     @BeforeEach
     fun setUp() {
-        Flyway.configure()
+        Flyway
+            .configure()
             .dataSource(postgres.jdbcUrl, postgres.username, postgres.password)
             .locations("filesystem:${System.getProperty("wrkflw.migrations.dir")}")
             .load()
@@ -114,22 +115,26 @@ class ClaimDecideE2ETest {
         }
     }
 
-    private fun dataSource() = PGSimpleDataSource().apply {
-        setURL(postgres.jdbcUrl)
-        user = postgres.username
-        password = postgres.password
-    }
+    private fun dataSource() =
+        PGSimpleDataSource().apply {
+            setURL(postgres.jdbcUrl)
+            user = postgres.username
+            password = postgres.password
+        }
 
     private fun authorActor() = ActorContext(ActorId("author1"), setOf(GroupId("authors")))
+
     private fun reviewerActor(id: String = "reviewer1") = ActorContext(ActorId(id), setOf(GroupId("reviewers")))
+
     private fun seniorReviewerActor() = ActorContext(ActorId("senior1"), setOf(GroupId("senior-reviewers")))
 
     @Test
     fun `claim then approve advances flow to completed`() {
         // The seed flow: Submitted → (APPROVE) → FinalReview → (APPROVE) → Approved[terminal]
-        val submitResult = runBlocking {
-            submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-001", authorActor()))
-        }
+        val submitResult =
+            runBlocking {
+                submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-001", authorActor()))
+            }
         submitResult.shouldBeInstanceOf<SubmitDocumentResult.Success>()
         val instance = (submitResult as SubmitDocumentResult.Success).instance
 
@@ -142,9 +147,12 @@ class ClaimDecideE2ETest {
         runBlocking { claimTask.execute(ClaimTaskCommand(task1.id, reviewerActor())) }
             .shouldBeInstanceOf<ClaimTaskResult.Success>()
 
-        val decision1 = runBlocking {
-            submitDecision.execute(SubmitDecisionCommand(task1.id, DecisionOutcome.APPROVE, "Looks good", reviewerActor()))
-        }
+        val decision1 =
+            runBlocking {
+                submitDecision.execute(
+                    SubmitDecisionCommand(task1.id, DecisionOutcome.APPROVE, "Looks good", reviewerActor()),
+                )
+            }
         decision1.shouldBeInstanceOf<SubmitDecisionResult.Success>()
         (decision1 as SubmitDecisionResult.Success).flowInstance.currentState shouldBe "FinalReview"
 
@@ -156,9 +164,12 @@ class ClaimDecideE2ETest {
         runBlocking { claimTask.execute(ClaimTaskCommand(task2.id, seniorReviewerActor())) }
             .shouldBeInstanceOf<ClaimTaskResult.Success>()
 
-        val decision2 = runBlocking {
-            submitDecision.execute(SubmitDecisionCommand(task2.id, DecisionOutcome.APPROVE, "Final approval", seniorReviewerActor()))
-        }
+        val decision2 =
+            runBlocking {
+                submitDecision.execute(
+                    SubmitDecisionCommand(task2.id, DecisionOutcome.APPROVE, "Final approval", seniorReviewerActor()),
+                )
+            }
         decision2.shouldBeInstanceOf<SubmitDecisionResult.Success>()
         val finalInstance = (decision2 as SubmitDecisionResult.Success).flowInstance
         finalInstance.status shouldBe FlowStatus.COMPLETED
@@ -174,9 +185,10 @@ class ClaimDecideE2ETest {
 
     @Test
     fun `non-owner attempting to decide returns Forbidden`() {
-        val submitResult = runBlocking {
-            submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-002", authorActor()))
-        }
+        val submitResult =
+            runBlocking {
+                submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-002", authorActor()))
+            }
         val instance = (submitResult as SubmitDocumentResult.Success).instance
         testEnv.sleep(java.time.Duration.ofMillis(500))
 
@@ -186,35 +198,45 @@ class ClaimDecideE2ETest {
         runBlocking { claimTask.execute(ClaimTaskCommand(task.id, reviewerActor("reviewer1"))) }
 
         // reviewer2 tries to decide
-        val result = runBlocking {
-            submitDecision.execute(SubmitDecisionCommand(task.id, DecisionOutcome.APPROVE, null, reviewerActor("reviewer2")))
-        }
+        val result =
+            runBlocking {
+                submitDecision.execute(
+                    SubmitDecisionCommand(task.id, DecisionOutcome.APPROVE, null, reviewerActor("reviewer2")),
+                )
+            }
         result shouldBe SubmitDecisionResult.Forbidden
     }
 
     @Test
     fun `deciding on already-completed task returns Conflict`() {
-        val submitResult = runBlocking {
-            submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-003", authorActor()))
-        }
+        val submitResult =
+            runBlocking {
+                submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-003", authorActor()))
+            }
         val instance = (submitResult as SubmitDocumentResult.Success).instance
         testEnv.sleep(java.time.Duration.ofMillis(500))
 
         val task = runBlocking { tasks.findByFlowInstanceId(instance.id) }.first()
         runBlocking { claimTask.execute(ClaimTaskCommand(task.id, reviewerActor())) }
-        runBlocking { submitDecision.execute(SubmitDecisionCommand(task.id, DecisionOutcome.APPROVE, null, reviewerActor())) }
-
-        val secondDecision = runBlocking {
-            submitDecision.execute(SubmitDecisionCommand(task.id, DecisionOutcome.REJECT, null, reviewerActor()))
+        runBlocking {
+            submitDecision.execute(
+                SubmitDecisionCommand(task.id, DecisionOutcome.APPROVE, null, reviewerActor()),
+            )
         }
+
+        val secondDecision =
+            runBlocking {
+                submitDecision.execute(SubmitDecisionCommand(task.id, DecisionOutcome.REJECT, null, reviewerActor()))
+            }
         secondDecision shouldBe SubmitDecisionResult.Conflict
     }
 
     @Test
     fun `release returns task to PENDING and allows another reviewer to claim`() {
-        val submitResult = runBlocking {
-            submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-004", authorActor()))
-        }
+        val submitResult =
+            runBlocking {
+                submitDocument.execute(SubmitDocumentCommand("document-approval", "doc-004", authorActor()))
+            }
         val instance = (submitResult as SubmitDocumentResult.Success).instance
         testEnv.sleep(java.time.Duration.ofMillis(500))
 

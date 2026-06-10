@@ -5,20 +5,20 @@ import dev.wrkflw.domain.identity.GroupId
 
 enum class StateType {
     HUMAN_TASK,
-    TERMINAL
+    TERMINAL,
 }
 
 enum class Trigger {
     APPROVE,
     REJECT,
-    SUBMIT
+    SUBMIT,
 }
 
 data class StateDefinition(
     val name: String,
     val type: StateType,
     val candidateGroupId: GroupId? = null,
-    val terminalOutcome: String? = null
+    val terminalOutcome: String? = null,
 ) {
     init {
         require(name.isNotBlank()) { "State name must not be blank" }
@@ -35,7 +35,7 @@ data class TransitionDefinition(
     val from: String,
     val trigger: Trigger,
     val to: String,
-    val guard: String? = null
+    val guard: String? = null,
 ) {
     init {
         require(from.isNotBlank()) { "Transition 'from' must not be blank" }
@@ -49,7 +49,7 @@ data class FlowDefinition(
     val initialState: String,
     val initiatorGroupId: GroupId,
     val states: List<StateDefinition>,
-    val transitions: List<TransitionDefinition>
+    val transitions: List<TransitionDefinition>,
 ) {
     init {
         require(version >= 1) { "Version must be >= 1" }
@@ -82,12 +82,9 @@ data class FlowDefinition(
         }
     }
 
-    fun isTerminal(stateName: String): Boolean =
-        states.find { it.name == stateName }?.type == StateType.TERMINAL
+    fun isTerminal(stateName: String): Boolean = states.find { it.name == stateName }?.type == StateType.TERMINAL
 
-    fun terminalOutcome(stateName: String): String? =
-        states.find { it.name == stateName }?.terminalOutcome
+    fun terminalOutcome(stateName: String): String? = states.find { it.name == stateName }?.terminalOutcome
 
-    fun candidateGroup(stateName: String): GroupId? =
-        states.find { it.name == stateName }?.candidateGroupId
+    fun candidateGroup(stateName: String): GroupId? = states.find { it.name == stateName }?.candidateGroupId
 }

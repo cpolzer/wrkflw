@@ -5,5 +5,9 @@ import dev.wrkflw.domain.identity.FlowDefinitionKey
 
 interface FlowDefinitionRepository {
     suspend fun findByKey(key: FlowDefinitionKey): FlowDefinition?
-    suspend fun findByKeyAndVersion(key: FlowDefinitionKey, version: Int): FlowDefinition?
+
+    suspend fun findByKeyAndVersion(
+        key: FlowDefinitionKey,
+        version: Int,
+    ): FlowDefinition?
 }

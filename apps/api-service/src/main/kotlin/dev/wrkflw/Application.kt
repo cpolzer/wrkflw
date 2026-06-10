@@ -27,13 +27,14 @@ fun main() {
 }
 
 fun Application.module() {
-    val dataSource = PGSimpleDataSource().apply {
-        serverNames = arrayOf(System.getenv("DB_HOST") ?: "localhost")
-        portNumbers = intArrayOf(System.getenv("DB_PORT")?.toIntOrNull() ?: 5432)
-        databaseName = System.getenv("DB_NAME") ?: "wrkflw"
-        user = System.getenv("DB_USER") ?: "wrkflw"
-        password = System.getenv("DB_PASSWORD") ?: "wrkflw"
-    }
+    val dataSource =
+        PGSimpleDataSource().apply {
+            serverNames = arrayOf(System.getenv("DB_HOST") ?: "localhost")
+            portNumbers = intArrayOf(System.getenv("DB_PORT")?.toIntOrNull() ?: 5432)
+            databaseName = System.getenv("DB_NAME") ?: "wrkflw"
+            user = System.getenv("DB_USER") ?: "wrkflw"
+            password = System.getenv("DB_PASSWORD") ?: "wrkflw"
+        }
 
     val temporalHost = System.getenv("TEMPORAL_HOST") ?: "localhost"
     val temporalPort = System.getenv("TEMPORAL_PORT")?.toIntOrNull() ?: 7233
@@ -46,17 +47,19 @@ fun Application.module() {
     install(CallLogging)
 
     install(ContentNegotiation) {
-        json(Json {
-            ignoreUnknownKeys = true
-            prettyPrint = false
-        })
+        json(
+            Json {
+                ignoreUnknownKeys = true
+                prettyPrint = false
+            },
+        )
     }
 
     install(StatusPages) {
         exception<Throwable> { call, cause ->
             call.respond(
                 HttpStatusCode.InternalServerError,
-                mapOf("error" to (cause.message ?: "Internal server error"))
+                mapOf("error" to (cause.message ?: "Internal server error")),
             )
         }
         status(HttpStatusCode.NotFound) { call, _ ->

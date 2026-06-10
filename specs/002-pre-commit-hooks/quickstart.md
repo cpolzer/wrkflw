@@ -45,7 +45,7 @@ If you need to commit without running hooks (e.g., a hotfix stash):
 git commit --no-verify -m "..."
 ```
 
-A warning is printed to remind you to validate locally before pushing.
+All hooks are skipped — including lint and commit-message validation. Only use this for genuine emergencies; per Constitution Principle VI, running `./gradlew build` locally before pushing remains mandatory.
 
 ## Verifying hooks are installed
 

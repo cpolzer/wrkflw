@@ -3,6 +3,8 @@ package dev.wrkflw
 import dev.wrkflw.application.command.SubmitDocumentCommand
 import dev.wrkflw.application.command.SubmitDocumentResult
 import dev.wrkflw.application.command.SubmitDocumentService
+import dev.wrkflw.domain.identity.ActorId
+import dev.wrkflw.domain.identity.GroupId
 import dev.wrkflw.domain.port.SystemClock
 import dev.wrkflw.domain.task.TaskStatus
 import dev.wrkflw.persistence.AuditLogPostgres
@@ -10,7 +12,6 @@ import dev.wrkflw.persistence.FlowDefinitionRepositoryPostgres
 import dev.wrkflw.persistence.FlowInstanceRepositoryPostgres
 import dev.wrkflw.persistence.JooqDslContextProvider
 import dev.wrkflw.persistence.TaskRepositoryPostgres
-import dev.wrkflw.temporal.DocumentApprovalWorkflow
 import dev.wrkflw.temporal.DocumentApprovalWorkflowImpl
 import dev.wrkflw.temporal.TemporalWorkflowEngine
 import dev.wrkflw.temporal.activity.AdvanceFlowActivityImpl
@@ -29,20 +30,18 @@ import org.postgresql.ds.PGSimpleDataSource
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import dev.wrkflw.domain.identity.ActorId
-import dev.wrkflw.domain.identity.GroupId
 import dev.wrkflw.domain.port.ActorContext as DomainActorContext
 
 @Testcontainers
 class SubmitDocumentE2ETest {
-
     companion object {
         @Container
         @JvmStatic
-        val postgres = PostgreSQLContainer("postgres:16-alpine")
-            .withDatabaseName("wrkflw_test")
-            .withUsername("wrkflw")
-            .withPassword("wrkflw")
+        val postgres =
+            PostgreSQLContainer("postgres:16-alpine")
+                .withDatabaseName("wrkflw_test")
+                .withUsername("wrkflw")
+                .withPassword("wrkflw")
     }
 
     private lateinit var testEnv: TestWorkflowEnvironment
@@ -50,7 +49,8 @@ class SubmitDocumentE2ETest {
 
     @BeforeEach
     fun setUp() {
-        Flyway.configure()
+        Flyway
+            .configure()
             .dataSource(postgres.jdbcUrl, postgres.username, postgres.password)
             .locations("filesystem:${System.getProperty("wrkflw.migrations.dir")}")
             .load()
@@ -69,7 +69,7 @@ class SubmitDocumentE2ETest {
                 stmt.execute(
                     """
                     TRUNCATE audit_entry, task, flow_instance RESTART IDENTITY CASCADE;
-                    """.trimIndent()
+                    """.trimIndent(),
                 )
             }
         }
@@ -98,20 +98,22 @@ class SubmitDocumentE2ETest {
 
         val service = SubmitDocumentService(definitions, instances, engine, auditLog, SystemClock)
 
-        val actor = DomainActorContext(
-            actorId = ActorId("author1"),
-            groupIds = setOf(GroupId("authors")),
-        )
-
-        val result = runBlocking {
-            service.execute(
-                SubmitDocumentCommand(
-                    definitionKey = "document-approval",
-                    documentRef = "doc-ref-001",
-                    actor = actor,
-                )
+        val actor =
+            DomainActorContext(
+                actorId = ActorId("author1"),
+                groupIds = setOf(GroupId("authors")),
             )
-        }
+
+        val result =
+            runBlocking {
+                service.execute(
+                    SubmitDocumentCommand(
+                        definitionKey = "document-approval",
+                        documentRef = "doc-ref-001",
+                        actor = actor,
+                    ),
+                )
+            }
 
         result shouldBe result.also { it is SubmitDocumentResult.Success }
         val instance = (result as SubmitDocumentResult.Success).instance
@@ -138,9 +140,10 @@ class SubmitDocumentE2ETest {
         auditEntries[1].taskId shouldNotBe null
     }
 
-    private fun dataSource() = PGSimpleDataSource().apply {
-        setURL(postgres.jdbcUrl)
-        user = postgres.username
-        password = postgres.password
-    }
+    private fun dataSource() =
+        PGSimpleDataSource().apply {
+            setURL(postgres.jdbcUrl)
+            user = postgres.username
+            password = postgres.password
+        }
 }

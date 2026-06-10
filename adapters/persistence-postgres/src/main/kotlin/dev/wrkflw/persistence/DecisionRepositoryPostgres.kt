@@ -11,11 +11,13 @@ import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
 import java.time.ZoneOffset
 
-class DecisionRepositoryPostgres(private val dsl: DSLContext) : DecisionRepository {
-
+class DecisionRepositoryPostgres(
+    private val dsl: DSLContext,
+) : DecisionRepository {
     override suspend fun save(decision: Decision) {
         withContext(Dispatchers.IO) {
-            dsl.insertInto(DECISION)
+            dsl
+                .insertInto(DECISION)
                 .set(DECISION.TASK_ID, decision.taskId.value)
                 .set(DECISION.OUTCOME, decision.outcome.name)
                 .set(DECISION.ACTOR_ID, decision.actorId.value)
@@ -27,7 +29,8 @@ class DecisionRepositoryPostgres(private val dsl: DSLContext) : DecisionReposito
 
     override suspend fun findByTaskId(taskId: TaskId): Decision? =
         withContext(Dispatchers.IO) {
-            dsl.selectFrom(DECISION)
+            dsl
+                .selectFrom(DECISION)
                 .where(DECISION.TASK_ID.eq(taskId.value))
                 .fetchOne()
                 ?.let { r ->

@@ -12,17 +12,24 @@ import java.util.UUID
 interface AdvanceFlowActivity {
     /** Returns true if the flow has reached a terminal state after this signal. */
     @ActivityMethod
-    fun advanceState(flowInstanceId: String, outcome: String): Boolean
+    fun advanceState(
+        flowInstanceId: String,
+        outcome: String,
+    ): Boolean
 }
 
 class AdvanceFlowActivityImpl(
     private val instances: FlowInstanceRepository,
 ) : AdvanceFlowActivity {
-
-    override fun advanceState(flowInstanceId: String, outcome: String): Boolean = runBlocking {
-        val id = FlowInstanceId(UUID.fromString(flowInstanceId))
-        val instance = instances.findById(id)
-            ?: error("FlowInstance not found: $flowInstanceId")
-        instance.status == FlowStatus.COMPLETED
-    }
+    override fun advanceState(
+        flowInstanceId: String,
+        outcome: String,
+    ): Boolean =
+        runBlocking {
+            val id = FlowInstanceId(UUID.fromString(flowInstanceId))
+            val instance =
+                instances.findById(id)
+                    ?: error("FlowInstance not found: $flowInstanceId")
+            instance.status == FlowStatus.COMPLETED
+        }
 }

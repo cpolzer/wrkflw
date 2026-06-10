@@ -27,38 +27,42 @@ class CreateHumanTaskActivityImpl(
     private val auditLog: AuditLog,
     private val clock: Clock,
 ) : CreateHumanTaskActivity {
+    override fun createForCurrentState(flowInstanceId: String): String =
+        runBlocking {
+            val id = FlowInstanceId(UUID.fromString(flowInstanceId))
 
-    override fun createForCurrentState(flowInstanceId: String): String = runBlocking {
-        val id = FlowInstanceId(UUID.fromString(flowInstanceId))
+            val instance =
+                instances.findById(id)
+                    ?: error("FlowInstance not found: $flowInstanceId")
 
-        val instance = instances.findById(id)
-            ?: error("FlowInstance not found: $flowInstanceId")
+            val definition =
+                definitions.findByKeyAndVersion(instance.definitionKey, instance.definitionVersion)
+                    ?: error("FlowDefinition not found: ${instance.definitionKey.value} v${instance.definitionVersion}")
 
-        val definition = definitions.findByKeyAndVersion(instance.definitionKey, instance.definitionVersion)
-            ?: error("FlowDefinition not found: ${instance.definitionKey.value} v${instance.definitionVersion}")
+            val candidateGroup =
+                definition.candidateGroup(instance.currentState)
+                    ?: error("No candidate group for state '${instance.currentState}' — is it a HUMAN_TASK state?")
 
-        val candidateGroup = definition.candidateGroup(instance.currentState)
-            ?: error("No candidate group for state '${instance.currentState}' — is it a HUMAN_TASK state?")
+            val now = clock.now()
+            val task =
+                Task.create(
+                    flowInstanceId = id,
+                    stateName = instance.currentState,
+                    candidateGroupId = candidateGroup,
+                    now = now,
+                )
 
-        val now = clock.now()
-        val task = Task.create(
-            flowInstanceId = id,
-            stateName = instance.currentState,
-            candidateGroupId = candidateGroup,
-            now = now,
-        )
+            tasks.save(task)
 
-        tasks.save(task)
-
-        auditLog.append(
-            AuditEntry(
-                flowInstanceId = id,
-                taskId = task.id,
-                type = AuditEventType.TASK_CREATED,
-                occurredAt = now,
+            auditLog.append(
+                AuditEntry(
+                    flowInstanceId = id,
+                    taskId = task.id,
+                    type = AuditEventType.TASK_CREATED,
+                    occurredAt = now,
+                ),
             )
-        )
 
-        task.id.value.toString()
-    }
+            task.id.value.toString()
+        }
 }

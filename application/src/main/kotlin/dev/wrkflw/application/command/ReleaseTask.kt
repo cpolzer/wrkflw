@@ -16,9 +16,14 @@ data class ReleaseTaskCommand(
 )
 
 sealed class ReleaseTaskResult {
-    data class Success(val task: Task) : ReleaseTaskResult()
+    data class Success(
+        val task: Task,
+    ) : ReleaseTaskResult()
+
     data object NotFound : ReleaseTaskResult()
+
     data object Forbidden : ReleaseTaskResult()
+
     data object Conflict : ReleaseTaskResult()
 }
 
@@ -31,7 +36,6 @@ class ReleaseTaskService(
     private val auditLog: AuditLog,
     private val clock: Clock,
 ) : ReleaseTaskUseCase {
-
     override suspend fun execute(command: ReleaseTaskCommand): ReleaseTaskResult {
         val task = tasks.findById(command.taskId) ?: return ReleaseTaskResult.NotFound
 
@@ -40,10 +44,11 @@ class ReleaseTaskService(
         if (task.ownerId != command.actor.actorId) return ReleaseTaskResult.Forbidden
 
         val now = clock.now()
-        val releasedTask = task.release(command.actor.actorId, now)
+        val releasedTask = task.release(command.actor.actorId)
 
-        if (tasks.updateConditional(releasedTask, TaskStatus.CLAIMED, task.version) == 0)
+        if (tasks.updateConditional(releasedTask, TaskStatus.CLAIMED, task.version) == 0) {
             return ReleaseTaskResult.Conflict
+        }
 
         auditLog.append(
             AuditEntry(
@@ -52,7 +57,7 @@ class ReleaseTaskService(
                 type = AuditEventType.TASK_RELEASED,
                 actorId = command.actor.actorId,
                 occurredAt = now,
-            )
+            ),
         )
 
         return ReleaseTaskResult.Success(releasedTask)

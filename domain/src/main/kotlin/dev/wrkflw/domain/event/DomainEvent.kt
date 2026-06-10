@@ -17,7 +17,7 @@ data class FlowStarted(
     val documentRef: String,
     val submitterId: ActorId,
     val initialState: String,
-    override val occurredAt: Instant
+    override val occurredAt: Instant,
 ) : DomainEvent
 
 data class TaskCreated(
@@ -25,20 +25,20 @@ data class TaskCreated(
     val taskId: TaskId,
     val stateName: String,
     val candidateGroupId: String,
-    override val occurredAt: Instant
+    override val occurredAt: Instant,
 ) : DomainEvent
 
 data class TaskClaimed(
     override val flowInstanceId: FlowInstanceId,
     val taskId: TaskId,
     val ownerId: ActorId,
-    override val occurredAt: Instant
+    override val occurredAt: Instant,
 ) : DomainEvent
 
 data class TaskReleased(
     override val flowInstanceId: FlowInstanceId,
     val taskId: TaskId,
-    override val occurredAt: Instant
+    override val occurredAt: Instant,
 ) : DomainEvent
 
 data class DecisionRecorded(
@@ -47,11 +47,11 @@ data class DecisionRecorded(
     val outcome: DecisionOutcome,
     val actorId: ActorId,
     val comment: String?,
-    override val occurredAt: Instant
+    override val occurredAt: Instant,
 ) : DomainEvent
 
 data class FlowCompleted(
     override val flowInstanceId: FlowInstanceId,
     val terminalOutcome: String,
-    override val occurredAt: Instant
+    override val occurredAt: Instant,
 ) : DomainEvent
