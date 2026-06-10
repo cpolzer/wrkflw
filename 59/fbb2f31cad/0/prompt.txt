@@ -1,0 +1,29 @@
+Can we enable that git commit hook for speckit?
+
+---
+
+/speckit-clarify schwarz it’s onyx is a VUE component library
+
+---
+
+B
+
+---
+
+B, but I would like a backend service that mocks ? Or a preconfigured docker compose container for keykloak?
+
+---
+
+A
+
+---
+
+B
+
+---
+
+A
+
+---
+
+A
