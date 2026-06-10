@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "309c8fdca517",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".specify/extensions.yml",
+    "specs/002-pre-commit-hooks/tasks.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/30/9c8fdca517/0/metadata.json",
+      "transcript": "/30/9c8fdca517/0/full.jsonl",
+      "content_hash": "/30/9c8fdca517/0/content_hash.txt",
+      "prompt": "/30/9c8fdca517/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 5,
+    "cache_creation_tokens": 10124,
+    "cache_read_tokens": 312960,
+    "output_tokens": 5256,
+    "api_call_count": 4
+  }
+}
