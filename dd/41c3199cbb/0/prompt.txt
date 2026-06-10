@@ -1,0 +1,5 @@
+/speckit-analyze
+
+---
+
+Please enable auto commit before and after  analysis hooks in speckit
