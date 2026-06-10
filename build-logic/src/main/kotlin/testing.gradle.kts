@@ -11,16 +11,18 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
 }
 
+// Proxy socket path for Docker 29.x+ compat (see scripts/docker-api-proxy.py).
+// Evaluated at configuration time outside the task lambda to avoid receiver ambiguity.
+val proxySocket = "/tmp/docker-proxy.sock"
+val proxySocketExists = java.io.File(proxySocket).exists()
+
 tasks.withType<Test> {
     useJUnitPlatform()
     testLogging {
         events("passed", "skipped", "failed")
         showStandardStreams = true
     }
-    // Use proxy socket when available (needed for Docker 29.x+ which dropped API < 1.40).
-    // Falls back to Testcontainers default Docker detection when proxy is not running (e.g. CI).
-    val proxySocket = "/tmp/docker-proxy.sock"
-    if (java.io.File(proxySocket).exists()) {
+    if (proxySocketExists) {
         environment("DOCKER_HOST", "unix://$proxySocket")
     }
 }
