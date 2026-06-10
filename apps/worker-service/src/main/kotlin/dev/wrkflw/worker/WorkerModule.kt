@@ -14,6 +14,8 @@ import dev.wrkflw.persistence.JooqDslContextProvider
 import dev.wrkflw.persistence.TaskRepositoryPostgres
 import dev.wrkflw.temporal.TemporalWorkerService
 import dev.wrkflw.temporal.TemporalWorkflowEngine
+import dev.wrkflw.temporal.activity.AdvanceFlowActivity
+import dev.wrkflw.temporal.activity.AdvanceFlowActivityImpl
 import dev.wrkflw.temporal.activity.CreateHumanTaskActivity
 import dev.wrkflw.temporal.activity.CreateHumanTaskActivityImpl
 import io.temporal.client.WorkflowClient
@@ -37,5 +39,6 @@ fun workerModule(
     single<WorkflowClient> { TemporalWorkerService.createClient(temporalHost, temporalPort) }
     single<WorkflowEngine> { TemporalWorkflowEngine(get(), taskQueue) }
     single<CreateHumanTaskActivity> { CreateHumanTaskActivityImpl(get(), get(), get(), get(), get()) }
-    single { TemporalWorkerService(get(), taskQueue, get()) }
+    single<AdvanceFlowActivity> { AdvanceFlowActivityImpl(get()) }
+    single { TemporalWorkerService(get(), taskQueue, get(), get()) }
 }

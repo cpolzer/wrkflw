@@ -13,6 +13,7 @@ import dev.wrkflw.persistence.TaskRepositoryPostgres
 import dev.wrkflw.temporal.DocumentApprovalWorkflow
 import dev.wrkflw.temporal.DocumentApprovalWorkflowImpl
 import dev.wrkflw.temporal.TemporalWorkflowEngine
+import dev.wrkflw.temporal.activity.AdvanceFlowActivityImpl
 import dev.wrkflw.temporal.activity.CreateHumanTaskActivityImpl
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
@@ -51,7 +52,7 @@ class SubmitDocumentE2ETest {
     fun setUp() {
         Flyway.configure()
             .dataSource(postgres.jdbcUrl, postgres.username, postgres.password)
-            .locations("filesystem:../adapters/persistence-postgres/src/main/resources/db/migration")
+            .locations("filesystem:${System.getProperty("wrkflw.migrations.dir")}")
             .load()
             .migrate()
 
@@ -84,12 +85,13 @@ class SubmitDocumentE2ETest {
         val tasks = TaskRepositoryPostgres(dslContext)
         val auditLog = AuditLogPostgres(dslContext)
 
-        val activity = CreateHumanTaskActivityImpl(definitions, instances, tasks, auditLog, SystemClock)
+        val createTaskActivity = CreateHumanTaskActivityImpl(definitions, instances, tasks, auditLog, SystemClock)
+        val advanceFlowActivity = AdvanceFlowActivityImpl(instances)
 
         val taskQueue = "wrkflw-task-queue"
         worker = testEnv.newWorker(taskQueue)
         worker.registerWorkflowImplementationTypes(DocumentApprovalWorkflowImpl::class.java)
-        worker.registerActivitiesImplementations(activity)
+        worker.registerActivitiesImplementations(createTaskActivity, advanceFlowActivity)
         testEnv.start()
 
         val engine = TemporalWorkflowEngine(testEnv.workflowClient, taskQueue)
@@ -115,7 +117,7 @@ class SubmitDocumentE2ETest {
         val instance = (result as SubmitDocumentResult.Success).instance
 
         // Let the workflow activity run synchronously inside the test env
-        testEnv.sleep(java.time.Duration.ZERO)
+        testEnv.sleep(java.time.Duration.ofMillis(500))
 
         // Flow instance was saved
         instance.definitionKey.value shouldBe "document-approval"
@@ -126,7 +128,7 @@ class SubmitDocumentE2ETest {
         pendingTasks shouldHaveSize 1
         val task = pendingTasks.first()
         task.status shouldBe TaskStatus.PENDING
-        task.candidateGroupId shouldBe "reviewers"
+        task.candidateGroupId shouldBe GroupId("reviewers")
         task.stateName shouldBe "Submitted"
 
         // Audit trail has FLOW_STARTED + TASK_CREATED

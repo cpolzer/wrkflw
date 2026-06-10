@@ -105,21 +105,21 @@ implementation (red→green→refactor).
 
 ### Tests for User Story 2 (write first, must fail) ⚠️
 
-- [ ] T034 [P] [US2] Contract tests for `POST /tasks/{id}/claim`, `/release`, `/decision` in `adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/TaskActionContractTest.kt`
-- [ ] T035 [P] [US2] Integration test: claim → approve advances flow; non-owner decide → 403; decide on completed → 409, in `apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt`
-- [ ] T036 [P] [US2] Unit tests for ClaimTask/ReleaseTask/SubmitDecision invariants & refusals in `application/src/test/kotlin/dev/wrkflw/application/TaskActionsTest.kt`
-- [ ] T037 [P] [US2] Concurrency test: two simultaneous claims on one task → exactly one effective (SC-004), in `adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/TaskConcurrencyTest.kt`
+- [x] T034 [P] [US2] Contract tests for `POST /tasks/{id}/claim`, `/release`, `/decision` in `adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/TaskActionContractTest.kt`
+- [x] T035 [P] [US2] Integration test: claim → approve advances flow; non-owner decide → 403; decide on completed → 409, in `apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt`
+- [x] T036 [P] [US2] Unit tests for ClaimTask/ReleaseTask/SubmitDecision invariants & refusals in `application/src/test/kotlin/dev/wrkflw/application/TaskActionsTest.kt`
+- [x] T037 [P] [US2] Concurrency test: two simultaneous claims on one task → exactly one effective (SC-004), in `adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/TaskConcurrencyTest.kt`
 
 ### Implementation for User Story 2
 
-- [ ] T038 [US2] `ClaimTask` use case (candidate-group membership check, optimistic transition) in `application/src/main/kotlin/dev/wrkflw/application/command/ClaimTask.kt`
-- [ ] T039 [US2] `ReleaseTask` use case (owner-only, CLAIMED→PENDING) in `application/src/main/kotlin/dev/wrkflw/application/command/ReleaseTask.kt`
-- [ ] T040 [US2] `SubmitDecision` use case (owner-only, record Decision, advance via FlowInterpreter, write DECISION_RECORDED + STATE_TRANSITIONED audit, signal Temporal) in `application/src/main/kotlin/dev/wrkflw/application/command/SubmitDecision.kt`
-- [ ] T041 [US2] `TaskRepository` conditional-update methods (claim/release/decide guarded by `(status, version)`) in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt` (depends on T030)
-- [ ] T042 [US2] `Decision` persistence in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/DecisionRepositoryPostgres.kt`
-- [ ] T043 [US2] Temporal workflow signal handler to advance state / trigger next CreateHumanTask in `adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt`
-- [ ] T044 [US2] `claim`/`release`/`decision` routes + DTOs in `adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/TaskRoutes.kt`
-- [ ] T045 [US2] Wire decision → DB transition (commit) → Temporal signal; make T034–T037 pass
+- [x] T038 [US2] `ClaimTask` use case (candidate-group membership check, optimistic transition) in `application/src/main/kotlin/dev/wrkflw/application/command/ClaimTask.kt`
+- [x] T039 [US2] `ReleaseTask` use case (owner-only, CLAIMED→PENDING) in `application/src/main/kotlin/dev/wrkflw/application/command/ReleaseTask.kt`
+- [x] T040 [US2] `SubmitDecision` use case (owner-only, record Decision, advance via FlowInterpreter, write DECISION_RECORDED + STATE_TRANSITIONED audit, signal Temporal) in `application/src/main/kotlin/dev/wrkflw/application/command/SubmitDecision.kt`
+- [x] T041 [US2] `TaskRepository` conditional-update methods (claim/release/decide guarded by `(status, version)`) in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/TaskRepositoryPostgres.kt` (depends on T030)
+- [x] T042 [US2] `Decision` persistence in `adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/DecisionRepositoryPostgres.kt`
+- [x] T043 [US2] Temporal workflow signal handler to advance state / trigger next CreateHumanTask in `adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt`
+- [x] T044 [US2] `claim`/`release`/`decision` routes + DTOs in `adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/TaskRoutes.kt`
+- [x] T045 [US2] Wire decision → DB transition (commit) → Temporal signal; make T034–T037 pass
 
 **Checkpoint**: US1 + US2 = complete single-stage approve/reject loop.
 

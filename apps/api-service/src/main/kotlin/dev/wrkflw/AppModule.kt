@@ -1,15 +1,23 @@
 package dev.wrkflw
 
+import dev.wrkflw.application.command.ClaimTaskService
+import dev.wrkflw.application.command.ClaimTaskUseCase
+import dev.wrkflw.application.command.ReleaseTaskService
+import dev.wrkflw.application.command.ReleaseTaskUseCase
+import dev.wrkflw.application.command.SubmitDecisionService
+import dev.wrkflw.application.command.SubmitDecisionUseCase
 import dev.wrkflw.application.command.SubmitDocumentService
 import dev.wrkflw.application.command.SubmitDocumentUseCase
 import dev.wrkflw.domain.port.AuditLog
 import dev.wrkflw.domain.port.Clock
+import dev.wrkflw.domain.port.DecisionRepository
 import dev.wrkflw.domain.port.FlowDefinitionRepository
 import dev.wrkflw.domain.port.FlowInstanceRepository
 import dev.wrkflw.domain.port.SystemClock
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.domain.port.WorkflowEngine
 import dev.wrkflw.persistence.AuditLogPostgres
+import dev.wrkflw.persistence.DecisionRepositoryPostgres
 import dev.wrkflw.persistence.FlowDefinitionRepositoryPostgres
 import dev.wrkflw.persistence.FlowInstanceRepositoryPostgres
 import dev.wrkflw.persistence.JooqDslContextProvider
@@ -34,7 +42,11 @@ fun infraModule(
     single<FlowDefinitionRepository> { FlowDefinitionRepositoryPostgres(get()) }
     single<FlowInstanceRepository> { FlowInstanceRepositoryPostgres(get()) }
     single<TaskRepository> { TaskRepositoryPostgres(get()) }
+    single<DecisionRepository> { DecisionRepositoryPostgres(get()) }
     single<WorkflowClient> { TemporalWorkerService.createClient(temporalHost, temporalPort) }
     single<WorkflowEngine> { TemporalWorkflowEngine(get(), taskQueue) }
     single<SubmitDocumentUseCase> { SubmitDocumentService(get(), get(), get(), get(), get()) }
+    single<ClaimTaskUseCase> { ClaimTaskService(get(), get(), get()) }
+    single<ReleaseTaskUseCase> { ReleaseTaskService(get(), get(), get()) }
+    single<SubmitDecisionUseCase> { SubmitDecisionService(get(), get(), get(), get(), get(), get(), get()) }
 }

@@ -1,5 +1,6 @@
 package dev.wrkflw.temporal
 
+import dev.wrkflw.temporal.activity.AdvanceFlowActivity
 import dev.wrkflw.temporal.activity.CreateHumanTaskActivity
 import io.temporal.client.WorkflowClient
 import io.temporal.serviceclient.WorkflowServiceStubs
@@ -11,6 +12,7 @@ class TemporalWorkerService(
     private val client: WorkflowClient,
     private val taskQueue: String = "wrkflw-task-queue",
     private val createHumanTaskActivity: CreateHumanTaskActivity,
+    private val advanceFlowActivity: AdvanceFlowActivity,
 ) {
     fun start(): WorkerFactory {
         val factory = WorkerFactory.newInstance(client)
@@ -26,7 +28,7 @@ class TemporalWorkerService(
     }
 
     private fun registerActivities(worker: Worker) {
-        worker.registerActivitiesImplementations(createHumanTaskActivity)
+        worker.registerActivitiesImplementations(createHumanTaskActivity, advanceFlowActivity)
     }
 
     companion object {

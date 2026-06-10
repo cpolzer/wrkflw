@@ -1,8 +1,12 @@
 package dev.wrkflw
 
+import dev.wrkflw.application.command.ClaimTaskUseCase
+import dev.wrkflw.application.command.ReleaseTaskUseCase
+import dev.wrkflw.application.command.SubmitDecisionUseCase
 import dev.wrkflw.application.command.SubmitDocumentUseCase
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.rest.flowRoutes
+import dev.wrkflw.rest.taskRoutes
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -65,10 +69,14 @@ fun Application.module() {
 
     val submitDocument: SubmitDocumentUseCase by inject()
     val taskRepository: TaskRepository by inject()
+    val claimTask: ClaimTaskUseCase by inject()
+    val releaseTask: ReleaseTaskUseCase by inject()
+    val submitDecision: SubmitDecisionUseCase by inject()
 
     routing {
         route("/api/v1") {
             flowRoutes(submitDocument, taskRepository)
+            taskRoutes(claimTask, releaseTask, submitDecision)
         }
     }
 }

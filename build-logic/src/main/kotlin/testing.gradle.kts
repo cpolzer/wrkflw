@@ -17,4 +17,6 @@ tasks.withType<Test> {
         events("passed", "skipped", "failed")
         showStandardStreams = true
     }
+    // Docker 29.x+ dropped API < 1.40; proxy socket rewrites old API versions in URLs
+    environment("DOCKER_HOST", "unix:///tmp/docker-proxy.sock")
 }

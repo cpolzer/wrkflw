@@ -31,6 +31,12 @@ data class FlowStatusResponseDto(
 )
 
 @Serializable
+data class DecisionRequestDto(
+    val outcome: String,
+    val comment: String? = null,
+)
+
+@Serializable
 data class ErrorDto(val error: String)
 
 fun FlowInstance.toStatusDto(tasks: List<Task> = emptyList()) = FlowStatusResponseDto(

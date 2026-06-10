@@ -3,6 +3,13 @@ plugins {
     id("testing")
 }
 
+tasks.withType<Test> {
+    systemProperty(
+        "wrkflw.migrations.dir",
+        rootProject.file("adapters/persistence-postgres/src/main/resources/db/migration").absolutePath
+    )
+}
+
 group = "dev.wrkflw"
 version = "0.1.0-SNAPSHOT"
 
