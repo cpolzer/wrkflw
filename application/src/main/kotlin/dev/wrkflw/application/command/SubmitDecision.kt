@@ -67,6 +67,7 @@ class SubmitDecisionService(
             when (command.outcome) {
                 DecisionOutcome.APPROVE -> Trigger.APPROVE
                 DecisionOutcome.REJECT -> Trigger.REJECT
+                DecisionOutcome.SUBMIT -> Trigger.SUBMIT
             }
         val interpreterResult = FlowInterpreterResult.advance(instance.currentState, trigger, definition)
 
@@ -93,7 +94,7 @@ class SubmitDecisionService(
             }
         instances.update(updatedInstance)
 
-        appendDecisionAudit(instance, task, command, now)
+        appendDecisionAudit(instance, task, command, now, interpreterResult.isTerminal)
 
         engine.signalWorkflow(
             instance.id,
@@ -113,6 +114,7 @@ class SubmitDecisionService(
         task: dev.wrkflw.domain.task.Task,
         command: SubmitDecisionCommand,
         now: java.time.Instant,
+        isTerminal: Boolean,
     ) {
         auditLog.append(
             AuditEntry(
@@ -131,5 +133,15 @@ class SubmitDecisionService(
                 occurredAt = now,
             ),
         )
+        if (isTerminal) {
+            auditLog.append(
+                AuditEntry(
+                    flowInstanceId = instance.id,
+                    type = AuditEventType.FLOW_COMPLETED,
+                    actorId = command.actor.actorId,
+                    occurredAt = now,
+                ),
+            )
+        }
     }
 }

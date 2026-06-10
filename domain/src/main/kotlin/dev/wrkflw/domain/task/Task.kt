@@ -14,6 +14,7 @@ enum class TaskStatus {
 enum class DecisionOutcome {
     APPROVE,
     REJECT,
+    SUBMIT,
 }
 
 data class Decision(

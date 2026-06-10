@@ -133,14 +133,14 @@ implementation (red→green→refactor).
 
 ### Tests for User Story 3 (write first, must fail) ⚠️
 
-- [ ] T046 [P] [US3] Integration test: two-stage approval to `Approved` terminal; reject→ReworkRequested→resubmit cycle, in `apps/api-service/src/test/kotlin/dev/wrkflw/MultiStageFlowE2ETest.kt`
-- [ ] T047 [P] [US3] Unit test: FlowInterpreter multi-stage transitions + rejection-to-submitter + terminal detection in `domain/src/test/kotlin/dev/wrkflw/domain/flow/FlowInterpreterMultiStageTest.kt`
+- [X] T046 [P] [US3] Integration test: two-stage approval to `Approved` terminal; reject→ReworkRequested→resubmit cycle, in `apps/api-service/src/test/kotlin/dev/wrkflw/MultiStageFlowE2ETest.kt`
+- [X] T047 [P] [US3] Unit test: FlowInterpreter multi-stage transitions + rejection-to-submitter + terminal detection in `domain/src/test/kotlin/dev/wrkflw/domain/flow/FlowInterpreterMultiStageTest.kt`
 
 ### Implementation for User Story 3
 
-- [ ] T048 [US3] Workflow interpreter loop: on advance, enter next HUMAN_TASK (create task) or reach terminal; handle `SUBMIT` (resubmit) trigger in `adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt` (depends on T043)
-- [ ] T049 [US3] FlowInstance completion (status COMPLETED + terminalOutcome) + FLOW_COMPLETED audit in `application/src/main/kotlin/dev/wrkflw/application/command/SubmitDecision.kt` and `FlowInstanceRepository`
-- [ ] T050 [US3] Verify seeded `document-approval` definition exercises both stages + rework path; make T046–T047 pass
+- [X] T048 [US3] Workflow interpreter loop: on advance, enter next HUMAN_TASK (create task) or reach terminal; handle `SUBMIT` (resubmit) trigger in `adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt` (depends on T043)
+- [X] T049 [US3] FlowInstance completion (status COMPLETED + terminalOutcome) + FLOW_COMPLETED audit in `application/src/main/kotlin/dev/wrkflw/application/command/SubmitDecision.kt` and `FlowInstanceRepository`
+- [X] T050 [US3] Verify seeded `document-approval` definition exercises both stages + rework path; make T046–T047 pass
 
 **Checkpoint**: Full multi-stage approval, including rejection rework loop.
 
