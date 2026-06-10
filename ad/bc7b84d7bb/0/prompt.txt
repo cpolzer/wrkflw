@@ -1,0 +1,5 @@
+and can we autocancel prerunning ppelines ifa new one is started?
+
+---
+
+lets disable branch builds completely, only run on mr for now
