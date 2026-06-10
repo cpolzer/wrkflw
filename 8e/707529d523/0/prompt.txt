@@ -1,0 +1,17 @@
+Did you push?
+
+---
+
+Yes
+
+---
+
+Does spekit have a review skill?
+
+---
+
+/speckit-analyze
+
+---
+
+/speckit-tasks
