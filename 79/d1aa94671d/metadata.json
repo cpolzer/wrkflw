@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "79d1aa94671d",
+  "strategy": "manual-commit",
+  "branch": "003-vue-onyx-frontend",
+  "checkpoints_count": 4,
+  "files_touched": [
+    ".gitignore",
+    "build-logic/src/main/kotlin/kotlin-jvm.gradle.kts",
+    "build.gradle.kts",
+    "docs/adr/template.md",
+    "docs/index.md",
+    "docs/reference/api.md",
+    "gradle.properties",
+    "mise.toml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/79/d1aa94671d/0/metadata.json",
+      "transcript": "/79/d1aa94671d/0/full.jsonl",
+      "content_hash": "/79/d1aa94671d/0/content_hash.txt",
+      "prompt": "/79/d1aa94671d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 100,
+    "cache_creation_tokens": 168624,
+    "cache_read_tokens": 8356304,
+    "output_tokens": 40206,
+    "api_call_count": 88
+  }
+}
