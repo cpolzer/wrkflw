@@ -1,0 +1,65 @@
+{
+  "realm": "wrkflw",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": false,
+  "accessTokenLifespan": 300,
+  "clients": [
+    {
+      "clientId": "wrkflw-ui",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "redirectUris": [
+        "http://localhost:5173/*"
+      ],
+      "webOrigins": [
+        "http://localhost:5173"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      },
+      "protocol": "openid-connect"
+    }
+  ],
+  "groups": [
+    { "name": "initiators" },
+    { "name": "legal-reviewers" }
+  ],
+  "users": [
+    {
+      "username": "alice",
+      "enabled": true,
+      "email": "alice@wrkflw.local",
+      "firstName": "Alice",
+      "lastName": "Initiator",
+      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
+      "groups": ["initiators"]
+    },
+    {
+      "username": "bob",
+      "enabled": true,
+      "email": "bob@wrkflw.local",
+      "firstName": "Bob",
+      "lastName": "Reviewer",
+      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
+      "groups": ["legal-reviewers"]
+    },
+    {
+      "username": "carol",
+      "enabled": true,
+      "email": "carol@wrkflw.local",
+      "firstName": "Carol",
+      "lastName": "Both",
+      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
+      "groups": ["initiators", "legal-reviewers"]
+    }
+  ]
+}

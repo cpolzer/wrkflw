@@ -20,16 +20,16 @@
 
 **Purpose**: Scaffold the `ui/` project and add Keycloak to the dev stack. No user story work begins here.
 
-- [ ] T001 Scaffold Vite + Vue 3 + TypeScript project in `ui/` (run `npm create vite@latest ui -- --template vue-ts`, commit initial scaffold)
-- [ ] T002 Install Onyx component library (`@sit-onyx/components`), register globally in `ui/src/main.ts`, import Onyx CSS
-- [ ] T003 [P] Configure ESLint (`@vue/eslint-config-typescript`) and Prettier in `ui/eslint.config.ts` and `ui/.prettierrc`
-- [ ] T004 [P] Configure Vitest in `ui/vitest.config.ts` with `@vue/test-utils` and `@testing-library/vue`
-- [ ] T005 [P] Configure Playwright in `ui/playwright.config.ts` targeting `http://localhost:5173`
-- [ ] T006 Add Keycloak 25.x service and its Postgres DB to `docker-compose.yml`; mount `ui/keycloak/realm-export.json` via `--import-realm` on first boot
-- [ ] T007 Create `ui/keycloak/realm-export.json` with realm `wrkflw`, public OIDC client `wrkflw-ui` (PKCE), groups `initiators`/`legal-reviewers`, and test users `alice` (initiators), `bob` (legal-reviewers), `carol` (both) — all with password `password`
-- [ ] T008 Add `generate:types` npm script to `ui/package.json` using `openapi-typescript`; run it against `specs/001-document-approval-engine/contracts/openapi.yaml` and commit initial `ui/src/api/types.ts`
-- [ ] T009 Create `ui/.env.example` documenting `VITE_API_BASE_URL`, `VITE_OIDC_AUTHORITY`, `VITE_OIDC_CLIENT_ID`, `VITE_API_TIMEOUT_MS`
-- [ ] T010 Add `npm run check` script to `ui/package.json` (lint + typecheck + unit tests + build) to serve as the local validation gate per Constitution Principle VI
+- [X] T001 Scaffold Vite + Vue 3 + TypeScript project in `ui/` (run `npm create vite@latest ui -- --template vue-ts`, commit initial scaffold)
+- [X] T002 Install Onyx component library (`@sit-onyx/components`), register globally in `ui/src/main.ts`, import Onyx CSS
+- [X] T003 [P] Configure ESLint (`@vue/eslint-config-typescript`) and Prettier in `ui/eslint.config.ts` and `ui/.prettierrc`
+- [X] T004 [P] Configure Vitest in `ui/vitest.config.ts` with `@vue/test-utils` and `@testing-library/vue`
+- [X] T005 [P] Configure Playwright in `ui/playwright.config.ts` targeting `http://localhost:5173`
+- [X] T006 Add Keycloak 25.x service and its Postgres DB to `docker-compose.yml`; mount `ui/keycloak/realm-export.json` via `--import-realm` on first boot
+- [X] T007 Create `ui/keycloak/realm-export.json` with realm `wrkflw`, public OIDC client `wrkflw-ui` (PKCE), groups `initiators`/`legal-reviewers`, and test users `alice` (initiators), `bob` (legal-reviewers), `carol` (both) — all with password `password`
+- [X] T008 Add `generate:types` npm script to `ui/package.json` using `openapi-typescript`; run it against `specs/001-document-approval-engine/contracts/openapi.yaml` and commit initial `ui/src/api/types.ts`
+- [X] T009 Create `ui/.env.example` documenting `VITE_API_BASE_URL`, `VITE_OIDC_AUTHORITY`, `VITE_OIDC_CLIENT_ID`, `VITE_API_TIMEOUT_MS`
+- [X] T010 Add `npm run check` script to `ui/package.json` (lint + typecheck + unit tests + build) to serve as the local validation gate per Constitution Principle VI
 
 **Checkpoint**: `docker compose up -d` starts Keycloak at `:8180`; `cd ui && npm run check` passes on the empty scaffold.
 
@@ -41,16 +41,16 @@
 
 **⚠️ CRITICAL**: No user story implementation can begin until this phase is complete.
 
-- [ ] T011 Implement OIDC setup in `ui/src/auth/oidc.ts` using `oidc-client-ts` (PKCE flow, silent token renewal, `VITE_OIDC_*` env vars)
-- [ ] T012 Create `auth` Pinia store in `ui/src/stores/auth.ts` (fields: `user: { id, name, groups } | null`, `isAuthenticated: boolean`; actions: `login()`, `logout()`, `loadUser()`)
-- [ ] T013 Implement API HTTP client in `ui/src/api/client.ts` (attaches `Authorization: Bearer` + compat headers `X-Actor-Id`/`X-Actor-Groups`; handles 401 → silent refresh → retry; 10 s timeout; maps all error statuses per contracts/api-consumption.md)
-- [ ] T014 [P] Implement flows API module `ui/src/api/flows.ts` (functions: `submitFlow`, `getFlow`; typed against generated `src/api/types.ts`)
-- [ ] T015 [P] Implement worklist API module `ui/src/api/worklist.ts` (functions: `getGroupWorklist`, `getMyTasks`)
-- [ ] T016 [P] Implement tasks API module `ui/src/api/tasks.ts` (functions: `claimTask`, `releaseTask`, `submitDecision`)
-- [ ] T017 Configure Vue Router 4 in `ui/src/router/index.ts`: define placeholder routes `/submissions`, `/submit/:definitionId`, `/flows/:flowId`, `/worklist`, `/tasks/:taskId`; add navigation guard that redirects unauthenticated users to OIDC login, preserving the intended route
-- [ ] T018 Implement smart landing logic in `ui/src/router/index.ts`: after auth, call `getGroupWorklist()`; if result is non-empty redirect to `/worklist`, else to `/submissions` (FR-016)
-- [ ] T019 Create `AppNav` component `ui/src/components/AppNav.vue` using Onyx nav primitives; shows "My Submissions" and "My Worklist" sections always, plus rework badge placeholder (FR-015)
-- [ ] T020 Create global error toast handler `ui/src/composables/useErrorHandler.ts`; wire it to the API client so all error status codes surface an Onyx toast without duplicating error logic in views
+- [X] T011 Implement OIDC setup in `ui/src/auth/oidc.ts` using `oidc-client-ts` (PKCE flow, silent token renewal, `VITE_OIDC_*` env vars)
+- [X] T012 Create `auth` Pinia store in `ui/src/stores/auth.ts` (fields: `user: { id, name, groups } | null`, `isAuthenticated: boolean`; actions: `login()`, `logout()`, `loadUser()`)
+- [X] T013 Implement API HTTP client in `ui/src/api/client.ts` (attaches `Authorization: Bearer` + compat headers `X-Actor-Id`/`X-Actor-Groups`; handles 401 → silent refresh → retry; 10 s timeout; maps all error statuses per contracts/api-consumption.md)
+- [X] T014 [P] Implement flows API module `ui/src/api/flows.ts` (functions: `submitFlow`, `getFlow`; typed against generated `src/api/types.ts`)
+- [X] T015 [P] Implement worklist API module `ui/src/api/worklist.ts` (functions: `getGroupWorklist`, `getMyTasks`)
+- [X] T016 [P] Implement tasks API module `ui/src/api/tasks.ts` (functions: `claimTask`, `releaseTask`, `submitDecision`)
+- [X] T017 Configure Vue Router 4 in `ui/src/router/index.ts`: define placeholder routes `/submissions`, `/submit/:definitionId`, `/flows/:flowId`, `/worklist`, `/tasks/:taskId`; add navigation guard that redirects unauthenticated users to OIDC login, preserving the intended route
+- [X] T018 Implement smart landing logic in `ui/src/router/index.ts`: after auth, call `getGroupWorklist()`; if result is non-empty redirect to `/worklist`, else to `/submissions` (FR-016)
+- [X] T019 Create `AppNav` component `ui/src/components/AppNav.vue` using Onyx nav primitives; shows "My Submissions" and "My Worklist" sections always, plus rework badge placeholder (FR-015)
+- [X] T020 Create global error toast handler `ui/src/composables/useErrorHandler.ts`; wire it to the API client so all error status codes surface an Onyx toast without duplicating error logic in views
 
 **Checkpoint**: App loads, redirects to Keycloak login, logs in as `alice`, lands on `/submissions` (empty state). Navigation between sections works without page reload.
 
@@ -64,17 +64,17 @@
 
 ### Tests for User Story 1 (Constitution Principle II — write first, must fail before T025)
 
-- [ ] T021 [P] [US1] Write Vitest unit test for `useFlows` composable (test `submitFlow` calls the correct API module function with correct payload and updates reactive state) in `ui/tests/unit/useFlows.spec.ts`
-- [ ] T022 [P] [US1] Write Playwright E2E test for submit-flow happy path: login as `alice`, fill form, submit, assert `/flows/{id}` route and `PENDING_REVIEW` badge visible in `ui/tests/e2e/submit-flow.spec.ts`
+- [X] T021 [P] [US1] Write Vitest unit test for `useFlows` composable (test `submitFlow` calls the correct API module function with correct payload and updates reactive state) in `ui/tests/unit/useFlows.spec.ts`
+- [X] T022 [P] [US1] Write Playwright E2E test for submit-flow happy path: login as `alice`, fill form, submit, assert `/flows/{id}` route and `PENDING_REVIEW` badge visible in `ui/tests/e2e/submit-flow.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T023 [US1] Create `DynamicFormField` component `ui/src/components/DynamicFormField.vue` — renders a single field (`text`, `textarea`, `select`, `date`) from a `FieldDefinition` prop using Onyx input components; emits value updates
-- [ ] T024 [US1] Add hardcoded `documentApprovalDefinition` constant to `ui/src/api/flows.ts` (fields: `title: text`, `description: textarea`, `priority: select[low/medium/high]`) to unblock the form until `GET /definitions` backend endpoint exists
-- [ ] T025 [US1] Create `SubmitFlowView` `ui/src/views/SubmitFlowView.vue`: renders definition name, maps `FieldDefinition[]` to `DynamicFormField` components, collects `formData`, calls `useFlows.submitFlow()`, navigates to `/flows/{id}` on success
-- [ ] T026 [US1] Add inline required-field validation to `SubmitFlowView` (FR-013): prevent submission when required fields are blank; highlight each empty required field with an Onyx error state
-- [ ] T027 [US1] Implement `useFlows` composable `ui/src/composables/useFlows.ts` (`submitFlow`, `getFlow`, `flows` reactive ref, loading/error state)
-- [ ] T028 [US1] Wire `SubmitFlowView` to route `/submit/:definitionId` in `ui/src/router/index.ts`
+- [X] T023 [US1] Create `DynamicFormField` component `ui/src/components/DynamicFormField.vue` — renders a single field (`text`, `textarea`, `select`, `date`) from a `FieldDefinition` prop using Onyx input components; emits value updates
+- [X] T024 [US1] Add hardcoded `documentApprovalDefinition` constant to `ui/src/api/flows.ts` (fields: `title: text`, `description: textarea`, `priority: select[low/medium/high]`) to unblock the form until `GET /definitions` backend endpoint exists
+- [X] T025 [US1] Create `SubmitFlowView` `ui/src/views/SubmitFlowView.vue`: renders definition name, maps `FieldDefinition[]` to `DynamicFormField` components, collects `formData`, calls `useFlows.submitFlow()`, navigates to `/flows/{id}` on success
+- [X] T026 [US1] Add inline required-field validation to `SubmitFlowView` (FR-013): prevent submission when required fields are blank; highlight each empty required field with an Onyx error state
+- [X] T027 [US1] Implement `useFlows` composable `ui/src/composables/useFlows.ts` (`submitFlow`, `getFlow`, `flows` reactive ref, loading/error state)
+- [X] T028 [US1] Wire `SubmitFlowView` to route `/submit/:definitionId` in `ui/src/router/index.ts`
 
 **Checkpoint**: User Story 1 fully functional. `alice` can submit a document; flow appears in backend; `/flows/{id}` shows status. `npm run test:e2e -- submit-flow` passes.
 
@@ -88,16 +88,16 @@
 
 ### Tests for User Story 2 (write first, must fail before T033)
 
-- [ ] T029 [P] [US2] Write Vitest unit test for `useWorklist` composable (asserts `getGroupWorklist` is called on mount and result is stored reactively) in `ui/tests/unit/useWorklist.spec.ts`
-- [ ] T030 [P] [US2] Write Playwright E2E test for claim-and-approve cycle: login as `bob`, claim alice's task, approve, assert flow status advances in `ui/tests/e2e/claim-approve.spec.ts`
+- [X] T029 [P] [US2] Write Vitest unit test for `useWorklist` composable (asserts `getGroupWorklist` is called on mount and result is stored reactively) in `ui/tests/unit/useWorklist.spec.ts`
+- [X] T030 [P] [US2] Write Playwright E2E test for claim-and-approve cycle: login as `bob`, claim alice's task, approve, assert flow status advances in `ui/tests/e2e/claim-approve.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T031 [US2] Implement `useWorklist` composable `ui/src/composables/useWorklist.ts` (`groupTasks`, `myTasks` reactive refs; `claimTask`, `releaseTask` actions; auto-refresh on mount)
-- [ ] T032 [US2] Create `WorklistView` `ui/src/views/WorklistView.vue`: Onyx table of unclaimed group tasks (columns: document title, stage, submitter name, time waiting); claim button per row; section for "My claimed tasks"
-- [ ] T033 [US2] Create `TaskDetailView` `ui/src/views/TaskDetailView.vue`: renders full `formData` as read-only field/value pairs (FR-008a); Approve button + Reject button; reject opens Onyx dialog requiring non-empty comment; calls `submitDecision()`
-- [ ] T034 [US2] Wire `WorklistView` to `/worklist` and `TaskDetailView` to `/tasks/:taskId` in `ui/src/router/index.ts`
-- [ ] T035 [US2] Handle 409 conflict in `WorklistView` (task already claimed by someone else): show "Task is no longer available" Onyx toast and refresh the worklist (edge case from spec)
+- [X] T031 [US2] Implement `useWorklist` composable `ui/src/composables/useWorklist.ts` (`groupTasks`, `myTasks` reactive refs; `claimTask`, `releaseTask` actions; auto-refresh on mount)
+- [X] T032 [US2] Create `WorklistView` `ui/src/views/WorklistView.vue`: Onyx table of unclaimed group tasks (columns: document title, stage, submitter name, time waiting); claim button per row; section for "My claimed tasks"
+- [X] T033 [US2] Create `TaskDetailView` `ui/src/views/TaskDetailView.vue`: renders full `formData` as read-only field/value pairs (FR-008a); Approve button + Reject button; reject opens Onyx dialog requiring non-empty comment; calls `submitDecision()`
+- [X] T034 [US2] Wire `WorklistView` to `/worklist` and `TaskDetailView` to `/tasks/:taskId` in `ui/src/router/index.ts`
+- [X] T035 [US2] Handle 409 conflict in `WorklistView` (task already claimed by someone else): show "Task is no longer available" Onyx toast and refresh the worklist (edge case from spec)
 
 **Checkpoint**: User Stories 1 + 2 fully functional end-to-end. Full approve cycle works. `npm run test:e2e -- claim-approve` passes.
 
@@ -111,14 +111,14 @@
 
 ### Tests for User Story 3 (write first, must fail before T040)
 
-- [ ] T036 [P] [US3] Write Vitest unit test for `useFlows` list behaviour (asserts `flows` ref populates from a mocked API response, state labels map correctly) in `ui/tests/unit/useFlows.spec.ts` (extend existing file)
-- [ ] T037 [P] [US3] Write Playwright E2E test for flow tracking: login as `alice`, open `/submissions`, assert flow row visible, click through to `/flows/{id}`, assert timeline shows FLOW_STARTED and TASK_CREATED events in `ui/tests/e2e/flow-tracking.spec.ts`
+- [X] T036 [P] [US3] Write Vitest unit test for `useFlows` list behaviour (asserts `flows` ref populates from a mocked API response, state labels map correctly) in `ui/tests/unit/useFlows.spec.ts` (extend existing file)
+- [X] T037 [P] [US3] Write Playwright E2E test for flow tracking: login as `alice`, open `/submissions`, assert flow row visible, click through to `/flows/{id}`, assert timeline shows FLOW_STARTED and TASK_CREATED events in `ui/tests/e2e/flow-tracking.spec.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T038 [US3] Extend `useFlows` composable to support fetching the submitter's own flows (call `GET /flows` with submitter filter or adapt to available query parameter; store result in `submittedFlows` ref)
-- [ ] T039 [US3] Create `MySubmissionsView` `ui/src/views/MySubmissionsView.vue`: Onyx table of the user's flows (columns: definition name, current state with `FlowStatusBadge`, last-updated); wire to `/submissions` route
-- [ ] T040 [US3] Create `FlowDetailView` `ui/src/views/FlowDetailView.vue`: shows flow state, submitted `formData` (read-only), and a chronological audit timeline (actor name, event type, timestamp) for every `AuditEvent` in `history`; wire to `/flows/:flowId` route (also used by US1 post-submit redirect)
+- [X] T038 [US3] Extend `useFlows` composable to support fetching the submitter's own flows (call `GET /flows` with submitter filter or adapt to available query parameter; store result in `submittedFlows` ref)
+- [X] T039 [US3] Create `MySubmissionsView` `ui/src/views/MySubmissionsView.vue`: Onyx table of the user's flows (columns: definition name, current state with `FlowStatusBadge`, last-updated); wire to `/submissions` route
+- [X] T040 [US3] Create `FlowDetailView` `ui/src/views/FlowDetailView.vue`: shows flow state, submitted `formData` (read-only), and a chronological audit timeline (actor name, event type, timestamp) for every `AuditEvent` in `history`; wire to `/flows/:flowId` route (also used by US1 post-submit redirect)
 
 **Checkpoint**: User Stories 1–3 all functional. `alice` can see her flow history after `bob` approves. `npm run test:e2e -- flow-tracking` passes.
 
@@ -132,15 +132,15 @@
 
 ### Tests for User Story 4 (write first, must fail before T044)
 
-- [ ] T041 [P] [US4] Write Vitest unit test for `notifications` store (`reworkPendingCount` increments when a flow with state `RETURNED_FOR_REWORK` is present in `submittedFlows`) in `ui/tests/unit/notifications.spec.ts`
-- [ ] T042 [P] [US4] Write Playwright E2E test for full rework cycle: reject as `bob`, login as `alice`, assert rework badge, re-submit, assert new task in bob's worklist in `ui/tests/e2e/rework-cycle.spec.ts`
+- [X] T041 [P] [US4] Write Vitest unit test for `notifications` store (`reworkPendingCount` increments when a flow with state `RETURNED_FOR_REWORK` is present in `submittedFlows`) in `ui/tests/unit/notifications.spec.ts`
+- [X] T042 [P] [US4] Write Playwright E2E test for full rework cycle: reject as `bob`, login as `alice`, assert rework badge, re-submit, assert new task in bob's worklist in `ui/tests/e2e/rework-cycle.spec.ts`
 
 ### Implementation for User Story 4
 
-- [ ] T043 [US4] Implement `notifications` Pinia store `ui/src/stores/notifications.ts` (`reworkPendingCount` computed from `submittedFlows`; `markSeen()` action; persisted to `sessionStorage` so badge clears after user visits the flow)
-- [ ] T044 [US4] Create `ReworkBanner` component `ui/src/components/ReworkBanner.vue` (Onyx badge on "My Submissions" nav item showing `reworkPendingCount`; clicking navigates to `/submissions`)
-- [ ] T045 [US4] Wire `ReworkBanner` into `AppNav` and wire `notifications` store to load on every login
-- [ ] T046 [US4] Add re-submit action to `FlowDetailView` — renders a "Re-submit for review" button and the rejection comment prominently when `flow.state === 'RETURNED_FOR_REWORK'`; calls `submitFlow()` with same `definitionId` and pre-populated `formData`; navigates to new flow on success (FR-011)
+- [X] T043 [US4] Implement `notifications` Pinia store `ui/src/stores/notifications.ts` (`reworkPendingCount` computed from `submittedFlows`; `markSeen()` action; persisted to `sessionStorage` so badge clears after user visits the flow)
+- [X] T044 [US4] Create `ReworkBanner` component `ui/src/components/ReworkBanner.vue` (Onyx badge on "My Submissions" nav item showing `reworkPendingCount`; clicking navigates to `/submissions`)
+- [X] T045 [US4] Wire `ReworkBanner` into `AppNav` and wire `notifications` store to load on every login
+- [X] T046 [US4] Add re-submit action to `FlowDetailView` — renders a "Re-submit for review" button and the rejection comment prominently when `flow.state === 'RETURNED_FOR_REWORK'`; calls `submitFlow()` with same `definitionId` and pre-populated `formData`; navigates to new flow on success (FR-011)
 
 **Checkpoint**: Full lifecycle works end-to-end: submit → review → reject → rework notification → re-submit → review again. `npm run test:e2e -- rework-cycle` passes.
 
@@ -150,12 +150,12 @@
 
 **Purpose**: Accessibility, edge-case hardening, local dev experience.
 
-- [ ] T047 [P] Audit all interactive Onyx components in views for keyboard reachability (Tab order, Enter/Space activation) and descriptive `aria-label` / `aria-describedby` attributes (SC-006, WCAG 2.1 AA)
-- [ ] T048 [P] Add `FlowStatusBadge` component `ui/src/components/FlowStatusBadge.vue` (Onyx chip/badge mapping each `FlowState` to a colour and human label; used in `MySubmissionsView` and `FlowDetailView`)
-- [ ] T049 Add session-expiry recovery: if OIDC silent refresh fails during form fill, preserve form data in `sessionStorage`, redirect to login, restore data on return (edge case from spec)
-- [ ] T050 Verify `npm run check` (lint + typecheck + vitest + build) passes clean with zero type errors after all phases
-- [ ] T051 Validate `quickstart.md` against actual local setup: run `docker compose up -d`, `npm install`, `npm run dev`, log in with each test user — confirm all flows work as documented
-- [ ] T052 Update `AGENTS.md` with `ui/` project entry: tech stack, local commands (`npm run dev`, `npm run check`, `npm run test:e2e`), test user credentials
+- [X] T047 [P] Audit all interactive Onyx components in views for keyboard reachability (Tab order, Enter/Space activation) and descriptive `aria-label` / `aria-describedby` attributes (SC-006, WCAG 2.1 AA)
+- [X] T048 [P] Add `FlowStatusBadge` component `ui/src/components/FlowStatusBadge.vue` (Onyx chip/badge mapping each `FlowState` to a colour and human label; used in `MySubmissionsView` and `FlowDetailView`)
+- [X] T049 Add session-expiry recovery: if OIDC silent refresh fails during form fill, preserve form data in `sessionStorage`, redirect to login, restore data on return (edge case from spec)
+- [X] T050 Verify `npm run check` (lint + typecheck + vitest + build) passes clean with zero type errors after all phases
+- [X] T051 Validate `quickstart.md` against actual local setup: run `docker compose up -d`, `npm install`, `npm run dev`, log in with each test user — confirm all flows work as documented
+- [X] T052 Update `AGENTS.md` with `ui/` project entry: tech stack, local commands (`npm run dev`, `npm run check`, `npm run test:e2e`), test user credentials
 
 ---
 
