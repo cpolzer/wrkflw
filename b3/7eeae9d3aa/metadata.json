@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "b37eeae9d3aa",
+  "strategy": "manual-commit",
+  "branch": "003-vue-onyx-frontend",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".specify/feature.json",
+    "specs/003-vue-onyx-frontend/checklists/requirements.md",
+    "specs/003-vue-onyx-frontend/spec.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/b3/7eeae9d3aa/0/metadata.json",
+      "transcript": "/b3/7eeae9d3aa/0/full.jsonl",
+      "content_hash": "/b3/7eeae9d3aa/0/content_hash.txt",
+      "prompt": "/b3/7eeae9d3aa/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 20,
+    "cache_creation_tokens": 43123,
+    "cache_read_tokens": 537722,
+    "output_tokens": 5163,
+    "api_call_count": 15
+  }
+}

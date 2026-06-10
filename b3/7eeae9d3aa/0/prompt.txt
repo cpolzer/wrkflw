@@ -1,0 +1,5 @@
+/speckit-specify let’s add our web frontend layer. Vue is the eco system and we want to use the schwarz it’s onyx framework.
+
+---
+
+Continue
