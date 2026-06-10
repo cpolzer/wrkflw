@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+# Cancel any in-progress run for the same branch/PR when a new run starts.
+# head_ref is the source branch name on PR events; ref_name is the branch on push events.
+# Both resolve to the same value for a given branch, so push + PR don't double-run.
+concurrency:
+  group: ci-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   ci:
     name: Build, test & docs
