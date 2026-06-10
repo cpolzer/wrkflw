@@ -79,5 +79,5 @@ description = "Everything CI runs (sequential to avoid Gradle build-lock content
 run = """
 ./gradlew ktlintCheck detekt
 ./gradlew build
-./gradlew dokkaHtmlMultiModule
+mise run docs:build
 """

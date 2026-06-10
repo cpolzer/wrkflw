@@ -193,13 +193,13 @@ implementation (red→green→refactor).
 
 ## Phase 8: Polish & Cross-Cutting Concerns
 
-- [ ] T064 [P] Execute `quickstart.md` end to end manually and fix gaps
-- [ ] T065 [P] Performance smoke test: ~1,000 active flows / ~100 concurrent reviewers, worklist & flow-status p95 < 1s (SC-008) in `apps/api-service/src/test/kotlin/dev/wrkflw/PerfSmokeTest.kt`
-- [ ] T066 [P] Observability: structured logging + basic metrics across adapters (apps + adapters)
-- [ ] T067 [P] `README.md` + module docs
-- [ ] T068 Code cleanup / simplification pass across changed modules
-- [ ] T069 [P] Wire Dokka into the Gradle build (`:dokkaHtmlMultiModule`) and publish output into the docs site under `docs/reference/api/`; link from `docs/reference/api.md`
-- [ ] T070 [P] CI: build the MkDocs site (`pip install -r docs/requirements.txt && mkdocs build --strict`) and run Dokka; publish to GitHub Pages on merge to `main`
+- [X] T064 [P] Execute `quickstart.md` end to end manually and fix gaps
+- [X] T065 [P] Performance smoke test: ~1,000 active flows / ~100 concurrent reviewers, worklist & flow-status p95 < 1s (SC-008) in `apps/api-service/src/test/kotlin/dev/wrkflw/PerfSmokeTest.kt`
+- [X] T066 [P] Observability: structured logging + basic metrics across adapters (apps + adapters)
+- [X] T067 [P] `README.md` + module docs
+- [X] T068 Code cleanup / simplification pass across changed modules
+- [X] T069 [P] Wire Dokka into the Gradle build (`:dokkaHtmlMultiModule`) and publish output into the docs site under `docs/reference/api/`; link from `docs/reference/api.md`
+- [X] T070 [P] CI: build the MkDocs site (`pip install -r docs/requirements.txt && mkdocs build --strict`) and run Dokka; publish to GitHub Pages on merge to `main`
 
 ---
 

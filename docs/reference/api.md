@@ -1,11 +1,13 @@
 # Reference: Kotlin API (KDoc)
 
-The Kotlin API reference is generated from KDoc comments by **Dokka**.
+The Kotlin API reference is generated from KDoc comments by **Dokka** and published to [`reference/api/`](api/index.html).
 
-!!! info "Not yet generated"
-    Dokka output is produced once the Gradle build exists. Wire it up as part of the build
-    (a `:dokkaHtmlMultiModule` task across modules) and publish its output into this site (e.g.,
-    under `reference/api/`), then link it here.
+To regenerate locally:
+
+```bash
+mise run docs:api     # runs ./gradlew dokkaHtmlMultiModule, copies output to docs/reference/api/
+mise run docs:build   # full site including the API reference
+```
 
 ## What belongs here vs. elsewhere
 
