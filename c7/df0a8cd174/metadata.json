@@ -1,0 +1,38 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "c7df0a8cd174",
+  "strategy": "manual-commit",
+  "branch": "003-vue-onyx-frontend",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/FlowInstanceRepositoryPostgres.kt",
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt",
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowRoutes.kt",
+    "application/src/main/kotlin/dev/wrkflw/application/query/SubmitterFlows.kt",
+    "application/src/test/kotlin/dev/wrkflw/application/QueriesTest.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/AppModule.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/port/FlowInstanceRepository.kt",
+    "specs/001-document-approval-engine/contracts/openapi.yaml",
+    "specs/003-vue-onyx-frontend/spec.md",
+    "ui/src/api/flows.ts",
+    "ui/src/api/models.ts",
+    "ui/src/composables/useFlows.ts",
+    "ui/src/stores/notifications.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/c7/df0a8cd174/0/metadata.json",
+      "transcript": "/c7/df0a8cd174/0/full.jsonl",
+      "content_hash": "/c7/df0a8cd174/0/content_hash.txt",
+      "prompt": "/c7/df0a8cd174/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 59,
+    "cache_creation_tokens": 390719,
+    "cache_read_tokens": 6745140,
+    "output_tokens": 16775,
+    "api_call_count": 53
+  }
+}
