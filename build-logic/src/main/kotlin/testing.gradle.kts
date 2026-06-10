@@ -17,6 +17,10 @@ tasks.withType<Test> {
         events("passed", "skipped", "failed")
         showStandardStreams = true
     }
-    // Docker 29.x+ dropped API < 1.40; proxy socket rewrites old API versions in URLs
-    environment("DOCKER_HOST", "unix:///tmp/docker-proxy.sock")
+    // Use proxy socket when available (needed for Docker 29.x+ which dropped API < 1.40).
+    // Falls back to Testcontainers default Docker detection when proxy is not running (e.g. CI).
+    val proxySocket = "/tmp/docker-proxy.sock"
+    if (java.io.File(proxySocket).exists()) {
+        environment("DOCKER_HOST", "unix://$proxySocket")
+    }
 }

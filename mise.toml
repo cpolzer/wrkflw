@@ -75,5 +75,9 @@ run = "uv run mkdocs serve"
 # ---- CI entry point -------------------------------------------------------------
 
 [tasks.ci]
-description = "Everything CI runs"
-depends = ["lint", "build", "docs:build"]
+description = "Everything CI runs (sequential to avoid Gradle build-lock contention)"
+run = """
+./gradlew ktlintCheck detekt
+./gradlew build
+./gradlew dokkaHtmlMultiModule
+"""
