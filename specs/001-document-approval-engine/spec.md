@@ -8,6 +8,16 @@
 
 **Input**: User description: "Build wrkflw: a scalable, human-centric workflow engine, starting with the document-approval use case. Flows contain Tasks, Tasks contain Steps; Tasks and Steps belong to responsible persons (group/role based with claim-to-act). Every transition, assignment, and decision is auditable. Admin operations (reassign, restart flow, reset task) are a planned later phase."
 
+## Clarifications
+
+### Session 2026-06-09
+
+- Q: On rejection, what should the document-approval flow do (terminate vs. loop back)? → A: Reject returns the document to the submitter for rework and re-submission (loop back to the flow's start); terminal "rejected" only if abandoned. This is the *document-approval definition's* policy; because flows are data-defined (FR-001), the rejection path is reconfigurable per definition later without engine changes.
+- Q: How deeply should Steps (sub-units of a Task) be modeled in the first deliverable? → A: Defer. The first deliverable models Tasks fully; Step remains a documented future concept and is explicitly out of scope now (introduced when a flow needs sub-actions).
+- Q: How many approvers are required per stage? → A: Single approver per stage — one claimed reviewer's approve/reject decision advances the flow. Future need (out of scope now): substitute approvers — escalation to a superior/manager or a nominated delegate who may act in place of the assigned approver (FR-026).
+- Q: Who may submit a document / start a flow? → A: Only members of a designated initiator group/role (declared by the flow definition) may start a flow; the initiator becomes the flow's submitter/owner. Submission by a non-member is refused.
+- Q: What is the scale target for the first deliverable (SC-008)? → A: ~1,000 active flows and ~100 concurrent reviewers, with work-list and flow-status queries staying responsive at <1s p95. Revisable at planning.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Submit a document for approval (Priority: P1)
@@ -100,7 +110,8 @@ When meaningful things happen in a flow (flow started, task created, decision re
 - **Unauthorized actor**: A person not in the responsible group attempts to claim/decide — refused and recorded as a refused attempt where appropriate.
 - **Releasing a claim**: A reviewer claims a task but cannot complete it — they (or the system) can release the claim so another group member can pick it up.
 - **Unknown / undefined flow definition**: A submission references a flow definition that does not exist or is malformed — submission is refused with a clear reason and no partial flow is created.
-- **Rejection path**: A flow definition may route a rejection to a terminal "rejected" outcome or back to an earlier stage for rework — the engine follows whatever the definition specifies.
+- **Unauthorized submitter**: A person who is not a member of the flow definition's designated initiator group attempts to start a flow — submission is refused and no flow is created.
+- **Rejection path**: A flow definition may route a rejection to a terminal "rejected" outcome or back to an earlier stage/the submitter for rework — the engine follows whatever the definition specifies. The first document-approval definition routes a rejection **back to the submitter for rework and re-submission**; a terminal "rejected" outcome occurs only if the submitter abandons.
 - **Duplicate submission**: The same document is submitted twice — each submission creates a distinct flow instance unless the flow definition specifies otherwise.
 - **Orphaned tasks after terminal state**: Once a flow reaches a terminal outcome, no pending tasks for that flow remain actionable.
 
@@ -111,14 +122,14 @@ When meaningful things happen in a flow (flow started, task created, decision re
 **Flow definition & lifecycle**
 
 - **FR-001**: System MUST allow approval flows to be described as data — a set of named states, the transitions between them (including the action/decision that triggers each transition), and the responsible group for each human task — so that new flow shapes can be introduced without bespoke code per flow.
-- **FR-002**: System MUST start a new flow instance from a named flow definition when a document is submitted, placing it in the definition's initial state.
+- **FR-002**: System MUST start a new flow instance from a named flow definition when a document is submitted, placing it in the definition's initial state. Only a person who belongs to the flow definition's designated initiator group/role may start it; the initiator is recorded as the flow's submitter/owner. A submission by a non-member MUST be refused and no flow created.
 - **FR-003**: System MUST advance a flow strictly according to its definition's allowed transitions; it MUST refuse transitions that are not defined for the flow's current state.
 - **FR-004**: System MUST support flows with multiple sequential human-approval stages, each routed to its own responsible group.
 - **FR-005**: System MUST bring every flow to a defined terminal outcome (e.g., "approved" or "rejected") and stop requesting further human action once terminal.
 
 **Tasks, steps & assignment**
 
-- **FR-006**: System MUST represent work as Tasks that belong to a Flow, and Steps that belong to a Task, where Tasks and Steps each have a responsible party.
+- **FR-006**: System MUST represent work as Tasks that belong to a Flow, each Task having a responsible party. *(The Flow → Task → Step hierarchy is the long-term model; Steps are out of scope for the first deliverable — see Assumptions and Clarifications.)*
 - **FR-007**: System MUST assign human tasks to a responsible group/role (candidate group), not solely to named individuals.
 - **FR-008**: Users MUST be able to claim a task assigned to a group they belong to, marking it as owned by them and removing it from other members' actionable lists.
 - **FR-009**: System MUST allow a claimed task to be released back to its group so another member can claim it.
@@ -127,7 +138,7 @@ When meaningful things happen in a flow (flow started, task created, decision re
 **Decisions & progression**
 
 - **FR-011**: Users MUST be able to record an approve or reject decision on a task they own, optionally with a comment.
-- **FR-012**: System MUST advance the flow according to the recorded decision and the flow definition (approval path vs. rejection path).
+- **FR-012**: System MUST advance the flow according to the recorded decision and the flow definition (approval path vs. rejection path). A single owning approver's decision advances the stage (single-approver-per-stage); quorum/multi-approver stages are out of scope for the first deliverable.
 - **FR-013**: System MUST guarantee that each pending task results in at most one effective decision, even under concurrent attempts.
 
 **Auditability**
@@ -156,13 +167,14 @@ When meaningful things happen in a flow (flow started, task created, decision re
 - **FR-023**: System MUST (in a later phase) allow an administrator to restart a flow from its beginning, recorded in the history.
 - **FR-024**: System MUST (in a later phase) allow an administrator to reset a task to a prior state, recorded in the history.
 - **FR-025**: System MUST (in a later phase) restrict administrative operations to authorized administrators and record the administrator's identity for every such action.
+- **FR-026**: System MUST (in a later phase) support substitute approvers — a superior/manager in the responsible chain, or a nominated delegate, who may act in place of the assigned approver — with the substitution and the substitute's identity recorded in the history. (Distinct from admin reassignment: this is delegation/escalation of authority to act, not manual task reassignment.)
 
 ### Key Entities *(include if feature involves data)*
 
-- **Flow Definition**: A reusable, data-described template of an approval process — its states, the transitions between them and what triggers each, terminal outcomes, and the responsible group for each human stage. "Document approval" is the first definition.
+- **Flow Definition**: A reusable, data-described template of an approval process — its states, the transitions between them and what triggers each, terminal outcomes, the designated initiator group/role permitted to start it, and the responsible group for each human stage. "Document approval" is the first definition.
 - **Flow Instance**: A single running occurrence of a Flow Definition for a specific submitted document. Has a current state, an ordered history, and relates to its document and originator.
 - **Task**: A unit of human work belonging to a Flow Instance, addressed to a responsible group, with a lifecycle (pending → claimed → completed/released). Carries the decision once made.
-- **Step**: A sub-unit of work belonging to a Task, with its own responsible party. Supports tasks that decompose into smaller responsible actions.
+- **Step** *(future — out of scope for first deliverable)*: A sub-unit of work belonging to a Task, with its own responsible party, for tasks that decompose into smaller responsible actions. Named here to anchor the long-term Flow → Task → Step model; not built in the first deliverable.
 - **Person (Actor)**: A reference to a human who can claim tasks and record decisions; belongs to one or more groups.
 - **Group / Role**: A set of persons jointly responsible for tasks addressed to them (candidate group); the unit of assignment.
 - **Decision**: The recorded outcome of acting on a task (approve/reject), with the acting person, optional comment, and timestamp.
@@ -181,16 +193,17 @@ When meaningful things happen in a flow (flow started, task created, decision re
 - **SC-005**: An unauthorized or out-of-group action is refused 100% of the time and never alters flow state.
 - **SC-006**: For every meaningful state change that is committed, exactly one corresponding integration event is ultimately delivered (no loss, no event for rolled-back changes), even when the consumer is briefly unavailable.
 - **SC-007**: A new approval flow shape (different stages/groups) can be introduced by providing a new flow definition, without changing the engine's core behaviour.
-- **SC-008**: The system sustains the target concurrent flow and task volume for the first deliverable without degraded responsiveness on work-list and flow-status queries. *(Concrete numeric target to be set during planning; see Assumptions.)*
+- **SC-008**: The system sustains ~1,000 active flows and ~100 concurrent reviewers with work-list and flow-status queries responding in under 1 second at p95, without degraded responsiveness. *(First-deliverable target; revisable at planning.)*
 
 ## Assumptions
 
 - **Identity**: Full authentication and an external identity provider are out of scope for the first deliverable. The system stores minimal references to persons and the groups they belong to, sufficient for group-based assignment and claim-to-act; integration with an external OIDC/SSO provider is a later phase.
 - **Claim/release**: Claim-to-act is the assignment model, and releasing a claim is supported so work can be re-picked-up by the group.
 - **Document content**: The engine governs the approval *process* and references the document; storing/serving document content (file bytes, versions) is out of scope for the first deliverable and assumed handled by a referenced document store or identified by reference.
+- **Steps**: The Flow → Task → Step hierarchy is the long-term model, but Steps (sub-units of a Task) are out of scope for the first deliverable; only Tasks are built. Steps are introduced when a flow needs sub-actions.
 - **Admin operations**: Reassign, restart-flow, and reset-task are specified (FR-022–FR-025) but scheduled for a subsequent phase, not the first deliverable.
 - **First flow definition**: "Document approval" is the only flow definition required for the first deliverable; the data-defined engine is built to accept others later.
 - **Inbound interface style**: Human/UI interactions (submit, claim, decide, query) are request/response in nature; asynchronous inbound triggers from external systems are out of scope for the first deliverable.
-- **Scale targets**: "Scalable" is a goal; concrete concurrency/volume/latency numbers (SC-008) will be fixed during planning based on expected document and reviewer population.
+- **Scale targets**: First-deliverable target is ~1,000 active flows and ~100 concurrent reviewers with work-list/flow-status queries under 1s p95 (SC-008); revisable at planning as expected document and reviewer populations firm up. The architecture is expected to scale horizontally beyond this.
 - **Notifications to humans**: Human-facing notifications (email/in-app alerts that a task is waiting) are out of scope for the first deliverable; integration events (FR-019) provide the hook for such notifications later.
 - **Web frontend**: A user interface is a later phase; the first deliverable exposes its capabilities through a programmatic interface that a future frontend will consume.

@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+MSG=$(cat "$1")
+
+case "$MSG" in
+    Merge*|Revert*|WIP*) exit 0 ;;
+esac
+
+TYPES="feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert"
+if ! printf '%s' "$MSG" | grep -Eq "^($TYPES)(\([a-z0-9/_-]+\))?(!)?: .{1,100}"; then
+    echo ""
+    echo "[commit-msg] Commit message does not follow Conventional Commits format."
+    echo ""
+    echo "  Required:  type(scope): description"
+    echo "  Example:   feat(api): add document submission endpoint"
+    echo "             fix(temporal): handle null workflow id on signal"
+    echo "             chore: bump ktlint to 1.5.0"
+    echo ""
+    echo "  Allowed types: feat fix docs style refactor perf test build ci chore revert"
+    echo "  Breaking:      append ! after type/scope — e.g. feat!: remove legacy endpoint"
+    echo "  Skip:          messages starting with Merge / Revert / WIP are exempt"
+    echo ""
+    exit 1
+fi

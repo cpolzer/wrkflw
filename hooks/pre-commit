@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+STAGED_KT=$(git diff --cached --name-only --diff-filter=ACMR | grep '\.kt$' || true)
+if [ -z "$STAGED_KT" ]; then
+    exit 0
+fi
+
+echo "[pre-commit] Kotlin files staged — running ktlint + detekt..."
+./gradlew ktlintCheck detekt --daemon --quiet

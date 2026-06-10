@@ -1,33 +1,35 @@
 <!--
 Sync Impact Report
 ==================
-Version change: (template / unversioned) → 1.0.0
-Ratification: initial adoption of the wrkflw constitution.
+Version change: 1.0.1 → 1.1.0
+Amendment: added Principle VI — Local Validation Before Push. This mandates that
+`./gradlew build` (lint + compile + test) MUST pass locally before any `git push`,
+that the Docker API proxy must be running for integration tests to work locally on
+Docker 29.x+, and that CI is not a substitute for local validation. This closes the
+gap exposed when integration test failures first appeared in CI rather than locally.
+
+Prior changes:
+  1.0.0 → 1.0.1: clarified and strengthened the REST/HTTP constraint (Ktor mandate).
+  (template) → 1.0.0: initial adoption.
 
 Principles defined:
-  I.   Hexagonal Architecture (NON-NEGOTIABLE)
-  II.  Test-First Discipline (NON-NEGOTIABLE)
-  III. Auditability & Traceability
-  IV.  Orchestration Behind a Port
-  V.   Explicit Contracts & Consistency
+  I.    Hexagonal Architecture (NON-NEGOTIABLE)
+  II.   Test-First Discipline (NON-NEGOTIABLE)
+  III.  Auditability & Traceability
+  IV.   Orchestration Behind a Port
+  V.    Explicit Contracts & Consistency
+  VI.   Local Validation Before Push (NEW)
 
-Added sections:
-  - Technology & Architecture Constraints
-  - Development Workflow & Quality Gates
-  - Governance
-
-Removed sections: none (template placeholders replaced).
+Added sections: Principle VI (new).
+Removed sections: none.
 
 Templates requiring updates:
-  ✅ .specify/templates/plan-template.md — "Constitution Check" gate aligns; concrete gates
-     derived from Principles I–V (no structural change needed; gate content is filled per-feature).
-  ⚠ .specify/templates/tasks-template.md — template states tests are OPTIONAL; this is
-     OVERRIDDEN by Principle II (Test-First, NON-NEGOTIABLE). Generated tasks.md MUST include
-     test tasks for domain/application units and adapter/contract integration tests.
-  ✅ .specify/templates/spec-template.md — no change required; remains business-facing and
-     technology-agnostic, consistent with the spec/plan separation in Development Workflow.
+  ✅ .specify/templates/plan-template.md — Constitution Check gate still aligns; no change.
+  ✅ .specify/templates/spec-template.md — no change required; technology-agnostic spec.
+  ⚠  .specify/templates/tasks-template.md — tasks template still marks tests as OPTIONAL.
+     Principle II already OVERRIDES this. No structural change needed; note preserved.
 
-Follow-up TODOs: none. All placeholders resolved.
+Follow-up TODOs: none.
 -->
 
 # wrkflw Constitution
@@ -114,6 +116,26 @@ Boundaries are explicit, and persisted state and emitted facts never disagree.
 **Rationale**: Distributed correctness and safe, decoupled integration depend on consistency
 between what the system records and what it tells the world.
 
+### VI. Local Validation Before Push
+
+CI is a safety net, not a first reviewer. The full build MUST pass locally before any commit
+is pushed to a shared branch.
+
+- `./gradlew build` (which runs lint, compilation, and all tests) MUST pass locally before
+  any `git push`. Pushing code that has not been locally verified is prohibited.
+- Integration tests depend on containerized services (Postgres, Temporal) via Testcontainers.
+  On Docker 29.x+ hosts, `scripts/docker-api-proxy.py` MUST be running locally before
+  executing tests; its absence will cause Testcontainers to fail with an API version error.
+  Start it with: `python3 scripts/docker-api-proxy.py &`
+- CI failures that would have been caught locally MUST be treated as process violations, not
+  just build breaks. The root fix is enforcing local validation, not iterating on CI.
+- `mise run ci` reproduces the exact sequence CI executes. Running it locally before push
+  provides the strongest local/CI parity guarantee.
+
+**Rationale**: CI queues are shared, feedback is slower, and CI-only failures create churn and
+break shared branches. Local validation catches issues in seconds and keeps the shared history
+clean.
+
 ## Technology & Architecture Constraints
 
 These constraints apply at the adapter and app layers only; the domain and application layers
@@ -121,8 +143,8 @@ remain free of all of them per Principle I.
 
 - **Language & build**: Kotlin on the JVM, organized as a Gradle multi-module monorepo. Module
   boundaries enforce the inward-only dependency rule of Principle I.
-- **REST / HTTP**: Ktor is the HTTP framework for REST APIs. Spring Boot MUST NOT be used for
-  the REST layer.
+- **REST / HTTP**: Ktor is the standard framework for any HTTP/REST API built in Kotlin.
+  Spring Boot MUST NOT be used for the API layer.
 - **Orchestration**: Temporal is the orchestration engine, accessed only via the port defined
   in Principle IV.
 - **Persistence**: PostgreSQL for current state plus the append-only audit log, accessed with
@@ -146,9 +168,12 @@ technology is justified, provided the Core Principles continue to hold.
 - **Constitution gate**: Every implementation plan MUST pass the Constitution Check gate before
   design proceeds, and re-check after design. Violations MUST be recorded with justification in
   the plan's Complexity Tracking, or the design MUST change.
-- **Definition of done**: All tests (unit and integration) pass; the inward-only dependency
-  rule is not violated; new state-changing behavior has corresponding audit records and, where
-  applicable, integration events.
+- **Local validation gate**: Per Principle VI, `./gradlew build` MUST pass locally before
+  pushing. On Docker 29.x+ hosts, start `scripts/docker-api-proxy.py` before running tests.
+  Use `mise run ci` for full local/CI parity.
+- **Definition of done**: All tests (unit and integration) pass locally; the inward-only
+  dependency rule is not violated; new state-changing behavior has corresponding audit records
+  and, where applicable, integration events.
 - **Review**: Changes are reviewed for conformance to the Core Principles before merge.
 
 ## Governance
@@ -164,4 +189,4 @@ technology is justified, provided the Core Principles continue to hold.
 - **Compliance review**: Plans and pull requests are checked against the Core Principles.
   Deviations require explicit, recorded justification; unjustified deviations block merge.
 
-**Version**: 1.0.0 | **Ratified**: 2026-06-09 | **Last Amended**: 2026-06-09
+**Version**: 1.1.0 | **Ratified**: 2026-06-09 | **Last Amended**: 2026-06-10

@@ -1,0 +1,7 @@
+# DEPRECATED — dependencies are now managed via pyproject.toml + uv.
+#   uv sync              # install deps into .venv
+#   mise run docs:deps   # same, via mise
+#   mise run docs:serve  # live preview
+#   mise run docs:build  # full build (including Dokka API docs)
+#
+# This file is kept only as a breadcrumb; it is excluded from the MkDocs site build.

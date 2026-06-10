@@ -1,0 +1,39 @@
+build:
+  maxIssues: 0
+
+complexity:
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    functionThreshold: 8
+    constructorThreshold: 8
+  TooManyFunctions:
+    thresholdInFiles: 25
+    thresholdInClasses: 15
+    thresholdInInterfaces: 15
+    thresholdInObjects: 15
+    thresholdInEnums: 15
+
+empty-blocks:
+  EmptyFunctionBlock:
+    ignoreOverridden: true
+
+style:
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    maxLineLength: 120
+    excludeImportStatements: true
+  ReturnCount:
+    max: 6
+  WildcardImport:
+    active: true
+    excludeImports:
+      - 'io.ktor.*'
+
+naming:
+  FunctionNaming:
+    # Allow backtick-style test function names (spaces etc.)
+    excludes:
+      - '**/test/**'
+      - '**/androidTest/**'
