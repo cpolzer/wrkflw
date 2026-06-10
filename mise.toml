@@ -48,6 +48,38 @@ run = "./gradlew :apps:api-service:run"
 description = "Run the worker-service (Temporal workflows + activities)"
 run = "./gradlew :apps:worker-service:run"
 
+# ---- Frontend (Vue / Onyx) -------------------------------------------------------
+
+[tasks."ui:install"]
+description = "Install frontend npm dependencies"
+run = "npm install --legacy-peer-deps"
+dir = "ui"
+
+[tasks."ui:dev"]
+description = "Start the Vite dev server (hot-reload)"
+run = "npm run dev"
+dir = "ui"
+
+[tasks."ui:build"]
+description = "Type-check and build the frontend for production"
+run = "npm run build"
+dir = "ui"
+
+[tasks."ui:test"]
+description = "Run Vitest unit tests"
+run = "npm run test"
+dir = "ui"
+
+[tasks."ui:check"]
+description = "Lint + typecheck + unit tests + production build"
+run = "npm run check"
+dir = "ui"
+
+[tasks."ui:generate-types"]
+description = "Regenerate TypeScript types from the OpenAPI spec"
+run = "npm run generate:types"
+dir = "ui"
+
 # ---- Docs (the bridge between the JVM and Python worlds) ------------------------
 
 [tasks."docs:deps"]
@@ -79,5 +111,6 @@ description = "Everything CI runs (sequential to avoid Gradle build-lock content
 run = """
 ./gradlew ktlintCheck detekt
 ./gradlew build
+mise run ui:check
 mise run docs:build
 """
