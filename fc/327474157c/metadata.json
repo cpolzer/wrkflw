@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "fc327474157c",
+  "strategy": "manual-commit",
+  "branch": "004-ui-empty-state-submit",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "specs/004-ui-empty-state-submit/tasks.md",
+    "ui/src/views/MySubmissionsView.vue",
+    "ui/tests/unit/MySubmissionsView.spec.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/fc/327474157c/0/metadata.json",
+      "transcript": "/fc/327474157c/0/full.jsonl",
+      "content_hash": "/fc/327474157c/0/content_hash.txt",
+      "prompt": "/fc/327474157c/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 27,
+    "cache_creation_tokens": 38367,
+    "cache_read_tokens": 3112928,
+    "output_tokens": 29439,
+    "api_call_count": 26
+  }
+}
