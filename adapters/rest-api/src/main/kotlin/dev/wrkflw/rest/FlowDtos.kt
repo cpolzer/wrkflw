@@ -50,6 +50,30 @@ data class ErrorDto(
     val error: String,
 )
 
+@Serializable
+data class FlowSummaryDto(
+    val flowId: String,
+    val definitionKey: String,
+    val currentState: String,
+    val status: String,
+    val terminalOutcome: String?,
+    val documentRef: String,
+    val submitterId: String,
+    val updatedAt: String,
+)
+
+fun FlowInstance.toFlowSummaryDto() =
+    FlowSummaryDto(
+        flowId = id.value.toString(),
+        definitionKey = definitionKey.value,
+        currentState = currentState,
+        status = status.name,
+        terminalOutcome = terminalOutcome,
+        documentRef = documentRef,
+        submitterId = submitterId.value,
+        updatedAt = updatedAt.toString(),
+    )
+
 fun FlowInstance.toStatusDto(
     tasks: List<Task> = emptyList(),
     history: List<dev.wrkflw.domain.audit.AuditEntry> = emptyList(),

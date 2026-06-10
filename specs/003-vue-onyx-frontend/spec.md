@@ -105,7 +105,7 @@ After a document is rejected and returned, the submitter sees an in-app notifica
 - **FR-007**: Users MUST be able to claim an unclaimed task; claiming locks the task to that user.
 - **FR-008**: Users MUST be able to approve or reject a claimed task; rejection MUST require a comment.
 - **FR-008a**: When viewing a claimed task, reviewers MUST see all form fields submitted by the initiator, rendered read-only in full.
-- **FR-009**: Submitters MUST be able to view a list of all flows they have initiated and their current states.
+- **FR-009**: Submitters MUST be able to view a list of all flows they have initiated and their current states. The backend exposes this list via `GET /flows`, which returns a `FlowSummary` per flow including `currentState`, `status`, `terminalOutcome`, `documentRef`, `submitterId`, and `updatedAt`.
 - **FR-010**: Submitters MUST be able to view the full event history of any flow they own.
 - **FR-011**: Users MUST be able to re-submit a flow that has been returned for rework.
 - **FR-012**: The UI MUST display clear, user-friendly error messages for failed API calls and network errors.
@@ -137,7 +137,7 @@ After a document is rejected and returned, the submitter sees an in-app notifica
 ## Assumptions
 
 - Authentication uses OIDC/SSO: the frontend redirects to an identity provider (Keycloak in production) and receives tokens on callback. The frontend does not handle raw credentials. For local development, a pre-configured Keycloak Docker Compose setup with a committed realm config and test users is provided in the repository.
-- The backend REST API from the document-approval engine (feature 001) is the data source; no new backend endpoints are introduced by this feature beyond what already exists or is planned.
+- The backend REST API from the document-approval engine (feature 001) is the primary data source. This frontend feature required adding one backend endpoint (`GET /flows`) that was missing from the original spec: it returns a list of `FlowSummary` objects for the authenticated submitter, ordered by last-updated descending. This endpoint, its DTO, and the `findBySubmitterId` repository method are implemented in the `001-document-approval-engine` deliverable alongside the frontend work.
 - Mobile/responsive support is desirable but not a hard requirement for the first deliverable; desktop-first layout is acceptable.
 - Onyx is a Vue component library from the Schwarz IT ecosystem; it supplies the design system (colors, typography, spacing, interactive components) and integrates natively with Vue 3. No custom design system will be created alongside it.
 - Real-time push notifications are out of scope for the first deliverable; the worklist is refreshed on page load or manual refresh. Submitter rework notifications are in-app only (banner/badge on next login) — no email or push channel required.

@@ -7,6 +7,8 @@ import dev.wrkflw.application.query.GroupWorkListQuery
 import dev.wrkflw.application.query.GroupWorkListService
 import dev.wrkflw.application.query.MyTasksQuery
 import dev.wrkflw.application.query.MyTasksService
+import dev.wrkflw.application.query.SubmitterFlowsQuery
+import dev.wrkflw.application.query.SubmitterFlowsService
 import dev.wrkflw.domain.audit.AuditEntry
 import dev.wrkflw.domain.audit.AuditEventType
 import dev.wrkflw.domain.flow.FlowInstance
@@ -84,6 +86,9 @@ class QueriesTest {
     private fun fakeInstances(vararg instances: FlowInstance) =
         object : FlowInstanceRepository {
             override suspend fun findById(id: FlowInstanceId) = instances.find { it.id == id }
+
+            override suspend fun findBySubmitterId(submitterId: String) =
+                instances.filter { it.submitterId.value == submitterId }
 
             override suspend fun save(instance: FlowInstance) {}
 
@@ -277,5 +282,33 @@ class QueriesTest {
 
             result.pendingTasks shouldHaveSize 1
             result.pendingTasks.first().id shouldBe pending.id
+        }
+
+    // SubmitterFlows tests
+
+    @Test
+    fun `submitter flows returns flows owned by the actor`() =
+        runTest {
+            // instance.submitterId = ActorId("author1") — set up by the shared fixture
+            val author = ActorContext(ActorId("author1"), emptySet())
+            val othersInstance =
+                instance.copy(id = FlowInstanceId.generate(), submitterId = ActorId("other"))
+            val service = SubmitterFlowsService(fakeInstances(instance, othersInstance))
+
+            val result = service.execute(SubmitterFlowsQuery(author))
+
+            result.flows shouldHaveSize 1
+            result.flows.first().id shouldBe instanceId
+        }
+
+    @Test
+    fun `submitter flows returns empty when actor has no submitted flows`() =
+        runTest {
+            val stranger = ActorContext(ActorId("stranger"), emptySet())
+            val service = SubmitterFlowsService(fakeInstances(instance))
+
+            val result = service.execute(SubmitterFlowsQuery(stranger))
+
+            result.flows shouldHaveSize 0
         }
 }

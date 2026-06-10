@@ -38,6 +38,29 @@ class FlowInstanceRepositoryPostgres(
                 }
         }
 
+    override suspend fun findBySubmitterId(submitterId: String): List<FlowInstance> =
+        withContext(Dispatchers.IO) {
+            dsl
+                .selectFrom(FLOW_INSTANCE)
+                .where(FLOW_INSTANCE.SUBMITTER_ID.eq(submitterId))
+                .orderBy(FLOW_INSTANCE.UPDATED_AT.desc())
+                .fetch()
+                .map { r ->
+                    FlowInstance(
+                        id = FlowInstanceId(r.id!!),
+                        definitionKey = FlowDefinitionKey(r.definitionKey!!),
+                        definitionVersion = r.definitionVersion!!,
+                        documentRef = r.documentRef!!,
+                        submitterId = ActorId(r.submitterId!!),
+                        currentState = r.currentState!!,
+                        status = FlowStatus.valueOf(r.status!!),
+                        terminalOutcome = r.terminalOutcome,
+                        createdAt = r.createdAt!!.toInstant(),
+                        updatedAt = r.updatedAt!!.toInstant(),
+                    )
+                }
+        }
+
     override suspend fun save(instance: FlowInstance) {
         withContext(Dispatchers.IO) {
             val definitionId =

@@ -4,6 +4,7 @@ import type { components } from './types'
 
 export type FlowStatus = components['schemas']['FlowStatus']
 export type FlowStatusWithHistory = components['schemas']['FlowStatusWithHistory']
+export type FlowSummary = components['schemas']['FlowSummary']
 export type TaskSummary = components['schemas']['TaskSummary']
 export type SubmitDocumentRequest = components['schemas']['SubmitDocumentRequest']
 export type DecisionRequest = components['schemas']['DecisionRequest']

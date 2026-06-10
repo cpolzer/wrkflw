@@ -1,24 +1,24 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { FlowStatus } from '@/api/models'
+import type { FlowSummary } from '@/api/models'
 
 export const useNotificationsStore = defineStore('notifications', () => {
   const seenReworkFlowIds = ref<Set<string>>(
     new Set(JSON.parse(sessionStorage.getItem('seenReworkIds') ?? '[]') as string[]),
   )
 
-  const reworkFlows = ref<FlowStatus[]>([])
+  const reworkFlows = ref<FlowSummary[]>([])
 
   const reworkPendingCount = computed(
     () =>
       reworkFlows.value.filter(
         (f) =>
-          (f as FlowStatus & { currentState?: string }).currentState === 'RETURNED_FOR_REWORK' &&
+          f.currentState === 'RETURNED_FOR_REWORK' &&
           !seenReworkFlowIds.value.has(f.flowId ?? ''),
       ).length,
   )
 
-  function updateFromFlows(flows: FlowStatus[]): void {
+  function updateFromFlows(flows: FlowSummary[]): void {
     reworkFlows.value = flows
   }
 

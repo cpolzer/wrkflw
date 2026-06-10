@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 import { submitFlow as apiSubmitFlow, getFlow as apiGetFlow, getSubmitterFlows as apiGetSubmitterFlows } from '@/api/flows'
 import { useNotificationsStore } from '@/stores/notifications'
-import type { FlowStatus, FlowStatusWithHistory, FlowSubmitRequest } from '@/api/models'
+import type { FlowStatus, FlowStatusWithHistory, FlowSummary, FlowSubmitRequest } from '@/api/models'
 
 export function useFlows() {
   const currentFlow = ref<FlowStatusWithHistory | null>(null)
-  const submittedFlows = ref<FlowStatus[]>([])
+  const submittedFlows = ref<FlowSummary[]>([])
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 

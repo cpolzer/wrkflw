@@ -12,6 +12,21 @@ servers:
   - url: /api/v1
 paths:
   /flows:
+    get:
+      summary: List flows submitted by the caller
+      description: >
+        Returns all flow instances where the caller is the submitter,
+        ordered by last-updated descending. Used by the submitter's
+        "My Submissions" view to track document status.
+      operationId: listSubmitterFlows
+      responses:
+        '200':
+          description: Flows submitted by the caller
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/FlowSummary' }
     post:
       summary: Submit a document for approval (start a flow)
       description: >
@@ -170,6 +185,17 @@ components:
         candidateGroupId: { type: string }
         status: { type: string, enum: [PENDING, CLAIMED, COMPLETED] }
         ownerId: { type: string, nullable: true }
+    FlowSummary:
+      type: object
+      properties:
+        flowId: { type: string, format: uuid }
+        definitionKey: { type: string }
+        currentState: { type: string }
+        status: { type: string, enum: [RUNNING, COMPLETED] }
+        terminalOutcome: { type: string, nullable: true }
+        documentRef: { type: string }
+        submitterId: { type: string }
+        updatedAt: { type: string, format: date-time }
     AuditEntry:
       type: object
       properties:

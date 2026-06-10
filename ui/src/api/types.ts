@@ -11,7 +11,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /**
+         * List flows submitted by the caller
+         * @description Returns all flow instances where the caller is the submitter, ordered by last-updated descending. Used by the submitter's "My Submissions" view to track document status.
+         */
+        get: operations["listSubmitterFlows"];
         put?: never;
         /**
          * Submit a document for approval (start a flow)
@@ -171,6 +175,19 @@ export interface components {
             status?: "PENDING" | "CLAIMED" | "COMPLETED";
             ownerId?: string | null;
         };
+        FlowSummary: {
+            /** Format: uuid */
+            flowId?: string;
+            definitionKey?: string;
+            currentState?: string;
+            /** @enum {string} */
+            status?: "RUNNING" | "COMPLETED";
+            terminalOutcome?: string | null;
+            documentRef?: string;
+            submitterId?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+        };
         AuditEntry: {
             type?: string;
             actorId?: string | null;
@@ -189,6 +206,26 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    listSubmitterFlows: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Flows submitted by the caller */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FlowSummary"][];
+                };
+            };
+        };
+    };
     submitDocument: {
         parameters: {
             query?: never;
