@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "d205f558e52b",
+  "strategy": "manual-commit",
+  "branch": "004-ui-empty-state-submit",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".specify/feature.json",
+    "specs/004-ui-empty-state-submit/checklists/requirements.md",
+    "specs/004-ui-empty-state-submit/spec.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/d2/05f558e52b/0/metadata.json",
+      "transcript": "/d2/05f558e52b/0/full.jsonl",
+      "content_hash": "/d2/05f558e52b/0/content_hash.txt",
+      "prompt": "/d2/05f558e52b/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 19,
+    "cache_creation_tokens": 15578,
+    "cache_read_tokens": 2205819,
+    "output_tokens": 4145,
+    "api_call_count": 16
+  }
+}
