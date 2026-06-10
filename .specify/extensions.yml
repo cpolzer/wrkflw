@@ -78,7 +78,7 @@ hooks:
   - extension: git
     command: speckit.git.commit
     enabled: true
-    optional: true
+    optional: false
     prompt: Commit constitution changes?
     description: Auto-commit after constitution update
     condition: null
