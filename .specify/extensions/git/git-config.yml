@@ -35,28 +35,28 @@ auto_commit:
     message: "[Spec Kit] Save progress before issue sync"
   after_constitution:
     enabled: true
-    message: "[Spec Kit] Add project constitution"
+    message: "docs(spec): add project constitution"
   after_specify:
     enabled: true
-    message: "[Spec Kit] Add specification"
+    message: "docs(spec): add feature specification"
   after_clarify:
     enabled: true
-    message: "[Spec Kit] Clarify specification"
+    message: "docs(spec): clarify feature specification"
   after_plan:
     enabled: true
-    message: "[Spec Kit] Add implementation plan"
+    message: "docs(spec): add implementation plan"
   after_tasks:
     enabled: true
-    message: "[Spec Kit] Add tasks"
+    message: "docs(spec): add task breakdown"
   after_implement:
     enabled: true
-    message: "[Spec Kit] Implementation progress"
+    message: "docs(spec): update implementation progress"
   after_checklist:
     enabled: true
-    message: "[Spec Kit] Add checklist"
+    message: "docs(spec): add checklist"
   after_analyze:
     enabled: true
-    message: "[Spec Kit] Add analysis report"
+    message: "docs(spec): add analysis report"
   after_taskstoissues:
     enabled: true
-    message: "[Spec Kit] Sync tasks to issues"
+    message: "docs(spec): sync tasks to issues"

@@ -94,7 +94,7 @@ hooks:
   - extension: git
     command: speckit.git.commit
     enabled: true
-    optional: true
+    optional: false
     prompt: Commit clarification changes?
     description: Auto-commit after spec clarification
     condition: null

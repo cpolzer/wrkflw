@@ -32,4 +32,5 @@
 ## Notes
 
 - All checklist items pass. Spec is ready for `/speckit-plan`.
-- Assumptions section explicitly calls out auth, mobile scope, real-time updates, and SSR as out of scope for v1.
+- Clarification session 2026-06-10: 5 questions asked and answered — document definition, auth mechanism + dev setup, rework notification channel, dual-role navigation model, reviewer form data visibility.
+- Assumptions section updated to reflect OIDC/Keycloak, in-app-only notifications, and Onyx as a Vue component library.
