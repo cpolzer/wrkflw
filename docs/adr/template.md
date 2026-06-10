@@ -1,6 +1,6 @@
 # NNNN. <short title of the decision>
 
-- **Status**: Proposed | Accepted | Superseded by [NNNN](nnnn-...md)
+- **Status**: Proposed | Accepted | Superseded by NNNN
 - **Date**: YYYY-MM-DD
 - **Deciders**: <names/roles>
 

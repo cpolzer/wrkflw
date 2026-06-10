@@ -6,6 +6,7 @@ plugins {
 group = "dev.wrkflw"
 version = "0.1.0-SNAPSHOT"
 
+
 tasks.register("checkAll") {
     description = "Run build and tests across all modules"
     group = "verification"

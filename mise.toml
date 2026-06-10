@@ -57,9 +57,9 @@ run = "uv sync"
 [tasks."docs:api"]
 description = "Generate Kotlin API docs (Dokka) into the site tree"
 run = """
-./gradlew dokkaHtmlMultiModule
-rm -rf docs/reference/api
-cp -r build/dokka/htmlMultiModule docs/reference/api
+./gradlew dokkaHtmlCollector
+rm -rf docs/reference/kdoc
+cp -r build/dokka/htmlCollector docs/reference/kdoc
 """
 
 [tasks."docs:build"]
