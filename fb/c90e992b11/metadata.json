@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "fbc90e992b11",
+  "strategy": "manual-commit",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/AppModule.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt"
+  ],
+  "sessions": [
+    {
+      "metadata": "/fb/c90e992b11/0/metadata.json",
+      "transcript": "/fb/c90e992b11/0/full.jsonl",
+      "content_hash": "/fb/c90e992b11/0/content_hash.txt",
+      "prompt": "/fb/c90e992b11/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 246,
+    "cache_creation_tokens": 766507,
+    "cache_read_tokens": 25434609,
+    "output_tokens": 102982,
+    "api_call_count": 228
+  }
+}

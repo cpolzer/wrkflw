@@ -1,0 +1,13 @@
+we rebooted for test containers to become enabled. can you check memory on what we stopped working?
+
+---
+
+yes
+
+---
+
+we work with nrdctl
+
+---
+
+! nrdctl up -d postgres

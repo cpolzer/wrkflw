@@ -1,0 +1,149 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "fbc90e992b11",
+  "session_id": "2d48ad9b-b4da-4de7-acdc-efdd179faf47",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-10T06:00:05.572256864Z",
+  "branch": "001-document-approval-engine",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt",
+    "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/AppModule.kt",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "3236e1bbeda5",
+  "token_usage": {
+    "input_tokens": 246,
+    "cache_creation_tokens": 766507,
+    "cache_read_tokens": 25434609,
+    "output_tokens": 102982,
+    "api_call_count": 228
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_011jUe3yahqmGPrw2CWa3k5y",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-implement"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "3236e1bbeda5",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 43,
+        "end": 44,
+        "entry_ids": [
+          "12408901-5a1d-4827-8171-2d0a17c872d6"
+        ],
+        "tool_use_id": "toolu_011jUe3yahqmGPrw2CWa3k5y"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_011jUe3yahqmGPrw2CWa3k5y"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-implement",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 3
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-10T06:00:05.545407568Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 98,
+    "human_modified": 30,
+    "human_removed": 0,
+    "total_committed": 98,
+    "total_lines_changed": 141,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1567,
+      "user_lines_removed": 14,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 88,
+        "adapters/persistence-postgres/src/main/kotlin/dev/wrkflw/persistence/DecisionRepositoryPostgres.kt": 43,
+        "adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/TaskConcurrencyTest.kt": 145,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/FlowDtos.kt": 6,
+        "adapters/rest-api/src/main/kotlin/dev/wrkflw/rest/TaskRoutes.kt": 96,
+        "adapters/rest-api/src/test/kotlin/dev/wrkflw/rest/TaskActionContractTest.kt": 255,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt": 21,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt": 3,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/activity/AdvanceFlowActivity.kt": 28,
+        "application/src/main/kotlin/dev/wrkflw/application/command/ClaimTask.kt": 60,
+        "application/src/main/kotlin/dev/wrkflw/application/command/ReleaseTask.kt": 60,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDecision.kt": 111,
+        "application/src/test/kotlin/dev/wrkflw/application/TaskActionsTest.kt": 399,
+        "apps/api-service/src/main/kotlin/dev/wrkflw/AppModule.kt": 12,
+        "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt": 8,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt": 215,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 4,
+        "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt": 4,
+        "domain/src/main/kotlin/dev/wrkflw/domain/port/DecisionRepository.kt": 9
+      },
+      "user_removed_per_file": {
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt": 10,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/TemporalWorkerService.kt": 1,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 2,
+        "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/WorkerModule.kt": 1
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 89,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1479,
+      "agent_lines_removed": 14,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 89
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 240,
+      "user_lines_removed": 13,
+      "agent_lines_added": 1479,
+      "agent_lines_removed": 14,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 136,
+        "adapters/temporal/src/main/kotlin/dev/wrkflw/temporal/DocumentApprovalWorkflow.kt": 2,
+        "application/src/main/kotlin/dev/wrkflw/application/command/ReleaseTask.kt": 2,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDecision.kt": 2,
+        "apps/api-service/build.gradle.kts": 7,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt": 5,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 3,
+        "build-logic/src/main/kotlin/testing.gradle.kts": 2,
+        "gradle/libs.versions.toml": 1,
+        "scripts/docker-api-proxy.py": 80
+      },
+      "user_removed_per_file": {
+        "application/src/main/kotlin/dev/wrkflw/application/command/ReleaseTask.kt": 2,
+        "application/src/main/kotlin/dev/wrkflw/application/command/SubmitDecision.kt": 2,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt": 5,
+        "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt": 3,
+        "gradle/libs.versions.toml": 1
+      }
+    }
+  ]
+}
