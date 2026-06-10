@@ -1,0 +1,5 @@
+/speckit-git-commit
+
+---
+
+can we not run branch ci builds if a PR is also running?
