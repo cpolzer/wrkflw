@@ -1,0 +1,9 @@
+/speckit-tasks
+
+---
+
+/speckit-analyze
+
+---
+
+Optional improvements before implementing -> incldue them please
