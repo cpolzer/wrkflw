@@ -25,9 +25,10 @@ header → click it → `SubmitFlowView` loads with the document-approval form.
 ### Tests for User Story 1 (Principle II: write first, ensure RED before implementation)
 
 - [ ] T001 [US1] Create `ui/tests/unit/MySubmissionsView.spec.ts` with vitest + @vue/test-utils boilerplate, mocking `useAuthStore`, `useFlows`, and stubbing Onyx components
-- [ ] T002 [US1] Write test: initiator user with definitions present → `OnyxButton[label="Submit new document"]` rendered in header area in `ui/tests/unit/MySubmissionsView.spec.ts`
+- [ ] T002 [US1] Write test: initiator user with N > 0 existing submissions → `OnyxButton[label="Submit new document"]` rendered in header area (and no `OnyxEmpty` visible) in `ui/tests/unit/MySubmissionsView.spec.ts`
 - [ ] T003 [US1] Write test: initiator user with N existing submissions → header CTA `OnyxButton` still rendered (FR-002) in `ui/tests/unit/MySubmissionsView.spec.ts`
 - [ ] T004 [US1] Write test: non-initiator user → no `OnyxButton` CTA rendered at all (FR-006) in `ui/tests/unit/MySubmissionsView.spec.ts`
+- [ ] T004b [US1] Write test: user in both initiator and reviewer groups → header CTA `OnyxButton` still rendered (spec edge case: dual-group membership does not suppress CTA) in `ui/tests/unit/MySubmissionsView.spec.ts`
 - [ ] T005 [US1] Write test: loading state active → header CTA `OnyxButton` still visible (spec edge case) in `ui/tests/unit/MySubmissionsView.spec.ts`
 
 ### Implementation for User Story 1
@@ -70,7 +71,7 @@ shows `OnyxEmpty` with an explanatory message and a "Submit new document" button
 
 **Purpose**: Full quality gate before push.
 
-- [ ] T016 Run `mise run ui:check` (lint + typecheck + all unit tests + production build) from `ui/` — must exit 0
+- [ ] T016 Run `mise run ui:check` from repo root (lint + typecheck + all unit tests + production build) — must exit 0
 - [ ] T017 [P] Verify visually: start `mise run ui:dev`, open `/submissions` as a mock initiator, confirm header CTA is visible and navigates to `/submit/document-approval`
 - [ ] T018 [P] Verify visually: with `submittedFlows` mocked as empty, confirm `OnyxEmpty` renders with message and secondary CTA button
 
