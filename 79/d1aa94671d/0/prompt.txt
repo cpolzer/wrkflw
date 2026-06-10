@@ -15,3 +15,7 @@ the integration into mkdocs seems not to be working?
 ---
 
 while "build/dokka/htmlCollector/wrkflw/dev.wrkflw.application.command/index.html" renders the dokka content, "site/" (mkdocs) is not surfacing the dokka docs?
+
+---
+
+yes
