@@ -1,0 +1,9 @@
+our ci should not trigger a pages deploy on MR
+
+---
+
+/speckit-implement
+
+---
+
+/speckit-specify lets thin about local tooling to support more controlled development flow. can we setup precommit-hooks to auto run linting and already harden for conventional commits?
