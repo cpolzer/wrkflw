@@ -1,6 +1,14 @@
 <template>
   <div class="submissions-view">
-    <h1>My Submissions</h1>
+    <header class="submissions-view__header">
+      <h1>My Submissions</h1>
+      <OnyxButton
+        v-if="canSubmit"
+        label="Submit new document"
+        color="primary"
+        :link="submitLink"
+      />
+    </header>
 
     <div v-if="isLoading" aria-live="polite">Loading submissions…</div>
     <div v-else-if="error" class="submissions-view__error" role="alert">{{ error }}</div>
@@ -32,27 +40,64 @@
           </tr>
         </tbody>
       </table>
-      <p v-else class="submissions-view__empty">No submissions yet.</p>
+
+      <OnyxEmpty v-else>
+        You have not submitted any documents for approval yet.
+        <template #description>
+          <span v-if="canSubmit">
+            Click &ldquo;Submit new document&rdquo; above to start your first approval request.
+          </span>
+          <span v-else-if="!firstDefinition">
+            No submission types are currently configured.
+          </span>
+          <span v-else>
+            You do not have permission to submit documents.
+          </span>
+        </template>
+        <template v-if="canSubmit" #buttons>
+          <OnyxButton
+            label="Submit new document"
+            color="primary"
+            :link="submitLink"
+          />
+        </template>
+      </OnyxEmpty>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
+import { OnyxButton, OnyxEmpty } from 'sit-onyx'
 import { useFlows } from '@/composables/useFlows'
+import { useAuthStore } from '@/stores/auth'
+import { AVAILABLE_DEFINITIONS } from '@/api/definitions'
 import FlowStatusBadge from '@/components/FlowStatusBadge.vue'
 import type { RichFlowStatus } from '@/api/models'
 
 const { submittedFlows, isLoading, error, fetchSubmittedFlows } = useFlows()
+const auth = useAuthStore()
 
 const richFlows = computed(() => submittedFlows.value as RichFlowStatus[])
+const firstDefinition = computed(() => AVAILABLE_DEFINITIONS[0])
+const canSubmit = computed(
+  () => !!firstDefinition.value && auth.isInGroup(firstDefinition.value.initiatorGroup),
+)
+const submitLink = computed(() =>
+  firstDefinition.value ? { href: `/submit/${firstDefinition.value.definitionId}` } : undefined,
+)
 
 onMounted(fetchSubmittedFlows)
 </script>
 
 <style scoped>
-.submissions-view h1 { margin-bottom: 1.5rem; }
-.submissions-view__empty { color: #757575; font-style: italic; }
+.submissions-view__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.submissions-view__header h1 { margin-bottom: 0; }
 .submissions-view__error { color: #c62828; }
 .submissions-table { width: 100%; border-collapse: collapse; }
 .submissions-table th,
