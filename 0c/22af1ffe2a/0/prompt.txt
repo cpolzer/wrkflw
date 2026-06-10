@@ -1,1 +1,17 @@
 /speckit-implement
+
+---
+
+Anything left unstated or not committed?
+
+---
+
+Push?
+
+---
+
+So we have any specs not implemented?
+
+---
+
+Yes
