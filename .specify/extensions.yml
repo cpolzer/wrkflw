@@ -102,7 +102,7 @@ hooks:
   - extension: git
     command: speckit.git.commit
     enabled: true
-    optional: true
+    optional: false
     prompt: Commit plan changes?
     description: Auto-commit after implementation planning
     condition: null
