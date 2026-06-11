@@ -1,0 +1,22 @@
+wwhat is needed to lacally run our project in full with ui?
+
+---
+
+and what do oi have to execute ?
+
+---
+
+can we not add a second docker compose file that builds local images of api and worker to start them? we are able to cascade docker composes?
+
+---
+
+the web ui recieves a 405 mthod not allowed calloing :
+http://localhost:8080/api/v1/worklists/group
+
+---
+
+is the current state documented?
+
+---
+
+yes. plus i think the new docker compose file , mise tasks etc should be documented in our mkdowcs app

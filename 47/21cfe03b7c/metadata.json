@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "4721cfe03b7c",
+  "strategy": "manual-commit",
+  "branch": "004-ui-empty-state-submit",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/api-service/Dockerfile",
+    "apps/worker-service/Dockerfile",
+    "docker-compose.local.yml",
+    "mise.toml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/47/21cfe03b7c/0/metadata.json",
+      "transcript": "/47/21cfe03b7c/0/full.jsonl",
+      "content_hash": "/47/21cfe03b7c/0/content_hash.txt",
+      "prompt": "/47/21cfe03b7c/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 49,
+    "cache_creation_tokens": 58929,
+    "cache_read_tokens": 1639006,
+    "output_tokens": 15143,
+    "api_call_count": 37
+  }
+}
