@@ -46,6 +46,7 @@ nav:
   - Tutorials:
       - Run the document-approval flow locally: tutorials/run-locally.md
   - How-to guides:
+      - Run the full stack with Docker: how-to/run-full-stack-docker.md
       - Add a new flow definition: how-to/add-flow-definition.md
       - Add a REST endpoint: how-to/add-rest-endpoint.md
       - Write an integration test: how-to/integration-tests.md
