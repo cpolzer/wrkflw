@@ -20,9 +20,11 @@ private fun DomainEvent.eventTypeName(): String =
 
 private fun DomainEvent.toDataJson(): String =
     when (this) {
-        is FlowStarted ->
+        is FlowStarted -> {
+            val escapedRef = documentRef.replace("\\", "\\\\").replace("\"", "\\\"")
             """{"flowId":"${flowInstanceId.value}","definitionKey":"$definitionKey",""" +
-                """"documentRef":"$documentRef","submitterId":"${submitterId.value}","initialState":"$initialState"}"""
+                """"documentRef":"$escapedRef","submitterId":"${submitterId.value}","initialState":"$initialState"}"""
+        }
 
         is TaskCreated ->
             """{"flowId":"${flowInstanceId.value}","taskId":"${taskId.value}",""" +

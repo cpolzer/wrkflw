@@ -26,12 +26,31 @@
       "attributes": {
         "pkce.code.challenge.method": "S256"
       },
-      "protocol": "openid-connect"
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "groups",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-group-membership-mapper",
+          "consentRequired": false,
+          "config": {
+            "full.path": "false",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "groups",
+            "userinfo.token.claim": "true"
+          }
+        }
+      ]
     }
   ],
   "groups": [
-    { "name": "initiators" },
-    { "name": "legal-reviewers" }
+    {
+      "name": "initiators"
+    },
+    {
+      "name": "legal-reviewers"
+    }
   ],
   "users": [
     {
@@ -40,8 +59,16 @@
       "email": "alice@wrkflw.local",
       "firstName": "Alice",
       "lastName": "Initiator",
-      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
-      "groups": ["initiators"]
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "groups": [
+        "initiators"
+      ]
     },
     {
       "username": "bob",
@@ -49,8 +76,16 @@
       "email": "bob@wrkflw.local",
       "firstName": "Bob",
       "lastName": "Reviewer",
-      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
-      "groups": ["legal-reviewers"]
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "groups": [
+        "legal-reviewers"
+      ]
     },
     {
       "username": "carol",
@@ -58,8 +93,17 @@
       "email": "carol@wrkflw.local",
       "firstName": "Carol",
       "lastName": "Both",
-      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
-      "groups": ["initiators", "legal-reviewers"]
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "groups": [
+        "initiators",
+        "legal-reviewers"
+      ]
     }
   ]
 }
