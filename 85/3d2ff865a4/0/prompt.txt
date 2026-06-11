@@ -1,0 +1,43 @@
+when running our full stack locally, i am not able to publich a document in the ui - it hints to missing real ui testing. how would we implement this?
+
+---
+
+yes please implement
+
+---
+
+run it please, i get errors
+
+---
+
+the stack is running and up
+
+---
+
+go
+
+---
+
+ok, api restarted
+
+---
+
+the worker is not starting up
+
+---
+
+check again
+
+---
+
+temporal logs error: temporal-1 |2026/06/11 23:11:32 Loading config; env=docker,zone=,configDir=config
+temporal-1 |2026/06/11 23:11:32 Loading config files=[config/docker.yaml]
+temporal-1 |Unable to create dynamic config client. Error: unable to read dynamic config: loading dynamic config failed: 1 errors, 0 warnings
+
+---
+
+ok, now its working
+
+---
+
+yes

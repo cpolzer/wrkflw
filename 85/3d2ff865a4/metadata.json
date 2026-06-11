@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "853d2ff865a4",
+  "strategy": "manual-commit",
+  "branch": "004-ui-empty-state-submit",
+  "checkpoints_count": 9,
+  "files_touched": [
+    "adapters/persistence-postgres/src/main/resources/db/migration/V3__fix_group_names.sql",
+    "apps/api-service/src/main/kotlin/dev/wrkflw/Application.kt",
+    "apps/worker-service/src/main/kotlin/dev/wrkflw/worker/Application.kt",
+    "domain/src/main/kotlin/dev/wrkflw/domain/event/OutboxEventFactory.kt",
+    "temporal-dynamicconfig",
+    "ui/keycloak/realm-export.json"
+  ],
+  "sessions": [
+    {
+      "metadata": "/85/3d2ff865a4/0/metadata.json",
+      "transcript": "/85/3d2ff865a4/0/full.jsonl",
+      "content_hash": "/85/3d2ff865a4/0/content_hash.txt",
+      "prompt": "/85/3d2ff865a4/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 185,
+    "cache_creation_tokens": 123068,
+    "cache_read_tokens": 15295344,
+    "output_tokens": 60174,
+    "api_call_count": 159
+  }
+}
