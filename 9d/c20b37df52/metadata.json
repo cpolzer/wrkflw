@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "9dc20b37df52",
+  "strategy": "manual-commit",
+  "branch": "004-ui-empty-state-submit",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "ui/src/api/client.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/9d/c20b37df52/0/metadata.json",
+      "transcript": "/9d/c20b37df52/0/full.jsonl",
+      "content_hash": "/9d/c20b37df52/0/content_hash.txt",
+      "prompt": "/9d/c20b37df52/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 48,
+    "cache_creation_tokens": 58624,
+    "cache_read_tokens": 1579175,
+    "output_tokens": 14848,
+    "api_call_count": 36
+  }
+}
