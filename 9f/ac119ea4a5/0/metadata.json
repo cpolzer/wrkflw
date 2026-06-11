@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "9fac119ea4a5",
+  "session_id": "1a7ea412-e89a-481b-84ea-596612cb31bf",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-11T23:29:14.636461051Z",
+  "branch": "004-ui-empty-state-submit",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "ui/tests/e2e/my-submissions-submit.spec.ts"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "65fac246fe47",
+  "token_usage": {
+    "input_tokens": 186,
+    "cache_creation_tokens": 123679,
+    "cache_read_tokens": 15439775,
+    "output_tokens": 60406,
+    "api_call_count": 160
+  },
+  "session_metrics": {
+    "turn_count": 10
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-11T23:29:14.619225799Z",
+    "agent_lines": 71,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 71,
+    "total_lines_changed": 71,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
