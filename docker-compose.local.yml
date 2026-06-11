@@ -1,0 +1,38 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api-service/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: wrkflw
+      DB_USER: wrkflw
+      DB_PASSWORD: wrkflw
+      TEMPORAL_HOST: temporal
+      TEMPORAL_PORT: 7233
+    depends_on:
+      postgres:
+        condition: service_healthy
+      temporal:
+        condition: service_started
+
+  worker:
+    build:
+      context: .
+      dockerfile: apps/worker-service/Dockerfile
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: wrkflw
+      DB_USER: wrkflw
+      DB_PASSWORD: wrkflw
+      TEMPORAL_HOST: temporal
+      TEMPORAL_PORT: 7233
+    depends_on:
+      postgres:
+        condition: service_healthy
+      temporal:
+        condition: service_started

@@ -48,6 +48,14 @@ run = "./gradlew :apps:api-service:run"
 description = "Run the worker-service (Temporal workflows + activities)"
 run = "./gradlew :apps:worker-service:run"
 
+[tasks."local:up"]
+description = "Build + start full stack (infra + api + worker) via Docker Compose"
+run = "docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build"
+
+[tasks."local:down"]
+description = "Stop the full local stack"
+run = "docker compose -f docker-compose.yml -f docker-compose.local.yml down"
+
 # ---- Frontend (Vue / Onyx) -------------------------------------------------------
 
 [tasks."ui:install"]

@@ -41,7 +41,7 @@ fun Application.module() {
             password = System.getenv("DB_PASSWORD") ?: "wrkflw"
         }
 
-    val temporalHost = System.getenv("TEMPORAL_HOST") ?: "localhost"
+    val temporalHost = System.getenv("TEMPORAL_HOST") ?: "127.0.0.1"
     val temporalPort = System.getenv("TEMPORAL_PORT")?.toIntOrNull() ?: 7233
     val taskQueue = "wrkflw-task-queue"
 

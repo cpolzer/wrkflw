@@ -1,6 +1,6 @@
 import { userManager } from '@/auth/oidc'
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080/api/v1'
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api/v1'
 const TIMEOUT_MS = Number(import.meta.env.VITE_API_TIMEOUT_MS ?? 10000)
 
 export class ApiError extends Error {

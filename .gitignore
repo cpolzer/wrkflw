@@ -54,3 +54,7 @@ site/
 
 docs/reference/api/
 docs/reference/kdoc/
+
+# test reports
+
+test-results
