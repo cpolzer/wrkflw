@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "10e6688d0cff",
+  "strategy": "manual-commit",
+  "branch": "005-os-agnostic-test-infra",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".github/workflows/ci.yml",
+    ".specify/memory/constitution.md",
+    "adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/TaskConcurrencyTest.kt",
+    "adapters/temporal/build.gradle.kts",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/MultiStageFlowE2ETest.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/PerfSmokeTest.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/WorkListAndStatusE2ETest.kt",
+    "build-logic/src/main/kotlin/testing.gradle.kts",
+    "gradle/libs.versions.toml",
+    "specs/005-os-agnostic-test-infra/tasks.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/10/e6688d0cff/0/metadata.json",
+      "transcript": "/10/e6688d0cff/0/full.jsonl",
+      "content_hash": "/10/e6688d0cff/0/content_hash.txt",
+      "prompt": "/10/e6688d0cff/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 61,
+    "cache_creation_tokens": 157473,
+    "cache_read_tokens": 7751002,
+    "output_tokens": 17243,
+    "api_call_count": 60
+  }
+}
