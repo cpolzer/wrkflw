@@ -54,6 +54,13 @@ jobs:
           key: uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
           restore-keys: uv-${{ runner.os }}-
 
+      - name: Cache npm packages
+        uses: actions/cache@v4
+        with:
+          path: ui/node_modules
+          key: npm-${{ runner.os }}-${{ hashFiles('ui/package-lock.json') }}
+          restore-keys: npm-${{ runner.os }}-
+
       - name: Run CI (lint + build + docs)
         run: mise run ci
 
