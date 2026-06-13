@@ -8,6 +8,12 @@
 
 **Input**: User description: "Rework the backend integration/E2E test infrastructure to be OS-agnostic and standardized, removing the machine-specific Docker workaround."
 
+## Clarifications
+
+### Session 2026-06-13
+
+- Q: Which container engine(s) must be validated as actually working for this feature to be considered done? → A: Docker only — validate against Docker (29.x locally, host daemon on GitHub CI), the engine actually in use on both the workstation and CI. Other engines remain auto-detected by the test framework but are not part of the acceptance gate.
+
 ## User Scenarios & Testing *(mandatory)*
 
 The "users" of this feature are the engineers who run the backend test suite and the
@@ -109,8 +115,11 @@ host/socket wiring; confirm neither exists, and that the test suite still passes
   systems (Linux, macOS) and across local and CI environments — no OS-specific or
   environment-specific branching in how it reaches the container engine.
 - **FR-004**: Container engine discovery and protocol-version compatibility MUST be handled by
-  the test framework itself, supporting the common engines developers use (e.g. Docker,
-  Podman, Colima, Rancher Desktop, nerdctl) without project-specific shims.
+  the test framework itself, without project-specific shims. **Docker is the only engine that
+  MUST be validated** as part of the acceptance gate (the engine in use on the workstation and
+  on CI). Other engines the framework auto-detects (e.g. Podman, Colima, Rancher Desktop,
+  nerdctl) are expected to work by virtue of that native discovery but are out of scope for
+  explicit validation.
 - **FR-005**: The machine-specific proxy helper script MUST be removed from the repository.
 - **FR-006**: The shared test build configuration MUST contain no conditional logic that
   redirects the container engine to a custom socket or host.
