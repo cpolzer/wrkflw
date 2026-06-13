@@ -1,0 +1,1 @@
+can we think about reworking the tests using testcontainer? their infrastructure? we have  some sciprts in place because locally on this linux workstation - docker was not avilahble and so on. the goal is to have an os agnostic, standardized solution
