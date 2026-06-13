@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "2752abe61e87",
+  "strategy": "manual-commit",
+  "branch": "005-os-agnostic-test-infra",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".github/workflows/ci.yml",
+    "adapters/persistence-postgres/build.gradle.kts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/27/52abe61e87/0/metadata.json",
+      "transcript": "/27/52abe61e87/0/full.jsonl",
+      "content_hash": "/27/52abe61e87/0/content_hash.txt",
+      "prompt": "/27/52abe61e87/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 13360,
+    "cache_creation_tokens": 455660,
+    "cache_read_tokens": 14827740,
+    "output_tokens": 84204,
+    "api_call_count": 146
+  }
+}
