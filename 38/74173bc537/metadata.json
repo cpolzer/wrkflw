@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "3874173bc537",
+  "strategy": "manual-commit",
+  "branch": "005-os-agnostic-test-infra",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/MultiStageFlowE2ETest.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt",
+    "apps/api-service/src/test/kotlin/dev/wrkflw/WorkListAndStatusE2ETest.kt"
+  ],
+  "sessions": [
+    {
+      "metadata": "/38/74173bc537/0/metadata.json",
+      "transcript": "/38/74173bc537/0/full.jsonl",
+      "content_hash": "/38/74173bc537/0/content_hash.txt",
+      "prompt": "/38/74173bc537/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 13435,
+    "cache_creation_tokens": 515212,
+    "cache_read_tokens": 22642466,
+    "output_tokens": 113316,
+    "api_call_count": 221
+  }
+}
