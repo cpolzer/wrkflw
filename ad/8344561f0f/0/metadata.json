@@ -149,6 +149,37 @@
         "label": "Skill: speckit-plan",
         "default_collapsed": true
       }
+    },
+    {
+      "id": "claude-skill-toolu_019RySz2dV3ELvgjQUE54LBX",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "speckit-tasks"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "1bd1a16de0ae",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 286,
+        "end": 287,
+        "entry_ids": [
+          "15e7c512-1b66-48cd-83c5-6d2be397a9fc"
+        ],
+        "tool_use_id": "toolu_019RySz2dV3ELvgjQUE54LBX"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_019RySz2dV3ELvgjQUE54LBX"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: speckit-tasks",
+        "default_collapsed": true
+      }
     }
   ],
   "session_metrics": {
