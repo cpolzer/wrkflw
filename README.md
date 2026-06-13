@@ -29,24 +29,35 @@ apps/
 
 ## Quick start
 
+### Option A — full Docker stack (recommended)
+
+Builds and runs every backend service in containers. Only the UI dev server runs on the host.
+
 ```bash
-# Start infrastructure
-docker compose up -d postgres temporal
-
-# Build + run all tests
-./gradlew build
-
-# Apply DB schema (includes seed data for the document-approval flow)
-./gradlew :adapters:persistence-postgres:flywayMigrate
-
-# Start the Temporal worker (separate terminal)
-./gradlew :apps:worker-service:run
-
-# Start the REST API (separate terminal)
-./gradlew :apps:api-service:run
+mise run local:up    # builds images + starts all services
+mise run migrate     # apply DB schema (first time only)
+mise run ui:install  # install frontend deps (first time only)
+mise run ui:dev      # Vite dev server → http://localhost:5173
 ```
 
-See [`specs/001-document-approval-engine/quickstart.md`](specs/001-document-approval-engine/quickstart.md) for a full end-to-end walkthrough with curl examples.
+Rebuild after code changes: `mise run local:up` (only changed layers rebuild).
+
+### Option B — run services on the host
+
+```bash
+docker compose up -d postgres temporal keycloak
+
+./gradlew build
+mise run migrate
+
+mise run run:worker  # terminal 1
+mise run run:api     # terminal 2
+
+mise run ui:install  # first time only
+mise run ui:dev      # terminal 3
+```
+
+See [`docs/how-to/run-full-stack-docker.md`](docs/how-to/run-full-stack-docker.md) for details on the Docker stack, and [`specs/001-document-approval-engine/quickstart.md`](specs/001-document-approval-engine/quickstart.md) for a full end-to-end curl walkthrough.
 
 ## Development
 

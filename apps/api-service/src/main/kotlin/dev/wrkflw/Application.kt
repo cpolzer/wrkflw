@@ -7,6 +7,7 @@ import dev.wrkflw.application.command.SubmitDocumentUseCase
 import dev.wrkflw.application.query.FlowStatusUseCase
 import dev.wrkflw.application.query.GroupWorkListUseCase
 import dev.wrkflw.application.query.MyTasksUseCase
+import dev.wrkflw.application.query.SubmitterFlowsUseCase
 import dev.wrkflw.domain.port.TaskRepository
 import dev.wrkflw.rest.flowRoutes
 import dev.wrkflw.rest.queryRoutes
@@ -40,7 +41,7 @@ fun Application.module() {
             password = System.getenv("DB_PASSWORD") ?: "wrkflw"
         }
 
-    val temporalHost = System.getenv("TEMPORAL_HOST") ?: "localhost"
+    val temporalHost = System.getenv("TEMPORAL_HOST") ?: "127.0.0.1"
     val temporalPort = System.getenv("TEMPORAL_PORT")?.toIntOrNull() ?: 7233
     val taskQueue = "wrkflw-task-queue"
 
@@ -82,10 +83,11 @@ fun Application.module() {
     val groupWorkList: GroupWorkListUseCase by inject()
     val myTasks: MyTasksUseCase by inject()
     val flowStatus: FlowStatusUseCase by inject()
+    val submitterFlows: SubmitterFlowsUseCase by inject()
 
     routing {
         route("/api/v1") {
-            flowRoutes(submitDocument, taskRepository)
+            flowRoutes(submitDocument, taskRepository, submitterFlows)
             taskRoutes(claimTask, releaseTask, submitDecision)
             queryRoutes(groupWorkList, myTasks, flowStatus)
         }

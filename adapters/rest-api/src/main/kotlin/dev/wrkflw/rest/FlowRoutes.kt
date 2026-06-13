@@ -3,6 +3,8 @@ package dev.wrkflw.rest
 import dev.wrkflw.application.command.SubmitDocumentCommand
 import dev.wrkflw.application.command.SubmitDocumentResult
 import dev.wrkflw.application.command.SubmitDocumentUseCase
+import dev.wrkflw.application.query.SubmitterFlowsQuery
+import dev.wrkflw.application.query.SubmitterFlowsUseCase
 import dev.wrkflw.domain.port.TaskRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -13,7 +15,20 @@ import io.ktor.server.routing.*
 fun Route.flowRoutes(
     submitDocument: SubmitDocumentUseCase,
     tasks: TaskRepository,
+    submitterFlows: SubmitterFlowsUseCase,
 ) {
+    get("/flows") {
+        val actor =
+            try {
+                HeaderActorContext.fromCall(call)
+            } catch (e: MissingActorHeaderException) {
+                call.respond(HttpStatusCode.BadRequest, ErrorDto(e.message ?: "Missing actor headers"))
+                return@get
+            }
+        val result = submitterFlows.execute(SubmitterFlowsQuery(actor))
+        call.respond(result.flows.map { it.toFlowSummaryDto() })
+    }
+
     post("/flows") {
         val actor =
             try {

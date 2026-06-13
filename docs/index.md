@@ -6,7 +6,7 @@ decide, and every transition is auditable.
 
 This site is **developer-facing** — how the system is built and how to work on it. Product-level
 specifications live alongside the code under `specs/` (Spec Kit), and the project rules live in
-the [constitution](../.specify/memory/constitution.md).
+the constitution (`.specify/memory/constitution.md`).
 
 ## Find your way (Diátaxis)
 

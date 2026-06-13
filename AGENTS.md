@@ -74,12 +74,46 @@ docker compose up -d postgres temporal             # local deps
 - Adapters: integration tests with **real** backing services (Testcontainers for PostgreSQL, Temporal `TestWorkflowEnvironment`).
 - Concurrency, audit, and outbox guarantees must have explicit tests.
 
+## Frontend (ui/)
+
+**Vue 3 / Vite / TypeScript** — located in `ui/`, tested with Vitest + Playwright.
+
+```
+ui/src/
+  api/         # Adapter layer — generated types + API client
+  auth/        # OIDC via oidc-client-ts
+  composables/ # Application logic (useFlows, useWorklist, useErrorHandler)
+  stores/      # Pinia stores (auth, notifications)
+  components/  # Shared UI (AppNav, DynamicFormField, FlowStatusBadge, ReworkBanner)
+  views/       # Pages (MySubmissionsView, SubmitFlowView, FlowDetailView, WorklistView, TaskDetailView)
+  router/      # Vue Router with auth guard and smart landing
+```
+
+**Local setup**:
+```bash
+docker compose up -d           # PostgreSQL + Temporal + Keycloak at :8180
+cd ui && npm install
+npm run dev                    # Dev server at :5173 with /api proxy to :8080
+npm run check                  # lint + typecheck + unit tests + build (local gate)
+npm run test:e2e               # Playwright E2E (requires full stack)
+```
+
+**Test users** (Keycloak realm `wrkflw`, all password `password`):
+- `alice` — group `initiators` (can submit documents)
+- `bob` — group `legal-reviewers` (can review/decide)
+- `carol` — both groups
+
+**Key design decisions**:
+- OIDC/PKCE via `oidc-client-ts`; auth headers sent as `Authorization: Bearer` + compat `X-Actor-Id`/`X-Actor-Groups`
+- Form data encoded as JSON in backend's `documentRef` field until a richer API exists
+- `getSubmitterFlows` has no backend endpoint yet — `MySubmissionsView` will remain empty until backend adds `GET /flows`
+
 ## References
 
 - Constitution: `.specify/memory/constitution.md`
-- Plan: `specs/001-document-approval-engine/plan.md`
-- Spec: `specs/001-document-approval-engine/spec.md`
-- Data model: `specs/001-document-approval-engine/data-model.md`
-- Quickstart: `specs/001-document-approval-engine/quickstart.md`
-- Contracts: `specs/001-document-approval-engine/contracts/`
-- Tasks: `specs/001-document-approval-engine/tasks.md`
+- Frontend spec: `specs/003-vue-onyx-frontend/spec.md`
+- Frontend plan: `specs/003-vue-onyx-frontend/plan.md`
+- Frontend tasks: `specs/003-vue-onyx-frontend/tasks.md`
+- Backend spec: `specs/001-document-approval-engine/spec.md`
+- Backend plan: `specs/001-document-approval-engine/plan.md`
+- Backend contracts: `specs/001-document-approval-engine/contracts/`

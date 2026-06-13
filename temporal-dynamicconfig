@@ -1,5 +1,4 @@
 # Dynamic config for Temporal dev
-- name: frontend.enableClientVersionCheck
-  value:
-    - value: false
-      constraints: {}
+frontend.enableClientVersionCheck:
+  - value: false
+    constraints: {}

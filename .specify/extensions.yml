@@ -62,7 +62,7 @@ hooks:
   - extension: git
     command: speckit.git.commit
     enabled: true
-    optional: true
+    optional: false
     prompt: Commit outstanding changes before analysis?
     description: Auto-commit before analysis
     condition: null
@@ -94,7 +94,7 @@ hooks:
   - extension: git
     command: speckit.git.commit
     enabled: true
-    optional: true
+    optional: false
     prompt: Commit clarification changes?
     description: Auto-commit after spec clarification
     condition: null
@@ -134,7 +134,7 @@ hooks:
   - extension: git
     command: speckit.git.commit
     enabled: true
-    optional: true
+    optional: false
     prompt: Commit analysis results?
     description: Auto-commit after analysis
     condition: null

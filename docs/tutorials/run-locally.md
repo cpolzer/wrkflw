@@ -7,6 +7,10 @@ This tutorial gets you from a clean checkout to a running flow you can drive by 
     `specs/001-document-approval-engine/quickstart.md`. This page is the gentle, narrative
     version; if they disagree, the quickstart wins (and please fix this page).
 
+!!! tip "Prefer Docker for everything?"
+    See [Run the full stack with Docker](../how-to/run-full-stack-docker.md) to build and run
+    `api-service` and `worker-service` inside containers instead of on the host.
+
 ## 1. Prerequisites
 
 - [mise](https://mise.jdx.dev/) — installs and pins all other tools

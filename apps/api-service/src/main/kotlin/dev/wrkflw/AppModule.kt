@@ -14,6 +14,8 @@ import dev.wrkflw.application.query.GroupWorkListService
 import dev.wrkflw.application.query.GroupWorkListUseCase
 import dev.wrkflw.application.query.MyTasksService
 import dev.wrkflw.application.query.MyTasksUseCase
+import dev.wrkflw.application.query.SubmitterFlowsService
+import dev.wrkflw.application.query.SubmitterFlowsUseCase
 import dev.wrkflw.domain.port.AuditLog
 import dev.wrkflw.domain.port.Clock
 import dev.wrkflw.domain.port.DecisionRepository
@@ -64,4 +66,5 @@ fun infraModule(
     single<GroupWorkListUseCase> { GroupWorkListService(get()) }
     single<MyTasksUseCase> { MyTasksService(get()) }
     single<FlowStatusUseCase> { FlowStatusService(get(), get(), get()) }
+    single<SubmitterFlowsUseCase> { SubmitterFlowsService(get()) }
 }
