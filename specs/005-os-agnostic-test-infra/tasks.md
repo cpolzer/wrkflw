@@ -61,7 +61,7 @@ start a real `postgres:16-alpine` container (not skipped).
 `container:`/`services:`/DinD keys added.
 
 - [x] T012 [US2] Remove the `Start Docker API proxy (Docker 29.x compat)` step (the `curl … MinAPIVersion …` conditional and `python3 scripts/docker-api-proxy.py &`) from `.github/workflows/ci.yml`, leaving the `Run CI (mise run ci)` step intact. Do NOT add any `container:`, `services:`, or DinD configuration — the `ubuntu-latest` host daemon is used directly (research R7).
-- [ ] T013 [US2] Validate US2: push the branch and confirm the GitHub Actions `CI` workflow passes; verify in the run logs that container-backed tests started a Postgres container and that no proxy step ran.
+- [x] T013 [US2] Validate US2: push the branch and confirm the GitHub Actions `CI` workflow passes; verify in the run logs that container-backed tests started a Postgres container and that no proxy step ran.
 
 **Checkpoint**: Local and CI paths are identical. ✅ SC-004.
 
