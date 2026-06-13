@@ -101,7 +101,7 @@ class SubmitDocumentE2ETest {
         val actor =
             DomainActorContext(
                 actorId = ActorId("author1"),
-                groupIds = setOf(GroupId("authors")),
+                groupIds = setOf(GroupId("initiators")),
             )
 
         val result =
@@ -130,7 +130,7 @@ class SubmitDocumentE2ETest {
         pendingTasks shouldHaveSize 1
         val task = pendingTasks.first()
         task.status shouldBe TaskStatus.PENDING
-        task.candidateGroupId shouldBe GroupId("reviewers")
+        task.candidateGroupId shouldBe GroupId("legal-reviewers")
         task.stateName shouldBe "Submitted"
 
         // Audit trail has FLOW_STARTED + TASK_CREATED

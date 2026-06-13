@@ -122,11 +122,11 @@ class ClaimDecideE2ETest {
             password = postgres.password
         }
 
-    private fun authorActor() = ActorContext(ActorId("author1"), setOf(GroupId("authors")))
+    private fun authorActor() = ActorContext(ActorId("author1"), setOf(GroupId("initiators")))
 
-    private fun reviewerActor(id: String = "reviewer1") = ActorContext(ActorId(id), setOf(GroupId("reviewers")))
+    private fun reviewerActor(id: String = "reviewer1") = ActorContext(ActorId(id), setOf(GroupId("legal-reviewers")))
 
-    private fun seniorReviewerActor() = ActorContext(ActorId("senior1"), setOf(GroupId("senior-reviewers")))
+    private fun seniorReviewerActor() = ActorContext(ActorId("senior1"), setOf(GroupId("legal-reviewers")))
 
     @Test
     fun `claim then approve advances flow to completed`() {
