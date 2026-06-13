@@ -10,7 +10,7 @@ flyway = "10.20.1"
 cloudevents = "3.0.0"
 koin = "4.0.0"
 junit = "5.11.3"
-testcontainers = "1.21.3"
+testcontainers = "2.0.5"
 kotest = "5.9.1"
 slf4j = "2.0.16"
 logback = "1.5.12"
@@ -74,8 +74,8 @@ junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
 # Testcontainers
 testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
-testcontainers-junit5 = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
-testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainers-junit5 = { module = "org.testcontainers:testcontainers-junit-jupiter", version.ref = "testcontainers" }
+testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql", version.ref = "testcontainers" }
 
 # Kotest
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }

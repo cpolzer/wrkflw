@@ -40,17 +40,6 @@ jobs:
           key: uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
           restore-keys: uv-${{ runner.os }}-
 
-      - name: Start Docker API proxy (Docker 29.x compat)
-        run: |
-          MIN=$(curl -s --unix-socket /var/run/docker.sock http://localhost/version | python3 -c "import sys,json; print(json.load(sys.stdin).get('MinAPIVersion','0'))" 2>/dev/null || echo "0")
-          if python3 -c "exit(0 if tuple(int(x) for x in '$MIN'.split('.')) < (1,40) else 1)" 2>/dev/null; then
-            python3 scripts/docker-api-proxy.py &
-            sleep 1
-            echo "Docker proxy started (Docker API min=$MIN < 1.40)"
-          else
-            echo "Docker API min=$MIN >= 1.40, no proxy needed"
-          fi
-
       - name: Run CI (lint + build + docs)
         run: mise run ci
 

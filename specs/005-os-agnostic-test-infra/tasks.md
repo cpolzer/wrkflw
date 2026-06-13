@@ -16,7 +16,7 @@ the existing suite IS the test. "Validation" tasks below run that suite as the a
 
 ## Phase 1: Setup
 
-- [ ] T001 Capture the pre-change baseline for coverage parity (SC-005): run `./gradlew test` once on the current branch state with the proxy running as today, and record the total test count and pass/fail per module (save the number in your working notes; it is the comparison target for T015).
+- [x] T001 Capture the pre-change baseline for coverage parity (SC-005): run `./gradlew test` once on the current branch state with the proxy running as today, and record the total test count and pass/fail per module (save the number in your working notes; it is the comparison target for T015).
 
 ---
 
@@ -25,8 +25,8 @@ the existing suite IS the test. "Validation" tasks below run that suite as the a
 **Purpose**: The Testcontainers 2.x upgrade is the single prerequisite that makes every user story
 possible. Nothing else can be validated until the version + coordinates are in place.
 
-- [ ] T002 Upgrade Testcontainers in `gradle/libs.versions.toml`: set `testcontainers = "2.0.5"`; change the `testcontainers-junit5` module to `org.testcontainers:testcontainers-junit-jupiter`; change the `testcontainers-postgresql` module to `org.testcontainers:testcontainers-postgresql`. Leave the `testcontainers` and `testcontainers-bom` module strings unchanged.
-- [ ] T003 Resolve dependencies to confirm the new coordinates download: run `./gradlew :adapters:persistence-postgres:dependencies --configuration testRuntimeClasspath` (and the same for `:apps:api-service`) and verify `testcontainers-junit-jupiter:2.0.5` and `testcontainers-postgresql:2.0.5` appear with no unresolved-dependency errors.
+- [x] T002 Upgrade Testcontainers in `gradle/libs.versions.toml`: set `testcontainers = "2.0.5"`; change the `testcontainers-junit5` module to `org.testcontainers:testcontainers-junit-jupiter`; change the `testcontainers-postgresql` module to `org.testcontainers:testcontainers-postgresql`. Leave the `testcontainers` and `testcontainers-bom` module strings unchanged.
+- [x] T003 Resolve dependencies to confirm the new coordinates download: run `./gradlew :adapters:persistence-postgres:dependencies --configuration testRuntimeClasspath` (and the same for `:apps:api-service`) and verify `testcontainers-junit-jupiter:2.0.5` and `testcontainers-postgresql:2.0.5` appear with no unresolved-dependency errors.
 
 **Checkpoint**: New Testcontainers artifacts resolve. User-story phases can now proceed.
 
@@ -40,14 +40,14 @@ possible. Nothing else can be validated until the version + coordinates are in p
 **Independent Test**: From a clean shell, `./gradlew build` is green and the container-backed tests
 start a real `postgres:16-alpine` container (not skipped).
 
-- [ ] T004 [P] [US1] Migrate the `PostgreSQLContainer` import to `org.testcontainers.postgresql.PostgreSQLContainer` in `adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/TaskConcurrencyTest.kt` (annotations `org.testcontainers.junit.jupiter.*` stay unchanged).
-- [ ] T005 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt`.
-- [ ] T006 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/MultiStageFlowE2ETest.kt`.
-- [ ] T007 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt`.
-- [ ] T008 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/WorkListAndStatusE2ETest.kt`.
-- [ ] T009 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/PerfSmokeTest.kt`.
-- [ ] T010 [US1] Remove the proxy wiring from `build-logic/src/main/kotlin/testing.gradle.kts`: delete the `proxySocket` / `proxySocketExists` vals and the `if (proxySocketExists) environment("DOCKER_HOST", ...)` block, keeping `useJUnitPlatform()` and `testLogging`.
-- [ ] T011 [US1] Validate US1: from a clean shell (`pkill -f docker-api-proxy || true`; `rm -f /tmp/docker-proxy.sock`; `unset DOCKER_HOST`) run `./gradlew build` and confirm BUILD SUCCESSFUL with all six container-backed tests passing and a `postgres:16-alpine` container observed starting (quickstart §2–3).
+- [x] T004 [P] [US1] Migrate the `PostgreSQLContainer` import to `org.testcontainers.postgresql.PostgreSQLContainer` in `adapters/persistence-postgres/src/test/kotlin/dev/wrkflw/persistence/TaskConcurrencyTest.kt` (annotations `org.testcontainers.junit.jupiter.*` stay unchanged).
+- [x] T005 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/SubmitDocumentE2ETest.kt`.
+- [x] T006 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/MultiStageFlowE2ETest.kt`.
+- [x] T007 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/ClaimDecideE2ETest.kt`.
+- [x] T008 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/WorkListAndStatusE2ETest.kt`.
+- [x] T009 [P] [US1] Migrate the `PostgreSQLContainer` import in `apps/api-service/src/test/kotlin/dev/wrkflw/PerfSmokeTest.kt`.
+- [x] T010 [US1] Remove the proxy wiring from `build-logic/src/main/kotlin/testing.gradle.kts`: delete the `proxySocket` / `proxySocketExists` vals and the `if (proxySocketExists) environment("DOCKER_HOST", ...)` block, keeping `useJUnitPlatform()` and `testLogging`.
+- [x] T011 [US1] Validate US1: from a clean shell (`pkill -f docker-api-proxy || true`; `rm -f /tmp/docker-proxy.sock`; `unset DOCKER_HOST`) run `./gradlew build` and confirm BUILD SUCCESSFUL with all six container-backed tests passing and a `postgres:16-alpine` container observed starting (quickstart §2–3).
 
 **Checkpoint**: MVP delivered — local tests pass with zero manual setup. ✅ SC-001, SC-002.
 
@@ -60,7 +60,7 @@ start a real `postgres:16-alpine` container (not skipped).
 **Independent Test**: The GitHub Actions `CI` workflow is green with the proxy step removed and no
 `container:`/`services:`/DinD keys added.
 
-- [ ] T012 [US2] Remove the `Start Docker API proxy (Docker 29.x compat)` step (the `curl … MinAPIVersion …` conditional and `python3 scripts/docker-api-proxy.py &`) from `.github/workflows/ci.yml`, leaving the `Run CI (mise run ci)` step intact. Do NOT add any `container:`, `services:`, or DinD configuration — the `ubuntu-latest` host daemon is used directly (research R7).
+- [x] T012 [US2] Remove the `Start Docker API proxy (Docker 29.x compat)` step (the `curl … MinAPIVersion …` conditional and `python3 scripts/docker-api-proxy.py &`) from `.github/workflows/ci.yml`, leaving the `Run CI (mise run ci)` step intact. Do NOT add any `container:`, `services:`, or DinD configuration — the `ubuntu-latest` host daemon is used directly (research R7).
 - [ ] T013 [US2] Validate US2: push the branch and confirm the GitHub Actions `CI` workflow passes; verify in the run logs that container-backed tests started a Postgres container and that no proxy step ran.
 
 **Checkpoint**: Local and CI paths are identical. ✅ SC-004.
@@ -74,10 +74,10 @@ no longer references it.
 
 **Independent Test**: Repo-wide grep finds no proxy/socket/host artifacts; the suite still passes.
 
-- [ ] T014 [P] [US3] Delete the proxy script: `git rm scripts/docker-api-proxy.py`.
-- [ ] T015 [P] [US3] Remove the unused Testcontainers test dependencies (`testImplementation(libs.testcontainers)` and `testImplementation(libs.testcontainers.junit5)`) from `adapters/temporal/build.gradle.kts`; keep `libs.temporal.testing` (verified no temporal test imports a Testcontainers type — research R6).
-- [ ] T016 [US3] Amend `.specify/memory/constitution.md`: in **Principle VI** remove the bullet mandating `scripts/docker-api-proxy.py` and reword it to state container-backed tests now run against the host engine directly via Testcontainers' native discovery (no manual pre-step); in **Development Workflow & Quality Gates → Local validation gate** drop the "start `scripts/docker-api-proxy.py`" sentence; bump the version `1.1.0 → 1.2.0` and update the Sync Impact Report header comment accordingly.
-- [ ] T017 [US3] Validate US3 (regression guard, quickstart §4): confirm `scripts/docker-api-proxy.py` no longer exists and `grep -rn "docker-api-proxy\|docker-proxy.sock\|DOCKER_HOST" build-logic .github/workflows .specify/memory` returns nothing.
+- [x] T014 [P] [US3] Delete the proxy script: `git rm scripts/docker-api-proxy.py`.
+- [x] T015 [P] [US3] Remove the unused Testcontainers test dependencies (`testImplementation(libs.testcontainers)` and `testImplementation(libs.testcontainers.junit5)`) from `adapters/temporal/build.gradle.kts`; keep `libs.temporal.testing` (verified no temporal test imports a Testcontainers type — research R6).
+- [x] T016 [US3] Amend `.specify/memory/constitution.md`: in **Principle VI** remove the bullet mandating `scripts/docker-api-proxy.py` and reword it to state container-backed tests now run against the host engine directly via Testcontainers' native discovery (no manual pre-step); in **Development Workflow & Quality Gates → Local validation gate** drop the "start `scripts/docker-api-proxy.py`" sentence; bump the version `1.1.0 → 1.2.0` and update the Sync Impact Report header comment accordingly.
+- [x] T017 [US3] Validate US3 (regression guard, quickstart §4): confirm `scripts/docker-api-proxy.py` no longer exists and `grep -rn "docker-api-proxy\|docker-proxy.sock\|DOCKER_HOST" build-logic .github/workflows .specify/memory` returns nothing.
 
 **Checkpoint**: Zero workaround artifacts remain. ✅ SC-003.
 
@@ -85,9 +85,9 @@ no longer references it.
 
 ## Phase 6: Polish & Validation
 
-- [ ] T018 Coverage parity (SC-005): re-run `./gradlew test`, total the test counts (quickstart §5), and confirm the total matches the T001 baseline — no tests lost or silently skipped.
-- [ ] T019 Full local/CI parity: run `mise run ci` end-to-end from a clean shell and confirm it is green (quickstart §6).
-- [ ] T020 [P] Update the project memory file `/home/chris/.claude/projects/-home-chris-develop-wrkflw/memory/feedback-testcontainers-docker29.md` to record that the proxy approach is retired in favor of Testcontainers 2.0.5 native negotiation (or delete it if fully obsolete), and update `MEMORY.md` accordingly.
+- [x] T018 Coverage parity (SC-005): re-run `./gradlew test`, total the test counts (quickstart §5), and confirm the total matches the T001 baseline — no tests lost or silently skipped.
+- [x] T019 Full local/CI parity: run `mise run ci` end-to-end from a clean shell and confirm it is green (quickstart §6).
+- [x] T020 [P] Update the project memory file `/home/chris/.claude/projects/-home-chris-develop-wrkflw/memory/feedback-testcontainers-docker29.md` to record that the proxy approach is retired in favor of Testcontainers 2.0.5 native negotiation (or delete it if fully obsolete), and update `MEMORY.md` accordingly.
 
 ---
 
