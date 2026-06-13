@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "ad8344561f0f",
+  "strategy": "manual-commit",
+  "branch": "005-os-agnostic-test-infra",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "CLAUDE.md",
+    "specs/005-os-agnostic-test-infra/plan.md",
+    "specs/005-os-agnostic-test-infra/quickstart.md",
+    "specs/005-os-agnostic-test-infra/research.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/ad/8344561f0f/0/metadata.json",
+      "transcript": "/ad/8344561f0f/0/full.jsonl",
+      "content_hash": "/ad/8344561f0f/0/content_hash.txt",
+      "prompt": "/ad/8344561f0f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 2581,
+    "cache_creation_tokens": 31840,
+    "cache_read_tokens": 1765296,
+    "output_tokens": 18088,
+    "api_call_count": 18
+  }
+}
