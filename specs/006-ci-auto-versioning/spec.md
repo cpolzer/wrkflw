@@ -49,8 +49,7 @@ A maintainer reviews the auto-generated release PR (which contains the bumped ve
 
 1. **Given** a release PR is merged, **When** CI completes, **Then** a Git tag (e.g., `v1.2.3`) and a corresponding GitHub Release exist, and the release body contains the generated changelog.
 2. **Given** a release PR is merged, **When** CI completes, **Then** Docker images for `api-service`, `worker-service`, and the frontend are built and tagged with the exact version (`1.2.3`) and `latest`, each passes static vulnerability scanning with no critical or high-severity findings, and skopeo confirms the version label embedded in each image matches `1.2.3`. No push to a remote registry occurs.
-3. **Given** all three Docker images have been built and tagged in CI, **When** an operator pulls the versioned images and starts the stack, **Then** the application runs at exactly the version stated in the image tag.
-4. **Given** a release PR is merged, **When** a developer pulls the versioned Docker image, **Then** the image runs the application at exactly the version stated in the tag.
+3. **Given** a release has completed, **When** a user pulls and runs a versioned image, **Then** the application runs at exactly the version stated in the image tag.
 
 ---
 
@@ -125,9 +124,9 @@ A developer or stakeholder wants to understand what changed between two versions
 
 - Conventional Commits formatting on all PRs is already enforced or will be enforced before this feature is activated (see spec 002 pre-commit hooks).
 - The project uses a monorepo structure where all services and the frontend are released together under a single shared version; independent per-service versioning is out of scope.
-- Docker images are published to GitHub Container Registry (`ghcr.io`) using the repository's built-in `GITHUB_TOKEN`; no external registry credentials are required.
+- Docker images are built and CVE-scanned in CI only; no registry push occurs in this phase. The pipeline is structured so that replacing the mock step with a real `docker push` to `ghcr.io` (or any OCI-compatible registry) requires only configuration changes, not structural rework. No external registry credentials are required.
 - All three services (api-service, worker-service, frontend) are containerized to a uniform Docker image format. This makes them deployable via the same orchestration tooling and is an explicit preparation step for a future Kubernetes-based deployment.
-- Docker images are built and smoke-verified in CI but not pushed to any remote registry. The pipeline is structured so that replacing the mock push step with a real `docker push` to `ghcr.io` (or any OCI-compatible registry) requires only configuration changes, not structural rework.
+- Docker images are built and CVE-scanned in CI; they are not pushed to any remote registry in this phase.
 - The version string is injected into backend services at build time via Gradle project properties and into the frontend via the build tool's environment variable mechanism.
 - The CI runner for release publication requires permission to create GitHub Releases and tags, but no container registry credentials are needed in this phase.
 - The local `docker-compose.yml` is developer-focused and does not reference CI-built images; it is out of scope for this feature.

@@ -35,6 +35,7 @@
 - [ ] T007 Create `ui/Dockerfile` — multi-stage: Node 22 Alpine builder with `ARG VERSION`, `ENV VITE_APP_VERSION=$VERSION`, `npm ci`, `npm run build`; then Nginx Alpine serving `dist/` with OCI labels per `contracts/oci-image-labels.md` (`.title="ui"`)
 - [ ] T008 Create `release-please-config.json` at repository root per `contracts/release-please-config.md`: `release-type: simple`, root package `.`, `extra-files` updating `gradle.properties` (generic regex `version=.*` → `version=${version}`) and `ui/package.json` (json `$.version`), `changelog-path: CHANGELOG.md`
 - [ ] T009 Create `.release-please-manifest.json` at repository root with initial state `{ ".": "0.1.0" }` to align with the version set in T001
+- [ ] T009b [P] Update `ui/package.json` `"version"` field from `"0.0.0"` to `"0.1.0"` to match the initial manifest state in T009; prevents a version mismatch on the first release PR
 
 **Checkpoint**: Run `docker build --build-arg VERSION=0.1.0-test -t wrkflw/api-service:test -f apps/api-service/Dockerfile .` and `skopeo inspect docker-daemon:wrkflw/api-service:test | jq '.Labels["org.opencontainers.image.version"]'` — should return `"0.1.0-test"`. Repeat for worker-service and ui.
 
@@ -50,7 +51,7 @@
 
 - [ ] T010 [US1] Create `.github/workflows/release-please.yml` triggered on `push: branches: [main]` using `googleapis/release-please-action@v4` with `config-file: release-please-config.json` and `manifest-file: .release-please-manifest.json`
 - [ ] T011 [US1] Add `permissions: contents: write, pull-requests: write` to the `release-please` job in `.github/workflows/release-please.yml`
-- [ ] T012 [US1] Verify the workflow does not conflict with the existing `ci.yml` concurrency group — confirm the `release-please.yml` job has a distinct concurrency key (e.g., `release-please-${{ github.ref }}`)
+- [ ] T012 [US1] Add `concurrency: group: release-please-${{ github.ref }}, cancel-in-progress: false` to `.github/workflows/release-please.yml` so it never shares or cancels with the existing `ci-${{ github.head_ref || github.ref_name }}` group in `ci.yml`
 
 **Checkpoint**: After merging T010–T012, push a `fix:` commit to `main`. Within 5 minutes a Release PR must appear proposing version `0.1.1` with a CHANGELOG entry. No Release PR appears for a `chore:` commit.
 
@@ -64,12 +65,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Create `.github/workflows/publish.yml` triggered on `on: release: types: [published]`; add top-level `env: VERSION: ${{ github.event.release.tag_name }}` and a strip-`v` step (`VERSION_BARE: ${{ env.VERSION[1:] }}` via `run: echo "VERSION_BARE=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV`)
+- [ ] T013 [US2] Create `.github/workflows/publish.yml` triggered on `on: release: types: [published]`; add job-level `permissions: contents: read, pull-requests: read, security-events: write`; add an early step `run: echo "VERSION_BARE=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV` to derive the bare version (e.g., `1.2.0` from tag `v1.2.0`) — note: `${{ env.X[1:] }}` string-slice syntax is NOT valid in GitHub Actions expressions
 - [ ] T014 [US2] Add a `build-and-verify` job with `strategy: matrix` covering three entries: `{service: api-service, dockerfile: apps/api-service/Dockerfile}`, `{service: worker-service, dockerfile: apps/worker-service/Dockerfile}`, `{service: ui, dockerfile: ui/Dockerfile}`; set `fail-fast: false` so a single image failure does not cancel sibling builds
-- [ ] T015 [US2] Add `docker build` step to `publish.yml` matrix job: `docker build --build-arg VERSION=${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:latest -f ${{ matrix.dockerfile }} .`
+- [ ] T015 [US2] Add `docker build` step to `publish.yml` matrix job: `docker build --build-arg VERSION=${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:latest -f ${{ matrix.dockerfile }} .` — `docker build` overwrites the local tag on retry, making this step inherently idempotent if the workflow is re-run after a partial failure
 - [ ] T016 [P] [US2] Add `aquasecurity/trivy-action` step after build in `publish.yml`: `image-ref: wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }}`, `exit-code: 1`, `severity: CRITICAL,HIGH`, `format: sarif`, `output: trivy-${{ matrix.service }}.sarif`
 - [ ] T017 [P] [US2] Add skopeo label verification step after Trivy in `publish.yml`: `sudo apt-get install -y skopeo` then `skopeo inspect docker-daemon:wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} | jq -e --arg v "${{ env.VERSION_BARE }}" '.Labels["org.opencontainers.image.version"] == $v'` — non-zero exit fails the job
-- [ ] T018 [US2] Add `github/codeql-action/upload-sarif@v3` step after Trivy in `publish.yml` to upload `trivy-${{ matrix.service }}.sarif` to GitHub Security tab; add `permissions: security-events: write` to the job
+- [ ] T018 [US2] Add `github/codeql-action/upload-sarif@v3` step after Trivy in `publish.yml` to upload `trivy-${{ matrix.service }}.sarif` to GitHub Security tab (`security-events: write` permission already declared in T013)
 
 **Checkpoint**: Trigger manually via a test release tag. Confirm all three matrix entries in `publish.yml` pass the build → Trivy → skopeo → SARIF upload sequence.
 
@@ -121,8 +122,8 @@
 ### Within Each Phase
 
 - T002 and T003 are parallel (different files)
-- T005, T006, T007 are parallel (different files)
-- T016 and T017 are parallel within each matrix entry (different CI steps, same job)
+- T005, T006, T007, T009b are parallel (different files)
+- T016 and T017 are marked [P] because they are independent across matrix entries (each service runs its own Trivy + skopeo pair concurrently); within a single matrix entry's job, steps are always sequential
 - T019 and T020 are parallel (different files)
 
 ---
@@ -132,19 +133,21 @@
 ### Phase 2 — Run simultaneously
 
 ```
-Task T005: Add OCI labels to apps/api-service/Dockerfile
-Task T006: Add OCI labels to apps/worker-service/Dockerfile
-Task T007: Create ui/Dockerfile
-Task T008: Create release-please-config.json
-Task T009: Create .release-please-manifest.json
+Task T005:   Add OCI labels to apps/api-service/Dockerfile
+Task T006:   Add OCI labels to apps/worker-service/Dockerfile
+Task T007:   Create ui/Dockerfile
+Task T008:   Create release-please-config.json
+Task T009:   Create .release-please-manifest.json
+Task T009b:  Update ui/package.json version to 0.1.0
 ```
 
 ### Phase 4 — Within publish.yml per matrix entry
 
 ```
-# After T015 (docker build) completes for each service:
-Task T016: Trivy scan  ─┐
-Task T017: skopeo verify ┘  (parallel, different commands, same image)
+# Matrix runs three service jobs concurrently; within each job steps are sequential:
+api-service job:    build → T016 Trivy → T017 skopeo → T018 SARIF
+worker-service job: build → T016 Trivy → T017 skopeo → T018 SARIF   ← all three run in parallel
+ui job:             build → T016 Trivy → T017 skopeo → T018 SARIF
 ```
 
 ---
