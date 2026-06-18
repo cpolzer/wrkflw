@@ -48,6 +48,9 @@ coverage/
 */build/
 
 
+# Vite
+ui/.vite/
+
 # mkdocs
 
 site/
