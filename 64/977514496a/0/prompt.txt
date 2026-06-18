@@ -1,0 +1,13 @@
+/speckit-clarify what is assumed now as architecture for target deployment?
+
+---
+
+b  - also plan in that this is documented as apreparation for kubernetes based deployment
+
+---
+
+only mock the ghcr deployment please - we want to avoid costs. build the image - check it as well, but do not push it to somewhere
+
+---
+
+our local docker compose is developer focused, it will not use docker images from CI
