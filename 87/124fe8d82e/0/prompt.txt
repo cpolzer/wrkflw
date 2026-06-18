@@ -1,0 +1,9 @@
+is the main branch of our repo protected?
+
+---
+
+plus i need  1 approval from me
+
+---
+
+our mr pipeline failed?
