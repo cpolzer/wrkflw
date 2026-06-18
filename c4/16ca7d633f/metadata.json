@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "c416ca7d633f",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "docs/explanation/agentic/spec-kit.md",
+    "docs/how-to/add-rest-endpoint.md",
+    "docs/reference/rest-api.md",
+    "docs/specs/index.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/c4/16ca7d633f/0/metadata.json",
+      "transcript": "/c4/16ca7d633f/0/full.jsonl",
+      "content_hash": "/c4/16ca7d633f/0/content_hash.txt",
+      "prompt": "/c4/16ca7d633f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 12,
+    "cache_creation_tokens": 5987,
+    "cache_read_tokens": 745981,
+    "output_tokens": 2502,
+    "api_call_count": 10
+  }
+}
