@@ -69,6 +69,11 @@ sourceSets {
     }
 }
 
+// Schema must exist before jOOQ can introspect it.
+tasks.named("generateJooq") {
+    dependsOn(tasks.named("flywayMigrate"))
+}
+
 dependencies {
     jooqGenerator(libs.postgresql)
     implementation(project(":domain"))

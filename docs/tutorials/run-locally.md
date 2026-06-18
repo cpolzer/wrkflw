@@ -19,7 +19,7 @@ This tutorial gets you from a clean checkout to a running flow you can drive by 
 ## 2. Install pinned tools
 
 ```bash
-mise install         # installs temurin-21 + python 3.12, creates .venv
+mise install         # installs temurin-21 + uv (for the docs site)
 ```
 
 This reads `mise.toml` and installs exactly the JDK and Python versions the project requires.
@@ -64,15 +64,15 @@ Identity is supplied via headers in the first deliverable (`X-Actor-Id` / `X-Act
 # Submit (caller must be in the initiator group)
 curl -s -X POST localhost:8080/api/v1/flows \
   -H 'Content-Type: application/json' \
-  -H 'X-Actor-Id: alice' -H 'X-Actor-Groups: authors' \
+  -H 'X-Actor-Id: alice' -H 'X-Actor-Groups: initiators' \
   -d '{"definitionKey":"document-approval","documentRef":"doc-123"}'
 
 # Reviewer claims and approves
 curl -s -X POST localhost:8080/api/v1/tasks/$TASK_ID/claim \
-  -H 'X-Actor-Id: bob' -H 'X-Actor-Groups: reviewers'
+  -H 'X-Actor-Id: bob' -H 'X-Actor-Groups: legal-reviewers'
 curl -s -X POST localhost:8080/api/v1/tasks/$TASK_ID/decision \
   -H 'Content-Type: application/json' \
-  -H 'X-Actor-Id: bob' -H 'X-Actor-Groups: reviewers' \
+  -H 'X-Actor-Id: bob' -H 'X-Actor-Groups: legal-reviewers' \
   -d '{"outcome":"APPROVE","comment":"looks good"}'
 
 # Inspect status + history
@@ -81,7 +81,7 @@ curl -s localhost:8080/api/v1/flows/$FLOW_ID
 
 ## What you just exercised
 
-- **US1** submit → flow `RUNNING`, first task for `reviewers`, `FLOW_STARTED` in history.
+- **US1** submit → flow `RUNNING`, first task for `legal-reviewers`, `FLOW_STARTED` in history.
 - **US2** claim → approve → task `COMPLETED`, flow advances, decision recorded.
 - Audit history and (US5) CloudEvents emitted via the outbox.
 

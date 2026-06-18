@@ -13,6 +13,4 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
 
     testImplementation(libs.temporal.testing)
-    testImplementation(libs.testcontainers)
-    testImplementation(libs.testcontainers.junit5)
 }

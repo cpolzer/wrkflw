@@ -2,6 +2,8 @@ package dev.wrkflw.rest
 
 import dev.wrkflw.application.command.SubmitDocumentResult
 import dev.wrkflw.application.command.SubmitDocumentUseCase
+import dev.wrkflw.application.query.SubmitterFlowsResult
+import dev.wrkflw.application.query.SubmitterFlowsUseCase
 import dev.wrkflw.domain.flow.FlowInstance
 import dev.wrkflw.domain.flow.FlowStatus
 import dev.wrkflw.domain.identity.ActorId
@@ -49,6 +51,7 @@ class SubmitFlowContractTest {
     private fun withApp(
         useCase: SubmitDocumentUseCase,
         taskRepo: TaskRepository = noOpTaskRepo(),
+        submitterFlows: SubmitterFlowsUseCase = SubmitterFlowsUseCase { SubmitterFlowsResult(emptyList()) },
         block: suspend ApplicationTestBuilder.(HttpClient) -> Unit,
     ) = testApplication {
         application {
@@ -59,7 +62,7 @@ class SubmitFlowContractTest {
                 }
             }
             routing {
-                route("/api/v1") { flowRoutes(useCase, taskRepo) }
+                route("/api/v1") { flowRoutes(useCase, taskRepo, submitterFlows) }
             }
         }
         val client =

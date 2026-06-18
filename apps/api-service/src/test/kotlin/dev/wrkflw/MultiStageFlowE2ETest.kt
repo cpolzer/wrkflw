@@ -37,9 +37,9 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.postgresql.ds.PGSimpleDataSource
-import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
+import org.testcontainers.postgresql.PostgreSQLContainer
 
 @Testcontainers
 class MultiStageFlowE2ETest {
@@ -117,11 +117,11 @@ class MultiStageFlowE2ETest {
             password = postgres.password
         }
 
-    private fun authorActor() = ActorContext(ActorId("author1"), setOf(GroupId("authors")))
+    private fun authorActor() = ActorContext(ActorId("author1"), setOf(GroupId("initiators")))
 
-    private fun reviewerActor() = ActorContext(ActorId("reviewer1"), setOf(GroupId("reviewers")))
+    private fun reviewerActor() = ActorContext(ActorId("reviewer1"), setOf(GroupId("legal-reviewers")))
 
-    private fun seniorReviewerActor() = ActorContext(ActorId("senior1"), setOf(GroupId("senior-reviewers")))
+    private fun seniorReviewerActor() = ActorContext(ActorId("senior1"), setOf(GroupId("legal-reviewers")))
 
     /**
      * Full two-stage happy path:

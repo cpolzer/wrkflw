@@ -1,14 +1,16 @@
 <!--
 Sync Impact Report
 ==================
-Version change: 1.0.1 → 1.1.0
-Amendment: added Principle VI — Local Validation Before Push. This mandates that
-`./gradlew build` (lint + compile + test) MUST pass locally before any `git push`,
-that the Docker API proxy must be running for integration tests to work locally on
-Docker 29.x+, and that CI is not a substitute for local validation. This closes the
-gap exposed when integration test failures first appeared in CI rather than locally.
+Version change: 1.1.0 → 1.2.0
+Amendment: removed the Docker API proxy mandate from Principle VI and the Local
+validation gate (feature 005-os-agnostic-test-infra). Testcontainers was upgraded to
+2.0.5, whose native Docker Engine API version negotiation works with Docker 29.x+
+directly, making scripts/docker-api-proxy.py obsolete. The requirement to start the
+proxy before running tests is removed; container-backed tests now connect to the host
+container engine directly with no manual pre-step.
 
 Prior changes:
+  1.0.1 → 1.1.0: added Principle VI — Local Validation Before Push (including proxy mandate).
   1.0.0 → 1.0.1: clarified and strengthened the REST/HTTP constraint (Ktor mandate).
   (template) → 1.0.0: initial adoption.
 
@@ -18,16 +20,15 @@ Principles defined:
   III.  Auditability & Traceability
   IV.   Orchestration Behind a Port
   V.    Explicit Contracts & Consistency
-  VI.   Local Validation Before Push (NEW)
+  VI.   Local Validation Before Push
 
-Added sections: Principle VI (new).
-Removed sections: none.
+Added sections: none.
+Removed sections: none (proxy mandate removed from Principle VI body and Quality Gates).
 
 Templates requiring updates:
   ✅ .specify/templates/plan-template.md — Constitution Check gate still aligns; no change.
   ✅ .specify/templates/spec-template.md — no change required; technology-agnostic spec.
-  ⚠  .specify/templates/tasks-template.md — tasks template still marks tests as OPTIONAL.
-     Principle II already OVERRIDES this. No structural change needed; note preserved.
+  ✅ .specify/templates/tasks-template.md — no change required.
 
 Follow-up TODOs: none.
 -->
@@ -123,10 +124,9 @@ is pushed to a shared branch.
 
 - `./gradlew build` (which runs lint, compilation, and all tests) MUST pass locally before
   any `git push`. Pushing code that has not been locally verified is prohibited.
-- Integration tests depend on containerized services (Postgres, Temporal) via Testcontainers.
-  On Docker 29.x+ hosts, `scripts/docker-api-proxy.py` MUST be running locally before
-  executing tests; its absence will cause Testcontainers to fail with an API version error.
-  Start it with: `python3 scripts/docker-api-proxy.py &`
+- Integration tests depend on containerized services (Postgres) via Testcontainers. The test
+  framework handles container engine discovery and Docker API version negotiation natively —
+  no manual pre-step or helper script is required before running tests.
 - CI failures that would have been caught locally MUST be treated as process violations, not
   just build breaks. The root fix is enforcing local validation, not iterating on CI.
 - `mise run ci` reproduces the exact sequence CI executes. Running it locally before push
@@ -169,8 +169,8 @@ technology is justified, provided the Core Principles continue to hold.
   design proceeds, and re-check after design. Violations MUST be recorded with justification in
   the plan's Complexity Tracking, or the design MUST change.
 - **Local validation gate**: Per Principle VI, `./gradlew build` MUST pass locally before
-  pushing. On Docker 29.x+ hosts, start `scripts/docker-api-proxy.py` before running tests.
-  Use `mise run ci` for full local/CI parity.
+  pushing. Container-backed tests connect to the host container engine directly via
+  Testcontainers — no manual pre-step required. Use `mise run ci` for full local/CI parity.
 - **Definition of done**: All tests (unit and integration) pass locally; the inward-only
   dependency rule is not violated; new state-changing behavior has corresponding audit records
   and, where applicable, integration events.
@@ -189,4 +189,4 @@ technology is justified, provided the Core Principles continue to hold.
 - **Compliance review**: Plans and pull requests are checked against the Core Principles.
   Deviations require explicit, recorded justification; unjustified deviations block merge.
 
-**Version**: 1.1.0 | **Ratified**: 2026-06-09 | **Last Amended**: 2026-06-10
+**Version**: 1.2.0 | **Ratified**: 2026-06-09 | **Last Amended**: 2026-06-13

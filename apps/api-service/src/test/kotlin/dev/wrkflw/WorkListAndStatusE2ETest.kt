@@ -39,9 +39,9 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.postgresql.ds.PGSimpleDataSource
-import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
+import org.testcontainers.postgresql.PostgreSQLContainer
 
 @Testcontainers
 class WorkListAndStatusE2ETest {
@@ -116,11 +116,13 @@ class WorkListAndStatusE2ETest {
             password = postgres.password
         }
 
-    private fun authorActor() = ActorContext(ActorId("author1"), setOf(GroupId("authors")))
+    private fun authorActor() = ActorContext(ActorId("author1"), setOf(GroupId("initiators")))
 
-    private fun reviewerActor() = ActorContext(ActorId("reviewer1"), setOf(GroupId("reviewers")))
+    private fun reviewerActor() = ActorContext(ActorId("reviewer1"), setOf(GroupId("legal-reviewers")))
 
-    private fun seniorActor() = ActorContext(ActorId("senior1"), setOf(GroupId("senior-reviewers")))
+    private fun seniorActor() = ActorContext(ActorId("senior1"), setOf(GroupId("legal-reviewers")))
+
+    private fun unrelatedActor() = ActorContext(ActorId("unrelated1"), setOf(GroupId("unrelated-group")))
 
     @Test
     fun `group worklist returns only pending tasks for the caller's group`() {
@@ -136,10 +138,10 @@ class WorkListAndStatusE2ETest {
         val reviewerResult = runBlocking { groupWorkList.execute(GroupWorkListQuery(reviewerActor())) }
         reviewerResult.tasks.size shouldBe 2
         reviewerResult.tasks.all { it.status == TaskStatus.PENDING } shouldBe true
-        reviewerResult.tasks.all { it.candidateGroupId.value == "reviewers" } shouldBe true
+        reviewerResult.tasks.all { it.candidateGroupId.value == "legal-reviewers" } shouldBe true
 
-        val seniorResult = runBlocking { groupWorkList.execute(GroupWorkListQuery(seniorActor())) }
-        seniorResult.tasks shouldHaveSize 0
+        val unrelatedResult = runBlocking { groupWorkList.execute(GroupWorkListQuery(unrelatedActor())) }
+        unrelatedResult.tasks shouldHaveSize 0
     }
 
     @Test

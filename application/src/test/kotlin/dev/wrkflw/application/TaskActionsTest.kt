@@ -165,6 +165,8 @@ class TaskActionsTest {
         object : FlowInstanceRepository {
             override suspend fun findById(id: FlowInstanceId) = instanceStore.takeIf { it.id == id }
 
+            override suspend fun findBySubmitterId(submitterId: String): List<FlowInstance> = emptyList()
+
             override suspend fun save(instance: FlowInstance) {
                 instanceStore = instance
             }
