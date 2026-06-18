@@ -6,6 +6,17 @@
 
 **Status**: Draft
 
+## Clarifications
+
+### Session 2026-06-19
+
+- Q: What is the deployment target for the frontend? → A: Docker image built and verified in CI (consistent with backend services), as preparation for Kubernetes-based deployment. Registry push is mocked to avoid costs.
+- Q: Are Docker images pushed to a registry as part of the release? → A: No — images are built, scanned with a static image analysis tool (e.g., Trivy), and structurally verified in CI but not pushed to any remote registry.
+- Q: How should built images be verified? → A: Static image scanning (e.g., Trivy/Grype) — scans the image filesystem and dependencies for known CVEs without running the container. No runtime smoke-start required.
+- Q: Should `docker-compose.yml` be updated with versioned image tags on release? → A: No — the local `docker-compose.yml` is developer-focused and does not reference CI-built images. Version pinning of compose files is out of scope.
+
+---
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Automated Version Bump After Merge (Priority: P1)
@@ -37,8 +48,8 @@ A maintainer reviews the auto-generated release PR (which contains the bumped ve
 **Acceptance Scenarios**:
 
 1. **Given** a release PR is merged, **When** CI completes, **Then** a Git tag (e.g., `v1.2.3`) and a corresponding GitHub Release exist, and the release body contains the generated changelog.
-2. **Given** a release PR is merged, **When** CI completes, **Then** Docker images for `api-service` and `worker-service` are pushed to the container registry, tagged with both the exact version (`1.2.3`) and `latest`.
-3. **Given** a release PR is merged, **When** CI completes, **Then** the frontend production build is produced and attached to the GitHub Release as a downloadable artifact.
+2. **Given** a release PR is merged, **When** CI completes, **Then** Docker images for `api-service`, `worker-service`, and the frontend are built and tagged with the exact version (`1.2.3`) and `latest`, and each image passes static vulnerability scanning with no critical or high-severity findings. No push to a remote registry occurs.
+3. **Given** all three Docker images have been built and tagged in CI, **When** an operator pulls the versioned images and starts the stack, **Then** the application runs at exactly the version stated in the image tag.
 4. **Given** a release PR is merged, **When** a developer pulls the versioned Docker image, **Then** the image runs the application at exactly the version stated in the tag.
 
 ---
@@ -61,7 +72,7 @@ A developer or stakeholder wants to understand what changed between two versions
 ### Edge Cases
 
 - What happens when the release PR is closed without merging? The bot re-opens or recreates it on the next conventional commit merge.
-- What happens if a Docker image build fails after the release PR is merged? The Git tag and GitHub Release are already created; the pipeline must fail visibly and not silently produce an untagged image.
+- What happens if a Docker image build or smoke-verification fails after the release PR is merged? The Git tag and GitHub Release are already created; the pipeline must fail visibly. The image build step must be re-runnable (idempotent) so it can be retried without creating a duplicate release.
 - What happens if no conventional commits have been merged since the last release? No release PR is opened; the state is stable.
 - What happens when two developers merge PRs simultaneously before the release PR is processed? The accumulated changes are consolidated into a single release PR with the highest applicable version bump.
 
@@ -75,8 +86,9 @@ A developer or stakeholder wants to understand what changed between two versions
 - **FR-002**: The system MUST automatically open a pull request (release PR) proposing the new version number and an updated changelog whenever a version-triggering commit is detected.
 - **FR-003**: The release PR MUST display the human-readable changelog grouped by commit type (`feat`, `fix`, breaking changes) for all unreleased commits.
 - **FR-004**: When the release PR is merged, the system MUST create a Git tag and a GitHub Release using the new version number.
-- **FR-005**: When the release PR is merged, the system MUST build and push Docker images for `api-service` and `worker-service`, each tagged with the exact version string and `latest`.
-- **FR-006**: When the release PR is merged, the system MUST produce a production build of the frontend and attach it to the GitHub Release as a downloadable archive.
+- **FR-005**: When the release PR is merged, the system MUST build Docker images for `api-service` and `worker-service`, tag each with the exact version string and `latest`, and pass each image through static vulnerability scanning. Registry push is intentionally deferred (mocked) to avoid costs.
+- **FR-006**: When the release PR is merged, the system MUST build a Docker image for the frontend, tag it with the exact version string and `latest`, and pass it through static vulnerability scanning, consistent with the backend service images. Registry push is intentionally deferred (mocked) to avoid costs.
+- **FR-011**: Static image scanning MUST report any critical or high-severity CVEs found in a built image as a pipeline failure, blocking the release until resolved.
 - **FR-007**: The entire product MUST share a single version number; all deployment artifacts published in the same release carry the same version tag.
 - **FR-008**: Commits that do not trigger a version change (`chore:`, `docs:`, `ci:`, `test:`, `refactor:`) MUST NOT cause a release PR to be opened.
 - **FR-009**: The versioning pipeline MUST be fully automated and require no manual version editing in any build file.
@@ -87,8 +99,9 @@ A developer or stakeholder wants to understand what changed between two versions
 - **Release PR**: An automatically generated pull request that proposes a version bump and changelog update; serves as the human review gate before publication.
 - **Semantic Version**: A three-part version number (`MAJOR.MINOR.PATCH`) derived from conventional commit types since the last release.
 - **Changelog**: A structured, human-readable record of changes per release, generated from commit messages and stored in the repository.
-- **Deployment Artifact**: A versioned, publishable output of the build — Docker image (backend services) or static archive (frontend) — tagged with the release version.
+- **Deployment Artifact**: A versioned Docker image built and verified in CI — one each for `api-service`, `worker-service`, and the frontend — all tagged with the same release version. The uniform image format is a deliberate preparation for Kubernetes-based deployment. Registry push is mocked in the current implementation to avoid costs; the pipeline structure is ready for a real push when a registry is provisioned.
 - **Git Tag**: A repository marker (e.g., `v1.2.3`) created at the commit corresponding to the merged release PR, providing a permanent reference to the released state.
+- **Static Image Scanner**: A tool (e.g., Trivy, Grype) that analyses a built Docker image's filesystem and package manifests for known CVEs without executing the container. Used as the verification gate before a release is considered complete.
 
 ---
 
@@ -98,7 +111,8 @@ A developer or stakeholder wants to understand what changed between two versions
 
 - **SC-001**: A version bump PR is opened within 5 minutes of a conventional-commit PR being merged to `main`, with no manual steps required.
 - **SC-002**: 100% of merges to `main` that contain version-triggering commits result in a release PR; 0% of non-triggering merges do.
-- **SC-003**: All three deployment artifacts (api-service image, worker-service image, frontend archive) are produced and published within 15 minutes of the release PR being merged.
+- **SC-003**: All three Docker images (api-service, worker-service, frontend) are built, tagged, and statically scanned within 15 minutes of the release PR being merged. No registry push occurs in this phase.
+- **SC-006**: Static image scanning produces a machine-readable vulnerability report for every release; zero critical or high-severity CVEs are present in any published image.
 - **SC-004**: The changelog attached to every GitHub Release contains all `feat:` and `fix:` commits since the previous release and at least one entry for every breaking change.
 - **SC-005**: A developer can reproduce a previously released artifact by checking out the corresponding Git tag and running the standard build, with no version-related manual configuration.
 
@@ -109,7 +123,9 @@ A developer or stakeholder wants to understand what changed between two versions
 - Conventional Commits formatting on all PRs is already enforced or will be enforced before this feature is activated (see spec 002 pre-commit hooks).
 - The project uses a monorepo structure where all services and the frontend are released together under a single shared version; independent per-service versioning is out of scope.
 - Docker images are published to GitHub Container Registry (`ghcr.io`) using the repository's built-in `GITHUB_TOKEN`; no external registry credentials are required.
-- The frontend is shipped as a static production bundle attached to the GitHub Release, not as a standalone Docker image (though adding a frontend Docker image is a straightforward future extension).
+- All three services (api-service, worker-service, frontend) are containerized to a uniform Docker image format. This makes them deployable via the same orchestration tooling and is an explicit preparation step for a future Kubernetes-based deployment.
+- Docker images are built and smoke-verified in CI but not pushed to any remote registry. The pipeline is structured so that replacing the mock push step with a real `docker push` to `ghcr.io` (or any OCI-compatible registry) requires only configuration changes, not structural rework.
 - The version string is injected into backend services at build time via Gradle project properties and into the frontend via the build tool's environment variable mechanism.
-- The CI runner for release publication has permission to push to `ghcr.io` and to create GitHub Releases and tags.
+- The CI runner for release publication requires permission to create GitHub Releases and tags, but no container registry credentials are needed in this phase.
+- The local `docker-compose.yml` is developer-focused and does not reference CI-built images; it is out of scope for this feature.
 - Only the `main` branch triggers versioning; feature branches and draft PRs do not.
