@@ -1,0 +1,5 @@
+for the Image verification method  -> skopeo?
+
+---
+
+yes, add it
