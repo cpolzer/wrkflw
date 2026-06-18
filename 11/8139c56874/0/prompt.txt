@@ -1,0 +1,5 @@
+can we then please check why our gitlab pages deployment is not working? GH cli should be available if needed
+
+---
+
+are we not deploying via actions?
