@@ -33,7 +33,7 @@ model TaskSummary {
   stateName: string;
   candidateGroupId: string;
   status: TaskRunStatus;
-  ownerId: string | null;
+  ownerId?: string | null;
 }
 
 model FlowStatus {

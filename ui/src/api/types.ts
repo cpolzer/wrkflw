@@ -184,7 +184,7 @@ export interface components {
             stateName: string;
             candidateGroupId: string;
             status: components["schemas"]["TaskRunStatus"];
-            ownerId: string | null;
+            ownerId?: string | null;
         };
     };
     responses: never;

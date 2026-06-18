@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="flow in richFlows" :key="flow.flowId">
+          <tr v-for="flow in submittedFlows" :key="flow.flowId">
             <td>{{ flow.definitionKey ?? '—' }}</td>
             <td>
               <FlowStatusBadge :state="flow.currentState ?? 'PENDING_REVIEW'" />
@@ -73,12 +73,9 @@ import { useFlows } from '@/composables/useFlows'
 import { useAuthStore } from '@/stores/auth'
 import { AVAILABLE_DEFINITIONS } from '@/api/definitions'
 import FlowStatusBadge from '@/components/FlowStatusBadge.vue'
-import type { RichFlowStatus } from '@/api/models'
-
 const { submittedFlows, isLoading, error, fetchSubmittedFlows } = useFlows()
 const auth = useAuthStore()
 
-const richFlows = computed(() => submittedFlows.value as RichFlowStatus[])
 const firstDefinition = computed(() => AVAILABLE_DEFINITIONS[0])
 const canSubmit = computed(
   () => !!firstDefinition.value && auth.isInGroup(firstDefinition.value.initiatorGroup),

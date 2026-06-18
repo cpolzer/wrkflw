@@ -308,7 +308,6 @@ components:
         - stateName
         - candidateGroupId
         - status
-        - ownerId
       properties:
         taskId:
           type: string
