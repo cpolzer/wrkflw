@@ -12,7 +12,7 @@
 
 - Q: What is the deployment target for the frontend? → A: Docker image built and verified in CI (consistent with backend services), as preparation for Kubernetes-based deployment. Registry push is mocked to avoid costs.
 - Q: Are Docker images pushed to a registry as part of the release? → A: No — images are built, scanned with a static image analysis tool (e.g., Trivy), and structurally verified in CI but not pushed to any remote registry.
-- Q: How should built images be verified? → A: Static image scanning (e.g., Trivy/Grype) — scans the image filesystem and dependencies for known CVEs without running the container. No runtime smoke-start required.
+- Q: How should built images be verified? → A: Two-step verification — (1) static vulnerability scanning (e.g., Trivy/Grype) for CVEs, (2) skopeo label inspection to assert that the version metadata embedded in the image matches the release version.
 - Q: Should `docker-compose.yml` be updated with versioned image tags on release? → A: No — the local `docker-compose.yml` is developer-focused and does not reference CI-built images. Version pinning of compose files is out of scope.
 
 ---
@@ -48,7 +48,7 @@ A maintainer reviews the auto-generated release PR (which contains the bumped ve
 **Acceptance Scenarios**:
 
 1. **Given** a release PR is merged, **When** CI completes, **Then** a Git tag (e.g., `v1.2.3`) and a corresponding GitHub Release exist, and the release body contains the generated changelog.
-2. **Given** a release PR is merged, **When** CI completes, **Then** Docker images for `api-service`, `worker-service`, and the frontend are built and tagged with the exact version (`1.2.3`) and `latest`, and each image passes static vulnerability scanning with no critical or high-severity findings. No push to a remote registry occurs.
+2. **Given** a release PR is merged, **When** CI completes, **Then** Docker images for `api-service`, `worker-service`, and the frontend are built and tagged with the exact version (`1.2.3`) and `latest`, each passes static vulnerability scanning with no critical or high-severity findings, and skopeo confirms the version label embedded in each image matches `1.2.3`. No push to a remote registry occurs.
 3. **Given** all three Docker images have been built and tagged in CI, **When** an operator pulls the versioned images and starts the stack, **Then** the application runs at exactly the version stated in the image tag.
 4. **Given** a release PR is merged, **When** a developer pulls the versioned Docker image, **Then** the image runs the application at exactly the version stated in the tag.
 
@@ -89,6 +89,7 @@ A developer or stakeholder wants to understand what changed between two versions
 - **FR-005**: When the release PR is merged, the system MUST build Docker images for `api-service` and `worker-service`, tag each with the exact version string and `latest`, and pass each image through static vulnerability scanning. Registry push is intentionally deferred (mocked) to avoid costs.
 - **FR-006**: When the release PR is merged, the system MUST build a Docker image for the frontend, tag it with the exact version string and `latest`, and pass it through static vulnerability scanning, consistent with the backend service images. Registry push is intentionally deferred (mocked) to avoid costs.
 - **FR-011**: Static image scanning MUST report any critical or high-severity CVEs found in a built image as a pipeline failure, blocking the release until resolved.
+- **FR-012**: After each image is built, skopeo MUST inspect the image metadata and assert that the embedded version label matches the current release version, failing the pipeline if they diverge.
 - **FR-007**: The entire product MUST share a single version number; all deployment artifacts published in the same release carry the same version tag.
 - **FR-008**: Commits that do not trigger a version change (`chore:`, `docs:`, `ci:`, `test:`, `refactor:`) MUST NOT cause a release PR to be opened.
 - **FR-009**: The versioning pipeline MUST be fully automated and require no manual version editing in any build file.
@@ -101,7 +102,8 @@ A developer or stakeholder wants to understand what changed between two versions
 - **Changelog**: A structured, human-readable record of changes per release, generated from commit messages and stored in the repository.
 - **Deployment Artifact**: A versioned Docker image built and verified in CI — one each for `api-service`, `worker-service`, and the frontend — all tagged with the same release version. The uniform image format is a deliberate preparation for Kubernetes-based deployment. Registry push is mocked in the current implementation to avoid costs; the pipeline structure is ready for a real push when a registry is provisioned.
 - **Git Tag**: A repository marker (e.g., `v1.2.3`) created at the commit corresponding to the merged release PR, providing a permanent reference to the released state.
-- **Static Image Scanner**: A tool (e.g., Trivy, Grype) that analyses a built Docker image's filesystem and package manifests for known CVEs without executing the container. Used as the verification gate before a release is considered complete.
+- **Static Image Scanner**: A tool (e.g., Trivy, Grype) that analyses a built Docker image's filesystem and package manifests for known CVEs without executing the container. Used as the first verification gate before a release is considered complete.
+- **Image Metadata Verifier**: Skopeo, used to inspect OCI image labels and config without a running daemon or registry push. Confirms the version label embedded in each built image matches the release version, catching build-time injection failures.
 
 ---
 
@@ -112,7 +114,8 @@ A developer or stakeholder wants to understand what changed between two versions
 - **SC-001**: A version bump PR is opened within 5 minutes of a conventional-commit PR being merged to `main`, with no manual steps required.
 - **SC-002**: 100% of merges to `main` that contain version-triggering commits result in a release PR; 0% of non-triggering merges do.
 - **SC-003**: All three Docker images (api-service, worker-service, frontend) are built, tagged, and statically scanned within 15 minutes of the release PR being merged. No registry push occurs in this phase.
-- **SC-006**: Static image scanning produces a machine-readable vulnerability report for every release; zero critical or high-severity CVEs are present in any published image.
+- **SC-006**: Static image scanning produces a machine-readable vulnerability report for every release; zero critical or high-severity CVEs are present in any released image.
+- **SC-007**: Skopeo metadata inspection confirms that the version label of every built image matches the release version string; any mismatch causes the pipeline to fail before the release is finalised.
 - **SC-004**: The changelog attached to every GitHub Release contains all `feat:` and `fix:` commits since the previous release and at least one entry for every breaking change.
 - **SC-005**: A developer can reproduce a previously released artifact by checking out the corresponding Git tag and running the standard build, with no version-related manual configuration.
 
