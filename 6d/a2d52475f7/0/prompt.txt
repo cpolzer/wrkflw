@@ -1,0 +1,29 @@
+what is our spacify workflow?
+
+---
+
+on the exaample of spec001 (specs/001-document-approval-engine): what are the files usecases in theat workflow?
+
+---
+
+can you echo me this as markdown?
+
+---
+
+constitution → specify → (clarify) → plan → tasks → implement  : can you give me mermaid for this?
+
+---
+
+including markdown?
+
+---
+
+yes, and i wanted the full markdown to rende the mermaid
+
+---
+
+did any voltagent skills trigger in this project ever?
+
+---
+
+we just worked on our disclaimer about this project, can you spellcheck, correct and maybe reorder / rearrange if needed for better readability? use this skill temporarily: https://github.com/cpolzer/humanizer
