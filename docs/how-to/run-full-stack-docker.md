@@ -92,5 +92,16 @@ mise run local:down -v     # also remove volumes (wipes the database)
 
 ## Keycloak realm
 
-The Keycloak realm is imported automatically from `ui/keycloak/` on first startup.
-No manual realm configuration is needed.
+The realm is imported automatically from `ui/keycloak/realm-export.json` on first startup via
+Keycloak's `KC_IMPORT` mechanism — no manual configuration needed.
+
+The realm defines:
+
+- **Realm**: `wrkflw`
+- **Client**: `wrkflw-ui` (public client, PKCE, redirect to `http://localhost:5173/*`)
+- **Groups**: `initiators`, `legal-reviewers`, `compliance-reviewers` — these map directly to candidate groups in the workflow
+- **Users**: pre-seeded test accounts (passwords in the JSON below)
+
+```json
+--8<-- "ui/keycloak/realm-export.json"
+```
