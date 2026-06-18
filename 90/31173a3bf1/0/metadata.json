@@ -1,0 +1,129 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "9031173a3bf1",
+  "session_id": "a152bc67-989c-45f6-81b1-bc6c314411fa",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-18T22:31:50.261028526Z",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "README.md",
+    "docs/explanation/agentic/index.md",
+    "docs/explanation/agentic/spec-kit.md",
+    "docs/specs/001-document-approval-engine/contracts.md",
+    "docs/specs/001-document-approval-engine/data-model.md",
+    "docs/specs/001-document-approval-engine/plan.md",
+    "docs/specs/001-document-approval-engine/quickstart.md",
+    "docs/specs/001-document-approval-engine/requirements.md",
+    "docs/specs/001-document-approval-engine/research.md",
+    "docs/specs/001-document-approval-engine/spec.md",
+    "docs/specs/001-document-approval-engine/tasks.md",
+    "docs/specs/002-pre-commit-hooks/plan.md",
+    "docs/specs/002-pre-commit-hooks/quickstart.md",
+    "docs/specs/002-pre-commit-hooks/requirements.md",
+    "docs/specs/002-pre-commit-hooks/research.md",
+    "docs/specs/002-pre-commit-hooks/spec.md",
+    "docs/specs/002-pre-commit-hooks/tasks.md",
+    "docs/specs/003-vue-onyx-frontend/contracts.md",
+    "docs/specs/003-vue-onyx-frontend/data-model.md",
+    "docs/specs/003-vue-onyx-frontend/plan.md",
+    "docs/specs/003-vue-onyx-frontend/quickstart.md",
+    "docs/specs/003-vue-onyx-frontend/requirements.md",
+    "docs/specs/003-vue-onyx-frontend/research.md",
+    "docs/specs/003-vue-onyx-frontend/spec.md",
+    "docs/specs/003-vue-onyx-frontend/tasks.md",
+    "docs/specs/004-ui-empty-state-submit/plan.md",
+    "docs/specs/004-ui-empty-state-submit/requirements.md",
+    "docs/specs/004-ui-empty-state-submit/research.md",
+    "docs/specs/004-ui-empty-state-submit/spec.md",
+    "docs/specs/004-ui-empty-state-submit/tasks.md",
+    "docs/specs/005-os-agnostic-test-infra/plan.md",
+    "docs/specs/005-os-agnostic-test-infra/quickstart.md",
+    "docs/specs/005-os-agnostic-test-infra/requirements.md",
+    "docs/specs/005-os-agnostic-test-infra/research.md",
+    "docs/specs/005-os-agnostic-test-infra/spec.md",
+    "docs/specs/005-os-agnostic-test-infra/tasks.md",
+    "docs/specs/index.md",
+    "mkdocs.yml"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "80798712ae02",
+  "checkpoint_transcript_start": 253,
+  "transcript_lines_at_start": 253,
+  "token_usage": {
+    "input_tokens": 51,
+    "cache_creation_tokens": 110414,
+    "cache_read_tokens": 3595381,
+    "output_tokens": 25468,
+    "api_call_count": 41
+  },
+  "session_metrics": {
+    "turn_count": 18
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-18T22:31:50.244124872Z",
+    "agent_lines": 279,
+    "agent_removed": 1,
+    "human_added": 0,
+    "human_modified": 4,
+    "human_removed": 0,
+    "total_committed": 281,
+    "total_lines_changed": 402,
+    "agent_percentage": 69.65174129353234,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 285,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 283,
+        "README.md": 2
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 283,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 283
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 283,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 283
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 283,
+      "user_lines_removed": 0,
+      "agent_lines_added": 284,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 283
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 284,
+      "user_lines_removed": 0,
+      "agent_lines_added": 283,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 284
+      }
+    }
+  ]
+}

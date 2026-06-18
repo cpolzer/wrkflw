@@ -1,0 +1,13 @@
+can we also integrate our specs into our mkdocs page somehow? Also i would like to add infomation / info on spec-kit (quick description, exlplain the workflow)
+
+---
+
+docs/explanation/spec-kit.md - we needa parent category for the agentic coding a local developer could use as hints
+
+---
+
+plan as well - why not all documents? interesting for readers
+
+---
+
+the specs are empty? http://127.0.0.1:8001/specs/001-document-approval-engine/spec/ for example

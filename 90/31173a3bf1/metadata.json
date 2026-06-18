@@ -1,0 +1,62 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "9031173a3bf1",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "README.md",
+    "docs/explanation/agentic/index.md",
+    "docs/explanation/agentic/spec-kit.md",
+    "docs/specs/001-document-approval-engine/contracts.md",
+    "docs/specs/001-document-approval-engine/data-model.md",
+    "docs/specs/001-document-approval-engine/plan.md",
+    "docs/specs/001-document-approval-engine/quickstart.md",
+    "docs/specs/001-document-approval-engine/requirements.md",
+    "docs/specs/001-document-approval-engine/research.md",
+    "docs/specs/001-document-approval-engine/spec.md",
+    "docs/specs/001-document-approval-engine/tasks.md",
+    "docs/specs/002-pre-commit-hooks/plan.md",
+    "docs/specs/002-pre-commit-hooks/quickstart.md",
+    "docs/specs/002-pre-commit-hooks/requirements.md",
+    "docs/specs/002-pre-commit-hooks/research.md",
+    "docs/specs/002-pre-commit-hooks/spec.md",
+    "docs/specs/002-pre-commit-hooks/tasks.md",
+    "docs/specs/003-vue-onyx-frontend/contracts.md",
+    "docs/specs/003-vue-onyx-frontend/data-model.md",
+    "docs/specs/003-vue-onyx-frontend/plan.md",
+    "docs/specs/003-vue-onyx-frontend/quickstart.md",
+    "docs/specs/003-vue-onyx-frontend/requirements.md",
+    "docs/specs/003-vue-onyx-frontend/research.md",
+    "docs/specs/003-vue-onyx-frontend/spec.md",
+    "docs/specs/003-vue-onyx-frontend/tasks.md",
+    "docs/specs/004-ui-empty-state-submit/plan.md",
+    "docs/specs/004-ui-empty-state-submit/requirements.md",
+    "docs/specs/004-ui-empty-state-submit/research.md",
+    "docs/specs/004-ui-empty-state-submit/spec.md",
+    "docs/specs/004-ui-empty-state-submit/tasks.md",
+    "docs/specs/005-os-agnostic-test-infra/plan.md",
+    "docs/specs/005-os-agnostic-test-infra/quickstart.md",
+    "docs/specs/005-os-agnostic-test-infra/requirements.md",
+    "docs/specs/005-os-agnostic-test-infra/research.md",
+    "docs/specs/005-os-agnostic-test-infra/spec.md",
+    "docs/specs/005-os-agnostic-test-infra/tasks.md",
+    "docs/specs/index.md",
+    "mkdocs.yml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/90/31173a3bf1/0/metadata.json",
+      "transcript": "/90/31173a3bf1/0/full.jsonl",
+      "content_hash": "/90/31173a3bf1/0/content_hash.txt",
+      "prompt": "/90/31173a3bf1/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 51,
+    "cache_creation_tokens": 110414,
+    "cache_read_tokens": 3595381,
+    "output_tokens": 25468,
+    "api_call_count": 41
+  }
+}
