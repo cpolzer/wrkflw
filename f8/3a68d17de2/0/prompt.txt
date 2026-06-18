@@ -1,0 +1,9 @@
+is our application still working? lets tast manually
+
+---
+
+docker-compose was just iunstalled. try again
+
+---
+
+mkdocs: install neoteroi-mkdocs OpenAPI plugin later to embed it in this site.
