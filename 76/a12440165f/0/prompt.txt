@@ -1,0 +1,6 @@
+/speckit-specify our ci needs to autoversion bump our pakage after merge to main. how would such a lifecycle look in a multi module app mixing kotlin and 
+  vue?
+
+---
+
+we want to version bump via conventional commits, and do we need to think about the targets that are build for deployment?
