@@ -1,0 +1,518 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:dev.wrkflw.application.command////PointingToDeclaration/wrkflw/dev.wrkflw.application.command/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskCommand///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-command/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskCommand/ClaimTaskCommand/#[Error type: Unresolved type for TaskId]#[Error type: Unresolved type for ActorContext]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-command/-claim-task-command.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskCommand/actor/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-command/actor.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskCommand/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-command/task-id.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskResult.Conflict///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-result/-conflict/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskResult.Forbidden///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-result/-forbidden/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskResult.NotFound///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-result/-not-found/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskResult.Success///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-result/-success/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskResult.Success/Success/#[Error type: Unresolved type for Task]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-result/-success/-success.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskResult.Success/task/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-result/-success/task.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-result/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskService///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-service/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskService/ClaimTaskService/#[Error type: Unresolved type for TaskRepository]#[Error type: Unresolved type for AuditLog]#[Error type: Unresolved type for Clock]#[Error type: Unresolved type for OutboxEventRepository]?/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-service/-claim-task-service.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskService/execute/#dev.wrkflw.application.command.ClaimTaskCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-service/execute.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-use-case/index.html
+$dokka.location:dev.wrkflw.application.command/ClaimTaskUseCase/execute/#dev.wrkflw.application.command.ClaimTaskCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-claim-task-use-case/execute.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskCommand///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-command/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskCommand/ReleaseTaskCommand/#[Error type: Unresolved type for TaskId]#[Error type: Unresolved type for ActorContext]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-command/-release-task-command.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskCommand/actor/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-command/actor.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskCommand/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-command/task-id.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskResult.Conflict///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-result/-conflict/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskResult.Forbidden///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-result/-forbidden/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskResult.NotFound///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-result/-not-found/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskResult.Success///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-result/-success/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskResult.Success/Success/#[Error type: Unresolved type for Task]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-result/-success/-success.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskResult.Success/task/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-result/-success/task.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-result/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskService///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-service/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskService/ReleaseTaskService/#[Error type: Unresolved type for TaskRepository]#[Error type: Unresolved type for AuditLog]#[Error type: Unresolved type for Clock]#[Error type: Unresolved type for OutboxEventRepository]?/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-service/-release-task-service.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskService/execute/#dev.wrkflw.application.command.ReleaseTaskCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-service/execute.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-use-case/index.html
+$dokka.location:dev.wrkflw.application.command/ReleaseTaskUseCase/execute/#dev.wrkflw.application.command.ReleaseTaskCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-release-task-use-case/execute.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionCommand///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-command/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionCommand/SubmitDecisionCommand/#[Error type: Unresolved type for TaskId]#[Error type: Unresolved type for DecisionOutcome]#kotlin.String?#[Error type: Unresolved type for ActorContext]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-command/-submit-decision-command.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionCommand/actor/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-command/actor.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionCommand/comment/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-command/comment.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionCommand/outcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-command/outcome.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionCommand/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-command/task-id.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionResult.Conflict///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-result/-conflict/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionResult.Forbidden///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-result/-forbidden/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionResult.NotFound///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-result/-not-found/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionResult.Success///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-result/-success/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionResult.Success/Success/#[Error type: Unresolved type for FlowInstance]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-result/-success/-success.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionResult.Success/flowInstance/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-result/-success/flow-instance.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-result/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionService///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-service/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionService/SubmitDecisionService/#[Error type: Unresolved type for TaskRepository]#[Error type: Unresolved type for DecisionRepository]#[Error type: Unresolved type for FlowInstanceRepository]#[Error type: Unresolved type for FlowDefinitionRepository]#[Error type: Unresolved type for AuditLog]#[Error type: Unresolved type for WorkflowEngine]#[Error type: Unresolved type for Clock]#[Error type: Unresolved type for OutboxEventRepository]?/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-service/-submit-decision-service.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionService/execute/#dev.wrkflw.application.command.SubmitDecisionCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-service/execute.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-use-case/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDecisionUseCase/execute/#dev.wrkflw.application.command.SubmitDecisionCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-decision-use-case/execute.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentCommand///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-command/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentCommand/SubmitDocumentCommand/#kotlin.String#kotlin.String#[Error type: Unresolved type for ActorContext]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-command/-submit-document-command.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentCommand/actor/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-command/actor.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentCommand/definitionKey/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-command/definition-key.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentCommand/documentRef/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-command/document-ref.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentResult.DefinitionNotFound///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-result/-definition-not-found/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentResult.Success///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-result/-success/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentResult.Success/Success/#[Error type: Unresolved type for FlowInstance]/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-result/-success/-success.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentResult.Success/instance/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-result/-success/instance.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentResult.Unauthorized///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-result/-unauthorized/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-result/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentService///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-service/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentService/SubmitDocumentService/#[Error type: Unresolved type for FlowDefinitionRepository]#[Error type: Unresolved type for FlowInstanceRepository]#[Error type: Unresolved type for WorkflowEngine]#[Error type: Unresolved type for AuditLog]#[Error type: Unresolved type for Clock]#[Error type: Unresolved type for OutboxEventRepository]?/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-service/-submit-document-service.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentService/execute/#dev.wrkflw.application.command.SubmitDocumentCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-service/execute.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-use-case/index.html
+$dokka.location:dev.wrkflw.application.command/SubmitDocumentUseCase/execute/#dev.wrkflw.application.command.SubmitDocumentCommand/PointingToDeclaration/wrkflw/dev.wrkflw.application.command/-submit-document-use-case/execute.html
+$dokka.location:dev.wrkflw.application.query////PointingToDeclaration/wrkflw/dev.wrkflw.application.query/index.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusQuery///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-query/index.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusQuery/FlowStatusQuery/#[Error type: Unresolved type for FlowInstanceId]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-query/-flow-status-query.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusQuery/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-query/flow-instance-id.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusResult.Found///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-result/-found/index.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusResult.Found/Found/#[Error type: Unresolved type for FlowInstance]#kotlin.collections.List[[Error type: Unresolved type for Task]]#kotlin.collections.List[[Error type: Unresolved type for AuditEntry]]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-result/-found/-found.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusResult.Found/history/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-result/-found/history.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusResult.Found/instance/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-result/-found/instance.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusResult.Found/pendingTasks/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-result/-found/pending-tasks.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusResult.NotFound///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-result/-not-found/index.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-result/index.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusService///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-service/index.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusService/FlowStatusService/#[Error type: Unresolved type for FlowInstanceRepository]#[Error type: Unresolved type for TaskRepository]#[Error type: Unresolved type for AuditLog]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-service/-flow-status-service.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusService/execute/#dev.wrkflw.application.query.FlowStatusQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-service/execute.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-use-case/index.html
+$dokka.location:dev.wrkflw.application.query/FlowStatusUseCase/execute/#dev.wrkflw.application.query.FlowStatusQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-flow-status-use-case/execute.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListQuery///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-query/index.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListQuery/GroupWorkListQuery/#[Error type: Unresolved type for ActorContext]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-query/-group-work-list-query.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListQuery/actor/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-query/actor.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-result/index.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListResult/GroupWorkListResult/#kotlin.collections.List[[Error type: Unresolved type for Task]]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-result/-group-work-list-result.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListResult/tasks/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-result/tasks.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListService///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-service/index.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListService/GroupWorkListService/#[Error type: Unresolved type for TaskRepository]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-service/-group-work-list-service.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListService/execute/#dev.wrkflw.application.query.GroupWorkListQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-service/execute.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-use-case/index.html
+$dokka.location:dev.wrkflw.application.query/GroupWorkListUseCase/execute/#dev.wrkflw.application.query.GroupWorkListQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-group-work-list-use-case/execute.html
+$dokka.location:dev.wrkflw.application.query/MyTasksQuery///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-query/index.html
+$dokka.location:dev.wrkflw.application.query/MyTasksQuery/MyTasksQuery/#[Error type: Unresolved type for ActorContext]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-query/-my-tasks-query.html
+$dokka.location:dev.wrkflw.application.query/MyTasksQuery/actor/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-query/actor.html
+$dokka.location:dev.wrkflw.application.query/MyTasksResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-result/index.html
+$dokka.location:dev.wrkflw.application.query/MyTasksResult/MyTasksResult/#kotlin.collections.List[[Error type: Unresolved type for Task]]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-result/-my-tasks-result.html
+$dokka.location:dev.wrkflw.application.query/MyTasksResult/tasks/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-result/tasks.html
+$dokka.location:dev.wrkflw.application.query/MyTasksService///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-service/index.html
+$dokka.location:dev.wrkflw.application.query/MyTasksService/MyTasksService/#[Error type: Unresolved type for TaskRepository]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-service/-my-tasks-service.html
+$dokka.location:dev.wrkflw.application.query/MyTasksService/execute/#dev.wrkflw.application.query.MyTasksQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-service/execute.html
+$dokka.location:dev.wrkflw.application.query/MyTasksUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-use-case/index.html
+$dokka.location:dev.wrkflw.application.query/MyTasksUseCase/execute/#dev.wrkflw.application.query.MyTasksQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-my-tasks-use-case/execute.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsQuery///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-query/index.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsQuery/SubmitterFlowsQuery/#[Error type: Unresolved type for ActorContext]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-query/-submitter-flows-query.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsQuery/actor/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-query/actor.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsResult///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-result/index.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsResult/SubmitterFlowsResult/#kotlin.collections.List[[Error type: Unresolved type for FlowInstance]]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-result/-submitter-flows-result.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsResult/flows/#/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-result/flows.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsService///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-service/index.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsService/SubmitterFlowsService/#[Error type: Unresolved type for FlowInstanceRepository]/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-service/-submitter-flows-service.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsService/execute/#dev.wrkflw.application.query.SubmitterFlowsQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-service/execute.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsUseCase///PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-use-case/index.html
+$dokka.location:dev.wrkflw.application.query/SubmitterFlowsUseCase/execute/#dev.wrkflw.application.query.SubmitterFlowsQuery/PointingToDeclaration/wrkflw/dev.wrkflw.application.query/-submitter-flows-use-case/execute.html
+$dokka.location:dev.wrkflw.domain.audit////PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry///PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/AuditEntry/#kotlin.Long#dev.wrkflw.domain.identity.FlowInstanceId#dev.wrkflw.domain.identity.TaskId?#dev.wrkflw.domain.audit.AuditEventType#dev.wrkflw.domain.identity.ActorId?#[Error type: Unresolved type for JsonObject]#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/-audit-entry.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/actorId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/actor-id.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/id/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/id.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/occurred-at.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/payload/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/payload.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/task-id.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEntry/type/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-entry/type.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType.DECISION_RECORDED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.audit/-audit-event-type/-d-e-c-i-s-i-o-n_-r-e-c-o-r-d-e-d/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType.FLOW_COMPLETED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.audit/-audit-event-type/-f-l-o-w_-c-o-m-p-l-e-t-e-d/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType.FLOW_STARTED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.audit/-audit-event-type/-f-l-o-w_-s-t-a-r-t-e-d/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType.STATE_TRANSITIONED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.audit/-audit-event-type/-s-t-a-t-e_-t-r-a-n-s-i-t-i-o-n-e-d/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType.TASK_CLAIMED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.audit/-audit-event-type/-t-a-s-k_-c-l-a-i-m-e-d/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType.TASK_CREATED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.audit/-audit-event-type/-t-a-s-k_-c-r-e-a-t-e-d/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType.TASK_RELEASED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.audit/-audit-event-type/-t-a-s-k_-r-e-l-e-a-s-e-d/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType///PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-event-type/index.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType/valueOf/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-event-type/value-of.html
+$dokka.location:dev.wrkflw.domain.audit/AuditEventType/values/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.audit/-audit-event-type/values.html
+$dokka.location:dev.wrkflw.domain.event////PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/index.html
+$dokka.location:dev.wrkflw.domain.event//toOutboxEvent/dev.wrkflw.domain.event.DomainEvent#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/to-outbox-event.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/index.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded/DecisionRecorded/#dev.wrkflw.domain.identity.FlowInstanceId#dev.wrkflw.domain.identity.TaskId#dev.wrkflw.domain.task.DecisionOutcome#dev.wrkflw.domain.identity.ActorId#kotlin.String?#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/-decision-recorded.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded/actorId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/actor-id.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded/comment/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/comment.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded/outcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/outcome.html
+$dokka.location:dev.wrkflw.domain.event/DecisionRecorded/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-decision-recorded/task-id.html
+$dokka.location:dev.wrkflw.domain.event/DomainEvent///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-domain-event/index.html
+$dokka.location:dev.wrkflw.domain.event/DomainEvent/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-domain-event/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/DomainEvent/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-domain-event/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/FlowCompleted///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-completed/index.html
+$dokka.location:dev.wrkflw.domain.event/FlowCompleted/FlowCompleted/#dev.wrkflw.domain.identity.FlowInstanceId#kotlin.String#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-completed/-flow-completed.html
+$dokka.location:dev.wrkflw.domain.event/FlowCompleted/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-completed/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/FlowCompleted/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-completed/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/FlowCompleted/terminalOutcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-completed/terminal-outcome.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/index.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted/FlowStarted/#dev.wrkflw.domain.identity.FlowInstanceId#kotlin.String#kotlin.String#dev.wrkflw.domain.identity.ActorId#kotlin.String#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/-flow-started.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted/definitionKey/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/definition-key.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted/documentRef/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/document-ref.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted/initialState/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/initial-state.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/FlowStarted/submitterId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-flow-started/submitter-id.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/index.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent/OutboxEvent/#java.util.UUID#dev.wrkflw.domain.identity.FlowInstanceId#kotlin.String#kotlin.String#java.time.Instant#dev.wrkflw.domain.event.OutboxStatus/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/-outbox-event.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent/data/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/data.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent/id/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/id.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent/status/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/status.html
+$dokka.location:dev.wrkflw.domain.event/OutboxEvent/type/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-event/type.html
+$dokka.location:dev.wrkflw.domain.event/OutboxStatus.DISPATCHED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.event/-outbox-status/-d-i-s-p-a-t-c-h-e-d/index.html
+$dokka.location:dev.wrkflw.domain.event/OutboxStatus.PENDING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.event/-outbox-status/-p-e-n-d-i-n-g/index.html
+$dokka.location:dev.wrkflw.domain.event/OutboxStatus///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-status/index.html
+$dokka.location:dev.wrkflw.domain.event/OutboxStatus/valueOf/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-status/value-of.html
+$dokka.location:dev.wrkflw.domain.event/OutboxStatus/values/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-outbox-status/values.html
+$dokka.location:dev.wrkflw.domain.event/TaskClaimed///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-claimed/index.html
+$dokka.location:dev.wrkflw.domain.event/TaskClaimed/TaskClaimed/#dev.wrkflw.domain.identity.FlowInstanceId#dev.wrkflw.domain.identity.TaskId#dev.wrkflw.domain.identity.ActorId#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-claimed/-task-claimed.html
+$dokka.location:dev.wrkflw.domain.event/TaskClaimed/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-claimed/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/TaskClaimed/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-claimed/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/TaskClaimed/ownerId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-claimed/owner-id.html
+$dokka.location:dev.wrkflw.domain.event/TaskClaimed/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-claimed/task-id.html
+$dokka.location:dev.wrkflw.domain.event/TaskCreated///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-created/index.html
+$dokka.location:dev.wrkflw.domain.event/TaskCreated/TaskCreated/#dev.wrkflw.domain.identity.FlowInstanceId#dev.wrkflw.domain.identity.TaskId#kotlin.String#kotlin.String#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-created/-task-created.html
+$dokka.location:dev.wrkflw.domain.event/TaskCreated/candidateGroupId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-created/candidate-group-id.html
+$dokka.location:dev.wrkflw.domain.event/TaskCreated/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-created/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/TaskCreated/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-created/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/TaskCreated/stateName/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-created/state-name.html
+$dokka.location:dev.wrkflw.domain.event/TaskCreated/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-created/task-id.html
+$dokka.location:dev.wrkflw.domain.event/TaskReleased///PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-released/index.html
+$dokka.location:dev.wrkflw.domain.event/TaskReleased/TaskReleased/#dev.wrkflw.domain.identity.FlowInstanceId#dev.wrkflw.domain.identity.TaskId#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-released/-task-released.html
+$dokka.location:dev.wrkflw.domain.event/TaskReleased/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-released/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.event/TaskReleased/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-released/occurred-at.html
+$dokka.location:dev.wrkflw.domain.event/TaskReleased/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.event/-task-released/task-id.html
+$dokka.location:dev.wrkflw.domain.flow////PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/FlowDefinition/#dev.wrkflw.domain.identity.FlowDefinitionKey#kotlin.Int#kotlin.String#dev.wrkflw.domain.identity.GroupId#kotlin.collections.List[dev.wrkflw.domain.flow.StateDefinition]#kotlin.collections.List[dev.wrkflw.domain.flow.TransitionDefinition]/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/-flow-definition.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/candidateGroup/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/candidate-group.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/initialState/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/initial-state.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/initiatorGroupId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/initiator-group-id.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/isTerminal/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/is-terminal.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/key/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/key.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/states/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/states.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/terminalOutcome/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/terminal-outcome.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/transitions/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/transitions.html
+$dokka.location:dev.wrkflw.domain.flow/FlowDefinition/version/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-definition/version.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance.Companion///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/-companion/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance.Companion/start/#dev.wrkflw.domain.identity.FlowInstanceId#dev.wrkflw.domain.identity.FlowDefinitionKey#kotlin.Int#kotlin.String#dev.wrkflw.domain.identity.ActorId#kotlin.String#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/-companion/start.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/FlowInstance/#dev.wrkflw.domain.identity.FlowInstanceId#dev.wrkflw.domain.identity.FlowDefinitionKey#kotlin.Int#kotlin.String#dev.wrkflw.domain.identity.ActorId#kotlin.String#dev.wrkflw.domain.flow.FlowStatus#kotlin.String?#java.time.Instant#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/-flow-instance.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/advance/#kotlin.String#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/advance.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/complete/#kotlin.String#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/complete.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/createdAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/created-at.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/currentState/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/current-state.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/definitionKey/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/definition-key.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/definitionVersion/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/definition-version.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/documentRef/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/document-ref.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/id/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/id.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/status/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/status.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/submitterId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/submitter-id.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/terminalOutcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/terminal-outcome.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInstance/updatedAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-instance/updated-at.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult.Companion///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/-companion/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult.Companion/advance/#kotlin.String#dev.wrkflw.domain.flow.Trigger#dev.wrkflw.domain.flow.FlowDefinition/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/-companion/advance.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult.Companion/initialState/#dev.wrkflw.domain.flow.FlowDefinition/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/-companion/initial-state.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult/FlowInterpreterResult/#kotlin.String?#kotlin.String?#kotlin.Boolean/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/-flow-interpreter-result.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult/isTerminal/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/is-terminal.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult/nextState/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/next-state.html
+$dokka.location:dev.wrkflw.domain.flow/FlowInterpreterResult/terminalOutcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-interpreter-result/terminal-outcome.html
+$dokka.location:dev.wrkflw.domain.flow/FlowStatus.COMPLETED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.flow/-flow-status/-c-o-m-p-l-e-t-e-d/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowStatus.RUNNING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.flow/-flow-status/-r-u-n-n-i-n-g/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowStatus///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-status/index.html
+$dokka.location:dev.wrkflw.domain.flow/FlowStatus/valueOf/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-status/value-of.html
+$dokka.location:dev.wrkflw.domain.flow/FlowStatus/values/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-flow-status/values.html
+$dokka.location:dev.wrkflw.domain.flow/InvalidTransitionException///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-invalid-transition-exception/index.html
+$dokka.location:dev.wrkflw.domain.flow/InvalidTransitionException/InvalidTransitionException/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-invalid-transition-exception/-invalid-transition-exception.html
+$dokka.location:dev.wrkflw.domain.flow/StateDefinition///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-definition/index.html
+$dokka.location:dev.wrkflw.domain.flow/StateDefinition/StateDefinition/#kotlin.String#dev.wrkflw.domain.flow.StateType#dev.wrkflw.domain.identity.GroupId?#kotlin.String?/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-definition/-state-definition.html
+$dokka.location:dev.wrkflw.domain.flow/StateDefinition/candidateGroupId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-definition/candidate-group-id.html
+$dokka.location:dev.wrkflw.domain.flow/StateDefinition/name/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-definition/name.html
+$dokka.location:dev.wrkflw.domain.flow/StateDefinition/terminalOutcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-definition/terminal-outcome.html
+$dokka.location:dev.wrkflw.domain.flow/StateDefinition/type/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-definition/type.html
+$dokka.location:dev.wrkflw.domain.flow/StateType.HUMAN_TASK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.flow/-state-type/-h-u-m-a-n_-t-a-s-k/index.html
+$dokka.location:dev.wrkflw.domain.flow/StateType.TERMINAL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.flow/-state-type/-t-e-r-m-i-n-a-l/index.html
+$dokka.location:dev.wrkflw.domain.flow/StateType///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-type/index.html
+$dokka.location:dev.wrkflw.domain.flow/StateType/valueOf/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-type/value-of.html
+$dokka.location:dev.wrkflw.domain.flow/StateType/values/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-state-type/values.html
+$dokka.location:dev.wrkflw.domain.flow/TransitionDefinition///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-transition-definition/index.html
+$dokka.location:dev.wrkflw.domain.flow/TransitionDefinition/TransitionDefinition/#kotlin.String#dev.wrkflw.domain.flow.Trigger#kotlin.String#kotlin.String?/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-transition-definition/-transition-definition.html
+$dokka.location:dev.wrkflw.domain.flow/TransitionDefinition/from/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-transition-definition/from.html
+$dokka.location:dev.wrkflw.domain.flow/TransitionDefinition/guard/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-transition-definition/guard.html
+$dokka.location:dev.wrkflw.domain.flow/TransitionDefinition/to/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-transition-definition/to.html
+$dokka.location:dev.wrkflw.domain.flow/TransitionDefinition/trigger/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-transition-definition/trigger.html
+$dokka.location:dev.wrkflw.domain.flow/Trigger.APPROVE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.flow/-trigger/-a-p-p-r-o-v-e/index.html
+$dokka.location:dev.wrkflw.domain.flow/Trigger.REJECT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.flow/-trigger/-r-e-j-e-c-t/index.html
+$dokka.location:dev.wrkflw.domain.flow/Trigger.SUBMIT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.flow/-trigger/-s-u-b-m-i-t/index.html
+$dokka.location:dev.wrkflw.domain.flow/Trigger///PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-trigger/index.html
+$dokka.location:dev.wrkflw.domain.flow/Trigger/valueOf/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-trigger/value-of.html
+$dokka.location:dev.wrkflw.domain.flow/Trigger/values/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.flow/-trigger/values.html
+$dokka.location:dev.wrkflw.domain.identity////PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/index.html
+$dokka.location:dev.wrkflw.domain.identity/ActorId///PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-actor-id/index.html
+$dokka.location:dev.wrkflw.domain.identity/ActorId/ActorId/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-actor-id/-actor-id.html
+$dokka.location:dev.wrkflw.domain.identity/ActorId/value/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-actor-id/value.html
+$dokka.location:dev.wrkflw.domain.identity/FlowDefinitionKey///PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-definition-key/index.html
+$dokka.location:dev.wrkflw.domain.identity/FlowDefinitionKey/FlowDefinitionKey/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-definition-key/-flow-definition-key.html
+$dokka.location:dev.wrkflw.domain.identity/FlowDefinitionKey/value/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-definition-key/value.html
+$dokka.location:dev.wrkflw.domain.identity/FlowInstanceId.Companion///PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-instance-id/-companion/index.html
+$dokka.location:dev.wrkflw.domain.identity/FlowInstanceId.Companion/generate/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-instance-id/-companion/generate.html
+$dokka.location:dev.wrkflw.domain.identity/FlowInstanceId///PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-instance-id/index.html
+$dokka.location:dev.wrkflw.domain.identity/FlowInstanceId/FlowInstanceId/#java.util.UUID/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-instance-id/-flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.identity/FlowInstanceId/value/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-flow-instance-id/value.html
+$dokka.location:dev.wrkflw.domain.identity/GroupId///PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-group-id/index.html
+$dokka.location:dev.wrkflw.domain.identity/GroupId/GroupId/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-group-id/-group-id.html
+$dokka.location:dev.wrkflw.domain.identity/GroupId/value/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-group-id/value.html
+$dokka.location:dev.wrkflw.domain.identity/TaskId.Companion///PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-task-id/-companion/index.html
+$dokka.location:dev.wrkflw.domain.identity/TaskId.Companion/generate/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-task-id/-companion/generate.html
+$dokka.location:dev.wrkflw.domain.identity/TaskId///PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-task-id/index.html
+$dokka.location:dev.wrkflw.domain.identity/TaskId/TaskId/#java.util.UUID/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-task-id/-task-id.html
+$dokka.location:dev.wrkflw.domain.identity/TaskId/value/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.identity/-task-id/value.html
+$dokka.location:dev.wrkflw.domain.port////PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/index.html
+$dokka.location:dev.wrkflw.domain.port/ActorContext///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-actor-context/index.html
+$dokka.location:dev.wrkflw.domain.port/ActorContext/ActorContext/#dev.wrkflw.domain.identity.ActorId#kotlin.collections.Set[dev.wrkflw.domain.identity.GroupId]/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-actor-context/-actor-context.html
+$dokka.location:dev.wrkflw.domain.port/ActorContext/actorId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-actor-context/actor-id.html
+$dokka.location:dev.wrkflw.domain.port/ActorContext/groupIds/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-actor-context/group-ids.html
+$dokka.location:dev.wrkflw.domain.port/ActorContext/isInGroup/#dev.wrkflw.domain.identity.GroupId/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-actor-context/is-in-group.html
+$dokka.location:dev.wrkflw.domain.port/AuditLog///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-audit-log/index.html
+$dokka.location:dev.wrkflw.domain.port/AuditLog/append/#dev.wrkflw.domain.audit.AuditEntry/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-audit-log/append.html
+$dokka.location:dev.wrkflw.domain.port/AuditLog/findByFlowInstanceId/#dev.wrkflw.domain.identity.FlowInstanceId/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-audit-log/find-by-flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.port/Clock///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-clock/index.html
+$dokka.location:dev.wrkflw.domain.port/Clock/now/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-clock/now.html
+$dokka.location:dev.wrkflw.domain.port/DecisionRepository///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-decision-repository/index.html
+$dokka.location:dev.wrkflw.domain.port/DecisionRepository/findByTaskId/#dev.wrkflw.domain.identity.TaskId/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-decision-repository/find-by-task-id.html
+$dokka.location:dev.wrkflw.domain.port/DecisionRepository/save/#dev.wrkflw.domain.task.Decision/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-decision-repository/save.html
+$dokka.location:dev.wrkflw.domain.port/DomainEventPublisher///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-domain-event-publisher/index.html
+$dokka.location:dev.wrkflw.domain.port/DomainEventPublisher/publish/#dev.wrkflw.domain.event.DomainEvent/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-domain-event-publisher/publish.html
+$dokka.location:dev.wrkflw.domain.port/FlowDefinitionRepository///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-definition-repository/index.html
+$dokka.location:dev.wrkflw.domain.port/FlowDefinitionRepository/findByKey/#dev.wrkflw.domain.identity.FlowDefinitionKey/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-definition-repository/find-by-key.html
+$dokka.location:dev.wrkflw.domain.port/FlowDefinitionRepository/findByKeyAndVersion/#dev.wrkflw.domain.identity.FlowDefinitionKey#kotlin.Int/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-definition-repository/find-by-key-and-version.html
+$dokka.location:dev.wrkflw.domain.port/FlowInstanceRepository///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-instance-repository/index.html
+$dokka.location:dev.wrkflw.domain.port/FlowInstanceRepository/findById/#dev.wrkflw.domain.identity.FlowInstanceId/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-instance-repository/find-by-id.html
+$dokka.location:dev.wrkflw.domain.port/FlowInstanceRepository/findBySubmitterId/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-instance-repository/find-by-submitter-id.html
+$dokka.location:dev.wrkflw.domain.port/FlowInstanceRepository/save/#dev.wrkflw.domain.flow.FlowInstance/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-instance-repository/save.html
+$dokka.location:dev.wrkflw.domain.port/FlowInstanceRepository/update/#dev.wrkflw.domain.flow.FlowInstance/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-flow-instance-repository/update.html
+$dokka.location:dev.wrkflw.domain.port/OutboxEventRepository///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-outbox-event-repository/index.html
+$dokka.location:dev.wrkflw.domain.port/OutboxEventRepository/findPending/#kotlin.Int/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-outbox-event-repository/find-pending.html
+$dokka.location:dev.wrkflw.domain.port/OutboxEventRepository/markDispatched/#java.util.UUID/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-outbox-event-repository/mark-dispatched.html
+$dokka.location:dev.wrkflw.domain.port/OutboxEventRepository/save/#dev.wrkflw.domain.event.OutboxEvent/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-outbox-event-repository/save.html
+$dokka.location:dev.wrkflw.domain.port/OutboxPublisher///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-outbox-publisher/index.html
+$dokka.location:dev.wrkflw.domain.port/OutboxPublisher/publish/#dev.wrkflw.domain.event.OutboxEvent/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-outbox-publisher/publish.html
+$dokka.location:dev.wrkflw.domain.port/SystemClock///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-system-clock/index.html
+$dokka.location:dev.wrkflw.domain.port/SystemClock/now/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-system-clock/now.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/index.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository/findByFlowInstanceId/#dev.wrkflw.domain.identity.FlowInstanceId/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/find-by-flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository/findById/#dev.wrkflw.domain.identity.TaskId/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/find-by-id.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository/findClaimedByOwner/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/find-claimed-by-owner.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository/findPendingByCandidateGroup/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/find-pending-by-candidate-group.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository/save/#dev.wrkflw.domain.task.Task/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/save.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository/update/#dev.wrkflw.domain.task.Task/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/update.html
+$dokka.location:dev.wrkflw.domain.port/TaskRepository/updateConditional/#dev.wrkflw.domain.task.Task#dev.wrkflw.domain.task.TaskStatus#kotlin.Int/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-task-repository/update-conditional.html
+$dokka.location:dev.wrkflw.domain.port/WorkflowEngine///PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-workflow-engine/index.html
+$dokka.location:dev.wrkflw.domain.port/WorkflowEngine/signalWorkflow/#dev.wrkflw.domain.identity.FlowInstanceId#kotlin.String#kotlin.Any?/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-workflow-engine/signal-workflow.html
+$dokka.location:dev.wrkflw.domain.port/WorkflowEngine/startWorkflow/#dev.wrkflw.domain.identity.FlowInstanceId#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.port/-workflow-engine/start-workflow.html
+$dokka.location:dev.wrkflw.domain.task////PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/index.html
+$dokka.location:dev.wrkflw.domain.task/Decision///PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision/index.html
+$dokka.location:dev.wrkflw.domain.task/Decision/Decision/#dev.wrkflw.domain.identity.TaskId#dev.wrkflw.domain.task.DecisionOutcome#dev.wrkflw.domain.identity.ActorId#kotlin.String?#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision/-decision.html
+$dokka.location:dev.wrkflw.domain.task/Decision/actorId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision/actor-id.html
+$dokka.location:dev.wrkflw.domain.task/Decision/comment/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision/comment.html
+$dokka.location:dev.wrkflw.domain.task/Decision/decidedAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision/decided-at.html
+$dokka.location:dev.wrkflw.domain.task/Decision/outcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision/outcome.html
+$dokka.location:dev.wrkflw.domain.task/Decision/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision/task-id.html
+$dokka.location:dev.wrkflw.domain.task/DecisionOutcome.APPROVE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.task/-decision-outcome/-a-p-p-r-o-v-e/index.html
+$dokka.location:dev.wrkflw.domain.task/DecisionOutcome.REJECT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.task/-decision-outcome/-r-e-j-e-c-t/index.html
+$dokka.location:dev.wrkflw.domain.task/DecisionOutcome.SUBMIT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.task/-decision-outcome/-s-u-b-m-i-t/index.html
+$dokka.location:dev.wrkflw.domain.task/DecisionOutcome///PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision-outcome/index.html
+$dokka.location:dev.wrkflw.domain.task/DecisionOutcome/valueOf/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision-outcome/value-of.html
+$dokka.location:dev.wrkflw.domain.task/DecisionOutcome/values/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-decision-outcome/values.html
+$dokka.location:dev.wrkflw.domain.task/Task.Companion///PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/-companion/index.html
+$dokka.location:dev.wrkflw.domain.task/Task.Companion/create/#dev.wrkflw.domain.identity.FlowInstanceId#kotlin.String#dev.wrkflw.domain.identity.GroupId#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/-companion/create.html
+$dokka.location:dev.wrkflw.domain.task/Task///PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/index.html
+$dokka.location:dev.wrkflw.domain.task/Task/Task/#dev.wrkflw.domain.identity.TaskId#dev.wrkflw.domain.identity.FlowInstanceId#kotlin.String#dev.wrkflw.domain.identity.GroupId#dev.wrkflw.domain.task.TaskStatus#dev.wrkflw.domain.identity.ActorId?#kotlin.Int#java.time.Instant#java.time.Instant?#java.time.Instant?/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/-task.html
+$dokka.location:dev.wrkflw.domain.task/Task/candidateGroupId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/candidate-group-id.html
+$dokka.location:dev.wrkflw.domain.task/Task/claim/#dev.wrkflw.domain.identity.ActorId#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/claim.html
+$dokka.location:dev.wrkflw.domain.task/Task/claimedAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/claimed-at.html
+$dokka.location:dev.wrkflw.domain.task/Task/completeDecision/#dev.wrkflw.domain.task.DecisionOutcome#dev.wrkflw.domain.identity.ActorId#kotlin.String?#java.time.Instant/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/complete-decision.html
+$dokka.location:dev.wrkflw.domain.task/Task/completedAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/completed-at.html
+$dokka.location:dev.wrkflw.domain.task/Task/createdAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/created-at.html
+$dokka.location:dev.wrkflw.domain.task/Task/flowInstanceId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/flow-instance-id.html
+$dokka.location:dev.wrkflw.domain.task/Task/id/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/id.html
+$dokka.location:dev.wrkflw.domain.task/Task/ownerId/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/owner-id.html
+$dokka.location:dev.wrkflw.domain.task/Task/release/#dev.wrkflw.domain.identity.ActorId/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/release.html
+$dokka.location:dev.wrkflw.domain.task/Task/stateName/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/state-name.html
+$dokka.location:dev.wrkflw.domain.task/Task/status/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/status.html
+$dokka.location:dev.wrkflw.domain.task/Task/version/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task/version.html
+$dokka.location:dev.wrkflw.domain.task/TaskStatus.CLAIMED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.task/-task-status/-c-l-a-i-m-e-d/index.html
+$dokka.location:dev.wrkflw.domain.task/TaskStatus.COMPLETED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.task/-task-status/-c-o-m-p-l-e-t-e-d/index.html
+$dokka.location:dev.wrkflw.domain.task/TaskStatus.PENDING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}wrkflw/dev.wrkflw.domain.task/-task-status/-p-e-n-d-i-n-g/index.html
+$dokka.location:dev.wrkflw.domain.task/TaskStatus///PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task-status/index.html
+$dokka.location:dev.wrkflw.domain.task/TaskStatus/valueOf/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task-status/value-of.html
+$dokka.location:dev.wrkflw.domain.task/TaskStatus/values/#/PointingToDeclaration/wrkflw/dev.wrkflw.domain.task/-task-status/values.html
+$dokka.location:dev.wrkflw.eventing////PointingToDeclaration/wrkflw/dev.wrkflw.eventing/index.html
+$dokka.location:dev.wrkflw.eventing//toCloudEvent/[Error type: Unresolved type for DomainEvent]#/PointingToDeclaration/wrkflw/dev.wrkflw.eventing/to-cloud-event.html
+$dokka.location:dev.wrkflw.eventing/CloudEventsOutboxPublisher///PointingToDeclaration/wrkflw/dev.wrkflw.eventing/-cloud-events-outbox-publisher/index.html
+$dokka.location:dev.wrkflw.eventing/CloudEventsOutboxPublisher/CloudEventsOutboxPublisher/#kotlin.coroutines.SuspendFunction1[[Error type: Unresolved type for CloudEvent],kotlin.Unit]/PointingToDeclaration/wrkflw/dev.wrkflw.eventing/-cloud-events-outbox-publisher/-cloud-events-outbox-publisher.html
+$dokka.location:dev.wrkflw.eventing/CloudEventsOutboxPublisher/publish/#[Error type: Unresolved type for OutboxEvent]/PointingToDeclaration/wrkflw/dev.wrkflw.eventing/-cloud-events-outbox-publisher/publish.html
+$dokka.location:dev.wrkflw.eventing/CloudEventsPublisher///PointingToDeclaration/wrkflw/dev.wrkflw.eventing/-cloud-events-publisher/index.html
+$dokka.location:dev.wrkflw.eventing/CloudEventsPublisher/CloudEventsPublisher/#kotlin.coroutines.SuspendFunction1[[Error type: Unresolved type for CloudEvent],kotlin.Unit]/PointingToDeclaration/wrkflw/dev.wrkflw.eventing/-cloud-events-publisher/-cloud-events-publisher.html
+$dokka.location:dev.wrkflw.eventing/CloudEventsPublisher/publish/#[Error type: Unresolved type for DomainEvent]/PointingToDeclaration/wrkflw/dev.wrkflw.eventing/-cloud-events-publisher/publish.html
+$dokka.location:dev.wrkflw.persistence////PointingToDeclaration/wrkflw/dev.wrkflw.persistence/index.html
+$dokka.location:dev.wrkflw.persistence/AuditLogPostgres///PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-audit-log-postgres/index.html
+$dokka.location:dev.wrkflw.persistence/AuditLogPostgres/AuditLogPostgres/#[Error type: Unresolved type for DSLContext]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-audit-log-postgres/-audit-log-postgres.html
+$dokka.location:dev.wrkflw.persistence/AuditLogPostgres/append/#[Error type: Unresolved type for AuditEntry]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-audit-log-postgres/append.html
+$dokka.location:dev.wrkflw.persistence/AuditLogPostgres/findByFlowInstanceId/#[Error type: Unresolved type for FlowInstanceId]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-audit-log-postgres/find-by-flow-instance-id.html
+$dokka.location:dev.wrkflw.persistence/DecisionRepositoryPostgres///PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-decision-repository-postgres/index.html
+$dokka.location:dev.wrkflw.persistence/DecisionRepositoryPostgres/DecisionRepositoryPostgres/#[Error type: Unresolved type for DSLContext]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-decision-repository-postgres/-decision-repository-postgres.html
+$dokka.location:dev.wrkflw.persistence/DecisionRepositoryPostgres/findByTaskId/#[Error type: Unresolved type for TaskId]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-decision-repository-postgres/find-by-task-id.html
+$dokka.location:dev.wrkflw.persistence/DecisionRepositoryPostgres/save/#[Error type: Unresolved type for Decision]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-decision-repository-postgres/save.html
+$dokka.location:dev.wrkflw.persistence/FlowDefinitionRepositoryPostgres///PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-definition-repository-postgres/index.html
+$dokka.location:dev.wrkflw.persistence/FlowDefinitionRepositoryPostgres/FlowDefinitionRepositoryPostgres/#[Error type: Unresolved type for DSLContext]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-definition-repository-postgres/-flow-definition-repository-postgres.html
+$dokka.location:dev.wrkflw.persistence/FlowDefinitionRepositoryPostgres/findByKey/#[Error type: Unresolved type for FlowDefinitionKey]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-definition-repository-postgres/find-by-key.html
+$dokka.location:dev.wrkflw.persistence/FlowDefinitionRepositoryPostgres/findByKeyAndVersion/#[Error type: Unresolved type for FlowDefinitionKey]#kotlin.Int/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-definition-repository-postgres/find-by-key-and-version.html
+$dokka.location:dev.wrkflw.persistence/FlowInstanceRepositoryPostgres///PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-instance-repository-postgres/index.html
+$dokka.location:dev.wrkflw.persistence/FlowInstanceRepositoryPostgres/FlowInstanceRepositoryPostgres/#[Error type: Unresolved type for DSLContext]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-instance-repository-postgres/-flow-instance-repository-postgres.html
+$dokka.location:dev.wrkflw.persistence/FlowInstanceRepositoryPostgres/findById/#[Error type: Unresolved type for FlowInstanceId]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-instance-repository-postgres/find-by-id.html
+$dokka.location:dev.wrkflw.persistence/FlowInstanceRepositoryPostgres/findBySubmitterId/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-instance-repository-postgres/find-by-submitter-id.html
+$dokka.location:dev.wrkflw.persistence/FlowInstanceRepositoryPostgres/save/#[Error type: Unresolved type for FlowInstance]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-instance-repository-postgres/save.html
+$dokka.location:dev.wrkflw.persistence/FlowInstanceRepositoryPostgres/update/#[Error type: Unresolved type for FlowInstance]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-flow-instance-repository-postgres/update.html
+$dokka.location:dev.wrkflw.persistence/JooqDslContextProvider///PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-jooq-dsl-context-provider/index.html
+$dokka.location:dev.wrkflw.persistence/JooqDslContextProvider/JooqDslContextProvider/#[Error type: Unresolved type for PGSimpleDataSource]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-jooq-dsl-context-provider/-jooq-dsl-context-provider.html
+$dokka.location:dev.wrkflw.persistence/JooqDslContextProvider/create/#/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-jooq-dsl-context-provider/create.html
+$dokka.location:dev.wrkflw.persistence/OutboxEventRepositoryPostgres///PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-outbox-event-repository-postgres/index.html
+$dokka.location:dev.wrkflw.persistence/OutboxEventRepositoryPostgres/OutboxEventRepositoryPostgres/#[Error type: Unresolved type for DSLContext]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-outbox-event-repository-postgres/-outbox-event-repository-postgres.html
+$dokka.location:dev.wrkflw.persistence/OutboxEventRepositoryPostgres/findPending/#kotlin.Int/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-outbox-event-repository-postgres/find-pending.html
+$dokka.location:dev.wrkflw.persistence/OutboxEventRepositoryPostgres/markDispatched/#java.util.UUID/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-outbox-event-repository-postgres/mark-dispatched.html
+$dokka.location:dev.wrkflw.persistence/OutboxEventRepositoryPostgres/save/#[Error type: Unresolved type for OutboxEvent]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-outbox-event-repository-postgres/save.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres///PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/index.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/TaskRepositoryPostgres/#[Error type: Unresolved type for DSLContext]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/-task-repository-postgres.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/findByFlowInstanceId/#[Error type: Unresolved type for FlowInstanceId]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/find-by-flow-instance-id.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/findById/#[Error type: Unresolved type for TaskId]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/find-by-id.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/findClaimedByOwner/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/find-claimed-by-owner.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/findPendingByCandidateGroup/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/find-pending-by-candidate-group.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/save/#[Error type: Unresolved type for Task]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/save.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/update/#[Error type: Unresolved type for Task]/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/update.html
+$dokka.location:dev.wrkflw.persistence/TaskRepositoryPostgres/updateConditional/#[Error type: Unresolved type for Task]#[Error type: Unresolved type for TaskStatus]#kotlin.Int/PointingToDeclaration/wrkflw/dev.wrkflw.persistence/-task-repository-postgres/update-conditional.html
+$dokka.location:dev.wrkflw.rest////PointingToDeclaration/wrkflw/dev.wrkflw.rest/index.html
+$dokka.location:dev.wrkflw.rest//flowRoutes/[Error type: Unresolved type for Route]#[Error type: Unresolved type for SubmitDocumentUseCase]#[Error type: Unresolved type for TaskRepository]#[Error type: Unresolved type for SubmitterFlowsUseCase]/PointingToDeclaration/wrkflw/dev.wrkflw.rest/flow-routes.html
+$dokka.location:dev.wrkflw.rest//queryRoutes/[Error type: Unresolved type for Route]#[Error type: Unresolved type for GroupWorkListUseCase]#[Error type: Unresolved type for MyTasksUseCase]#[Error type: Unresolved type for FlowStatusUseCase]/PointingToDeclaration/wrkflw/dev.wrkflw.rest/query-routes.html
+$dokka.location:dev.wrkflw.rest//taskRoutes/[Error type: Unresolved type for Route]#[Error type: Unresolved type for ClaimTaskUseCase]#[Error type: Unresolved type for ReleaseTaskUseCase]#[Error type: Unresolved type for SubmitDecisionUseCase]/PointingToDeclaration/wrkflw/dev.wrkflw.rest/task-routes.html
+$dokka.location:dev.wrkflw.rest//toDto/[Error type: Unresolved type for AuditEntry]#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/to-dto.html
+$dokka.location:dev.wrkflw.rest//toFlowSummaryDto/[Error type: Unresolved type for FlowInstance]#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/to-flow-summary-dto.html
+$dokka.location:dev.wrkflw.rest//toStatusDto/[Error type: Unresolved type for FlowInstance]#kotlin.collections.List[[Error type: Unresolved type for Task]]#kotlin.collections.List[[Error type: Unresolved type for dev.wrkflw.domain.audit.AuditEntry]]/PointingToDeclaration/wrkflw/dev.wrkflw.rest/to-status-dto.html
+$dokka.location:dev.wrkflw.rest//toSummaryDto/[Error type: Unresolved type for Task]#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/to-summary-dto.html
+$dokka.location:dev.wrkflw.rest/AuditEntryDto///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-audit-entry-dto/index.html
+$dokka.location:dev.wrkflw.rest/AuditEntryDto/AuditEntryDto/#kotlin.String#kotlin.String?#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-audit-entry-dto/-audit-entry-dto.html
+$dokka.location:dev.wrkflw.rest/AuditEntryDto/actorId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-audit-entry-dto/actor-id.html
+$dokka.location:dev.wrkflw.rest/AuditEntryDto/occurredAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-audit-entry-dto/occurred-at.html
+$dokka.location:dev.wrkflw.rest/AuditEntryDto/type/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-audit-entry-dto/type.html
+$dokka.location:dev.wrkflw.rest/DecisionRequestDto///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-decision-request-dto/index.html
+$dokka.location:dev.wrkflw.rest/DecisionRequestDto/DecisionRequestDto/#kotlin.String#kotlin.String?/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-decision-request-dto/-decision-request-dto.html
+$dokka.location:dev.wrkflw.rest/DecisionRequestDto/comment/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-decision-request-dto/comment.html
+$dokka.location:dev.wrkflw.rest/DecisionRequestDto/outcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-decision-request-dto/outcome.html
+$dokka.location:dev.wrkflw.rest/ErrorDto///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-error-dto/index.html
+$dokka.location:dev.wrkflw.rest/ErrorDto/ErrorDto/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-error-dto/-error-dto.html
+$dokka.location:dev.wrkflw.rest/ErrorDto/error/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-error-dto/error.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/index.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/FlowStatusResponseDto/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String?#kotlin.collections.List[dev.wrkflw.rest.TaskSummaryDto]#kotlin.collections.List[dev.wrkflw.rest.AuditEntryDto]/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/-flow-status-response-dto.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/currentState/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/current-state.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/definitionKey/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/definition-key.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/flowId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/flow-id.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/history/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/history.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/pendingTasks/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/pending-tasks.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/status/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/status.html
+$dokka.location:dev.wrkflw.rest/FlowStatusResponseDto/terminalOutcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-status-response-dto/terminal-outcome.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/index.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/FlowSummaryDto/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String?#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/-flow-summary-dto.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/currentState/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/current-state.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/definitionKey/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/definition-key.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/documentRef/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/document-ref.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/flowId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/flow-id.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/status/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/status.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/submitterId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/submitter-id.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/terminalOutcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/terminal-outcome.html
+$dokka.location:dev.wrkflw.rest/FlowSummaryDto/updatedAt/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-flow-summary-dto/updated-at.html
+$dokka.location:dev.wrkflw.rest/HeaderActorContext///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-header-actor-context/index.html
+$dokka.location:dev.wrkflw.rest/HeaderActorContext/fromCall/#[Error type: Unresolved type for ApplicationCall]/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-header-actor-context/from-call.html
+$dokka.location:dev.wrkflw.rest/MissingActorHeaderException///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-missing-actor-header-exception/index.html
+$dokka.location:dev.wrkflw.rest/MissingActorHeaderException/MissingActorHeaderException/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-missing-actor-header-exception/-missing-actor-header-exception.html
+$dokka.location:dev.wrkflw.rest/SubmitDocumentRequestDto///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-submit-document-request-dto/index.html
+$dokka.location:dev.wrkflw.rest/SubmitDocumentRequestDto/SubmitDocumentRequestDto/#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-submit-document-request-dto/-submit-document-request-dto.html
+$dokka.location:dev.wrkflw.rest/SubmitDocumentRequestDto/definitionKey/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-submit-document-request-dto/definition-key.html
+$dokka.location:dev.wrkflw.rest/SubmitDocumentRequestDto/documentRef/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-submit-document-request-dto/document-ref.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto///PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/index.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto/TaskSummaryDto/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String?/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/-task-summary-dto.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto/candidateGroupId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/candidate-group-id.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto/flowId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/flow-id.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto/ownerId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/owner-id.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto/stateName/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/state-name.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto/status/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/status.html
+$dokka.location:dev.wrkflw.rest/TaskSummaryDto/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.rest/-task-summary-dto/task-id.html
+$dokka.location:dev.wrkflw.temporal.activity////PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/index.html
+$dokka.location:dev.wrkflw.temporal.activity/AdvanceFlowActivity///PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-advance-flow-activity/index.html
+$dokka.location:dev.wrkflw.temporal.activity/AdvanceFlowActivity/advanceState/#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-advance-flow-activity/advance-state.html
+$dokka.location:dev.wrkflw.temporal.activity/AdvanceFlowActivityImpl///PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-advance-flow-activity-impl/index.html
+$dokka.location:dev.wrkflw.temporal.activity/AdvanceFlowActivityImpl/AdvanceFlowActivityImpl/#[Error type: Unresolved type for FlowInstanceRepository]/PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-advance-flow-activity-impl/-advance-flow-activity-impl.html
+$dokka.location:dev.wrkflw.temporal.activity/AdvanceFlowActivityImpl/advanceState/#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-advance-flow-activity-impl/advance-state.html
+$dokka.location:dev.wrkflw.temporal.activity/CreateHumanTaskActivity///PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-create-human-task-activity/index.html
+$dokka.location:dev.wrkflw.temporal.activity/CreateHumanTaskActivity/createForCurrentState/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-create-human-task-activity/create-for-current-state.html
+$dokka.location:dev.wrkflw.temporal.activity/CreateHumanTaskActivityImpl///PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-create-human-task-activity-impl/index.html
+$dokka.location:dev.wrkflw.temporal.activity/CreateHumanTaskActivityImpl/CreateHumanTaskActivityImpl/#[Error type: Unresolved type for FlowDefinitionRepository]#[Error type: Unresolved type for FlowInstanceRepository]#[Error type: Unresolved type for TaskRepository]#[Error type: Unresolved type for AuditLog]#[Error type: Unresolved type for Clock]#[Error type: Unresolved type for OutboxEventRepository]?/PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-create-human-task-activity-impl/-create-human-task-activity-impl.html
+$dokka.location:dev.wrkflw.temporal.activity/CreateHumanTaskActivityImpl/createForCurrentState/#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal.activity/-create-human-task-activity-impl/create-for-current-state.html
+$dokka.location:dev.wrkflw.temporal////PointingToDeclaration/wrkflw/dev.wrkflw.temporal/index.html
+$dokka.location:dev.wrkflw.temporal/DecisionSignalData///PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-decision-signal-data/index.html
+$dokka.location:dev.wrkflw.temporal/DecisionSignalData/DecisionSignalData/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-decision-signal-data/-decision-signal-data.html
+$dokka.location:dev.wrkflw.temporal/DecisionSignalData/actorId/#/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-decision-signal-data/actor-id.html
+$dokka.location:dev.wrkflw.temporal/DecisionSignalData/outcome/#/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-decision-signal-data/outcome.html
+$dokka.location:dev.wrkflw.temporal/DecisionSignalData/taskId/#/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-decision-signal-data/task-id.html
+$dokka.location:dev.wrkflw.temporal/DocumentApprovalWorkflow///PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-document-approval-workflow/index.html
+$dokka.location:dev.wrkflw.temporal/DocumentApprovalWorkflow/execute/#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-document-approval-workflow/execute.html
+$dokka.location:dev.wrkflw.temporal/DocumentApprovalWorkflow/onDecisionSignal/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-document-approval-workflow/on-decision-signal.html
+$dokka.location:dev.wrkflw.temporal/DocumentApprovalWorkflowImpl///PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-document-approval-workflow-impl/index.html
+$dokka.location:dev.wrkflw.temporal/DocumentApprovalWorkflowImpl/DocumentApprovalWorkflowImpl/#/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-document-approval-workflow-impl/-document-approval-workflow-impl.html
+$dokka.location:dev.wrkflw.temporal/DocumentApprovalWorkflowImpl/execute/#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-document-approval-workflow-impl/execute.html
+$dokka.location:dev.wrkflw.temporal/DocumentApprovalWorkflowImpl/onDecisionSignal/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-document-approval-workflow-impl/on-decision-signal.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkerService.Companion///PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-worker-service/-companion/index.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkerService.Companion/createClient/#kotlin.String#kotlin.Int/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-worker-service/-companion/create-client.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkerService///PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-worker-service/index.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkerService/TemporalWorkerService/#[Error type: Unresolved type for WorkflowClient]#kotlin.String#dev.wrkflw.temporal.activity.CreateHumanTaskActivity#dev.wrkflw.temporal.activity.AdvanceFlowActivity/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-worker-service/-temporal-worker-service.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkerService/start/#/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-worker-service/start.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkflowEngine///PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-workflow-engine/index.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkflowEngine/TemporalWorkflowEngine/#[Error type: Unresolved type for WorkflowClient]#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-workflow-engine/-temporal-workflow-engine.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkflowEngine/signalWorkflow/#[Error type: Unresolved type for FlowInstanceId]#kotlin.String#kotlin.Any?/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-workflow-engine/signal-workflow.html
+$dokka.location:dev.wrkflw.temporal/TemporalWorkflowEngine/startWorkflow/#[Error type: Unresolved type for FlowInstanceId]#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.temporal/-temporal-workflow-engine/start-workflow.html
+$dokka.location:dev.wrkflw.worker////PointingToDeclaration/wrkflw/dev.wrkflw.worker/index.html
+$dokka.location:dev.wrkflw.worker//main/#/PointingToDeclaration/wrkflw/dev.wrkflw.worker/main.html
+$dokka.location:dev.wrkflw.worker//workerModule/#[Error type: Unresolved type for PGSimpleDataSource]#kotlin.String#kotlin.Int#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw.worker/worker-module.html
+$dokka.location:dev.wrkflw////PointingToDeclaration/wrkflw/dev.wrkflw/index.html
+$dokka.location:dev.wrkflw//infraModule/#[Error type: Unresolved type for PGSimpleDataSource]#kotlin.String#kotlin.Int#kotlin.String/PointingToDeclaration/wrkflw/dev.wrkflw/infra-module.html
+$dokka.location:dev.wrkflw//main/#/PointingToDeclaration/wrkflw/dev.wrkflw/main.html
+$dokka.location:dev.wrkflw//module/[Error type: Unresolved type for Application]#/PointingToDeclaration/wrkflw/dev.wrkflw/module.html
+$dokka.location:dev.wrkflw/OutboxPublisherRunner///PointingToDeclaration/wrkflw/dev.wrkflw/-outbox-publisher-runner/index.html
+$dokka.location:dev.wrkflw/OutboxPublisherRunner/OutboxPublisherRunner/#[Error type: Unresolved type for OutboxEventRepository]#[Error type: Unresolved type for OutboxPublisher]#kotlin.Long/PointingToDeclaration/wrkflw/dev.wrkflw/-outbox-publisher-runner/-outbox-publisher-runner.html
+$dokka.location:dev.wrkflw/OutboxPublisherRunner/start/#[Error type: Unresolved type for CoroutineScope]/PointingToDeclaration/wrkflw/dev.wrkflw/-outbox-publisher-runner/start.html
+dev.wrkflw
+dev.wrkflw.application.command
+dev.wrkflw.application.query
+dev.wrkflw.domain.audit
+dev.wrkflw.domain.event
+dev.wrkflw.domain.flow
+dev.wrkflw.domain.identity
+dev.wrkflw.domain.port
+dev.wrkflw.domain.task
+dev.wrkflw.eventing
+dev.wrkflw.persistence
+dev.wrkflw.rest
+dev.wrkflw.temporal
+dev.wrkflw.temporal.activity
+dev.wrkflw.worker

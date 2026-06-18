@@ -1,0 +1,1 @@
+sourceset_dependencies='{":application:dokkaHtml/main":[],":domain:dokkaHtml/main":[],":adapters:eventing-cloudevents:dokkaHtml/main":[],":adapters:persistence-postgres:dokkaHtml/main":[],":adapters:rest-api:dokkaHtml/main":[],":adapters:temporal:dokkaHtml/main":[],":apps:api-service:dokkaHtml/main":[],":apps:worker-service:dokkaHtml/main":[]}'
