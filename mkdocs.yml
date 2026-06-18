@@ -2,6 +2,13 @@ site_name: wrkflw Developer Docs
 site_description: Developer documentation for the wrkflw workflow engine
 docs_dir: docs
 
+validation:
+  links:
+    # Relative links inside snippet-included spec files (e.g. checklists/requirements.md
+    # referencing ../spec.md) resolve incorrectly in MkDocs context. Downgrade to info
+    # so --strict doesn't abort on these expected false positives.
+    not_found: info
+
 # requirements.txt lives under docs/ for convenience but is not site content.
 exclude_docs: |
   requirements.txt
@@ -34,7 +41,9 @@ markdown_extensions:
       permalink: true
   - pymdownx.highlight
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path:
+        - .
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -59,4 +68,47 @@ nav:
       - Architecture overview: explanation/architecture.md
       - Hexagonal layering: explanation/hexagonal.md
       - Temporal integration (Approach A): explanation/temporal-integration.md
+  - Agentic Coding:
+      - Overview: explanation/agentic/index.md
+      - Spec Kit workflow: explanation/agentic/spec-kit.md
+  - Specs:
+      - Overview: specs/index.md
+      - 001 · Document Approval Engine:
+          - Specification: specs/001-document-approval-engine/spec.md
+          - Implementation Plan: specs/001-document-approval-engine/plan.md
+          - Tasks: specs/001-document-approval-engine/tasks.md
+          - Data Model: specs/001-document-approval-engine/data-model.md
+          - Contracts: specs/001-document-approval-engine/contracts.md
+          - Research: specs/001-document-approval-engine/research.md
+          - Requirements: specs/001-document-approval-engine/requirements.md
+          - Quickstart: specs/001-document-approval-engine/quickstart.md
+      - 002 · Pre-commit Hooks:
+          - Specification: specs/002-pre-commit-hooks/spec.md
+          - Implementation Plan: specs/002-pre-commit-hooks/plan.md
+          - Tasks: specs/002-pre-commit-hooks/tasks.md
+          - Research: specs/002-pre-commit-hooks/research.md
+          - Requirements: specs/002-pre-commit-hooks/requirements.md
+          - Quickstart: specs/002-pre-commit-hooks/quickstart.md
+      - 003 · Vue / Onyx Frontend:
+          - Specification: specs/003-vue-onyx-frontend/spec.md
+          - Implementation Plan: specs/003-vue-onyx-frontend/plan.md
+          - Tasks: specs/003-vue-onyx-frontend/tasks.md
+          - Data Model: specs/003-vue-onyx-frontend/data-model.md
+          - Contracts: specs/003-vue-onyx-frontend/contracts.md
+          - Research: specs/003-vue-onyx-frontend/research.md
+          - Requirements: specs/003-vue-onyx-frontend/requirements.md
+          - Quickstart: specs/003-vue-onyx-frontend/quickstart.md
+      - 004 · UI Empty State & Submit:
+          - Specification: specs/004-ui-empty-state-submit/spec.md
+          - Implementation Plan: specs/004-ui-empty-state-submit/plan.md
+          - Tasks: specs/004-ui-empty-state-submit/tasks.md
+          - Research: specs/004-ui-empty-state-submit/research.md
+          - Requirements: specs/004-ui-empty-state-submit/requirements.md
+      - 005 · OS-Agnostic Test Infra:
+          - Specification: specs/005-os-agnostic-test-infra/spec.md
+          - Implementation Plan: specs/005-os-agnostic-test-infra/plan.md
+          - Tasks: specs/005-os-agnostic-test-infra/tasks.md
+          - Research: specs/005-os-agnostic-test-infra/research.md
+          - Requirements: specs/005-os-agnostic-test-infra/requirements.md
+          - Quickstart: specs/005-os-agnostic-test-infra/quickstart.md
   - Decisions (ADR): adr/index.md

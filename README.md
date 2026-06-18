@@ -2,11 +2,12 @@
 
 A data-driven, human-centric workflow engine for document approvals, built on Kotlin, Ktor, Temporal, PostgreSQL, and CloudEvents.
 
-> [!NOTE]  
-> This is a playground to demonstrate building a generic document approval webapplication, with kotlin and vue/schwarzit's onyx and an sidecar for task orchestration - fully automated with agentic coding.
+> [!WARNING]
+> This is a playground — not production-ready. It's the point where I stopped, having demonstrated the concept.
 
-Please refer to the [DISCLAIMER](DISCLAIMER.md) for further info.
+Built in ~4 days (~13 hours total) using spec-driven agentic coding: specs and architecture with Claude Sonnet, implementation with Qwen/Kimi via [opencode](https://opencode.ai). The full tooling story — Spec Kit workflow, token optimization, cost numbers — is in the docs.
 
+**[Developer docs →](https://cpolzer.github.io/wrkflw/)** · [Agentic Coding](https://cpolzer.github.io/wrkflw/explanation/agentic/) · [Specs](https://cpolzer.github.io/wrkflw/specs/)
 
 ## Architecture
 
@@ -72,6 +73,7 @@ See [`docs/how-to/run-full-stack-docker.md`](docs/how-to/run-full-stack-docker.m
 ./gradlew ktlintCheck detekt
 
 # Auto-fix lint
+
 ./gradlew ktlintFormat
 
 # Full CI (lint → build → docs)

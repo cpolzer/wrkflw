@@ -1,0 +1,1 @@
+--8<-- "specs/001-document-approval-engine/spec.md"

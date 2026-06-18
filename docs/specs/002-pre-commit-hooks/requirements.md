@@ -1,0 +1,1 @@
+--8<-- "specs/002-pre-commit-hooks/checklists/requirements.md"

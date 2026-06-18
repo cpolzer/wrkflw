@@ -1,0 +1,1 @@
+--8<-- "specs/003-vue-onyx-frontend/data-model.md"

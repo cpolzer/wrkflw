@@ -1,0 +1,1 @@
+--8<-- "specs/004-ui-empty-state-submit/checklists/requirements.md"

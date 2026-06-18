@@ -1,0 +1,1 @@
+--8<-- "specs/005-os-agnostic-test-infra/checklists/requirements.md"
