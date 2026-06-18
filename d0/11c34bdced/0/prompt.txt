@@ -1,0 +1,17 @@
+are all docs updated ? developer facing ?
+
+---
+
+continue, and setup merge request
+
+---
+
+watch mr pipeline and fix
+
+---
+
+everything commited and pushed?
+
+---
+
+all docs are up  top date?
