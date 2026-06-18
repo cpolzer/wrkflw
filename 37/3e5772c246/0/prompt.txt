@@ -1,0 +1,9 @@
+in gitlab ci, can coverage and test runs be reported?
+
+---
+
+please implement it for me
+
+---
+
+no i meant github actions
