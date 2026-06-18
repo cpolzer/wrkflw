@@ -1,5 +1,8 @@
 site_name: wrkflw Developer Docs
 site_description: Developer documentation for the wrkflw workflow engine
+site_url: https://cpolzer.github.io/wrkflw/
+repo_url: https://github.com/cpolzer/wrkflw
+repo_name: cpolzer/wrkflw
 docs_dir: docs
 
 validation:
