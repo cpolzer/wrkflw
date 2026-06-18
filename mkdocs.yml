@@ -34,6 +34,10 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 
+plugins:
+  - search
+  - neoteroi.mkdocsoad
+
 markdown_extensions:
   - admonition
   - attr_list
@@ -61,6 +65,7 @@ nav:
       - Write an integration test: how-to/integration-tests.md
   - Reference:
       - REST API: reference/rest-api.md
+      - OpenAPI (interactive): reference/openapi.md
       - Integration events: reference/events.md
       - Database schema: reference/database.md
       - Kotlin API (KDoc): reference/api.md

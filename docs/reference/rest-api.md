@@ -8,6 +8,8 @@ The authoritative contract is defined in **TypeSpec** and compiled to OpenAPI:
 | Generated OpenAPI | `specs/001-document-approval-engine/contracts/openapi.yaml` | Generated — do not hand-edit |
 | TypeScript types | `ui/src/api/types.ts` | Generated from OpenAPI |
 
+Browse the spec interactively on the [OpenAPI reference page](openapi.md).
+
 To regenerate after changing the TypeSpec:
 
 ```bash
