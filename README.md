@@ -2,6 +2,12 @@
 
 A data-driven, human-centric workflow engine for document approvals, built on Kotlin, Ktor, Temporal, PostgreSQL, and CloudEvents.
 
+> [!NOTE]  
+> This is a playground to demonstrate building a generic document approval webapplication, with kotlin and vue/schwarzit's onyx and an sidecar for task orchestration.
+
+Please refer to the [DISCLAIMER](DISCLAIMER.md) for further info.
+
+
 ## Architecture
 
 The codebase is a Gradle multi-module monorepo structured to [hexagonal architecture](docs/explanation/architecture.md):
