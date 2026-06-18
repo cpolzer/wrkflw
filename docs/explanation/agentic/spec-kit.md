@@ -7,11 +7,17 @@ In this project, every feature goes through the same lifecycle:
 ```mermaid
 flowchart LR
     A[constitution\n.specify/memory/constitution.md] --> B[specify\nspec.md]
-    B --> C{clarify?}
-    C -->|refines| B
-    C --> D[plan\nplan.md\ndata-model.md\ncontracts/]
-    D --> E[tasks\ntasks.md\nchecklists/]
-    E --> F[implement\nquickstart.md\nresearch.md]
+    B --> C{clarify?\noptional}
+    C -->|"updates spec.md in-place"| D
+    C -->|skip| D
+    D[plan\nplan.md\ndata-model.md\ncontracts/] --> R1{review plan\ngate}
+    B --> R0{review spec\ngate}
+    R0 -->|approve| C
+    R0 -->|skip| D
+    R1 -->|approve| E[tasks\ntasks.md\nchecklists/]
+    E --> F{analyze?\noptional}
+    F -->|"checks spec+plan+tasks\nconsistency"| G[implement\nquickstart.md]
+    F -->|skip| G
 ```
 
 ## Stages
@@ -50,11 +56,11 @@ The spec must not mention Kotlin, Temporal, jOOQ, or any other technology. Those
 
 Run `/speckit-specify` with a plain-language feature description.
 
-### Clarify *(optional but recommended)*
+### Clarify *(optional, runs before plan)*
 
-Before planning, surface ambiguities: edge cases that aren't covered, decisions that will force rework later, scope that's genuinely unclear.
+Surface ambiguities before any technology decisions are made. `/speckit-clarify` asks up to 5 targeted questions and writes the answers directly into `spec.md` — it does not send you back to re-run `/speckit-specify`.
 
-`/speckit-clarify` asks up to 5 targeted questions and encodes the answers back into the spec. This is cheap — changing a spec before planning costs nothing; changing a plan mid-implementation costs a lot.
+This is cheap — changing a spec before planning costs nothing; changing a plan mid-implementation costs a lot.
 
 ### Plan
 
@@ -80,7 +86,13 @@ Generate an ordered, dependency-aware `tasks.md` from the plan. Each task is:
 - Self-contained with a clear done condition
 - Ordered so dependencies are always satisfied before dependents
 
-Run `/speckit-tasks`.
+Run `/speckit-tasks`, then optionally `/speckit-analyze` before moving to implementation.
+
+### Analyze *(optional, runs after tasks)*
+
+`/speckit-analyze` performs a non-destructive cross-artifact consistency check across `spec.md`, `plan.md`, and `tasks.md`. It catches drift — requirements that didn't make it into the plan, plan decisions that didn't produce tasks, tasks that don't trace back to any requirement.
+
+Run it before starting implementation to catch gaps while they're still cheap to fix.
 
 ### Implement
 
