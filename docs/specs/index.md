@@ -22,7 +22,7 @@ All specs follow the [Spec Kit lifecycle](../explanation/agentic/spec-kit.md): `
 | `plan.md` | plan | Technology decisions, module design, implementation approach |
 | `tasks.md` | tasks | Ordered implementation checklist with done conditions |
 | `data-model.md` | plan | Entity relationships, DB schema |
-| `contracts/` | plan | OpenAPI spec + integration event definitions |
+| `contracts/` | plan | TypeSpec source (`.tsp`) + generated OpenAPI + integration event definitions |
 | `research.md` | plan | Notes and spikes captured during planning |
 | `checklists/requirements.md` | tasks | FR/SC traceability matrix |
 | `quickstart.md` | implement | How to run this feature locally |

@@ -63,8 +63,9 @@ Translate the spec into a **technology-specific design** in `specs/NNN-feature/p
 The plan also produces:
 
 - `data-model.md` — entity relationships and database schema
-- `contracts/openapi.yaml` — REST API contract
-- `contracts/events.md` — integration event definitions
+- `contracts/lib/models.tsp` + `routes.tsp` — TypeSpec source (REST contract)
+- `contracts/openapi.yaml` — generated from TypeSpec; consumed by docs and UI type generation
+- `contracts/events.md` — integration event definitions (CloudEvents, prose format)
 - `checklists/requirements.md` — FR/SC traceability matrix
 
 Every plan must pass a **Constitution Check gate** before proceeding: each Core Principle is verified, and any deviation must be recorded with justification.

@@ -9,8 +9,13 @@ logic.
    `application/.../command` or `application/.../query`. It depends only on domain ports.
 2. **Write the contract test first** (Principle II) — add it under
    `adapters/rest-api/src/test/...` against `contracts/openapi.yaml`; make it fail.
-3. **Update the contract** — add the path/schema to
-   `specs/001-document-approval-engine/contracts/openapi.yaml`.
+3. **Update the contract** — add the path/schema to `contracts/lib/routes.tsp` (and
+   `contracts/lib/models.tsp` for new types), then regenerate:
+   ```bash
+   mise run contracts:build    # .tsp → openapi.yaml
+   mise run ui:generate-types  # openapi.yaml → ui/src/api/types.ts
+   ```
+   Never hand-edit `openapi.yaml` — it is generated output.
 4. **Add the route** in `adapters/rest-api/.../*Routes.kt`: parse the request DTO, read the
    `ActorContext`, call the use case, map the result/errors to HTTP, return the response DTO.
 5. **Wire it** in the api-service composition root (Koin module or manual wiring).

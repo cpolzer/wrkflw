@@ -1,7 +1,19 @@
 # Reference: REST API
 
-The authoritative contract is the OpenAPI document:
-**`specs/001-document-approval-engine/contracts/openapi.yaml`**.
+The authoritative contract is defined in **TypeSpec** and compiled to OpenAPI:
+
+| Artifact | Path | Role |
+|----------|------|------|
+| TypeSpec source | `contracts/lib/models.tsp`, `contracts/lib/routes.tsp` | Edit this |
+| Generated OpenAPI | `specs/001-document-approval-engine/contracts/openapi.yaml` | Generated — do not hand-edit |
+| TypeScript types | `ui/src/api/types.ts` | Generated from OpenAPI |
+
+To regenerate after changing the TypeSpec:
+
+```bash
+mise run contracts:build     # .tsp → openapi.yaml
+mise run ui:generate-types   # openapi.yaml → ui/src/api/types.ts
+```
 
 ## Endpoints (first deliverable)
 
