@@ -72,6 +72,7 @@ nav:
       - Integration events: reference/events.md
       - Database schema: reference/database.md
       - Kotlin API (KDoc): reference/api.md
+      - Test Coverage: reference/coverage.md
   - Explanation:
       - Architecture overview: explanation/architecture.md
       - Hexagonal layering: explanation/hexagonal.md

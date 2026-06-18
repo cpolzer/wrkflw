@@ -114,9 +114,17 @@ rm -rf docs/reference/kdoc
 cp -r build/dokka/htmlCollector docs/reference/kdoc
 """
 
+[tasks."docs:coverage"]
+description = "Generate JaCoCo coverage report and copy HTML into docs/reference/coverage"
+run = """
+./gradlew jacocoRootReport
+rm -rf docs/reference/coverage
+cp -r build/reports/jacoco/root/html docs/reference/coverage
+"""
+
 [tasks."docs:build"]
-description = "Build the static docs site (includes Dokka output)"
-depends = ["docs:deps", "docs:api"]
+description = "Build the static docs site (includes Dokka output and coverage)"
+depends = ["docs:deps", "docs:api", "docs:coverage"]
 run = "uv run mkdocs build --strict"
 
 [tasks."docs:serve"]
