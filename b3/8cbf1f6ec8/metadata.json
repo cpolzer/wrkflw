@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "b38cbf1f6ec8",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".github/workflows/ci.yml",
+    ".gitignore",
+    "contracts/lib/models.tsp",
+    "contracts/lib/routes.tsp",
+    "contracts/main.tsp",
+    "contracts/package.json",
+    "contracts/tspconfig.yaml",
+    "docs/explanation/agentic/index.md",
+    "mise.toml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/b3/8cbf1f6ec8/0/metadata.json",
+      "transcript": "/b3/8cbf1f6ec8/0/full.jsonl",
+      "content_hash": "/b3/8cbf1f6ec8/0/content_hash.txt",
+      "prompt": "/b3/8cbf1f6ec8/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 56,
+    "cache_creation_tokens": 59431,
+    "cache_read_tokens": 2845372,
+    "output_tokens": 19529,
+    "api_call_count": 52
+  }
+}

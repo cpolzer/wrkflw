@@ -1,0 +1,5 @@
+how would microsoft typespec fit into here? https://github.com/microsoft/typespec
+
+---
+
+can we please add this? how does typespec fit into cinormally?
