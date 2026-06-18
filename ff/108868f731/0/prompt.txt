@@ -1,0 +1,1 @@
+should we not only mention the keycloak json config exists, but render it ?
