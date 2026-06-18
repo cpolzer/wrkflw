@@ -31,6 +31,16 @@ See the [Spec Kit workflow](spec-kit.md) page for the full breakdown.
 
 Planning and specifications were done with Claude Sonnet. Once a `tasks.md` existed, implementation tasks were handed off to Qwen or Kimi via opencode for cost efficiency.
 
+### Contract-first API design — [TypeSpec](https://typespec.io)
+
+TypeSpec is the source of truth for REST contracts. The chain is:
+
+```
+contracts/*.tsp  →  tsp compile  →  openapi.yaml  →  openapi-typescript  →  ui/src/api/types.ts
+```
+
+The `.tsp` source lives in `contracts/` and emits directly to `specs/001-document-approval-engine/contracts/openapi.yaml`. The OpenAPI YAML and generated TypeScript types are both committed so the docs site and UI can consume them without running the TypeSpec compiler. Running `mise run contracts:build` regenerates the OpenAPI; `mise run ui:generate-types` regenerates the TypeScript types.
+
 ### Token / cost optimization
 
 | Tool | Purpose |

@@ -1,0 +1,9 @@
+{
+  "name": "wrkflw-contracts",
+  "private": true,
+  "devDependencies": {
+    "@typespec/compiler": "latest",
+    "@typespec/http": "latest",
+    "@typespec/openapi3": "latest"
+  }
+}

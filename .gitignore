@@ -51,6 +51,10 @@ coverage/
 # Vite
 ui/.vite/
 
+# TypeSpec
+contracts/node_modules/
+contracts/tsp-output/
+
 # mkdocs
 
 site/

@@ -11,17 +11,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * List flows submitted by the caller
-         * @description Returns all flow instances where the caller is the submitter, ordered by last-updated descending. Used by the submitter's "My Submissions" view to track document status.
-         */
-        get: operations["listSubmitterFlows"];
+        /** @description List flows submitted by the caller (submitter My Submissions view) */
+        get: operations["FlowsApi_list"];
         put?: never;
-        /**
-         * Submit a document for approval (start a flow)
-         * @description Starts a flow instance from a flow definition. Only members of the definition's designated initiator group may start it (FR-002).
-         */
-        post: operations["submitDocument"];
+        /** @description Submit a document for approval — only initiator-group members may start (FR-002) */
+        post: operations["FlowsApi_submit"];
         delete?: never;
         options?: never;
         head?: never;
@@ -35,42 +29,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get flow status, pending tasks, responsible groups, and history */
-        get: operations["getFlowStatus"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/worklists/group": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Unclaimed tasks actionable by the caller's group(s) (FR-016) */
-        get: operations["getGroupWorkList"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/worklists/mine": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Tasks the caller personally owns (FR-017) */
-        get: operations["getMyTasks"];
+        /** @description Get flow status, pending tasks, responsible groups, and audit history */
+        get: operations["FlowInstancesApi_getStatus"];
         put?: never;
         post?: never;
         delete?: never;
@@ -88,28 +48,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /**
-         * Claim a pending task (FR-008)
-         * @description Requires the caller to be a member of the task's candidate group and the task to be PENDING.
-         */
-        post: operations["claimTask"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/tasks/{taskId}/release": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Release a claimed task back to the group (FR-009) */
-        post: operations["releaseTask"];
+        /** @description Claim a pending task — caller must be in the candidate group and task must be PENDING (FR-008) */
+        post: operations["TaskClaimApi_claim"];
         delete?: never;
         options?: never;
         head?: never;
@@ -125,11 +65,59 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /**
-         * Record an approve/reject decision on an owned task (FR-011, FR-012)
-         * @description Only the current owner may decide. On success the decision is recorded, the flow advances per the definition (approve → next stage / terminal; reject → return to submitter for rework in the document-approval definition), audit and outbox rows are written in the same transaction, and the Temporal workflow is signaled.
-         */
-        post: operations["submitDecision"];
+        /** @description Record an approve/reject decision on an owned task (FR-011, FR-012) */
+        post: operations["TaskDecisionApi_decide"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/tasks/{taskId}/release": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Release a claimed task back to the group (FR-009) */
+        post: operations["TaskReleaseApi_release"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/worklists/group": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Unclaimed tasks actionable by the caller's group(s) (FR-016) */
+        get: operations["GroupWorklistApi_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/worklists/mine": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Tasks the caller personally owns (FR-017) */
+        get: operations["MyWorklistApi_list"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -140,62 +128,63 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        AuditEntry: {
+            type: string;
+            actorId: string | null;
+            /** Format: date-time */
+            occurredAt: string;
+            detail: {
+                [key: string]: unknown;
+            };
+        };
+        /** @enum {string} */
+        DecisionOutcome: "APPROVE" | "REJECT";
+        DecisionRequest: {
+            outcome: components["schemas"]["DecisionOutcome"];
+            comment?: string;
+        };
+        /** @enum {string} */
+        FlowRunStatus: "RUNNING" | "COMPLETED";
+        FlowStatus: {
+            /** Format: uuid */
+            flowId: string;
+            definitionKey: string;
+            currentState: string;
+            status: components["schemas"]["FlowRunStatus"];
+            terminalOutcome: string | null;
+            pendingTasks: components["schemas"]["TaskSummary"][];
+        };
+        FlowStatusWithHistory: {
+            history: components["schemas"]["AuditEntry"][];
+        } & components["schemas"]["FlowStatus"];
+        FlowSummary: {
+            /** Format: uuid */
+            flowId: string;
+            definitionKey: string;
+            currentState: string;
+            status: components["schemas"]["FlowRunStatus"];
+            terminalOutcome: string | null;
+            documentRef: string;
+            submitterId: string;
+            /** Format: date-time */
+            updatedAt: string;
+        };
         SubmitDocumentRequest: {
-            /** @example document-approval */
             definitionKey: string;
             /** @description Reference/identifier of the document */
             documentRef: string;
         };
-        DecisionRequest: {
-            /** @enum {string} */
-            outcome: "APPROVE" | "REJECT";
-            comment?: string;
-        };
-        FlowStatus: {
-            /** Format: uuid */
-            flowId?: string;
-            definitionKey?: string;
-            currentState?: string;
-            /** @enum {string} */
-            status?: "RUNNING" | "COMPLETED";
-            terminalOutcome?: string | null;
-            pendingTasks?: components["schemas"]["TaskSummary"][];
-        };
-        FlowStatusWithHistory: components["schemas"]["FlowStatus"] & {
-            history?: components["schemas"]["AuditEntry"][];
-        };
+        /** @enum {string} */
+        TaskRunStatus: "PENDING" | "CLAIMED" | "COMPLETED";
         TaskSummary: {
             /** Format: uuid */
-            taskId?: string;
+            taskId: string;
             /** Format: uuid */
-            flowId?: string;
-            stateName?: string;
-            candidateGroupId?: string;
-            /** @enum {string} */
-            status?: "PENDING" | "CLAIMED" | "COMPLETED";
-            ownerId?: string | null;
-        };
-        FlowSummary: {
-            /** Format: uuid */
-            flowId?: string;
-            definitionKey?: string;
-            currentState?: string;
-            /** @enum {string} */
-            status?: "RUNNING" | "COMPLETED";
-            terminalOutcome?: string | null;
-            documentRef?: string;
-            submitterId?: string;
-            /** Format: date-time */
-            updatedAt?: string;
-        };
-        AuditEntry: {
-            type?: string;
-            actorId?: string | null;
-            /** Format: date-time */
-            occurredAt?: string;
-            detail?: {
-                [key: string]: unknown;
-            };
+            flowId: string;
+            stateName: string;
+            candidateGroupId: string;
+            status: components["schemas"]["TaskRunStatus"];
+            ownerId: string | null;
         };
     };
     responses: never;
@@ -206,7 +195,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    listSubmitterFlows: {
+    FlowsApi_list: {
         parameters: {
             query?: never;
             header?: never;
@@ -215,7 +204,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Flows submitted by the caller */
+            /** @description The request has succeeded. */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -226,7 +215,7 @@ export interface operations {
             };
         };
     };
-    submitDocument: {
+    FlowsApi_submit: {
         parameters: {
             query?: never;
             header?: never;
@@ -239,7 +228,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Flow started */
+            /** @description The request has succeeded and a new resource has been created as a result. */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -248,21 +237,21 @@ export interface operations {
                     "application/json": components["schemas"]["FlowStatus"];
                 };
             };
-            /** @description Caller is not a member of the initiator group */
+            /** @description Access is forbidden. */
             403: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Flow definition not found */
+            /** @description The server cannot find the requested resource. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Invalid request (e.g. missing documentRef) */
+            /** @description Client error */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -271,7 +260,7 @@ export interface operations {
             };
         };
     };
-    getFlowStatus: {
+    FlowInstancesApi_getStatus: {
         parameters: {
             query?: never;
             header?: never;
@@ -282,7 +271,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Flow status */
+            /** @description The request has succeeded. */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -291,7 +280,7 @@ export interface operations {
                     "application/json": components["schemas"]["FlowStatusWithHistory"];
                 };
             };
-            /** @description Flow not found */
+            /** @description The server cannot find the requested resource. */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -300,47 +289,7 @@ export interface operations {
             };
         };
     };
-    getGroupWorkList: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Pending tasks for the caller's groups */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TaskSummary"][];
-                };
-            };
-        };
-    };
-    getMyTasks: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Tasks owned by the caller */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TaskSummary"][];
-                };
-            };
-        };
-    };
-    claimTask: {
+    TaskClaimApi_claim: {
         parameters: {
             query?: never;
             header?: never;
@@ -351,7 +300,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Task claimed */
+            /** @description The request has succeeded. */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -360,21 +309,21 @@ export interface operations {
                     "application/json": components["schemas"]["TaskSummary"];
                 };
             };
-            /** @description Caller not in the task's candidate group */
+            /** @description Access is forbidden. */
             403: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Task not found */
+            /** @description The server cannot find the requested resource. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Task is not claimable (already claimed/completed) */
+            /** @description The request conflicts with the current state of the server. */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -383,50 +332,7 @@ export interface operations {
             };
         };
     };
-    releaseTask: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                taskId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Task released */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TaskSummary"];
-                };
-            };
-            /** @description Caller is not the current owner */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Task not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Task is not in a releasable state */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    submitDecision: {
+    TaskDecisionApi_decide: {
         parameters: {
             query?: never;
             header?: never;
@@ -441,7 +347,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Decision recorded; returns the resulting flow status */
+            /** @description The request has succeeded. */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -450,33 +356,116 @@ export interface operations {
                     "application/json": components["schemas"]["FlowStatus"];
                 };
             };
-            /** @description Caller is not the current owner */
+            /** @description Access is forbidden. */
             403: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Task not found */
+            /** @description The server cannot find the requested resource. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Task is not in a decidable state */
+            /** @description The request conflicts with the current state of the server. */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Invalid outcome */
+            /** @description Client error */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    TaskReleaseApi_release: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                taskId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The request has succeeded. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TaskSummary"];
+                };
+            };
+            /** @description Access is forbidden. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The server cannot find the requested resource. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The request conflicts with the current state of the server. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    GroupWorklistApi_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The request has succeeded. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TaskSummary"][];
+                };
+            };
+        };
+    };
+    MyWorklistApi_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The request has succeeded. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TaskSummary"][];
+                };
             };
         };
     };

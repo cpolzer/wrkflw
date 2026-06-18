@@ -56,6 +56,18 @@ run = "docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --
 description = "Stop the full local stack"
 run = "docker compose -f docker-compose.yml -f docker-compose.local.yml down"
 
+# ---- Contracts (TypeSpec → OpenAPI) ---------------------------------------------
+
+[tasks."contracts:install"]
+description = "Install TypeSpec compiler and emitters"
+run = "npm install"
+dir = "contracts"
+
+[tasks."contracts:build"]
+description = "Compile TypeSpec → openapi.yaml"
+run = "npx tsp compile ."
+dir = "contracts"
+
 # ---- Frontend (Vue / Onyx) -------------------------------------------------------
 
 [tasks."ui:install"]
@@ -119,6 +131,8 @@ description = "Everything CI runs (sequential to avoid Gradle build-lock content
 run = """
 ./gradlew ktlintCheck detekt
 ./gradlew build
+mise run contracts:install
+mise run contracts:build
 mise run ui:install
 mise run ui:check
 mise run docs:build
