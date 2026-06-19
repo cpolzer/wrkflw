@@ -1,0 +1,9 @@
+setup PR please
+
+---
+
+https://github.com/cpolzer/wrkflw/actions/runs/27797303636/job/82259772555 -> failed. do i have to configure another user allowe to push to main=?
+
+---
+
+why is releasse pülease running in an extra workflow, causing duplicate piepline runs?

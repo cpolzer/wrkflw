@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "c3ac6079be2d",
+  "strategy": "manual-commit",
+  "branch": "006-ci-auto-versioning",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".github/workflows/ci.yml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/c3/ac6079be2d/0/metadata.json",
+      "transcript": "/c3/ac6079be2d/0/full.jsonl",
+      "content_hash": "/c3/ac6079be2d/0/content_hash.txt",
+      "prompt": "/c3/ac6079be2d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15,
+    "cache_creation_tokens": 6832,
+    "cache_read_tokens": 1693672,
+    "output_tokens": 2127,
+    "api_call_count": 9
+  }
+}
