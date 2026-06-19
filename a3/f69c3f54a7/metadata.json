@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "a3f69c3f54a7",
+  "strategy": "manual-commit",
+  "branch": "006-ci-auto-versioning",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "mise.toml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/a3/f69c3f54a7/0/metadata.json",
+      "transcript": "/a3/f69c3f54a7/0/full.jsonl",
+      "content_hash": "/a3/f69c3f54a7/0/content_hash.txt",
+      "prompt": "/a3/f69c3f54a7/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 21,
+    "cache_creation_tokens": 15207,
+    "cache_read_tokens": 2654842,
+    "output_tokens": 3408,
+    "api_call_count": 15
+  }
+}
