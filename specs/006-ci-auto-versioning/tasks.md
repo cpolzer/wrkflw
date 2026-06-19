@@ -17,10 +17,10 @@
 
 **Purpose**: Establish `gradle.properties` as the single authoritative version source. Must complete before Dockerfiles reference it and before any workflow can inject the correct version.
 
-- [ ] T001 Add `version=0.1.0` to `gradle.properties` (new property; file currently empty)
-- [ ] T002 [P] Remove hardcoded `version = "0.1.0-SNAPSHOT"` from `apps/api-service/build.gradle.kts` (inherits from `gradle.properties` automatically)
-- [ ] T003 [P] Remove hardcoded `version = "0.1.0-SNAPSHOT"` from `apps/worker-service/build.gradle.kts` (inherits from `gradle.properties` automatically)
-- [ ] T004 Verify Gradle resolves version correctly: run `./gradlew properties | grep '^version'` and confirm output is `version: 0.1.0` for both app subprojects
+- [x] T001 Add `version=0.1.0` to `gradle.properties` (new property; file currently empty)
+- [x] T002 [P] Remove hardcoded `version = "0.1.0-SNAPSHOT"` from `apps/api-service/build.gradle.kts` (inherits from `gradle.properties` automatically)
+- [x] T003 [P] Remove hardcoded `version = "0.1.0-SNAPSHOT"` from `apps/worker-service/build.gradle.kts` (inherits from `gradle.properties` automatically)
+- [x] T004 Verify Gradle resolves version correctly: run `./gradlew properties | grep '^version'` and confirm output is `version: 0.1.0` for both app subprojects
 
 ---
 
@@ -30,12 +30,12 @@
 
 **⚠️ CRITICAL**: Phase 3 (US1) and Phase 4 (US2) cannot be verified until this phase is complete.
 
-- [ ] T005 [P] Add `ARG VERSION` + three OCI labels to the final stage of `apps/api-service/Dockerfile` per `contracts/oci-image-labels.md` (`org.opencontainers.image.version`, `.title="api-service"`, `.source`)
-- [ ] T006 [P] Add `ARG VERSION` + three OCI labels to the final stage of `apps/worker-service/Dockerfile` per `contracts/oci-image-labels.md` (`.title="worker-service"`)
-- [ ] T007 Create `ui/Dockerfile` — multi-stage: Node 22 Alpine builder with `ARG VERSION`, `ENV VITE_APP_VERSION=$VERSION`, `npm ci`, `npm run build`; then Nginx Alpine serving `dist/` with OCI labels per `contracts/oci-image-labels.md` (`.title="ui"`)
-- [ ] T008 Create `release-please-config.json` at repository root per `contracts/release-please-config.md`: `release-type: simple`, root package `.`, `extra-files` updating `gradle.properties` (generic regex `version=.*` → `version=${version}`) and `ui/package.json` (json `$.version`), `changelog-path: CHANGELOG.md`
-- [ ] T009 Create `.release-please-manifest.json` at repository root with initial state `{ ".": "0.1.0" }` to align with the version set in T001
-- [ ] T009b [P] Update `ui/package.json` `"version"` field from `"0.0.0"` to `"0.1.0"` to match the initial manifest state in T009; prevents a version mismatch on the first release PR
+- [x] T005 [P] Add `ARG VERSION` + three OCI labels to the final stage of `apps/api-service/Dockerfile` per `contracts/oci-image-labels.md` (`org.opencontainers.image.version`, `.title="api-service"`, `.source`)
+- [x] T006 [P] Add `ARG VERSION` + three OCI labels to the final stage of `apps/worker-service/Dockerfile` per `contracts/oci-image-labels.md` (`.title="worker-service"`)
+- [x] T007 Create `ui/Dockerfile` — multi-stage: Node 22 Alpine builder with `ARG VERSION`, `ENV VITE_APP_VERSION=$VERSION`, `npm ci`, `npm run build`; then Nginx Alpine serving `dist/` with OCI labels per `contracts/oci-image-labels.md` (`.title="ui"`)
+- [x] T008 Create `release-please-config.json` at repository root per `contracts/release-please-config.md`: `release-type: simple`, root package `.`, `extra-files` updating `gradle.properties` (generic regex `version=.*` → `version=${version}`) and `ui/package.json` (json `$.version`), `changelog-path: CHANGELOG.md`
+- [x] T009 Create `.release-please-manifest.json` at repository root with initial state `{ ".": "0.1.0" }` to align with the version set in T001
+- [x] T009b [P] Update `ui/package.json` `"version"` field from `"0.0.0"` to `"0.1.0"` to match the initial manifest state in T009; prevents a version mismatch on the first release PR
 
 **Checkpoint**: Run `docker build --build-arg VERSION=0.1.0-test -t wrkflw/api-service:test -f apps/api-service/Dockerfile .` and `skopeo inspect docker-daemon:wrkflw/api-service:test | jq '.Labels["org.opencontainers.image.version"]'` — should return `"0.1.0-test"`. Repeat for worker-service and ui.
 
@@ -49,9 +49,9 @@
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Create `.github/workflows/release-please.yml` triggered on `push: branches: [main]` using `googleapis/release-please-action@v4` with `config-file: release-please-config.json` and `manifest-file: .release-please-manifest.json`
-- [ ] T011 [US1] Add `permissions: contents: write, pull-requests: write` to the `release-please` job in `.github/workflows/release-please.yml`
-- [ ] T012 [US1] Add `concurrency: group: release-please-${{ github.ref }}, cancel-in-progress: false` to `.github/workflows/release-please.yml` so it never shares or cancels with the existing `ci-${{ github.head_ref || github.ref_name }}` group in `ci.yml`
+- [x] T010 [US1] Create `.github/workflows/release-please.yml` triggered on `push: branches: [main]` using `googleapis/release-please-action@v4` with `config-file: release-please-config.json` and `manifest-file: .release-please-manifest.json`
+- [x] T011 [US1] Add `permissions: contents: write, pull-requests: write` to the `release-please` job in `.github/workflows/release-please.yml`
+- [x] T012 [US1] Add `concurrency: group: release-please-${{ github.ref }}, cancel-in-progress: false` to `.github/workflows/release-please.yml` so it never shares or cancels with the existing `ci-${{ github.head_ref || github.ref_name }}` group in `ci.yml`
 
 **Checkpoint**: After merging T010–T012, push a `fix:` commit to `main`. Within 5 minutes a Release PR must appear proposing version `0.1.1` with a CHANGELOG entry. No Release PR appears for a `chore:` commit.
 
@@ -65,12 +65,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Create `.github/workflows/publish.yml` triggered on `on: release: types: [published]`; add job-level `permissions: contents: read, pull-requests: read, security-events: write`; add an early step `run: echo "VERSION_BARE=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV` to derive the bare version (e.g., `1.2.0` from tag `v1.2.0`) — note: `${{ env.X[1:] }}` string-slice syntax is NOT valid in GitHub Actions expressions
-- [ ] T014 [US2] Add a `build-and-verify` job with `strategy: matrix` covering three entries: `{service: api-service, dockerfile: apps/api-service/Dockerfile}`, `{service: worker-service, dockerfile: apps/worker-service/Dockerfile}`, `{service: ui, dockerfile: ui/Dockerfile}`; set `fail-fast: false` so a single image failure does not cancel sibling builds
-- [ ] T015 [US2] Add `docker build` step to `publish.yml` matrix job: `docker build --build-arg VERSION=${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:latest -f ${{ matrix.dockerfile }} .` — `docker build` overwrites the local tag on retry, making this step inherently idempotent if the workflow is re-run after a partial failure
-- [ ] T016 [P] [US2] Add `aquasecurity/trivy-action` step after build in `publish.yml`: `image-ref: wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }}`, `exit-code: 1`, `severity: CRITICAL,HIGH`, `format: sarif`, `output: trivy-${{ matrix.service }}.sarif`
-- [ ] T017 [P] [US2] Add skopeo label verification step after Trivy in `publish.yml`: `sudo apt-get install -y skopeo` then `skopeo inspect docker-daemon:wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} | jq -e --arg v "${{ env.VERSION_BARE }}" '.Labels["org.opencontainers.image.version"] == $v'` — non-zero exit fails the job
-- [ ] T018 [US2] Add `github/codeql-action/upload-sarif@v3` step after Trivy in `publish.yml` to upload `trivy-${{ matrix.service }}.sarif` to GitHub Security tab (`security-events: write` permission already declared in T013)
+- [x] T013 [US2] Create `.github/workflows/publish.yml` triggered on `on: release: types: [published]`; add job-level `permissions: contents: read, pull-requests: read, security-events: write`; add an early step `run: echo "VERSION_BARE=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV` to derive the bare version (e.g., `1.2.0` from tag `v1.2.0`) — note: `${{ env.X[1:] }}` string-slice syntax is NOT valid in GitHub Actions expressions
+- [x] T014 [US2] Add a `build-and-verify` job with `strategy: matrix` covering three entries: `{service: api-service, dockerfile: apps/api-service/Dockerfile}`, `{service: worker-service, dockerfile: apps/worker-service/Dockerfile}`, `{service: ui, dockerfile: ui/Dockerfile}`; set `fail-fast: false` so a single image failure does not cancel sibling builds
+- [x] T015 [US2] Add `docker build` step to `publish.yml` matrix job: `docker build --build-arg VERSION=${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} -t wrkflw/${{ matrix.service }}:latest -f ${{ matrix.dockerfile }} .` — `docker build` overwrites the local tag on retry, making this step inherently idempotent if the workflow is re-run after a partial failure
+- [x] T016 [P] [US2] Add `aquasecurity/trivy-action` step after build in `publish.yml`: `image-ref: wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }}`, `exit-code: 1`, `severity: CRITICAL,HIGH`, `format: sarif`, `output: trivy-${{ matrix.service }}.sarif`
+- [x] T017 [P] [US2] Add skopeo label verification step after Trivy in `publish.yml`: `sudo apt-get install -y skopeo` then `skopeo inspect docker-daemon:wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} | jq -e --arg v "${{ env.VERSION_BARE }}" '.Labels["org.opencontainers.image.version"] == $v'` — non-zero exit fails the job
+- [x] T018 [US2] Add `github/codeql-action/upload-sarif@v3` step after Trivy in `publish.yml` to upload `trivy-${{ matrix.service }}.sarif` to GitHub Security tab (`security-events: write` permission already declared in T013)
 
 **Checkpoint**: Trigger manually via a test release tag. Confirm all three matrix entries in `publish.yml` pass the build → Trivy → skopeo → SARIF upload sequence.
 
@@ -84,8 +84,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T019 [US3] Confirm `CHANGELOG.md` is listed in `release-please-config.json` as `changelog-path` (already set in T008); if `CHANGELOG.md` does not yet exist in the repository, create it with an empty `# Changelog` heading so release-please can prepend to it
-- [ ] T020 [US3] Ensure `CHANGELOG.md` is NOT listed in `.gitignore` (check all `.gitignore` files in the repo); it must be tracked by git so release-please can commit updates to it in the Release PR
+- [x] T019 [US3] Confirm `CHANGELOG.md` is listed in `release-please-config.json` as `changelog-path` (already set in T008); if `CHANGELOG.md` does not yet exist in the repository, create it with an empty `# Changelog` heading so release-please can prepend to it
+- [x] T020 [US3] Ensure `CHANGELOG.md` is NOT listed in `.gitignore` (check all `.gitignore` files in the repo); it must be tracked by git so release-please can commit updates to it in the Release PR
 
 **Checkpoint**: After the US1 verification release PR is merged, `git log --oneline` must show a commit from the release-please bot that modified `CHANGELOG.md`. The file must contain the new version section.
 
@@ -95,10 +95,10 @@
 
 **Purpose**: Validation, documentation, and local parity checks.
 
-- [ ] T021 [P] Add `CHANGELOG.md` and `.release-please-manifest.json` to the `exclude_docs` list in `mkdocs.yml` if they appear under `docs/` — they are not documentation site content (verify paths first; likely at repo root and already excluded)
-- [ ] T022 Run `mise run ci` locally and confirm it passes after all Dockerfile and build file changes from Phases 1–2; this validates Principle VI compliance
-- [ ] T023 [P] Execute the local verification commands from `specs/006-ci-auto-versioning/quickstart.md` for all three images — build, skopeo inspect, and Trivy scan — confirm each passes without errors
-- [ ] T024 Update `specs/006-ci-auto-versioning/checklists/requirements.md` to mark all items resolved now that implementation is complete
+- [x] T021 [P] Add `CHANGELOG.md` and `.release-please-manifest.json` to the `exclude_docs` list in `mkdocs.yml` if they appear under `docs/` — they are not documentation site content (verify paths first; likely at repo root and already excluded)
+- [x] T022 Run `mise run ci` locally and confirm it passes after all Dockerfile and build file changes from Phases 1–2; this validates Principle VI compliance
+- [x] T023 [P] Execute the local verification commands from `specs/006-ci-auto-versioning/quickstart.md` for all three images — build, skopeo inspect, and Trivy scan — confirm each passes without errors
+- [x] T024 Update `specs/006-ci-auto-versioning/checklists/requirements.md` to mark all items resolved now that implementation is complete
 
 ---
 

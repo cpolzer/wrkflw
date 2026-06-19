@@ -36,3 +36,16 @@ All items pass. Key assumptions documented:
 - Container registry: GitHub Container Registry via built-in token
 - Frontend shipped as static archive (not containerized)
 - Conventional Commits enforcement is a prerequisite (spec 002)
+
+## Implementation
+
+- [x] All tasks T001–T024 completed
+- [x] `gradle.properties` is the single version source (0.1.0)
+- [x] OCI labels added to all three Dockerfiles
+- [x] `ui/Dockerfile` created (Node 22 → Nginx Alpine)
+- [x] `release-please-config.json` and `.release-please-manifest.json` committed
+- [x] `ui/package.json` version aligned to 0.1.0
+- [x] `.github/workflows/release-please.yml` created
+- [x] `.github/workflows/publish.yml` created (build + Trivy + skopeo + SARIF)
+- [x] `CHANGELOG.md` seed file committed
+- [x] `./gradlew build` passes locally
