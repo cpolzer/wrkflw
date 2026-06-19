@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "d958a19423da",
+  "strategy": "manual-commit",
+  "branch": "006-ci-auto-versioning",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".github/workflows/publish.yml",
+    ".github/workflows/release-please.yml",
+    ".release-please-manifest.json",
+    "CHANGELOG.md",
+    "apps/api-service/Dockerfile",
+    "apps/api-service/build.gradle.kts",
+    "apps/worker-service/Dockerfile",
+    "apps/worker-service/build.gradle.kts",
+    "gradle.properties",
+    "release-please-config.json",
+    "specs/006-ci-auto-versioning/checklists/requirements.md",
+    "ui/Dockerfile",
+    "ui/package.json"
+  ],
+  "sessions": [
+    {
+      "metadata": "/d9/58a19423da/0/metadata.json",
+      "transcript": "/d9/58a19423da/0/full.jsonl",
+      "content_hash": "/d9/58a19423da/0/content_hash.txt",
+      "prompt": "/d9/58a19423da/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 24,
+    "cache_creation_tokens": 11974,
+    "cache_read_tokens": 3807974,
+    "output_tokens": 6092,
+    "api_call_count": 23
+  }
+}
