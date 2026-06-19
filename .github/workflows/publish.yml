@@ -1,0 +1,64 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-verify:
+    name: Build, scan & verify ${{ matrix.service }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - service: api-service
+            dockerfile: apps/api-service/Dockerfile
+          - service: worker-service
+            dockerfile: apps/worker-service/Dockerfile
+          - service: ui
+            dockerfile: ui/Dockerfile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Derive bare version
+        # strips the leading 'v' from the tag (e.g. v1.2.0 → 1.2.0)
+        # Note: ${{ env.X[1:] }} string-slice is NOT valid in GitHub Actions expressions
+        run: echo "VERSION_BARE=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        # docker build overwrites the local tag on retry — inherently idempotent
+        run: |
+          docker build \
+            --build-arg VERSION=${{ env.VERSION_BARE }} \
+            -t wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} \
+            -t wrkflw/${{ matrix.service }}:latest \
+            -f ${{ matrix.dockerfile }} \
+            .
+
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }}
+          exit-code: "1"
+          severity: CRITICAL,HIGH
+          format: sarif
+          output: trivy-${{ matrix.service }}.sarif
+
+      - name: Verify OCI version label with skopeo
+        run: |
+          sudo apt-get install -y skopeo
+          skopeo inspect docker-daemon:wrkflw/${{ matrix.service }}:${{ env.VERSION_BARE }} \
+            | jq -e --arg v "${{ env.VERSION_BARE }}" \
+                '.Labels["org.opencontainers.image.version"] == $v'
+
+      - name: Upload Trivy SARIF to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: trivy-${{ matrix.service }}.sarif
