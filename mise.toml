@@ -117,9 +117,11 @@ cp -r build/dokka/htmlCollector docs/reference/kdoc
 [tasks."docs:coverage"]
 description = "Generate JaCoCo coverage report and copy HTML into docs/reference/coverage"
 run = """
-./gradlew jacocoRootReport
-rm -rf docs/reference/coverage
-cp -r build/reports/jacoco/root/html docs/reference/coverage
+./gradlew jacocoRootReport || true
+if [ -d "build/reports/jacoco/root/html" ]; then
+  rm -rf docs/reference/coverage
+  cp -r build/reports/jacoco/root/html docs/reference/coverage
+fi
 """
 
 [tasks."docs:build"]
