@@ -1,0 +1,25 @@
+we just recently added precommit hooks and worked on the tag based releasing and version bumping in here.
+
+---
+
+please check. are conventional commits enforced now with precommit ?
+
+---
+
+it was just removed i think?
+
+---
+
+yes
+
+---
+
+yes
+
+---
+
+commit and poush?
+
+---
+
+but we are able to pull and push??

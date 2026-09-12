@@ -1,0 +1,60 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "d6a28381bf0d",
+  "session_id": "3239f667-d878-43a4-b4db-382688de6568",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-12T21:24:17.787722848Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    ".github/workflows/release-please.yml",
+    ".gitignore",
+    ".specify/extensions/.registry",
+    ".specify/init-options.json",
+    ".specify/scripts/bash/check-prerequisites.sh",
+    ".specify/scripts/bash/common.sh",
+    ".specify/scripts/bash/create-new-feature.sh",
+    ".specify/scripts/bash/setup-plan.sh",
+    ".specify/templates/checklist-template.md",
+    ".specify/workflows/workflow-registry.json",
+    "specs/003-vue-onyx-frontend/contracts/api-consumption.md",
+    "specs/003-vue-onyx-frontend/research.md",
+    "ui/keycloak/realm-export.json",
+    "ui/public/favicon.svg",
+    "ui/src/assets/vue.svg"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5",
+  "turn_id": "3765ea883828",
+  "token_usage": {
+    "input_tokens": 76,
+    "cache_creation_tokens": 79625,
+    "cache_read_tokens": 2636807,
+    "output_tokens": 8251,
+    "api_call_count": 38
+  },
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-09-12T21:24:17.782242145Z",
+    "agent_lines": 57,
+    "agent_removed": 59,
+    "human_added": 27,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 84,
+    "total_lines_changed": 166,
+    "agent_percentage": 69.87951807228916,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "d6a28381bf0d",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    ".github/workflows/release-please.yml",
+    ".gitignore",
+    ".specify/extensions/.registry",
+    ".specify/init-options.json",
+    ".specify/scripts/bash/check-prerequisites.sh",
+    ".specify/scripts/bash/common.sh",
+    ".specify/scripts/bash/create-new-feature.sh",
+    ".specify/scripts/bash/setup-plan.sh",
+    ".specify/templates/checklist-template.md",
+    ".specify/workflows/workflow-registry.json",
+    "specs/003-vue-onyx-frontend/contracts/api-consumption.md",
+    "specs/003-vue-onyx-frontend/research.md",
+    "ui/keycloak/realm-export.json",
+    "ui/public/favicon.svg",
+    "ui/src/assets/vue.svg"
+  ],
+  "sessions": [
+    {
+      "metadata": "/d6/a28381bf0d/0/metadata.json",
+      "transcript": "/d6/a28381bf0d/0/full.jsonl",
+      "content_hash": "/d6/a28381bf0d/0/content_hash.txt",
+      "prompt": "/d6/a28381bf0d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 76,
+    "cache_creation_tokens": 79625,
+    "cache_read_tokens": 2636807,
+    "output_tokens": 8251,
+    "api_call_count": 38
+  }
+}
