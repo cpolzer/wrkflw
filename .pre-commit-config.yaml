@@ -1,0 +1,42 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+      - id: mixed-line-ending
+
+  - repo: local
+    hooks:
+      - id: kotlin-lint
+        name: Kotlin lint (ktlint + detekt)
+        entry: mise exec -- ./gradlew ktlintCheck detekt
+        language: system
+        types: [kotlin]
+        exclude: ".*/(build|\\.gradle|gradle/|generated/|\\.specify/|\\.vale/|\\.claude/).*"
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.28.4
+    hooks:
+      - id: typos
+        args: [--config, _typos.toml]
+
+  - repo: https://github.com/errata-ai/vale
+    rev: v3.21.0
+    hooks:
+      - id: vale
+        args: [--config, .vale.ini, .]
+
+  - repo: https://github.com/commitizen-tools/conventional-pre-commit
+    rev: v1.0.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
