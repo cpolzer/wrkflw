@@ -1,0 +1,10 @@
+[files]
+extend-exclude = [
+    "*.lock",
+    "build/",
+    ".gradle/",
+    "gradle/",
+    "generated/",
+    "node_modules/",
+    ".specify/",
+]

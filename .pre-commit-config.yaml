@@ -35,7 +35,7 @@ repos:
       - id: vale
         args: [--config, .vale.ini, .]
 
-  - repo: https://github.com/commitizen-tools/conventional-pre-commit
+  - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v1.0.0
     hooks:
       - id: conventional-pre-commit
