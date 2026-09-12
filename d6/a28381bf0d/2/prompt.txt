@@ -1,0 +1,78 @@
+we are working with specify specs in here?
+
+---
+
+i do not think we asre working on spec001?
+
+---
+
+is it done? what is missing?
+
+---
+
+yes
+
+---
+
+2
+
+---
+
+lets install precommit hook tooling?
+
+---
+
+is there no better precommit hook tooling available in our current ecosystem/setup?
+
+---
+
+yes
+
+---
+
+lets also add a hook to scan for sharing secrets?
+
+---
+
+lets also add vale . what is a good typochecker?
+
+---
+
+can we ensure those tools installed via mise?
+
+---
+
+also precomit.
+
+---
+
+why a lower "a!" ? iun # Agentic Coding
+# agentic Coding
+
+---
+
+commit and push
+
+---
+
+do we have a merge request open?
+
+---
+
+merge to main, push main?
+
+---
+
+continue
+
+---
+
+i think typos could ignore the google vale config?
+
+---
+
+redownload the valde google config please
+
+---
+
+we still have uncommited files ???
