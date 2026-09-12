@@ -15,6 +15,7 @@
     ".specify/scripts/bash/setup-plan.sh",
     ".specify/templates/checklist-template.md",
     ".specify/workflows/workflow-registry.json",
+    "_typos.toml",
     "specs/003-vue-onyx-frontend/contracts/api-consumption.md",
     "specs/003-vue-onyx-frontend/research.md",
     "ui/keycloak/realm-export.json",
@@ -27,13 +28,19 @@
       "transcript": "/d6/a28381bf0d/0/full.jsonl",
       "content_hash": "/d6/a28381bf0d/0/content_hash.txt",
       "prompt": "/d6/a28381bf0d/0/prompt.txt"
+    },
+    {
+      "metadata": "/d6/a28381bf0d/1/metadata.json",
+      "transcript": "/d6/a28381bf0d/1/full.jsonl",
+      "content_hash": "/d6/a28381bf0d/1/content_hash.txt",
+      "prompt": "/d6/a28381bf0d/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 76,
-    "cache_creation_tokens": 79625,
-    "cache_read_tokens": 2636807,
-    "output_tokens": 8251,
-    "api_call_count": 38
+    "input_tokens": 94,
+    "cache_creation_tokens": 118093,
+    "cache_read_tokens": 3277401,
+    "output_tokens": 10405,
+    "api_call_count": 47
   }
 }
