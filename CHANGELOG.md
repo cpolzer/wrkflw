@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/cpolzer/wrkflw/compare/v0.2.0...v0.2.1) (2026-09-12)
+
+
+### Bug Fixes
+
+* **ci:** restore conventional-pre-commit hook and add missing lint configs ([2617316](https://github.com/cpolzer/wrkflw/commit/26173164473f0deff677c105f5602399346651cb))
+
 ## [0.2.0](https://github.com/cpolzer/wrkflw/compare/v0.1.0...v0.2.0) (2026-06-19)
 
 
