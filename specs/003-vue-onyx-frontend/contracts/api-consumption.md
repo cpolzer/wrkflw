@@ -1,8 +1,8 @@
 # Contract: Frontend API Consumption
 
-**Date**: 2026-06-10  
-**Source contract**: `specs/001-document-approval-engine/contracts/openapi.yaml`  
-**Consumer**: `ui/` Vue SPA  
+**Date**: 2026-06-10
+**Source contract**: `specs/001-document-approval-engine/contracts/openapi.yaml`
+**Consumer**: `ui/` Vue SPA
 **Provider**: `apps/api-service` Ktor REST API
 
 ---

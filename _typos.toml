@@ -1,3 +1,7 @@
+[default.extend-words]
+strat = "strat"
+unparseable = "unparseable"
+
 [files]
 extend-exclude = [
     "*.lock",
