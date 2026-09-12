@@ -19,3 +19,7 @@ yes
 ---
 
 commit and poush?
+
+---
+
+but we are able to pull and push??
