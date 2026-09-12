@@ -1,0 +1,335 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "89355270ffc7",
+  "session_id": "ses_f697526b2ffetRctZgsbe2Emc0",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-12T20:31:37.921174599Z",
+  "branch": "main",
+  "checkpoints_count": 13,
+  "files_touched": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/release-please.yml",
+    ".pre-commit-config.yaml"
+  ],
+  "agent": "OpenCode",
+  "model": "minimax-m2.7",
+  "turn_id": "171175a52311",
+  "token_usage": {
+    "input_tokens": 1106689,
+    "cache_creation_tokens": 145464,
+    "cache_read_tokens": 15611696,
+    "output_tokens": 21422,
+    "api_call_count": 224
+  },
+  "session_metrics": {
+    "turn_count": 17
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-09-12T20:31:37.884381367Z",
+    "agent_lines": 17,
+    "agent_removed": 10,
+    "human_added": 41,
+    "human_modified": 4,
+    "human_removed": 0,
+    "total_committed": 62,
+    "total_lines_changed": 72,
+    "agent_percentage": 37.5,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 23,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 23,
+      "agent_lines_removed": 14,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 29,
+      "agent_lines_removed": 14,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 29,
+      "agent_lines_removed": 14,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 81,
+      "agent_lines_removed": 96,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 1264,
+      "user_lines_removed": 89,
+      "agent_lines_added": 86,
+      "agent_lines_removed": 96,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293,
+        ".claude/skills/speckit-git-commit/SKILL.md": 1,
+        ".claude/skills/speckit-git-feature/SKILL.md": 1,
+        ".claude/skills/speckit-git-initialize/SKILL.md": 1,
+        ".claude/skills/speckit-git-remote/SKILL.md": 1,
+        ".claude/skills/speckit-git-validate/SKILL.md": 1,
+        ".claude/skills/speckit-implement/SKILL.md": 2,
+        ".claude/skills/speckit-specify/SKILL.md": 14,
+        ".claude/skills/speckit-tasks/SKILL.md": 2,
+        ".gitignore": 1,
+        ".pre-commit-config.yaml": 21,
+        ".specify/extensions/.registry": 1,
+        ".specify/init-options.json": 1,
+        ".specify/scripts/bash/check-prerequisites.sh": 5,
+        ".specify/scripts/bash/create-new-feature.sh": 11,
+        ".specify/scripts/bash/setup-plan.sh": 7,
+        ".specify/templates/checklist-template.md": 3,
+        ".specify/workflows/workflow-registry.json": 1,
+        ".vale.ini": 22,
+        ".vale/styles/Google/AMPM.yml": 9,
+        ".vale/styles/Google/Acronyms.yml": 64,
+        ".vale/styles/Google/Anthropomorphism.yml": 12,
+        ".vale/styles/Google/Colons.yml": 13,
+        ".vale/styles/Google/Contractions.yml": 30,
+        ".vale/styles/Google/DateFormat.yml": 9,
+        ".vale/styles/Google/Ellipses.yml": 9,
+        ".vale/styles/Google/EmDash.yml": 13,
+        ".vale/styles/Google/ExcessiveClaims.yml": 14,
+        ".vale/styles/Google/Exclamation.yml": 12,
+        ".vale/styles/Google/FirstPerson.yml": 15,
+        ".vale/styles/Google/Gender.yml": 9,
+        ".vale/styles/Google/GenderBias.yml": 43,
+        ".vale/styles/Google/HeadingPunctuation.yml": 13,
+        ".vale/styles/Google/Headings.yml": 32,
+        ".vale/styles/Google/Jargon.yml": 13,
+        ".vale/styles/Google/Latin.yml": 15,
+        ".vale/styles/Google/LyHyphens.yml": 14,
+        ".vale/styles/Google/OptionalPlurals.yml": 12,
+        ".vale/styles/Google/Ordinal.yml": 7,
+        ".vale/styles/Google/OxfordComma.yml": 28,
+        ".vale/styles/Google/Parens.yml": 15,
+        ".vale/styles/Google/Passive.yml": 184,
+        ".vale/styles/Google/Periods.yml": 7,
+        ".vale/styles/Google/Quotes.yml": 7,
+        ".vale/styles/Google/Ranges.yml": 7,
+        ".vale/styles/Google/Semicolons.yml": 8,
+        ".vale/styles/Google/Slang.yml": 11,
+        ".vale/styles/Google/Spacing.yml": 10,
+        ".vale/styles/Google/Spelling.yml": 10,
+        ".vale/styles/Google/Timeless.yml": 13,
+        ".vale/styles/Google/Units.yml": 10,
+        ".vale/styles/Google/We.yml": 11,
+        ".vale/styles/Google/Will.yml": 7,
+        ".vale/styles/Google/WordList.yml": 29,
+        ".vale/styles/Google/WordListCase.yml": 68,
+        ".vale/styles/Google/meta.json": 4,
+        ".vale/styles/config/vocabularies/Tech/accept.txt": 48,
+        "README.md": 1,
+        "_typos.toml": 6,
+        "docs/explanation/agentic/index.md": 1,
+        "mise.toml": 6,
+        "specs/003-vue-onyx-frontend/contracts/api-consumption.md": 3,
+        "specs/003-vue-onyx-frontend/research.md": 20,
+        "ui/keycloak/realm-export.json": 1,
+        "ui/public/favicon.svg": 1,
+        "ui/src/assets/vue.svg": 1
+      },
+      "user_removed_per_file": {
+        ".claude/skills/speckit-git-commit/SKILL.md": 1,
+        ".claude/skills/speckit-git-feature/SKILL.md": 1,
+        ".claude/skills/speckit-git-initialize/SKILL.md": 1,
+        ".claude/skills/speckit-git-remote/SKILL.md": 1,
+        ".claude/skills/speckit-git-validate/SKILL.md": 1,
+        ".claude/skills/speckit-implement/SKILL.md": 2,
+        ".claude/skills/speckit-specify/SKILL.md": 14,
+        ".claude/skills/speckit-tasks/SKILL.md": 2,
+        ".gitignore": 1,
+        ".pre-commit-config.yaml": 4,
+        ".specify/extensions/.registry": 1,
+        ".specify/init-options.json": 1,
+        ".specify/scripts/bash/check-prerequisites.sh": 5,
+        ".specify/scripts/bash/common.sh": 1,
+        ".specify/scripts/bash/create-new-feature.sh": 11,
+        ".specify/scripts/bash/setup-plan.sh": 8,
+        ".specify/templates/checklist-template.md": 3,
+        ".specify/workflows/workflow-registry.json": 1,
+        "README.md": 1,
+        "docs/explanation/agentic/index.md": 1,
+        "mise.toml": 2,
+        "specs/003-vue-onyx-frontend/contracts/api-consumption.md": 3,
+        "specs/003-vue-onyx-frontend/research.md": 20,
+        "ui/keycloak/realm-export.json": 1,
+        "ui/public/favicon.svg": 1,
+        "ui/src/assets/vue.svg": 1
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 1103,
+      "user_lines_removed": 23,
+      "agent_lines_added": 246,
+      "agent_lines_removed": 161,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293,
+        ".claude/skills/speckit-git-commit/SKILL.md": 1,
+        ".claude/skills/speckit-git-feature/SKILL.md": 1,
+        ".claude/skills/speckit-git-initialize/SKILL.md": 1,
+        ".claude/skills/speckit-git-remote/SKILL.md": 1,
+        ".claude/skills/speckit-git-validate/SKILL.md": 1,
+        ".claude/skills/speckit-implement/SKILL.md": 2,
+        ".claude/skills/speckit-specify/SKILL.md": 14,
+        ".claude/skills/speckit-tasks/SKILL.md": 2,
+        ".vale/styles/Google/AMPM.yml": 9,
+        ".vale/styles/Google/Acronyms.yml": 64,
+        ".vale/styles/Google/Anthropomorphism.yml": 12,
+        ".vale/styles/Google/Colons.yml": 13,
+        ".vale/styles/Google/Contractions.yml": 30,
+        ".vale/styles/Google/DateFormat.yml": 9,
+        ".vale/styles/Google/Ellipses.yml": 9,
+        ".vale/styles/Google/EmDash.yml": 13,
+        ".vale/styles/Google/ExcessiveClaims.yml": 14,
+        ".vale/styles/Google/Exclamation.yml": 12,
+        ".vale/styles/Google/FirstPerson.yml": 15,
+        ".vale/styles/Google/Gender.yml": 9,
+        ".vale/styles/Google/GenderBias.yml": 43,
+        ".vale/styles/Google/HeadingPunctuation.yml": 13,
+        ".vale/styles/Google/Headings.yml": 32,
+        ".vale/styles/Google/Jargon.yml": 13,
+        ".vale/styles/Google/Latin.yml": 15,
+        ".vale/styles/Google/LyHyphens.yml": 14,
+        ".vale/styles/Google/OptionalPlurals.yml": 12,
+        ".vale/styles/Google/Ordinal.yml": 7,
+        ".vale/styles/Google/OxfordComma.yml": 28,
+        ".vale/styles/Google/Parens.yml": 15,
+        ".vale/styles/Google/Passive.yml": 184,
+        ".vale/styles/Google/Periods.yml": 7,
+        ".vale/styles/Google/Quotes.yml": 7,
+        ".vale/styles/Google/Ranges.yml": 7,
+        ".vale/styles/Google/Semicolons.yml": 8,
+        ".vale/styles/Google/Slang.yml": 11,
+        ".vale/styles/Google/Spacing.yml": 10,
+        ".vale/styles/Google/Spelling.yml": 10,
+        ".vale/styles/Google/Timeless.yml": 13,
+        ".vale/styles/Google/Units.yml": 10,
+        ".vale/styles/Google/We.yml": 11,
+        ".vale/styles/Google/Will.yml": 7,
+        ".vale/styles/Google/WordList.yml": 29,
+        ".vale/styles/Google/WordListCase.yml": 68,
+        ".vale/styles/Google/meta.json": 4
+      },
+      "user_removed_per_file": {
+        ".claude/skills/speckit-git-commit/SKILL.md": 1,
+        ".claude/skills/speckit-git-feature/SKILL.md": 1,
+        ".claude/skills/speckit-git-initialize/SKILL.md": 1,
+        ".claude/skills/speckit-git-remote/SKILL.md": 1,
+        ".claude/skills/speckit-git-validate/SKILL.md": 1,
+        ".claude/skills/speckit-implement/SKILL.md": 2,
+        ".claude/skills/speckit-specify/SKILL.md": 14,
+        ".claude/skills/speckit-tasks/SKILL.md": 2
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 316,
+      "user_lines_removed": 23,
+      "agent_lines_added": 1033,
+      "agent_lines_removed": 161,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 293,
+        ".claude/skills/speckit-git-commit/SKILL.md": 1,
+        ".claude/skills/speckit-git-feature/SKILL.md": 1,
+        ".claude/skills/speckit-git-initialize/SKILL.md": 1,
+        ".claude/skills/speckit-git-remote/SKILL.md": 1,
+        ".claude/skills/speckit-git-validate/SKILL.md": 1,
+        ".claude/skills/speckit-implement/SKILL.md": 2,
+        ".claude/skills/speckit-specify/SKILL.md": 14,
+        ".claude/skills/speckit-tasks/SKILL.md": 2
+      },
+      "user_removed_per_file": {
+        ".claude/skills/speckit-git-commit/SKILL.md": 1,
+        ".claude/skills/speckit-git-feature/SKILL.md": 1,
+        ".claude/skills/speckit-git-initialize/SKILL.md": 1,
+        ".claude/skills/speckit-git-remote/SKILL.md": 1,
+        ".claude/skills/speckit-git-validate/SKILL.md": 1,
+        ".claude/skills/speckit-implement/SKILL.md": 2,
+        ".claude/skills/speckit-specify/SKILL.md": 14,
+        ".claude/skills/speckit-tasks/SKILL.md": 2
+      }
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 11,
+      "user_lines_added": 24,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".github/workflows/release-please.yml": 24
+      }
+    },
+    {
+      "checkpoint_number": 12,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 13,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 66,
+      "agent_lines_removed": 14
+    },
+    {
+      "checkpoint_number": 14,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 66,
+      "agent_lines_removed": 14
+    }
+  ]
+}
